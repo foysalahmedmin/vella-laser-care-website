@@ -1,0 +1,15 @@
+.switch {
+  @apply inline-block h-[1em] w-[2em] shrink-0 cursor-pointer appearance-none rounded-full border bg-accent/75 text-base shadow-switch-off transition-shadow duration-500;
+  &:disabled {
+    @apply opacity-50 animate-none;
+  }
+  &.active,
+  &:checked,
+  &[data-active="true"] {
+    @apply border-accent bg-accent shadow-switch-on;
+  }
+  &.loading,
+  &[data-loading="true"] {
+    @apply cursor-wait opacity-50 hover:bg-transparent animate-none;
+  }
+}

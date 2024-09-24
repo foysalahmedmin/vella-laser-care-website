@@ -1,0 +1,15 @@
+.radio {
+  @apply inline-block size-[1em] shrink-0 cursor-pointer appearance-none rounded-full border text-base  hover:bg-muted/15 transition-all duration-500;
+  &:disabled {
+    @apply opacity-50 hover:bg-transparent animate-none;
+  }
+  &.active,
+  &:checked,
+  &[data-active="true"] {
+    @apply animate-radio border-accent bg-accent shadow-radio;
+  }
+  &.loading,
+  &[data-loading="true"] {
+    @apply cursor-wait opacity-50 hover:bg-transparent animate-none;
+  }
+}

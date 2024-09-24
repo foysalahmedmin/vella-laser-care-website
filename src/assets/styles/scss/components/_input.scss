@@ -1,0 +1,19 @@
+.input {
+  @apply flex min-h-[2.5em] w-full transition-all duration-500 outline-none resize-y items-center gap-[.5em] rounded border bg-transparent px-[1em] text-base placeholder:text-muted-foreground hover:bg-muted/15;
+  &:disabled {
+    @apply opacity-50 hover:bg-transparent border-border animate-none;
+  }
+  &.active,
+  &:focus-within,
+  &[data-active="true"] {
+    @apply border-current bg-muted/25;
+  }
+  &.loading,
+  &[data-loading="true"] {
+    @apply cursor-wait opacity-50 hover:bg-transparent animate-none;
+  }
+  &.icon-none::-webkit-inner-spin-button,
+  &.icon-none::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+}

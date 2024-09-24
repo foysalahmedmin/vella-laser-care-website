@@ -1,3 +1,7 @@
 {
-  "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-css-order"]
+  "plugins": [
+    "prettier-plugin-organize-attributes",
+    "prettier-plugin-css-order",
+    "prettier-plugin-tailwindcss"
+  ]
 }
