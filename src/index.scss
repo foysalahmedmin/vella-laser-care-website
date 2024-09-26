@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @import "./assets/styles/scss/base/variable.scss";
+  @import "./assets/styles/scss/base/elements.scss";
+}
+
+@layer components {
+  @import "./assets/styles/scss/components/input.scss";
+  @import "./assets/styles/scss/components/radio.scss";
+  @import "./assets/styles/scss/components/checkbox.scss";
+  @import "./assets/styles/scss/components/switch.scss";
+  @import "./assets/styles/scss/components/button.scss";
+  @import "./assets/styles/scss/components/progress.scss";
+  @import "./assets/styles/scss/components/tooltip.scss";
+  @import "./assets/styles/scss/components/document-html.scss";
+  @import "./assets/styles/scss/components/parallax.scss";
+  @import "./assets/styles/scss/components/countdown.scss";
+  @import "./assets/styles/scss/components/range-slider.scss";
+}
+
+@layer utilities {
+  @import "./assets/styles/scss/utilities/index.scss";
+}

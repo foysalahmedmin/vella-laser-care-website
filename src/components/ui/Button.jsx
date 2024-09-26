@@ -1,6 +1,6 @@
 "use client";
 
-import useRippleEffect from "@/hooks/useRippleEffect";
+import useRippleEffect from "@/hooks/ui/useRippleEffect";
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import { forwardRef, useImperativeHandle, useRef } from "react";
@@ -8,28 +8,25 @@ import { forwardRef, useImperativeHandle, useRef } from "react";
 const buttonVariants = cva("button", {
   variants: {
     variant: {
-      default: "bg-accent text-accent-foreground hover:bg-accent/75",
-      gradient:
-        "to-accent-secondary hover:to-accent-secondary/75 bg-gradient-to-b from-accent text-accent-foreground hover:from-accent/75 active:bg-gradient-to-t",
-      outline:
-        "bg-transparent border border-accent/50 text-accent hover:bg-accent/15",
-      ghost: "bg-transparent text-accent hover:bg-accent/15",
-      link: "text-accent underline-offset-2 bg-none bg-transparent border-none hover:bg-none hover:bg-transparent hover:underline",
+      default: "variant-default",
+      gradient: "variant-gradient",
+      outline: "variant-outline",
+      ghost: "variant-ghost",
+      link: "variant-link",
       none: "",
     },
     size: {
-      default: "h-[2.5em] rounded px-[1em] text-base",
-      sm: "h-8 rounded px-4 text-sm",
-      base: "h-10 rounded px-4",
-      lg: "h-12 rounded-lg px-6",
-      icon: "size-[2.5em] rounded",
-      "icon-sm": "size-8 rounded",
-      "icon-base": "size-10 rounded",
-      "icon-lg": "size-12 rounded-lg",
+      default: "size-default",
+      sm: "size-sm",
+      base: "size-base",
+      lg: "size-lg",
+      icon: "size-icon",
+      "icon-sm": "size-icon-sm",
+      "icon-base": "size-icon-base",
+      "icon-lg": "size-icon-lg",
       none: "",
     },
     loading: {
-      center: "loading-center",
       left: "loading-left",
       right: "loading-right",
     },
@@ -37,7 +34,6 @@ const buttonVariants = cva("button", {
   defaultVariants: {
     variant: "default",
     size: "default",
-    loading: "center",
   },
 });
 
@@ -63,7 +59,7 @@ const Button = forwardRef(
     const Comp = asChild ? "span" : "button";
     return (
       <Comp
-        data-loading={isLoading}
+        data-state={isLoading ? "loading" : null}
         disabled={isLoading || disabled}
         className={cn(
           buttonVariants({

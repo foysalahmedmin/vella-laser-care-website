@@ -1,5 +1,6 @@
 import RootLayout from "@/components/layouts/RootLayout";
 import Loader from "@/components/partials/Loader";
+import ErrorPage from "@/pages/(common)/ErrorPage";
 import HomePage from "@/pages/(common)/HomePage";
 import { Suspense } from "react";
 

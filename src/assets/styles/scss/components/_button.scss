@@ -1,43 +1,83 @@
 .button {
-  @apply relative inline-flex animate-pop cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded text-base transition-all duration-300 active:scale-95;
-  &:disabled {
+  @apply relative inline-flex animate-pop cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded border border-transparent text-base transition-all duration-300 active:scale-95;
+
+  // variants
+  &.variant-default {
+    @apply bg-accent text-accent-foreground hover:bg-accent/75;
+  }
+  &.variant-gradient {
+    @apply bg-gradient-to-b from-primary to-secondary text-foreground hover:from-primary/75 hover:to-secondary/75 active:bg-gradient-to-t;
+  }
+  &.variant-outline {
+    @apply border border-accent/50 bg-transparent text-accent hover:bg-accent/15;
+  }
+  &.variant-ghost {
+    @apply bg-transparent text-foreground hover:bg-accent/15;
+  }
+  &.variant-link {
+    @apply bg-transparent text-accent underline-offset-2 hover:underline;
+  }
+
+  // size
+  &.size-default {
+    @apply h-[2.5em] rounded px-[1em] text-base;
+  }
+  &.size-sm {
+    @apply h-8 rounded px-4 text-sm;
+  }
+  &.size-base {
+    @apply h-10 rounded px-4 text-base;
+  }
+  &.size-lg {
+    @apply h-12 rounded-md px-6 text-base;
+  }
+  &.size-icon {
+    @apply size-[2.5em] rounded text-base;
+  }
+  &.size-icon-sm {
+    @apply size-8 rounded text-sm;
+  }
+  &.size-icon-base {
+    @apply size-10 rounded text-base;
+  }
+  &.size-icon-lg {
+    @apply size-12 rounded-md text-base;
+  }
+
+  // disabled state
+  &.disabled,
+  &:disabled,
+  &[data-state="disabled"] {
     @apply animate-none cursor-not-allowed opacity-50 active:scale-100;
   }
+
+  // loading state
   &.loading,
-  &[data-loading="true"] {
+  &[data-state="loading"] {
     @apply relative animate-none cursor-wait opacity-50 active:scale-100;
     &::before {
-      @apply absolute inset-0 z-10 bg-muted-foreground content-[''];
-    }
-    &::after {
       @apply absolute inset-0 z-30 mx-auto my-auto size-[1em] animate-spin rounded-full border-[.25em] border-dashed border-current bg-muted-foreground content-[''];
-    }
-  }
-  &.loading.loading-center,
-  &[data-loading="true"].loading-center {
-    &::before {
-      @apply absolute inset-0 z-10 bg-muted-foreground content-[''];
     }
     &::after {
       @apply absolute inset-0 z-30 mx-auto my-auto size-[1em] animate-spin rounded-full border-[.25em] border-dashed border-current bg-muted-foreground content-[''];
     }
   }
   &.loading.loading-left,
-  &[data-loading="true"].loading-left {
+  &[data-state="loading"].loading-left {
     &::before {
-      @apply static size-[1em] animate-spin rounded-full border-[.25em] border-dashed border-current content-[''];
+      position: static !important;
     }
     &::after {
-      @apply hidden;
+      display: none;
     }
   }
   &.loading.loading-right,
-  &[data-loading="true"].loading-right {
+  &[data-state="loading"].loading-right {
     &::before {
-      @apply hidden;
+      display: none;
     }
     &::after {
-      @apply static size-[1em] animate-spin rounded-full border-[.25em] border-dashed border-current content-[''];
+      position: static !important;
     }
   }
 }
