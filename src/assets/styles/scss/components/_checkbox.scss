@@ -1,15 +1,67 @@
 .checkbox {
-  @apply inline-block size-[1em] shrink-0 transition-all duration-500 cursor-pointer appearance-none rounded border text-base hover:bg-muted/15;
-  &:disabled {
-    @apply opacity-50 hover:bg-transparent animate-none;
-  }
+  display: inline-block;
+  flex-shrink: 0;
+  appearance: none;
+  transition: all 0.5s;
+  cursor: pointer;
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.25em;
+  width: 1em;
+  height: 1em;
+  font-size: 1rem;
+
   &.active,
+  &.checked,
   &:checked,
-  &[data-active="true"] {
-    @apply animate-checkbox border-accent bg-checkbox;
+  &[data-state="active"],
+  &[data-state="checked"] {
+    animation: checkbox1s;
+    border-color: hsl(var(--accent));
+    background-image: linear-gradient(
+        -45deg,
+        transparent 65%,
+        hsl(var(--accent)) 65.99%
+      ),
+      linear-gradient(45deg, transparent 75%, hsl(var(--accent)) 75.99%),
+      linear-gradient(-45deg, hsl(var(--accent)) 40%, transparent 40.99%),
+      linear-gradient(
+        45deg,
+        hsl(var(--accent)) 30%,
+        hsl(var(--accent-foreground)) 30.99%,
+        hsl(var(--accent-foreground)) 40%,
+        transparent 40.99%
+      ),
+      linear-gradient(
+        -45deg,
+        hsl(var(--accent-foreground)) 50%,
+        hsl(var(--accent)) 50.99%
+      );
   }
-  &.loading,
-  &[data-loading="true"] {
-    @apply cursor-wait opacity-50 hover:bg-transparent animate-none;
+}
+
+&.disabled,
+&:disabled,
+&[data-state="disabled"] {
+  opacity: 0.5;
+  animation: none;
+  cursor: not-allowed;
+}
+
+&.loading,
+&[data-state="loading"] {
+  opacity: 0.5;
+  animation: none;
+  cursor: wait;
+}
+
+@keyframes checkbox {
+  0% {
+    background-position-y: 0.25em;
+  }
+  50% {
+    background-position-y: -0.1em;
+  }
+  100% {
+    background-position-y: 0;
   }
 }

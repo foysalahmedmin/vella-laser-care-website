@@ -1,15 +1,43 @@
 .switch {
-  @apply inline-block h-[1em] w-[2em] shrink-0 cursor-pointer appearance-none rounded-full border bg-accent/75 text-base shadow-switch-off transition-shadow duration-500;
-  &:disabled {
-    @apply opacity-50 animate-none;
-  }
+  display: inline-block;
+  flex-shrink: 0;
+  appearance: none;
+  transition: box-shadow 0.5s;
+  cursor: pointer;
+  box-shadow:
+    -1em 0 0 0.1em hsl(var(--accent-foreground)) inset,
+    0 0 0 0.1em hsl(var(--accent-foreground)) inset;
+  border: 1px solid hsl(var(--border));
+  border-radius: 50%;
+  background-color: hsla(var(--accent), 0.75);
+  width: 2em;
+  height: 1em;
+  font-size: 1rem;
+
   &.active,
+  &.checked,
   &:checked,
-  &[data-active="true"] {
-    @apply border-accent bg-accent shadow-switch-on;
+  &[data-state="active"],
+  &[data-state="checked"] {
+    box-shadow:
+      1em 0 0 0.1em hsl(var(--accent-foreground)) inset,
+      0 0 0 0.1em hsl(var(--accent-foreground)) inset;
+    border-color: hsl(var(--accent));
+    background-color: hsl(var(--accent));
   }
+
+  &.disabled,
+  &:disabled,
+  &[data-state="disabled"] {
+    opacity: 0.5;
+    animation: none;
+    cursor: not-allowed;
+  }
+
   &.loading,
-  &[data-loading="true"] {
-    @apply cursor-wait opacity-50 hover:bg-transparent animate-none;
+  &[data-state="loading"] {
+    opacity: 0.5;
+    animation: none;
+    cursor: wait;
   }
 }

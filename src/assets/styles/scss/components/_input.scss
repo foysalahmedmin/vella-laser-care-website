@@ -1,17 +1,53 @@
 .input {
-  @apply flex min-h-[2.5em] w-full transition-all duration-500 outline-none resize-y items-center gap-[.5em] rounded border bg-transparent px-[1em] text-base placeholder:text-muted-foreground hover:bg-muted/15;
-  &:disabled {
-    @apply opacity-50 hover:bg-transparent border-border animate-none;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  transition: all 0.5s;
+  outline: none;
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.25em;
+  background-color: transparent;
+  padding-right: 1em;
+  padding-left: 1em;
+  width: 100%;
+  min-height: 2.5em;
+  resize: vertical;
+  font-size: 1rem;
+
+  &::placeholder {
+    color: hsl(var(--placeholder));
   }
+
+  &[data-state="active"] {
+    border-color: currentColor;
+    background-color: hsl(var(--muted / 0.25));
+  }
+
   &.active,
+  &.focused,
+  &:active,
   &:focus-within,
-  &[data-active="true"] {
-    @apply border-current bg-muted/25;
+  &[data-state="active"],
+  &[data-state="focused"] {
+    border-color: currentColor;
+    background-color: hsl(var(--muted / 0.25));
   }
+
+  &.disabled,
+  &:disabled,
+  &[data-state="disabled"] {
+    opacity: 0.5;
+    animation: none;
+    cursor: not-allowed;
+  }
+
   &.loading,
-  &[data-loading="true"] {
-    @apply cursor-wait opacity-50 hover:bg-transparent animate-none;
+  &[data-state="loading"] {
+    opacity: 0.5;
+    animation: none;
+    cursor: wait;
   }
+
   &.icon-none::-webkit-inner-spin-button,
   &.icon-none::-webkit-outer-spin-button {
     -webkit-appearance: none;

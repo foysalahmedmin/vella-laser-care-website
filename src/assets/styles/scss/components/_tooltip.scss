@@ -1,6 +1,24 @@
 .tooltip[data-tooltip] {
-  @apply relative;
+  position: relative;
+
   &:hover::after {
-    @apply absolute left-1/2 top-1 z-10 mx-auto -translate-x-1/2 -translate-y-full rounded-sm border bg-card px-2 py-1 text-sm text-foreground content-[attr(data-tooltip)];
+    position: absolute;
+    top: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    transform: translateY(-100%);
+    z-index: 10;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.125em;
+    background-color: hsl(var(--card));
+    padding-top: 0.25em;
+    padding-right: 0.5em;
+    padding-bottom: 0.25em;
+    padding-left: 0.5em;
+    content: attr(data-tooltip);
+    color: hsl(var(--foreground));
+    font-size: 0.875rem;
   }
 }

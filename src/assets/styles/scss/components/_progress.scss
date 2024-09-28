@@ -1,9 +1,16 @@
 progress {
-  @apply w-full h-[0.5em] rounded-full;
+  border-radius: 9999em;
+  width: 100%;
+  height: 0.5em;
 }
+
 progress::-webkit-progress-bar {
-  @apply shadow-inner bg-muted/25 rounded-full;
+  box-shadow: inset 0 0.125em 0.25em rgba(0, 0, 0, 0.06);
+  border-radius: 9999em; /* Full rounded */
+  background-color: rgba(229, 231, 235, 0.25);
 }
+
 progress::-webkit-progress-value {
-  @apply rounded-full bg-accent;
+  border-radius: 9999em;
+  background-color: hsl(var(--accent));
 }
