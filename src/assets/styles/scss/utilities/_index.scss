@@ -1,31 +1,23 @@
-.pl-container {
-  @apply pl-[5vw] md:pl-[1.5rem];
-}
+.underline-animated {
+  @apply relative transition-all duration-300;
 
-.pr-container {
-  @apply pr-[5vw] md:pr-[1.5rem];
-}
-
-.px-container {
-  @apply px-[5vw] md:px-[1.5rem];
-}
-
-.bg-gradient {
-  @apply bg-gradient-to-t from-primary to-secondary;
+  &:after {
+    @apply absolute inset-0 w-0 border-b border-accent transition-all duration-300 content-[''] hover:w-full;
+  }
 }
 
 .short-underline {
-  @apply relative after:absolute after:inset-0 after:w-12 after:border-b after:border-accent after:content-[''];
-}
+  @apply relative;
 
-.underline-animated {
-  @apply relative transition-all duration-300 after:absolute after:inset-0 after:w-0 after:border-b after:border-accent after:transition-all after:duration-300 after:content-[''] hover:after:w-full;
-}
-
-.short-spin {
-  @apply size-[1em] animate-spin rounded-full border-4 border-dashed border-current content-[''];
+  &:after {
+    @apply absolute inset-0 w-12 border-b border-accent content-[''];
+  }
 }
 
 .hide-rest {
-  @apply relative after:absolute after:bottom-0 after:left-0 after:right-0 after:block after:h-12 after:bg-gradient-to-t after:from-card after:content-[''];
+  @apply relative;
+
+  &:after {
+    @apply absolute bottom-0 left-0 right-0 block h-12 bg-gradient-to-t from-card content-[''];
+  }
 }

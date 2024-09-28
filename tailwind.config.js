@@ -19,6 +19,10 @@ export default {
       screens: {
         "3xl": "1800px",
       },
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
+        playfair: ["Playfair Display", "serif"],
+      },
       spacing: {
         container: "var(--spacing-container)",
       },
@@ -52,7 +56,7 @@ export default {
           200: "#9FDFB3",
           300: "#7AD396",
           400: "#59C87D",
-          500: "#56B280",
+          500: "#DF313B",
           600: "#4A9F72",
           700: "#3E8D64",
           800: "#327A55",
