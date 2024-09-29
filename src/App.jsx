@@ -1,11 +1,10 @@
 import ReactToaster from "@/components/partials/ReactToaster";
 import Providers from "@/components/providers";
 import { routes } from "@/routes";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom/dist";
 
 const App = () => {
   const router = createBrowserRouter(routes);
-
   return (
     <>
       <Providers>

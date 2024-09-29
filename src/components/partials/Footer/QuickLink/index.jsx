@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom/dist";
 
 const QuickLink = ({ className, ...props }) => {
   const links = [

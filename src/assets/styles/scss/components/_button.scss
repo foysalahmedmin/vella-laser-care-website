@@ -3,13 +3,13 @@
 
   // variants
   &.variant-default {
-    @apply bg-accent text-accent-foreground hover:bg-accent/75;
+    @apply primary bg-accent text-accent-foreground hover:bg-accent/75;
   }
   &.variant-gradient {
     @apply bg-gradient-to-b from-primary to-secondary text-foreground hover:from-primary/75 hover:to-secondary/75 active:bg-gradient-to-t;
   }
   &.variant-outline {
-    @apply border border-accent/50 bg-transparent text-accent hover:bg-accent/15;
+    @apply border bg-transparent text-foreground hover:border-accent/50 hover:bg-accent/15 hover:text-accent;
   }
   &.variant-ghost {
     @apply bg-transparent text-foreground hover:bg-accent/15;

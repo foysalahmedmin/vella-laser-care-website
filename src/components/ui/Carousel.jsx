@@ -259,16 +259,15 @@ const CarouselItem = forwardRef(({ className, ...props }, ref) => {
 CarouselItem.displayName = "CarouselItem";
 
 const CarouselPreviousTrigger = forwardRef(
-  ({ className, variant = "outline", size = "icon", ...props }, ref) => {
+  ({ className, size = "icon", ...props }, ref) => {
     const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
     return (
       <Button
         ref={ref}
-        variant={variant}
         size={size}
         className={cn(
-          "absolute  rounded-full text-[1em]",
+          "absolute rounded-full text-[1em]",
           orientation === "horizontal"
             ? "left-0 top-1/2 -translate-y-1/2"
             : "left-1/2 top-0 -translate-x-1/2 rotate-90",
@@ -287,13 +286,12 @@ const CarouselPreviousTrigger = forwardRef(
 CarouselPreviousTrigger.displayName = "CarouselPreviousTrigger";
 
 const CarouselNextTrigger = forwardRef(
-  ({ className, variant = "outline", size = "icon", ...props }, ref) => {
+  ({ className, size = "icon", ...props }, ref) => {
     const { orientation, scrollNext, canScrollNext } = useCarousel();
 
     return (
       <Button
         ref={ref}
-        variant={variant}
         size={size}
         className={cn(
           "absolute rounded-full text-[1em]",

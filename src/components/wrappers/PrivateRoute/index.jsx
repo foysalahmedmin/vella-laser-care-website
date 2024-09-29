@@ -1,5 +1,5 @@
 import useUser from "@/redux/slices/user-slice/useUser";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom/dist";
 
 const PrivateRout = ({ children }) => {
   const { user } = useUser();

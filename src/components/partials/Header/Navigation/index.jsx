@@ -25,7 +25,7 @@ const Navigation = ({ user }) => {
           </ul>
           <div
             className={cn(
-              "fixed inset-0 z-50 h-screen w-screen origin-top bg-card px-container-space py-4 transition-all duration-300 lg:hidden",
+              "px-container-space fixed inset-0 z-50 h-screen w-screen origin-top bg-card py-4 transition-all duration-300 lg:hidden",
               {
                 "visible scale-y-100 opacity-100": isOpen,
                 "invisible scale-y-0 opacity-0": !isOpen,

@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-
+import { Link } from "react-router-dom/dist";
 
 const Account = ({ className, ...props }) => {
   const links = [

@@ -41,4 +41,3 @@ const HeartOutline = forwardRef((props, ref) => {
 HeartOutline.displayName = "HeartOutline";
 
 export { Heart, HeartOutline };
-

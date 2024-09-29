@@ -10,6 +10,9 @@ export default {
     darkMode: ["class"],
     container: {
       center: true,
+      screens: {
+        "2xl": "1440px",
+      },
       padding: {
         DEFAULT: "5vw",
         lg: "2rem",
@@ -17,6 +20,7 @@ export default {
     },
     extend: {
       screens: {
+        "2xl": "1440px",
         "3xl": "1800px",
       },
       fontFamily: {

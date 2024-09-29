@@ -8,22 +8,24 @@ import { forwardRef, useImperativeHandle, useRef } from "react";
 const buttonVariants = cva("button", {
   variants: {
     variant: {
-      default: "variant-default",
-      gradient: "variant-gradient",
-      outline: "variant-outline",
-      ghost: "variant-ghost",
-      link: "variant-link",
+      default: "primary bg-accent text-accent-foreground hover:bg-accent/75",
+      gradient:
+        "bg-gradient-to-b from-primary to-secondary text-foreground hover:from-primary/75 hover:to-secondary/75 active:bg-gradient-to-t",
+      outline:
+        "border bg-transparent text-foreground hover:border-accent/50 hover:bg-accent/15 hover:text-accent",
+      ghost: "bg-transparent text-foreground hover:bg-accent/15",
+      link: "bg-transparent text-accent underline-offset-2 hover:underline",
       none: "",
     },
     size: {
-      default: "size-default",
-      sm: "size-sm",
-      base: "size-base",
-      lg: "size-lg",
-      icon: "size-icon",
-      "icon-sm": "size-icon-sm",
-      "icon-base": "size-icon-base",
-      "icon-lg": "size-icon-lg",
+      default: "h-[2.5em] rounded px-[1em] text-base",
+      sm: "h-8 rounded px-4 text-sm",
+      base: "h-10 rounded px-4 text-base",
+      lg: "h-12 rounded-md px-6 text-base",
+      icon: "size-[2.5em] rounded text-base",
+      "icon-sm": "size-8 rounded text-sm",
+      "icon-base": "size-10 rounded text-base",
+      "icon-lg": "size-12 rounded-md text-base",
       none: "",
     },
     loading: {

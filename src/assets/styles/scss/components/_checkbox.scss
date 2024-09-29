@@ -37,21 +37,21 @@
         hsl(var(--accent)) 50.99%
       );
   }
-}
 
-&.disabled,
-&:disabled,
-&[data-state="disabled"] {
-  opacity: 0.5;
-  animation: none;
-  cursor: not-allowed;
-}
+  &.disabled,
+  &:disabled,
+  &[data-state="disabled"] {
+    opacity: 0.5;
+    animation: none;
+    cursor: not-allowed;
+  }
 
-&.loading,
-&[data-state="loading"] {
-  opacity: 0.5;
-  animation: none;
-  cursor: wait;
+  &.loading,
+  &[data-state="loading"] {
+    opacity: 0.5;
+    animation: none;
+    cursor: wait;
+  }
 }
 
 @keyframes checkbox {

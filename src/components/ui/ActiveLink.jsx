@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom/dist";
 
 const ActiveLink = forwardRef(
   (
@@ -27,4 +27,3 @@ const ActiveLink = forwardRef(
 ActiveLink.displayName = "ActiveLink";
 
 export { ActiveLink };
-

@@ -6,20 +6,18 @@ html {
   @apply scroll-p-16 scroll-smooth;
 }
 body {
-  @apply scroll-smooth bg-background text-sm text-foreground;
+  @apply scroll-smooth bg-background text-foreground;
 }
 
 h2,
 h3,
 h4,
 h5,
-h6,
-strong,
-th {
-  @apply font-semibold text-title;
+h6 {
+  @apply font-playfair font-bold text-title;
 }
 h1 {
-  @apply text-3xl font-bold text-title;
+  @apply font-playfair text-4xl font-black text-title;
 }
 h2 {
   @apply text-3xl;
@@ -35,6 +33,11 @@ h5 {
 }
 h6 {
   @apply text-base;
+}
+
+strong,
+th {
+  @apply font-roboto font-bold text-title;
 }
 
 ul {

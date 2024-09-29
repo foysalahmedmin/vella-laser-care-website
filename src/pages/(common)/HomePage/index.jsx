@@ -1,7 +1,15 @@
+import BannerSection from "@/components/(common)/home/BannerSection";
+import CountSection from "@/components/(common)/home/CountSection";
+import FeaturedProductsSection from "@/components/(common)/home/FeaturedProductsSection";
+import ServiceCentreSection from "@/components/(common)/home/ServiceCentreSection";
+
 const HomePage = () => {
   return (
     <main>
-      <h1>Hello World !</h1>
+      <BannerSection />
+      <ServiceCentreSection />
+      <CountSection />
+      <FeaturedProductsSection />
     </main>
   );
 };

@@ -2,14 +2,14 @@ import { Button } from "@/components/ui/Button";
 import { Dropdown } from "@/components/ui/Dropdown";
 import { Edit } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom/dist";
 
 const UserAndAuthNav = ({ user }) => {
   const [isOpen, setIsOpen] = useState();
 
   return (
     <div>
-      {user? (
+      {user ? (
         <div className="relative">
           <div className="size-8 animate-pop cursor-pointer overflow-hidden rounded-full border border-primary bg-primary/5">
             <img
