@@ -50,16 +50,18 @@ const ServiceCentreSection = () => {
               </div>
             </div>
           </div>
-          <CarouselContent>
-            {serviceCentreData?.map((item, index) => (
-              <CarouselItem
-                key={index}
-                className="px-2 md:basis-1/2 md:odd:pb-14 md:even:pt-14 xl:basis-1/4 3xl:basis-1/6"
-              >
-                <ServiceCard item={item} />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
+          <div className="mx-auto max-w-[120rem] px-container">
+            <CarouselContent>
+              {serviceCentreData?.map((item, index) => (
+                <CarouselItem
+                  key={index}
+                  className="px-2 md:basis-1/2 md:odd:pb-14 md:even:pt-14 xl:basis-1/4"
+                >
+                  <ServiceCard item={item} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </div>
         </Carousel>
       </div>
     </section>

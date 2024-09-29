@@ -11,24 +11,22 @@ export default {
     container: {
       center: true,
       screens: {
-        "2xl": "1440px",
+        "2xl": "90rem",
       },
       padding: {
-        DEFAULT: "5vw",
-        lg: "2rem",
+        DEFAULT: "var(--container-space)",
       },
     },
     extend: {
       screens: {
         "2xl": "1440px",
-        "3xl": "1800px",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
         playfair: ["Playfair Display", "serif"],
       },
       spacing: {
-        container: "var(--spacing-container)",
+        container: "var(--container-space)",
       },
       height: {
         header: "var(--header-height)",
