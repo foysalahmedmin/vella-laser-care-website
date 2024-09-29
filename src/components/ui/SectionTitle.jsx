@@ -8,7 +8,7 @@ const sectionTitleVariants = cva(
     variants: {
       variant: {
         center:
-          "center short-underline mx-auto pb-2 px-4 text-center after:border-b-2 after:border-primary after:mx-auto",
+          "center mx-auto pb-2 px-4 text-center after:border-b-2 after:border-primary after:mx-auto",
         left: "left text-left after:mr-auto",
         right: "right text-right after:ml-auto",
         none: "",

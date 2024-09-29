@@ -15,7 +15,7 @@ const ProductCard = ({ item }) => {
   } = item;
   return (
     <div className="rounded-xl bg-background">
-      <div className="space-y-4 bg-primary/5 px-6 py-6">
+      <div className="relative space-y-4 bg-primary/5 px-6 py-6">
         <div>
           <h3 className="uppercase">{name}</h3>
           <p className="font-semibold">{description}</p>
@@ -51,6 +51,18 @@ const ProductCard = ({ item }) => {
             </div>
           </div>
         </div>
+        {tags && (
+          <div className="absolute right-6 top-2 mt-0 flex items-center gap-2">
+            {tags?.map((item, index) => (
+              <span
+                key={index}
+                className="inline-block rounded bg-accent px-2 py-1 text-xs font-semibold text-accent-foreground"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
