@@ -161,7 +161,31 @@
 
 @media (min-width: 1440px) {
   :root {
-    --container-space: 2rem;
+    --container-space: 4rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  html {
+    font-size: 105%;
+  }
+}
+
+@media (min-width: 1600px) {
+  html {
+    font-size: 111%;
+  }
+}
+
+@media (min-width: 1728px) {
+  html {
+    font-size: 120%;
+  }
+}
+
+@media (min-width: 1800px) {
+  html {
+    font-size: 125%;
   }
 }
 

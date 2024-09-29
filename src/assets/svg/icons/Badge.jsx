@@ -4,8 +4,8 @@ const Badge = forwardRef((props, ref) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="72"
-      height="86"
+      width="4.5rem"
+      height="5.375rem"
       viewBox="0 0 72 86"
       fill="none"
       ref={ref}

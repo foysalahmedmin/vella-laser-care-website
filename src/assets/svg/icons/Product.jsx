@@ -4,8 +4,8 @@ const Product = forwardRef((props, ref) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="82"
-      height="86"
+      width="5.125rem"
+      height="5.375rem"
       viewBox="0 0 82 86"
       fill="none"
       ref={ref}

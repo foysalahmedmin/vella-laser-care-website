@@ -20,6 +20,7 @@ export default {
     extend: {
       screens: {
         "2xl": "1440px",
+        "3xl": "1536px",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],

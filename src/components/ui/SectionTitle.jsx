@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 import { forwardRef } from "react";
 
 const sectionTitleVariants = cva(
-  "group mb-10 space-y-2 max-w-[768px] md:mb-16",
+  "group mb-10 space-y-2 max-w-[48rem] md:mb-16",
   {
     variants: {
       variant: {
