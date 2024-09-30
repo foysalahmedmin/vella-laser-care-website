@@ -38,7 +38,7 @@ const FeaturedProductsSection = () => {
           >
             <>
               <div className="relative">
-                <div className="absolute -top-10 right-0 inline-flex -translate-y-full items-center gap-2 md:-top-16">
+                <div className="absolute -top-10 right-0 inline-flex -translate-y-full items-center gap-2">
                   <CarouselPreviousTrigger
                     className="static bottom-0 top-0 inline-flex -translate-y-0 rounded-full bg-light text-primary transition-all duration-300 hover:bg-light/75"
                     size="icon-sm"
