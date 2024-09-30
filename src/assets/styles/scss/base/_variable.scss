@@ -1,9 +1,9 @@
 :root {
   --background: 0 0% 99%;
-  --foreground: 0 0% 15%;
+  --foreground: 0 0% 30%;
 
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 15%;
+  --card-foreground: 0 0% 30%;
 
   --popover: 20 14.3% 4.1%;
   --popover-foreground: 0 0% 100%;
@@ -27,7 +27,7 @@
   --destructive-foreground: 0 0% 100%;
 
   --light: 0 0% 100%;
-  --light-foreground: 0 0% 15%;
+  --light-foreground: 0 0% 30%;
 
   --dark: 0 0% 4%;
   --dark-foreground: 0 0% 90%;
@@ -45,10 +45,10 @@
 
 .light {
   --background: 0 0% 99%;
-  --foreground: 0 0% 15%;
+  --foreground: 0 0% 30%;
 
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 15%;
+  --card-foreground: 0 0% 30%;
 
   --popover: 20 14.3% 4.1%;
   --popover-foreground: 0 0% 100%;
@@ -72,7 +72,7 @@
   --destructive-foreground: 0 0% 100%;
 
   --light: 0 0% 100%;
-  --light-foreground: 0 0% 15%;
+  --light-foreground: 0 0% 30%;
 
   --dark: 0 0% 4%;
   --dark-foreground: 0 0% 90%;
@@ -105,15 +105,15 @@
   --ternary: 237 100% 75%;
   --ternary-foreground: 0 0% 100%;
 
-  --muted: 0 0% 15%;
+  --muted: 0 0% 30%;
   --muted-foreground: 0 0% 45%;
 
   --destructive: 0 72.2% 50.6%;
   --destructive-foreground: 0 0% 100%;
 
-  --border: 0 0% 15%;
-  --input: 0 0% 15%;
-  --ring: 0 0% 15%;
+  --border: 0 0% 30%;
+  --input: 0 0% 30%;
+  --ring: 0 0% 30%;
   --title: 0 0% 100%;
 }
 

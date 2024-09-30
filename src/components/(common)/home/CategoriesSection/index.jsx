@@ -9,7 +9,7 @@ const CategoriesSection = () => {
           <Subtitle>Healthy Skin & Natural</Subtitle>
           <Title className="text-title">Shop By Category</Title>
         </SectionTitle>
-        <div className="grid grid-cols-1 gap-4 gap-y-8 md:grid-cols-2 xl:grid-cols-5">
+        <div className="grid grid-cols-1 gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-5">
           {categories.map((category) => (
             <div key={category.id} className="flex flex-col items-center">
               <div className="h-28 w-full rounded-2xl bg-primary/5" />
