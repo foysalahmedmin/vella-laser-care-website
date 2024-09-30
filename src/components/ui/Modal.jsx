@@ -113,7 +113,7 @@ const Modal = forwardRef(
       <PortalRoot>
         <div
           className={cn(
-            "px-container fixed inset-0 z-[100000] flex origin-center items-center justify-center overflow-y-auto bg-background/75 py-[1vh] backdrop-blur transition-[opacity,transform,visibility] duration-200",
+            "fixed inset-0 z-[100] flex origin-center items-center justify-center overflow-y-auto bg-background/75 px-container py-[1vh] backdrop-blur transition-[opacity,transform,visibility] duration-200",
             {
               "invisible scale-0 opacity-0 delay-300": !isOpen,
               "visible scale-100 opacity-100": isOpen,

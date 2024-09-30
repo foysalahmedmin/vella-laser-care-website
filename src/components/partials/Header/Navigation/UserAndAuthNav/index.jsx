@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { Dropdown } from "@/components/ui/Dropdown";
-import { Edit } from "lucide-react";
+import { Edit, User } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom/dist";
 
@@ -9,7 +9,7 @@ const UserAndAuthNav = ({ user }) => {
 
   return (
     <div>
-      {user ? (
+      {Object.keys(user).length > 0 ? (
         <div className="relative">
           <div className="size-8 animate-pop cursor-pointer overflow-hidden rounded-full border border-primary bg-primary/5">
             <img
@@ -64,7 +64,8 @@ const UserAndAuthNav = ({ user }) => {
       ) : (
         <Link title="Sign-In" to={"/user/sign-in"}>
           <Button asChild className="uppercase" size="sm">
-            Sign-In
+            <span>Login / Register</span>
+            <User />
           </Button>
         </Link>
       )}

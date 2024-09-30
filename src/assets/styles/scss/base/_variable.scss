@@ -39,7 +39,7 @@
 
   --radius: 0.5rem;
   --header-height: 4rem;
-  --top-header-height: 2rem;
+  --top-header-height: 3rem;
   --container-space: 5vw;
 }
 
@@ -127,7 +127,6 @@
   --ternary: var(--accent);
   --ternary-foreground: var(--accent-foreground);
 }
-
 .primary {
   --accent: var(--primary);
   --accent-foreground: var(--primary-foreground);

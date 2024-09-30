@@ -1,3 +1,5 @@
+import HomeLayout from "@/components/layouts/HomeLayout";
+import MainLayout from "@/components/layouts/MainLayout";
 import RootLayout from "@/components/layouts/RootLayout";
 import Loader from "@/components/partials/Loader";
 import ErrorPage from "@/pages/(common)/ErrorPage";
@@ -15,8 +17,23 @@ export const routes = [
     element: <RootLayout />,
     children: [
       {
-        path: "/",
-        element: <HomePage />,
+        element: <HomeLayout />,
+        children: [
+          {
+            path: "/",
+            element: <HomePage />,
+          },
+        ],
+      },
+      {
+        path: "",
+        element: <MainLayout />,
+        children: [
+          {
+            path: "/",
+            element: <HomePage />,
+          },
+        ],
       },
     ],
   },

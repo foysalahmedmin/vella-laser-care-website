@@ -12,7 +12,10 @@ i18n
     fallbackLng: "en",
     returnObjects: true,
     interpolation: {
-      escapeValue: false, // not needed for react as it escapes by default
+      escapeValue: false,
+    },
+    backend: {
+      loadPath: "/locales/{{lng}}/{{ns}}.json",
     },
   });
 
