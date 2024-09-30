@@ -127,6 +127,9 @@ export default {
           foreground: "hsl(var(--dark-light))",
         },
       },
+      boxShadow: {
+        "custom-1": "box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.08)",
+      },
       keyframes: {
         "loading-spin": {
           "100%": {
