@@ -5,6 +5,7 @@ import FeaturedProductsSection from "@/components/(common)/home/FeaturedProducts
 import FeatureSection from "@/components/(common)/home/FeatureSection";
 import ParlorsSection from "@/components/(common)/home/ParlorsSection";
 import ServiceCentreSection from "@/components/(common)/home/ServiceCentreSection";
+import TestimonialsSection from "@/components/(common)/home/TestimonialsSection";
 
 const HomePage = () => {
   return (
@@ -16,6 +17,7 @@ const HomePage = () => {
       <CategoriesSection />
       <FeatureSection />
       <ParlorsSection />
+      <TestimonialsSection />
     </main>
   );
 };

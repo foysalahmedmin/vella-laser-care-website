@@ -4,7 +4,7 @@ import {
   StarEmpty,
   Star as StarFull,
   StarHalf,
-} from "@/assets/images/icons/Stars";
+} from "@/assets/svg/icons/Stars";
 import { cn } from "@/lib/utils";
 import { forwardRef, useMemo, useState } from "react";
 

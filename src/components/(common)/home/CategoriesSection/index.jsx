@@ -10,11 +10,11 @@ const CategoriesSection = () => {
           <Title className="text-title">Shop By Category</Title>
         </SectionTitle>
         <div className="grid grid-cols-1 gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-5">
-          {categories.map((category) => (
-            <div key={category.id} className="flex flex-col items-center">
+          {categories.map((category, index) => (
+            <div key={index} className="flex flex-col items-center">
               <div className="h-28 w-full rounded-2xl bg-primary/5" />
               <div className="relative -mt-24 w-full px-4">
-                <div className="shadow-custom-1 flex aspect-square w-full items-center justify-center rounded-xl bg-card">
+                <div className="flex aspect-square w-full items-center justify-center rounded-xl bg-card shadow-custom-1">
                   <img src={category.image} alt={category.title} />
                 </div>
               </div>

@@ -55,11 +55,11 @@ const BannerSection = () => {
           ))}
         </CarouselContent>
         <CarouselPreviousTrigger
-          className="invisible absolute left-8 hidden -translate-x-full rounded-full opacity-0 transition-all duration-300 group-hover/carousel:visible group-hover/carousel:translate-x-0 group-hover/carousel:opacity-100 md:inline-flex"
+          className="invisible absolute left-4 hidden -translate-x-4 rounded-full opacity-0 transition-all duration-300 group-hover/carousel:visible group-hover/carousel:translate-x-0 group-hover/carousel:opacity-100 md:inline-flex"
           size="icon-sm"
         />
         <CarouselNextTrigger
-          className="invisible absolute right-8 hidden translate-x-full rounded-full opacity-0 transition-all duration-300 group-hover/carousel:visible group-hover/carousel:translate-x-0 group-hover/carousel:opacity-100 md:inline-flex"
+          className="invisible absolute right-4 hidden translate-x-4 rounded-full opacity-0 transition-all duration-300 group-hover/carousel:visible group-hover/carousel:translate-x-0 group-hover/carousel:opacity-100 md:inline-flex"
           size="icon-sm"
         />
         <CarouselPagination />
