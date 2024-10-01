@@ -16,7 +16,7 @@
   &[data-state="active"],
   &[data-state="checked"] {
     animation: radio 1s;
-    box-shadow: 0 0 0 0.25em hsl(var(--accent-foreground)) inset;
+    box-shadow: 0 0 0 0.15em hsl(var(--accent-foreground)) inset;
     border-color: hsl(var(--accent));
     background-color: hsl(var(--accent));
   }

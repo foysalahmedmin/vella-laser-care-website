@@ -2,23 +2,20 @@ import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import { forwardRef } from "react";
 
-const sectionTitleVariants = cva(
-  "group mb-10 space-y-2 max-w-[48rem] md:mb-16",
-  {
-    variants: {
-      variant: {
-        center:
-          "center mx-auto pb-2 px-4 text-center after:border-b-2 after:border-primary after:mx-auto",
-        left: "left text-left after:mr-auto",
-        right: "right text-right after:ml-auto",
-        none: "",
-      },
-    },
-    defaultVariants: {
-      variant: "left",
+const sectionTitleVariants = cva("group mb-10 space-y-2 max-w-[48rem]", {
+  variants: {
+    variant: {
+      center:
+        "center mx-auto pb-2 px-4 text-center after:border-b-2 after:border-primary after:mx-auto",
+      left: "left text-left after:mr-auto",
+      right: "right text-right after:ml-auto",
+      none: "",
     },
   },
-);
+  defaultVariants: {
+    variant: "left",
+  },
+});
 
 const SectionTitle = forwardRef(({ className, variant, ...props }, ref) => {
   return (
@@ -63,7 +60,11 @@ Subtitle.displayName = "Subtitle";
 
 const Description = forwardRef(({ className, ...props }, ref) => {
   return (
-    <p className={cn("font-comfortaa mt-4", className)} {...props} ref={ref} />
+    <p
+      className={cn("mt-4 text-sm font-semibold", className)}
+      {...props}
+      ref={ref}
+    />
   );
 });
 Description.displayName = "Description";

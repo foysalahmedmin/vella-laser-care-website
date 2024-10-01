@@ -47,4 +47,26 @@ ul {
 input,
 textarea {
   @apply cursor-pointer accent-accent disabled:animate-none disabled:cursor-not-allowed disabled:opacity-50 disabled:checked:animate-none;
+
+  /* Hide the spin buttons for number input when .icon-none is applied */
+  &[type="number"].icon-none::-webkit-inner-spin-button,
+  &[type="number"].icon-none::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  /* Hide the calendar and clock icons for date, time, and datetime-local inputs */
+  &[type="date"].icon-none::-webkit-calendar-picker-indicator,
+  &[type="time"].icon-none::-webkit-calendar-picker-indicator,
+  &[type="datetime-local"].icon-none::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+
+  /* Remove native appearance for all browsers (including Firefox) */
+  &[type="date"].icon-none,
+  &[type="time"].icon-none,
+  &[type="datetime-local"].icon-none {
+    -moz-appearance: none;
+    appearance: none;
+  }
 }

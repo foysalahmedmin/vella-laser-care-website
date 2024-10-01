@@ -47,9 +47,4 @@
     animation: none;
     cursor: wait;
   }
-
-  &.icon-none::-webkit-inner-spin-button,
-  &.icon-none::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-  }
 }
