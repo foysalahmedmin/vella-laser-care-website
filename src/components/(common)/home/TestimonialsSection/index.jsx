@@ -29,7 +29,7 @@ const TestimonialsSection = () => {
               {testimonials.map((item, index) => (
                 <CarouselItem
                   key={index}
-                  className="px-2 md:basis-1/2 lg:basis-1/3"
+                  className="md:basis-1/2 md:px-4 lg:basis-1/3 xl:px-5"
                 >
                   <TestimonialCard item={item} />
                 </CarouselItem>

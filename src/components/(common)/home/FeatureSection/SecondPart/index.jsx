@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { ArrowRight } from "lucide-react";
 
 const SecondPart = () => {
   return (
@@ -31,7 +32,9 @@ const SecondPart = () => {
                 Text Ever Since.
               </p>
               <div className="pt-4">
-                <Button>Register</Button>
+                <Button>
+                  <span>Register</span> <ArrowRight className="size-4" />
+                </Button>
               </div>
             </div>
           </div>

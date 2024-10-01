@@ -7,7 +7,7 @@ import { useState } from "react";
 const SearchBar = ({ className, ...props }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="relative inline-flex">
+    <div className={cn("relative inline-flex", className)} {...props}>
       <Button
         className=""
         variant="none"
@@ -17,17 +17,11 @@ const SearchBar = ({ className, ...props }) => {
         <MagnifyOutline className="size-6" />
       </Button>
       <Dropdown
-        className="left-auto right-0 min-w-80 origin-top-right -translate-x-0 bg-background"
+        className="left-auto right-0 mx-container w-[calc(100%-var(--container-space)*2)] origin-top-right -translate-x-0 bg-background lg:min-w-80"
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
       >
-        <label
-          className={cn(
-            "input h-8 w-full gap-2 bg-card px-0 lg:w-80",
-            className,
-          )}
-          {...props}
-        >
+        <label className="input h-8 w-full gap-2 bg-card px-0">
           <input
             className="peer size-full flex-1 bg-transparent px-4 text-xs outline-none lg:text-sm"
             type="search"

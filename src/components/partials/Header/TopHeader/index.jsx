@@ -8,39 +8,41 @@ import LocaleSelector from "../../LocaleSelector";
 
 const TopHeader = () => {
   return (
-    <div className="h-top-header bg-primary/15">
-      <div className="container grid h-full grid-cols-3 items-center justify-between">
-        <div className="flex items-center gap-1">
-          <EmailOutline className="text-2xl text-primary" />
-          <span className="inline-block font-semibold text-muted-foreground">
-            office@vellalasercare.com
-          </span>
-        </div>
-        <div className="text-center">
-          <span className="inline-block text-lg">
-            Shop <span className="font-semibold text-primary">$50</span> for{" "}
-            <span className="font-semibold text-primary">free shipping!</span>
-          </span>
-        </div>
-        <div className="flex items-center justify-end gap-4 text-right">
-          <div className="inline-flex items-center divide-x-2 divide-primary/50">
-            <Link to="" className="px-4 text-xl text-primary">
-              <YouTube />
-            </Link>
-            <Link to="" className="px-4 text-xl text-primary">
-              <Instagram />
-            </Link>
-            <Link to="" className="px-4 text-xl text-primary">
-              <Twitter />
-            </Link>
-            <Link to="" className="px-4 text-xl text-primary">
-              <Facebook />
-            </Link>
+    <header className="h-top-header bg-primary/15">
+      <div className="container size-full">
+        <div className="flex size-full items-center justify-between md:grid md:grid-cols-3">
+          <div className="flex items-center gap-1">
+            <EmailOutline className="text-xl text-primary md:text-2xl" />
+            <span className="inline-block text-sm font-semibold text-muted-foreground md:text-base">
+              office@vellalasercare.com
+            </span>
           </div>
-          <LocaleSelector />
+          <div className="hidden text-center md:block">
+            <span className="inline-block text-lg">
+              Shop <span className="font-semibold text-primary">$50</span> for{" "}
+              <span className="font-semibold text-primary">free shipping!</span>
+            </span>
+          </div>
+          <div className="flex items-center justify-end gap-4 text-right">
+            <div className="inline-flex items-center divide-x-2 divide-primary/50">
+              <Link to="" className="px-2 text-xl text-primary lg:px-4">
+                <YouTube />
+              </Link>
+              <Link to="" className="px-2 text-xl text-primary lg:px-4">
+                <Instagram />
+              </Link>
+              <Link to="" className="px-2 text-xl text-primary lg:px-4">
+                <Twitter />
+              </Link>
+              <Link to="" className="px-2 text-xl text-primary lg:px-4">
+                <Facebook />
+              </Link>
+            </div>
+            <LocaleSelector />
+          </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

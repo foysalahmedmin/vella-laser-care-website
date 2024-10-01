@@ -9,6 +9,7 @@ import {
   CarouselPreviousTrigger,
 } from "@/components/ui/Carousel";
 import { SectionTitle, Subtitle, Title } from "@/components/ui/SectionTitle";
+import { ArrowRight } from "lucide-react";
 
 const ParlorsSection = () => {
   return (
@@ -53,7 +54,9 @@ const ParlorsSection = () => {
           </Carousel>
         </div>
         <div className="mt-6 text-center">
-          <Button className="mx-auto">View More</Button>
+          <Button className="mx-auto">
+            <span>View More</span> <ArrowRight className="size-4" />
+          </Button>
         </div>
       </div>
     </section>

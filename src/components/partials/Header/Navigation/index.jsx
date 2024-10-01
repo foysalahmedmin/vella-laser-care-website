@@ -27,7 +27,7 @@ const Navigation = ({ layout, user }) => {
             className={cn(
               "flex h-full items-center justify-between gap-2 lg:gap-4",
               {
-                "grid grid-cols-3": layout === "home",
+                "flex lg:grid lg:grid-cols-3": layout === "home",
               },
             )}
           >
@@ -46,17 +46,14 @@ const Navigation = ({ layout, user }) => {
             </ul>
             <div
               className={cn(
-                "px-container-space fixed inset-0 z-50 h-screen w-screen origin-top bg-card py-4 transition-all duration-300 lg:hidden",
+                "fixed inset-0 z-50 h-screen w-screen origin-top bg-card px-container py-4 transition-all duration-300 lg:hidden",
                 {
                   "visible scale-y-100 opacity-100": isOpen,
                   "invisible scale-y-0 opacity-0": !isOpen,
                 },
               )}
             >
-              <div className="flex items-center justify-between">
-                <div className="w-1/2">
-                  <SearchBar />
-                </div>
+              <div className="flex items-center justify-end">
                 <Toggler
                   onClick={() => setIsOpen((value) => !value)}
                   isOn={isOpen}
@@ -74,7 +71,7 @@ const Navigation = ({ layout, user }) => {
             </div>
             <div className="flex items-center justify-end gap-4">
               <div className="flex items-center justify-end gap-2 lg:gap-4">
-                <SearchBar className="hidden lg:flex" />
+                <SearchBar className="static w-full lg:relative lg:w-auto" />
                 <Wishlist />
                 <Cart />
                 <UserAndAuthNav user={user} />

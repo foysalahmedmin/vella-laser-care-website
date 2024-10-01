@@ -1,5 +1,6 @@
 import BannerSection from "@/components/(common)/home/BannerSection";
 import CategoriesSection from "@/components/(common)/home/CategoriesSection";
+import ConsultationScheduleSection from "@/components/(common)/home/ConsultationScheduleSection";
 import CountSection from "@/components/(common)/home/CountSection";
 import FeaturedProductsSection from "@/components/(common)/home/FeaturedProductsSection";
 import FeatureSection from "@/components/(common)/home/FeatureSection";
@@ -18,6 +19,7 @@ const HomePage = () => {
       <FeatureSection />
       <ParlorsSection />
       <TestimonialsSection />
+      <ConsultationScheduleSection />
     </main>
   );
 };

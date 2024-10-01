@@ -59,13 +59,13 @@ const NavMenu = () => {
             <div className="group relative inline-flex">
               <span
                 className={
-                  "underline-animated peer inline-flex cursor-pointer items-center gap-1 py-1 font-playfair font-semibold capitalize text-title after:mx-auto after:border-title"
+                  "underline-animated peer inline-flex cursor-pointer items-end gap-1 whitespace-nowrap py-1 font-playfair font-semibold capitalize text-title after:mx-auto after:border-title"
                 }
               >
                 <span className="text-sm">{route?.label}</span>{" "}
-                <ChevronRight className="group-hover:rotate-90" />
+                <ChevronRight className="lg:rotate-90" size={16} />
               </span>
-              <ul className="invisible absolute -bottom-2 left-1/2 min-w-40 shrink-0 origin-top -translate-x-1/2 translate-y-full scale-0 space-y-2 rounded bg-card px-4 py-2 opacity-0 transition-all duration-300 group-hover:visible group-hover:scale-100 group-hover:opacity-100">
+              <ul className="invisible absolute -right-2 top-0 min-w-40 shrink-0 origin-left translate-x-full scale-0 space-y-2 rounded bg-card px-4 py-0 opacity-0 transition-all duration-300 group-hover:visible group-hover:scale-100 group-hover:opacity-100 lg:-bottom-2 lg:left-1/2 lg:top-auto lg:origin-top lg:-translate-x-1/2 lg:translate-y-full lg:py-2">
                 {route?.children.map((child, i) => (
                   <li className="shrink-0" key={i}>
                     <ActiveLink

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { Dropdown } from "@/components/ui/Dropdown";
-import { Edit, User } from "lucide-react";
+import { Edit, LogIn, User } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom/dist";
 
@@ -62,10 +62,12 @@ const UserAndAuthNav = ({ user }) => {
           </Dropdown>
         </div>
       ) : (
-        <Link title="Sign-In" to={"/user/sign-in"}>
+        <Link title="Login" to={"/user/sign-in"}>
           <Button asChild className="uppercase" size="sm">
-            <span>Login / Register</span>
-            <User />
+            <span className="hidden sm:block">Login / Register</span>
+
+            <User className="hidden sm:block" size={20} />
+            <LogIn className="sm:hidden" size={20} />
           </Button>
         </Link>
       )}
