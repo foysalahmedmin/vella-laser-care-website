@@ -45,7 +45,7 @@ const ParlorsSection = () => {
               {parlors?.map((item, index) => (
                 <CarouselItem
                   key={index}
-                  className="px-2 md:basis-1/2 lg:basis-1/3"
+                  className="md:basis-1/2 md:px-3 lg:basis-1/3"
                 >
                   <ParlorCard item={item} />
                 </CarouselItem>
