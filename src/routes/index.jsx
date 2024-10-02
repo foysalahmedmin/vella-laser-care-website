@@ -4,6 +4,7 @@ import RootLayout from "@/components/layouts/RootLayout";
 import Loader from "@/components/partials/Loader";
 import ErrorPage from "@/pages/(common)/ErrorPage";
 import HomePage from "@/pages/(common)/HomePage";
+import ServiceDetailsPage from "@/pages/(common)/ServiceDetailsPage";
 import { Suspense } from "react";
 
 export const routes = [
@@ -30,8 +31,8 @@ export const routes = [
         element: <MainLayout />,
         children: [
           {
-            path: "/",
-            element: <HomePage />,
+            path: "service/:id",
+            element: <ServiceDetailsPage />,
           },
         ],
       },

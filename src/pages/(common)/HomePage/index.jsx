@@ -8,7 +8,7 @@ import FeatureSection from "@/components/(common)/home/FeatureSection";
 import ParlorsSection from "@/components/(common)/home/ParlorsSection";
 import PartnersSection from "@/components/(common)/home/PartnersSection";
 import ServiceCentreSection from "@/components/(common)/home/ServiceCentreSection";
-import TestimonialsSection from "@/components/(common)/home/TestimonialsSection";
+import TestimonialsSection from "@/components/partials/Sections/TestimonialsSection";
 
 const HomePage = () => {
   return (

@@ -5,7 +5,7 @@ import { SendHorizontal } from "lucide-react";
 const Subscription = ({ className, ...props }) => {
   return (
     <div className={className} {...props}>
-      <div className="mb-4 inline-block border-l-8 border-foreground px-4">
+      <div className="mb-4 inline-block border-foreground">
         <Logo />
       </div>
       <label>
