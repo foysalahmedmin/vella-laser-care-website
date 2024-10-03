@@ -6,22 +6,22 @@ const SecondPart = () => {
     <section className="md:pt-24">
       <section
         style={{
-          backgroundImage: `url('/images/home/feature-background-2.png')`,
+          backgroundImage: `url('/images/backgrounds/rectangle-background-2.png')`,
         }}
-        className="w-full bg-cover bg-left-top bg-no-repeat py-16 md:pb-24"
+        className="w-full bg-cover bg-left-top bg-no-repeat pb-16 md:pb-24"
       >
         <div className="container">
-          <div className="grid items-center gap-16 lg:grid-cols-2">
-            <div className="relative md:-mt-24 lg:order-2">
-              <div className="relative aspect-[6/5] w-full">
+          <div className="grid items-end gap-16 lg:grid-cols-2">
+            <div className="relative mt-8 md:-mt-12 lg:order-2">
+              <div className="relative aspect-[6/5] w-full overflow-hidden rounded-xl">
                 <img
-                  className="absolute right-0 top-0 z-10 size-full object-contain"
+                  className="absolute right-0 top-0 z-10 size-full object-cover"
                   src="/images/home/feature-2.png"
                   alt=""
                 />
               </div>
             </div>
-            <div className="space-y-4 md:pt-24 lg:order-1">
+            <div className="space-y-4 pt-16 md:pt-24 lg:order-1">
               <h1 className="text-4xl">
                 Register as Parlor Owner and <br />
                 Earn Rewards

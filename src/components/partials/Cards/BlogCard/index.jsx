@@ -25,7 +25,7 @@ const BlogCard = ({ item }) => {
         </div>
         <h3>{title}</h3>
         <Button variant="link" size="none" className="text-primary">
-          <span>Read More</span> <ChevronRight size={20} />
+          <span>Read More</span> <ChevronRight className="size-4" />
         </Button>
       </div>
     </div>

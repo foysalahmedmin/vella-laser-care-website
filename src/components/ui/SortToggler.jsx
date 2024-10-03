@@ -28,11 +28,13 @@ const SortToggler = forwardRef(
         {...props}
       >
         <ArrowRight
-          className={cn("origin-center transition-transform duration-300", {
-            "rotate-90": value === 1,
-            "-rotate-90": value === -1,
-          })}
-          size={20}
+          className={cn(
+            "size-6 origin-center transition-transform duration-300",
+            {
+              "rotate-90": value === 1,
+              "-rotate-90": value === -1,
+            },
+          )}
         />
         {children && size !== ("icon-sm" || "icon") && children}
       </Button>

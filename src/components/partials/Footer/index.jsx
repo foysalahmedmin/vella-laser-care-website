@@ -58,7 +58,7 @@ const Footer = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Facebook size={20} />
+                      <Facebook className="size-4" />
                     </Link>
                   </li>
                   <li>
@@ -68,7 +68,7 @@ const Footer = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Instagram size={20} />
+                      <Instagram className="size-4" />
                     </Link>
                   </li>
                   <li>
@@ -78,7 +78,7 @@ const Footer = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Twitter size={20} />
+                      <Twitter className="size-4" />
                     </Link>
                   </li>
                   <li>
@@ -88,7 +88,7 @@ const Footer = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Linkedin size={20} />
+                      <Linkedin className="size-4" />
                     </Link>
                   </li>
                 </ul>
@@ -118,19 +118,19 @@ const Footer = () => {
               <ul className="space-y-2">
                 <li className="flex items-center gap-1">
                   <span className="flex size-6 items-center justify-center rounded-full border bg-transparent">
-                    <MapPin size={20} />
+                    <MapPin className="size-4" />
                   </span>
                   <span>76 Lotas Kamal Tower Dhaka, Bangladesh</span>
                 </li>
                 <li className="flex items-center gap-1">
                   <span className="flex size-6 items-center justify-center rounded-full border bg-transparent">
-                    <PhoneCall size={20} />
+                    <PhoneCall className="size-4" />
                   </span>
                   <span>+01687677554</span>
                 </li>
                 <li className="flex items-center gap-1">
                   <span className="flex size-6 items-center justify-center rounded-full border bg-transparent">
-                    <PhoneCall size={20} />
+                    <PhoneCall className="size-4" />
                   </span>
                   <span>+01687677554</span>
                 </li>

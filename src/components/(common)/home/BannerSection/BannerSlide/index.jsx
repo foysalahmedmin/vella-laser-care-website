@@ -45,7 +45,7 @@ const BannerSlide = ({ item }) => {
                 />
               )}
               <img
-                src={"/images/home/home-banner-background.png"}
+                src={"/images/home/home-banner-back-image.png"}
                 className="absolute inset-0 -z-10 mx-auto mt-auto h-[50vw] origin-center delay-1000 md:h-[90%] [&_p]:mt-0"
               />
             </div>

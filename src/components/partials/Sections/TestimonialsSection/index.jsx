@@ -8,10 +8,11 @@ import {
   CarouselPreviousTrigger,
 } from "@/components/ui/Carousel";
 import { SectionTitle, Subtitle, Title } from "@/components/ui/SectionTitle";
+import { cn } from "@/lib/utils";
 
-const TestimonialsSection = () => {
+const TestimonialsSection = ({ className }) => {
   return (
-    <section className="pb-16 md:pb-24">
+    <section className={cn("pb-16 md:pb-24", className)}>
       <div className="container">
         <SectionTitle variant="center" className="md:mb-10">
           <Subtitle>Our Testimonials</Subtitle>

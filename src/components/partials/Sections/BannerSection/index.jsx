@@ -28,7 +28,7 @@ const BannerSection = ({
                 <li className="inline-flex items-center gap-2" key={index}>
                   <Link to={item?.link}>{item?.label}</Link>
                   {index !== breadcrumbItems.length - 1 && (
-                    <ChevronRight size={20} />
+                    <ChevronRight className="size-6" />
                   )}
                 </li>
               ))}

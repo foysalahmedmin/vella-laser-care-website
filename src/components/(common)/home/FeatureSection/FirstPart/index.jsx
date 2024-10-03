@@ -6,7 +6,7 @@ const FirstPart = () => {
   return (
     <section
       style={{
-        backgroundImage: `url('/images/home/feature-background-1.png')`,
+        backgroundImage: `url('/images/backgrounds/rectangle-background-1.png')`,
       }}
       className="w-full bg-cover bg-right-bottom bg-no-repeat py-16 md:py-24"
     >

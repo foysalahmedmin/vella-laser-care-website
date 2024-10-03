@@ -66,8 +66,8 @@ const UserAndAuthNav = ({ user }) => {
           <Button asChild className="uppercase" size="sm">
             <span className="hidden sm:block">Login / Register</span>
 
-            <User className="hidden sm:block" size={20} />
-            <LogIn className="sm:hidden" size={20} />
+            <User className="hidden size-6 sm:block" />
+            <LogIn className="size-6 sm:hidden" />
           </Button>
         </Link>
       )}
