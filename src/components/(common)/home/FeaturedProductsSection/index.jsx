@@ -56,7 +56,7 @@ const FeaturedProductsSection = () => {
                   key={index}
                   className="px-2 md:basis-1/2 xl:basis-1/4"
                 >
-                  <ProductCard item={item} />
+                  <ProductCard item={item} variant="home" />
                 </CarouselItem>
               ))}
             </CarouselContent>

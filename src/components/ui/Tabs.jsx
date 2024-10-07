@@ -108,4 +108,3 @@ TabsItem.displayName = "TabsItem";
 // ------- //
 
 export { Tabs, TabsContent, TabsItem, TabsList, TabsTrigger };
-

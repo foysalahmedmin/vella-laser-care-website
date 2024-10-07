@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   gap: 0.5em;
-  transition: all 0.5s;
+  transition: all 0.3s;
   outline: none;
   border: 1px solid hsl(var(--border));
   border-radius: 0.25em;
@@ -10,7 +10,7 @@
   padding-right: 1em;
   padding-left: 1em;
   width: 100%;
-  min-height: 2.5em;
+  height: 2.5em;
   resize: vertical;
   font-size: 1rem;
 

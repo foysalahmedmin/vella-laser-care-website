@@ -5,6 +5,7 @@ import Loader from "@/components/partials/Loader";
 import ErrorPage from "@/pages/(common)/ErrorPage";
 import HomePage from "@/pages/(common)/HomePage";
 import ServiceDetailsPage from "@/pages/(common)/ServiceDetailsPage";
+import ShopPage from "@/pages/(common)/ShopPage";
 import { Suspense } from "react";
 
 export const routes = [
@@ -27,11 +28,14 @@ export const routes = [
         ],
       },
       {
-        path: "",
         element: <MainLayout />,
         children: [
           {
-            path: "service/:id",
+            path: "/shop",
+            element: <ShopPage />,
+          },
+          {
+            path: "/service/:id",
             element: <ServiceDetailsPage />,
           },
         ],
