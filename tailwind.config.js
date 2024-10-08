@@ -38,6 +38,15 @@ export default {
         "screen-minus-combined-header":
           "calc(100vh - var(--header-height) - var(--top-header-height))",
       },
+      minHeight: {
+        header: "var(--header-height)",
+        "top-header": "var(--top-header-height)",
+        "combined-header":
+          "calc(var(--header-height) + var(--top-header-height))",
+        "screen-minus-header": "calc(100vh - var(--header-height))",
+        "screen-minus-combined-header":
+          "calc(100vh - var(--header-height) - var(--top-header-height))",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - .1em)",

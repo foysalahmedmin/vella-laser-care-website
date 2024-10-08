@@ -1,14 +1,16 @@
+import CheckoutLayout from "@/components/layouts/CheckoutLayout";
 import HomeLayout from "@/components/layouts/HomeLayout";
 import MainLayout from "@/components/layouts/MainLayout";
 import RootLayout from "@/components/layouts/RootLayout";
 import Loader from "@/components/partials/Loader";
+import CheckoutPage from "@/pages/(common)/CheckoutPage";
 import ErrorPage from "@/pages/(common)/ErrorPage";
 import HomePage from "@/pages/(common)/HomePage";
+import Success from "@/pages/(common)/Payment/Success.jsx";
 import ProductDetailsPage from "@/pages/(common)/ProductDetailsPage";
 import ServiceDetailsPage from "@/pages/(common)/ServiceDetailsPage";
 import ShopPage from "@/pages/(common)/ShopPage";
 import { Suspense } from "react";
-import Success from "@/pages/(common)/Payment/Success.jsx";
 
 export const routes = [
   {
@@ -26,6 +28,15 @@ export const routes = [
           {
             path: "/",
             element: <HomePage />,
+          },
+        ],
+      },
+      {
+        element: <CheckoutLayout />,
+        children: [
+          {
+            path: "/checkout",
+            element: <CheckoutPage />,
           },
         ],
       },

@@ -2,12 +2,12 @@ import useUser from "@/redux/slices/user-slice/useUser";
 import Navigation from "./Navigation";
 import TopHeader from "./TopHeader";
 
-const Header = ({ layout = "main" }) => {
+const Header = ({ variant = "default" }) => {
   const { user } = useUser();
   return (
     <>
-      <TopHeader user={user} />
-      <Navigation layout={layout} user={user} />
+      <TopHeader variant={variant} user={user} />
+      <Navigation variant={variant} user={user} />
     </>
   );
 };

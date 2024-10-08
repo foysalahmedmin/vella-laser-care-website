@@ -141,7 +141,7 @@ export const QuantityIncreaseTrigger = forwardRef(
       variant = "outline",
       size = "icon",
       type = "button",
-      children = <Plus />,
+      children = <Plus className="text-[1em]" />,
       ...props
     },
     ref,
@@ -176,7 +176,7 @@ export const QuantityDecreaseTrigger = forwardRef(
       variant = "outline",
       size = "icon",
       type = "button",
-      children = <Minus />,
+      children = <Minus className="text-[1em]" />,
       ...props
     },
     ref,

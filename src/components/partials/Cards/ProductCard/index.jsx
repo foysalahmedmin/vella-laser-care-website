@@ -1,12 +1,20 @@
-import { Star } from "@/assets/svg/icons/Stars";
-import CartInfo from "../../CartInfo";
-import { Button } from "@/components/ui/Button.jsx";
-import Cart from "@/components/partials/Header/Navigation/Cart/index.jsx";
 import { urls } from "@/api/urls.js";
+import { Star } from "@/assets/svg/icons/Stars";
+import Cart from "@/components/partials/Header/Navigation/Cart/index.jsx";
+import { Button } from "@/components/ui/Button.jsx";
+import {
+  QuantityDecreaseTrigger,
+  QuantityIncreaseTrigger,
+  QuantityInput,
+  QuantitySelector,
+} from "@/components/ui/QuantitySelector";
 import { bn } from "@/lib/enTobn.js";
+import { cn } from "@/lib/utils";
+import { Plus, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import CartInfo from "../../CartInfo";
 
-const ProductCard = ({ lang, item, variant = "default" }) => {
+const ProductCard = ({ lang, item, variant = "default", className }) => {
   const navigate = useNavigate();
   const {
     _id,
@@ -22,6 +30,8 @@ const ProductCard = ({ lang, item, variant = "default" }) => {
     rating,
     total_review,
     country_origin,
+    image,
+    price,
   } = item;
   return (
     <>
@@ -172,6 +182,87 @@ const ProductCard = ({ lang, item, variant = "default" }) => {
                 {discount > 0 && discount_type === "percentage" && "%"}
               </span>
             </div>
+          </div>
+        </div>
+      )}
+      {variant === "cart" && (
+        <div className={cn("relative flex items-center gap-2", className)}>
+          <div className="size-24 shrink-0">
+            <img
+              className="size-full object-contain object-center"
+              src={image}
+              alt={name}
+            />
+          </div>
+          <div className="flex flex-1 flex-col self-stretch">
+            <div>
+              <div className="font-semibold uppercase text-title">{name}</div>
+              <div className="flex items-center gap-2">
+                <div>
+                  <span>Size: </span> <span>10ea</span>
+                </div>
+                <div>
+                  <span>Pack: </span> <span>1 Pack</span>
+                </div>
+              </div>
+            </div>
+            <div className="mt-auto flex items-end justify-between">
+              <div className="text-base">
+                <QuantitySelector defaultValue={1} minValue={1} maxValue={10}>
+                  <QuantityDecreaseTrigger className="size-[1.75em] hover:border-accent hover:bg-accent hover:text-accent-foreground" />
+                  <QuantityInput className="h-[1.75em] w-[3em]" />
+                  <QuantityIncreaseTrigger className="size-[1.75em] hover:border-accent hover:bg-accent hover:text-accent-foreground" />
+                </QuantitySelector>
+              </div>
+              <span className="inline-block uppercase">{price}BDT</span>
+            </div>
+          </div>
+          <div className="absolute right-0 top-0">
+            <Button
+              className="rounded-full text-[0.5rem]"
+              variant="outline"
+              size="icon"
+            >
+              <X className="size-[1.5em]" />
+            </Button>
+          </div>
+        </div>
+      )}
+      {variant === "cart-suggest" && (
+        <div className={cn("relative flex items-center gap-2", className)}>
+          <div className="size-24 shrink-0">
+            <img
+              className="size-full object-contain object-center"
+              src={image}
+              alt={name}
+            />
+          </div>
+          <div className="flex flex-1 flex-col self-stretch">
+            <div>
+              <div className="font-semibold uppercase text-title">{name}</div>
+              <div className="flex items-center gap-2">
+                <div>
+                  <span>Size: </span> <span>10ea</span>
+                </div>
+                <div>
+                  <span>Pack: </span> <span>1 Pack</span>
+                </div>
+              </div>
+            </div>
+            <div className="mt-auto flex items-end justify-between">
+              <span className="inline-block font-semibold uppercase text-title">
+                {price}BDT
+              </span>
+            </div>
+          </div>
+          <div className="absolute right-0 top-0">
+            <Button
+              className="rounded-full text-[0.5rem]"
+              variant="outline"
+              size="icon"
+            >
+              <Plus className="size-[1.5em]" />
+            </Button>
           </div>
         </div>
       )}

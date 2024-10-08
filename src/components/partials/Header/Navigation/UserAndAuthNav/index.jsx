@@ -9,7 +9,7 @@ const UserAndAuthNav = ({ user }) => {
 
   return (
     <div>
-      {Object.keys(user).length > 0 ? (
+      {Object.keys(user)?.length > 0 ? (
         <div className="relative">
           <div className="size-8 animate-pop cursor-pointer overflow-hidden rounded-full border border-primary bg-primary/5">
             <img
@@ -66,7 +66,7 @@ const UserAndAuthNav = ({ user }) => {
           <Button asChild className="uppercase" size="sm">
             <span className="hidden sm:block">Login / Register</span>
 
-            <User className="hidden size-6 sm:block" />
+            <User className="hidden size-4 sm:block" />
             <LogIn className="size-6 sm:hidden" />
           </Button>
         </Link>
