@@ -9,18 +9,22 @@ import {
 import { CalendarCheck } from "lucide-react";
 import BannerSlide from "./BannerSlide";
 
-const BannerSection = () => {
+const BannerSection = ({ lang }) => {
   const data = [
     {
       title: `Largest Collection
       of Bangladeshi Skincare`,
+      title_bn: `Largest Collection
+      of Bangladeshi Skincare`,
       subTitle: "Largest and Latest Collection of Bangladeshi skincare",
+      subTitleBn: "Largest and Latest Collection of Bangladeshi skincare",
       image: {
         src: "/images/home/home-banner-image.png",
         alt: "home-slider-image-1",
       },
       button: {
         label: "Book an appointment",
+        label_bn: "Book an appointment",
         path: "/shop",
         icon: CalendarCheck,
       },
@@ -28,13 +32,17 @@ const BannerSection = () => {
     {
       title: `Largest Collection
       of Bangladeshi Skincare`,
+      title_bn: `Largest Collection
+      of Bangladeshi Skincare`,
       subTitle: "Largest and Latest Collection of Bangladeshi skincare",
+      subTitleBn: "Largest and Latest Collection of Bangladeshi skincare",
       image: {
         src: "/images/home/home-banner-image.png",
         alt: "home-slider-image-1",
       },
       button: {
         label: "Book an appointment",
+        label_bn: "Book an appointment",
         path: "/shop",
         icon: CalendarCheck,
       },
@@ -50,7 +58,7 @@ const BannerSection = () => {
         <CarouselContent>
           {data.map((item, index) => (
             <CarouselItem key={index} className="group/slide">
-              <BannerSlide item={item} />
+              <BannerSlide lang={lang} item={item} />
             </CarouselItem>
           ))}
         </CarouselContent>

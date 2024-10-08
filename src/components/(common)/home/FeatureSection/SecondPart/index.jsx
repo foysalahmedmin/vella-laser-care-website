@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { ArrowRight } from "lucide-react";
 
-const SecondPart = () => {
+const SecondPart = ({ lang }) => {
   return (
     <section className="md:pt-24">
       <section
@@ -22,18 +22,35 @@ const SecondPart = () => {
               </div>
             </div>
             <div className="space-y-4 pt-16 md:pt-24 lg:order-1">
-              <h1 className="text-4xl">
-                Register as Parlor Owner and <br />
-                Earn Rewards
-              </h1>
-              <p className="font-semibold md:text-lg">
-                Lorem Ipsum Is Simply Dummy Text Of The Printing And Typesetting
-                Industry. Lorem Ipsum Has Been The Industry's Standard Dummy
-                Text Ever Since.
-              </p>
+              {lang === "en" ? (
+                <h1 className="text-4xl">
+                  Register as Parlor Owner and <br />
+                  Earn Rewards
+                </h1>
+              ) : (
+                <h1 className="text-4xl">
+                  Register as Parlor Owner and <br />
+                  Earn Rewards
+                </h1>
+              )}
+              {lang === "en" ? (
+                <p className="font-semibold md:text-lg">
+                  Lorem Ipsum Is Simply Dummy Text Of The Printing And
+                  Typesetting Industry. Lorem Ipsum Has Been The Industry's
+                  Standard Dummy Text Ever Since.
+                </p>
+              ) : (
+                <p className="font-semibold md:text-lg">
+                  Lorem Ipsum Is Simply Dummy Text Of The Printing And
+                  Typesetting Industry. Lorem Ipsum Has Been The Industry's
+                  Standard Dummy Text Ever Since.
+                </p>
+              )}
+
               <div className="pt-4">
                 <Button>
-                  <span>Register</span> <ArrowRight className="size-4" />
+                  <span>{lang === "en" ? "Register" : "Register"}</span>{" "}
+                  <ArrowRight className="size-4" />
                 </Button>
               </div>
             </div>

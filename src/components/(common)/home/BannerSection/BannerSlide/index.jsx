@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/Button";
 import { Link } from "react-router-dom";
 
-const BannerSlide = ({ item }) => {
-  const { title, subTitle, description, image, button } = item;
+const BannerSlide = ({ item, lang }) => {
+  const { title, title_bn, subTitle, subTitleBn, description, image, button } =
+    item;
   return (
     <div className="relative z-30 size-full">
       <div className="container">
@@ -12,12 +13,12 @@ const BannerSlide = ({ item }) => {
               <div>
                 {subTitle && (
                   <h3 className="my-0 mb-4 inline-block border-primary text-base font-bold capitalize text-primary md:text-lg">
-                    {subTitle}
+                    {lang === "en" ? subTitle : subTitleBn}
                   </h3>
                 )}
                 {title && (
                   <h1 className="font-playfair text-4xl font-black capitalize lg:text-5xl">
-                    {title}
+                    {lang === "en" ? title : title_bn}
                   </h1>
                 )}
               </div>
@@ -27,7 +28,7 @@ const BannerSlide = ({ item }) => {
                 <div className="mt-10">
                   <Link to={button?.path || "#"}>
                     <Button>
-                      {button?.label}
+                      {lang === "en" ? button?.label : button?.label_bn}
                       {button?.icon && (
                         <button.icon strokeWidth={3} className="size-4" />
                       )}

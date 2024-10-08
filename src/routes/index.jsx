@@ -8,6 +8,7 @@ import ProductDetailsPage from "@/pages/(common)/ProductDetailsPage";
 import ServiceDetailsPage from "@/pages/(common)/ServiceDetailsPage";
 import ShopPage from "@/pages/(common)/ShopPage";
 import { Suspense } from "react";
+import Success from "@/pages/(common)/Payment/Success.jsx";
 
 export const routes = [
   {
@@ -42,6 +43,16 @@ export const routes = [
           {
             path: "/service/:id",
             element: <ServiceDetailsPage />,
+          },
+        ],
+      },
+      {
+        path: "",
+        element: <MainLayout />,
+        children: [
+          {
+            path: "ssl_success",
+            element: <Success />,
           },
         ],
       },

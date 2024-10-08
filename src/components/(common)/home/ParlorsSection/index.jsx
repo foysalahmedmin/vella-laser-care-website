@@ -10,15 +10,25 @@ import {
 } from "@/components/ui/Carousel";
 import { SectionTitle, Subtitle, Title } from "@/components/ui/SectionTitle";
 import { ArrowRight } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { fetchAffiliatedParlors } from "@/pages/(common)/HomePage/homeApis.js";
 
-const ParlorsSection = () => {
+const ParlorsSection = ({ lang }) => {
+  const { data } = useQuery({
+    queryKey: ["parlors"],
+    queryFn: () => fetchAffiliatedParlors(),
+  });
   return (
     <section className="py-16 md:py-24">
       <div className="container">
         <div className="mb-8 flex items-end justify-between gap-4">
           <SectionTitle className="mb-0 md:mb-0">
-            <Title>Our Parlors</Title>
-            <Subtitle>Affiliated Parlor Partnership</Subtitle>
+            <Title>{lang === "en" ? "Our Parlors" : "Our Parlors"}</Title>
+            <Subtitle>
+              {lang === "en"
+                ? "Affiliated Parlor Partnership"
+                : "Affiliated Parlor Partnership"}
+            </Subtitle>
           </SectionTitle>
         </div>
         <div>
@@ -42,12 +52,12 @@ const ParlorsSection = () => {
               </div>
             </>
             <CarouselContent className="py-2">
-              {parlors?.map((item, index) => (
+              {data?.map((item, index) => (
                 <CarouselItem
                   key={index}
                   className="md:basis-1/2 md:px-3 lg:basis-1/3"
                 >
-                  <ParlorCard item={item} />
+                  <ParlorCard lang={lang} item={item} />
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -55,7 +65,8 @@ const ParlorsSection = () => {
         </div>
         <div className="mt-6 text-center">
           <Button className="mx-auto">
-            <span>View More</span> <ArrowRight className="size-4" />
+            <span>{lang === "en" ? "View More" : "View More"}</span>{" "}
+            <ArrowRight className="size-4" />
           </Button>
         </div>
       </div>

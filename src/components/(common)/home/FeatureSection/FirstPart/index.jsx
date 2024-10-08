@@ -2,7 +2,7 @@ import { BadgeCheckOutline } from "@/assets/svg/icons/Badge";
 import { Button } from "@/components/ui/Button";
 import { CalendarCheck } from "lucide-react";
 
-const FirstPart = () => {
+const FirstPart = ({ lang }) => {
   return (
     <section
       style={{
@@ -29,39 +29,51 @@ const FirstPart = () => {
           <div>
             <div className="space-y-4">
               <span className="block font-semibold text-primary">
-                Step Inside
+                {lang === "en" ? "Step Inside" : "Step Inside"}
               </span>
-              <h1 className="text-4xl">
-                Aesthetic Dreams Begin Here <br /> Visit Us Today
-              </h1>
+              {lang === "en" ? (
+                <h1 className="text-4xl">
+                  Aesthetic Dreams Begin Here <br /> Visit Us Today
+                </h1>
+              ) : (
+                <h1 className="text-4xl">
+                  Aesthetic Dreams Begin Here <br /> Visit Us Today
+                </h1>
+              )}
               <p className="font-semibold md:text-lg">
-                Lorem Ipsum Is Simply Dummy Text Of The Printing And Typesetting
-                Industry. Lorem Ipsum Has Been The Industry's Standard Dummy
-                Text Ever Since.
+                {lang === "en"
+                  ? "Lorem Ipsum Is Simply Dummy Text Of The Printing And Typesetting Industry. Lorem Ipsum Has Been The Industry's Standard Dummy Text Ever Since."
+                  : "Lorem Ipsum Is Simply Dummy Text Of The Printing And Typesetting Industry. Lorem Ipsum Has Been The Industry's Standard Dummy Text Ever Since."}
               </p>
               <ul className="flex items-center justify-between">
                 <li className="flex items-center gap-1">
                   <BadgeCheckOutline className="size-6 text-primary" />
                   <span className="inline-block text-lg font-semibold text-title">
-                    Illuminating Beauty
+                    {lang === "en"
+                      ? "Illuminating Beauty"
+                      : "Illuminating Beauty"}
                   </span>
                 </li>
                 <li className="flex items-center gap-1">
                   <BadgeCheckOutline className="size-6 text-primary" />
                   <span className="inline-block text-lg font-semibold text-title">
-                    Timeless Elegance
+                    {lang === "en" ? "Timeless Elegance" : "Timeless Elegance"}
                   </span>
                 </li>
                 <li className="flex items-center gap-1">
                   <BadgeCheckOutline className="size-6 text-primary" />
                   <span className="inline-block text-lg font-semibold text-title">
-                    Unique Glow
+                    {lang === "en" ? "Unique Glow" : "Unique Glow"}
                   </span>
                 </li>
               </ul>
               <div className="py-4">
                 <Button>
-                  <span>Book an appointment</span>
+                  <span>
+                    {lang === "en"
+                      ? "Book an appointment"
+                      : "Book an appointment"}
+                  </span>
                   <CalendarCheck strokeWidth={3} className="size-4" />
                 </Button>
               </div>

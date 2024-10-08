@@ -23,7 +23,10 @@ const LocaleSelector = () => {
       >
         <img
           className="inline-block size-full rounded-full object-cover object-center"
-          src={locales.find((locale) => locale?.value === i18n?.language)?.flag}
+          src={
+            locales.find((locale) => locale?.value === i18n?.language)?.flag ||
+            "en"
+          }
         />
       </Button>
       <Dropdown

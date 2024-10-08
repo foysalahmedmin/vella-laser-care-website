@@ -1,11 +1,11 @@
 import FirstPart from "./FirstPart";
 import SecondPart from "./SecondPart";
 
-const FeatureSection = () => {
+const FeatureSection = ({ lang }) => {
   return (
     <>
-      <FirstPart />
-      <SecondPart />
+      <FirstPart lang={lang} />
+      <SecondPart lang={lang} />
     </>
   );
 };

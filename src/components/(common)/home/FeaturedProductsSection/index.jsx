@@ -1,4 +1,3 @@
-import { products } from "@/assets/data/products";
 import ProductCard from "@/components/partials/Cards/ProductCard";
 import {
   Carousel,
@@ -8,8 +7,14 @@ import {
   CarouselPreviousTrigger,
 } from "@/components/ui/Carousel";
 import { SectionTitle, Subtitle, Title } from "@/components/ui/SectionTitle";
+import { useQuery } from "@tanstack/react-query";
+import { fetchFeaturedProducts } from "@/pages/(common)/HomePage/homeApis.js";
 
-const FeaturedProductsSection = () => {
+const FeaturedProductsSection = ({ lang }) => {
+  const { data } = useQuery({
+    queryKey: ["featured_products"],
+    queryFn: () => fetchFeaturedProducts(),
+  });
   return (
     <section>
       <div
@@ -24,9 +29,13 @@ const FeaturedProductsSection = () => {
       >
         <div className="mb-10 flex items-end justify-between gap-4">
           <SectionTitle className="mb-0 md:mb-0">
-            <Title className="dark text-title">Featured Products</Title>
+            <Title className="dark text-title">
+              {lang === "en" ? "Featured Products" : "Featured Products"}
+            </Title>
             <Subtitle className="dark text-title">
-              Shop now: Limited quantities only!
+              {lang === "en"
+                ? "Shop now: Limited quantities only!"
+                : "Shop now: Limited quantities only!"}
             </Subtitle>
           </SectionTitle>
         </div>
@@ -51,12 +60,12 @@ const FeaturedProductsSection = () => {
               </div>
             </>
             <CarouselContent>
-              {products?.map((item, index) => (
+              {data?.map((item, index) => (
                 <CarouselItem
                   key={index}
                   className="px-2 md:basis-1/2 xl:basis-1/4"
                 >
-                  <ProductCard item={item} variant="home" />
+                  <ProductCard lang={lang} item={item} variant="home" />
                 </CarouselItem>
               ))}
             </CarouselContent>

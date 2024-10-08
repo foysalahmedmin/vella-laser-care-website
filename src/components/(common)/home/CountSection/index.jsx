@@ -3,27 +3,32 @@ import { Customer } from "@/assets/svg/icons/Customer";
 import { Doctor } from "@/assets/svg/icons/Doctor";
 import { Product } from "@/assets/svg/icons/Product";
 import { cn } from "@/lib/utils";
+import { bn } from "@/lib/enTobn.js";
 
-const CountSection = () => {
+const CountSection = ({ lang }) => {
   const data = [
     {
       label: "Expert Dermatologist",
-      value: "20+",
+      label_bn: "Expert Dermatologist",
+      value: "20",
       icon: Doctor,
     },
     {
       label: "Products",
+      label_bn: "Products",
       value: "44",
       icon: Product,
     },
     {
       label: "Happy Customers",
-      value: "300+",
+      label_bn: "Happy Customers",
+      value: "300",
       icon: Customer,
     },
     {
       label: "Year’s of Experince",
-      value: "7+",
+      label_bn: "Year’s of Experince",
+      value: "7",
       icon: Badge,
     },
   ];
@@ -42,10 +47,13 @@ const CountSection = () => {
                 <item.icon className="text-primary" />
                 <div className="space-y-2 text-center">
                   <h1 className="font-playfair text-5xl font-black">
-                    {item.value}
+                    {lang === "en"
+                      ? item.value
+                      : bn.engToNumber(Number(item.value))}
+                    +
                   </h1>
                   <strong className="text block font-playfair text-xl capitalize">
-                    {item.label}
+                    {lang === "en" ? item.label : item.label_bn}
                   </strong>
                 </div>
               </div>

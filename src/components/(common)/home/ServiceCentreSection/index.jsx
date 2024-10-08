@@ -1,4 +1,3 @@
-import { serviceCentreData } from "@/assets/data/service-centre-data";
 import ServiceCard from "@/components/partials/Cards/ServiceCard";
 import {
   Carousel,
@@ -9,23 +8,42 @@ import {
 } from "@/components/ui/Carousel";
 import { SectionTitle, Subtitle, Title } from "@/components/ui/SectionTitle";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { fetchFeaturedServices } from "@/pages/(common)/HomePage/homeApis.js";
 
-const ServiceCentreSection = () => {
+const ServiceCentreSection = ({ lang }) => {
+  const { data } = useQuery({
+    queryKey: ["featured_services"],
+    queryFn: () => fetchFeaturedServices(),
+  });
   return (
     <section className="py-16 md:py-24">
       <div className="container">
         <div className="mb-10 flex items-end justify-between gap-4 md:mb-16">
           <SectionTitle className="mb-0 md:mb-0">
-            <Subtitle>Healthy Skin & Natural</Subtitle>
-            <Title>What We Treat In Centre</Title>
+            <Subtitle>
+              {lang === "en"
+                ? "Healthy Skin & Natural"
+                : "Healthy Skin & Natural"}
+            </Subtitle>
+            <Title>
+              {lang === "en"
+                ? " What We Treat In Centre"
+                : " What We Treat In Centre"}
+            </Title>
           </SectionTitle>
           <div className="mr-24 max-w-[26rem] space-y-4 text-sm">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ex
-              cum odio ullam repudiandae eveniet assumenda ea dolore.
+              {lang === "en"
+                ? "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ex\n" +
+                  "              cum odio ullam repudiandae eveniet assumenda ea dolore."
+                : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ex\n" +
+                  "              cum odio ullam repudiandae eveniet assumenda ea dolore."}
             </p>
             <Link to={""} className="block font-bold text-title underline">
-              Browse All Skincare Treaments
+              {lang === "en"
+                ? "Browse All Skincare Treatments"
+                : "Browse All Skincare Treatments"}
             </Link>
           </div>
         </div>
@@ -52,12 +70,12 @@ const ServiceCentreSection = () => {
           </div>
           <div className="mx-auto max-w-[120rem] px-container">
             <CarouselContent>
-              {serviceCentreData?.map((item, index) => (
+              {data?.map((item, index) => (
                 <CarouselItem
                   key={index}
                   className="px-2 md:basis-1/2 md:odd:pb-14 md:even:pt-14 xl:basis-1/4"
                 >
-                  <ServiceCard item={item} />
+                  <ServiceCard lang={lang} item={item} />
                 </CarouselItem>
               ))}
             </CarouselContent>
