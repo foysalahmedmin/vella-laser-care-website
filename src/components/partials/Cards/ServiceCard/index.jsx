@@ -2,8 +2,10 @@ import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import { urls } from "@/api/urls.js";
+import { useNavigate } from "react-router-dom";
 
 const ServiceCard = ({ lang, item, className }) => {
+  const navigate = useNavigate();
   const { name, name_bn, short_description, short_description_bn, image } =
     item;
   return (
@@ -29,6 +31,7 @@ const ServiceCard = ({ lang, item, className }) => {
                 className="dark text-title underline"
                 variant="none"
                 size="none"
+                onClick={() => navigate(`/service/${item?._id}`)}
               >
                 {lang === "en" ? "View Details" : "বিস্তারিত দেখুন"}
               </Button>
@@ -36,6 +39,7 @@ const ServiceCard = ({ lang, item, className }) => {
                 className="dark size-6 rounded-full border-foreground text-title"
                 variant="outline"
                 size="icon-sm"
+                onClick={() => navigate(`/service/${item?._id}`)}
               >
                 <ChevronRight strokeWidth={1} />
               </Button>

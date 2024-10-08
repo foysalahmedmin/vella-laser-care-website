@@ -1,12 +1,6 @@
-const ProductHighlight = () => {
+const ProductHighlight = ({ highlight, highlight_bn, lang }) => {
   return (
-    <div>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi dolor
-        sit nisi, consectetur cumque placeat eum dolores, maiores amet quo cum,
-        quam facere dolorum distinctio? Eum, accusamus maxime. Inventore, a.
-      </p>
-    </div>
+    <div>{lang === "en" ? <p>{highlight}</p> : <p>{highlight_bn}</p>}</div>
   );
 };
 

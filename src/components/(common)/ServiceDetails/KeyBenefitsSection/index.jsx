@@ -1,8 +1,6 @@
-import { Carrot } from "@/assets/svg/icons/Carrot";
-import { Rabbit } from "@/assets/svg/icons/Rabbit";
 import { Sunflower } from "@/assets/svg/icons/Sunflower";
 
-const KeyBenefitsSection = () => {
+const KeyBenefitsSection = ({ info, lang }) => {
   return (
     <section className="md:pb-24">
       <section
@@ -24,39 +22,31 @@ const KeyBenefitsSection = () => {
             </div>
             <div className="space-y-4 pb-16 md:pb-24 lg:order-1">
               <span className="block font-semibold text-primary">
-                Key Benefits
+                {lang === "en" ? "Key Benefits" : "Key Benefits"}
               </span>
-              <h1 className="text-4xl">100% Vegan and Cruelty-Free</h1>
+              <h1 className="text-4xl">
+                {lang === "en" ? info?.title : info?.title_bn}
+              </h1>
               <p className="font-semibold md:text-lg">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text.
+                {lang === "en" ? info?.description : info?.description_bn}
               </p>
               <div className="flex flex-wrap items-center gap-6 pt-2">
+                {info?.benefits?.map((benefit, index) => (
+                  <div key={index} className="flex items-center gap-4">
+                    <div className="flex size-14 items-center justify-center rounded-full bg-yellow-400 text-light">
+                      <Sunflower />
+                    </div>
+                    <h5 className="text-lg font-black">
+                      {lang === "en" ? benefit?.name : benefit?.name_bn}
+                    </h5>
+                  </div>
+                ))}
                 <div className="flex items-center gap-4">
                   <div className="flex size-14 items-center justify-center rounded-full bg-red-400 text-light">
-                    <Rabbit />
-                  </div>
-                  <h5 className="text-lg font-black">
-                    Cruelty-Free <br /> Cosmetics
-                  </h5>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="flex size-14 items-center justify-center rounded-full bg-yellow-400 text-light">
                     <Sunflower />
                   </div>
                   <h5 className="text-lg font-black">
-                    Ethical and sustainable <br />
-                    beauty products
-                  </h5>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="flex size-14 items-center justify-center rounded-full bg-green-700 text-light">
-                    <Carrot />
-                  </div>
-                  <h5 className="text-lg font-black">
-                    100% Vegan <br />
-                    Products
+                    Cruelty-Free <br /> Cosmetics
                   </h5>
                 </div>
               </div>

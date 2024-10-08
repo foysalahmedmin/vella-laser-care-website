@@ -4,9 +4,12 @@ import { Button } from "@/components/ui/Button.jsx";
 import Cart from "@/components/partials/Header/Navigation/Cart/index.jsx";
 import { urls } from "@/api/urls.js";
 import { bn } from "@/lib/enTobn.js";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ lang, item, variant = "default" }) => {
+  const navigate = useNavigate();
   const {
+    _id,
     name,
     name_bn,
     short_description,
@@ -49,7 +52,12 @@ const ProductCard = ({ lang, item, variant = "default" }) => {
             </div>
             <div>
               <div className="mb-2">
-                <h5 className="uppercase">{lang === "en" ? name : name_bn}</h5>
+                <h5
+                  onClick={() => navigate(`/product/${_id}`)}
+                  className="cursor-pointer uppercase"
+                >
+                  {lang === "en" ? name : name_bn}
+                </h5>
                 <p className="text-sm font-semibold">
                   {lang === "en" ? short_description : short_description_bn}
                 </p>
@@ -98,7 +106,12 @@ const ProductCard = ({ lang, item, variant = "default" }) => {
         <div className="rounded-xl bg-background">
           <div className="relative space-y-4 bg-primary/5 px-6 py-6">
             <div>
-              <h3 className="uppercase">{lang === "en" ? name : name_bn}</h3>
+              <h3
+                onClick={() => navigate(`/product/${_id}`)}
+                className="cursor-pointer uppercase"
+              >
+                {lang === "en" ? name : name_bn}
+              </h3>
               <p className="font-semibold">
                 {lang === "en" ? short_description : short_description_bn}
               </p>

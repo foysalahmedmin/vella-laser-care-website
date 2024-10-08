@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { ArrowRight } from "lucide-react";
 
-const OurBenefitsSection = () => {
+const OurBenefitsSection = ({ info, lang }) => {
   return (
     <section className="md:pt-24">
       <section
@@ -22,16 +22,21 @@ const OurBenefitsSection = () => {
               </div>
             </div>
             <div className="space-y-4 pt-16 md:pt-24">
-              <span className="block font-semibold text-primary">Why Us ?</span>
-              <h1 className="text-4xl">Why Choose Us for Your Skincare</h1>
+              <span className="block font-semibold text-primary">
+                {lang === "en" ? "Why Us ?" : "Why Us ?"}
+              </span>
+              <h1 className="text-4xl">
+                {lang === "en" ? info?.why_us_title : info?.why_us_title_bn}
+              </h1>
               <p className="font-semibold md:text-lg">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text.
+                {lang === "en"
+                  ? info?.why_us_description
+                  : info?.why_us_description_bn}
               </p>
               <div className="pt-4">
                 <Button>
-                  <span>Register</span> <ArrowRight className="size-4" />
+                  <span>{lang === "en" ? "Register" : "Register"}</span>{" "}
+                  <ArrowRight className="size-4" />
                 </Button>
               </div>
             </div>

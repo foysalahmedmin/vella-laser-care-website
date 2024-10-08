@@ -10,7 +10,7 @@ import ProductKeyBenefits from "./ProductKeyBenefits";
 import ProductKeyIngredients from "./ProductKeyIngredients";
 import ProductTags from "./ProductTags";
 
-const ProductTabSection = () => {
+const ProductTabSection = ({ info, lang }) => {
   return (
     <section className="container">
       <div className="rounded-md">
@@ -19,37 +19,48 @@ const ProductTabSection = () => {
             <TabsList className="mb-4 gap-4 border-b md:mb-6 md:justify-start md:gap-6">
               <TabsTrigger value="highlight">
                 <span className="inline-block py-1 font-semibold capitalize">
-                  Highlight
+                  {lang === "en" ? "Highlight" : "Highlight"}
                 </span>
               </TabsTrigger>
               <TabsTrigger value="key-benefits">
                 <span className="inline-block py-1 font-semibold capitalize">
-                  Key Benefits
+                  {lang === "en" ? "Key Benefits" : "Key Benefits"}
                 </span>
               </TabsTrigger>
               <TabsTrigger value="key-ingredients">
                 <span className="inline-block py-1 font-semibold capitalize">
-                  Key Ingredients
+                  {lang === "en" ? "Key Ingredients" : "Key Ingredients"}
                 </span>
               </TabsTrigger>
               <TabsTrigger value="product-tags">
                 <span className="inline-block py-1 font-semibold capitalize">
-                  Product Tags
+                  {lang === "en" ? "Product Tags" : "Product Tags"}
                 </span>
               </TabsTrigger>
             </TabsList>
             <TabsContent>
               <TabsItem value="highlight">
-                <ProductHighlight />
+                <ProductHighlight
+                  highlight={info?.highlight}
+                  lang={lang}
+                  highlight_bn={info?.highlight_bn}
+                />
               </TabsItem>
               <TabsItem value="key-benefits">
-                <ProductKeyBenefits />
+                <ProductKeyBenefits
+                  lang={lang}
+                  key_benefits={info?.key_benefits}
+                />
               </TabsItem>
               <TabsItem value="key-ingredients">
-                <ProductKeyIngredients />
+                <ProductKeyIngredients
+                  key_ingredients={info?.key_ingredients}
+                  key_ingredients_bn={info?.key_ingredients_bn}
+                  lang={lang}
+                />
               </TabsItem>
               <TabsItem value="product-tags">
-                <ProductTags />
+                <ProductTags lang={lang} tags={info?.tags} />
               </TabsItem>
             </TabsContent>
           </Tabs>

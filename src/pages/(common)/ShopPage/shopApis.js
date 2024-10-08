@@ -32,3 +32,8 @@ export async function fetchFilteredProducts(
   );
   return response?.data[0];
 }
+
+export async function fetchOneProduct(id) {
+  const response = await base.get(`/api/product/get_one_product_details/${id}`);
+  return response?.data;
+}

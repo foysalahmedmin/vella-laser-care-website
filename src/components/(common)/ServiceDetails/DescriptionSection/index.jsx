@@ -1,8 +1,9 @@
 import { BadgeCheckOutline } from "@/assets/svg/icons/Badge";
 import { Button } from "@/components/ui/Button";
 import { CalendarCheck } from "lucide-react";
+import { urls } from "@/api/urls.js";
 
-const DescriptionSection = () => {
+const DescriptionSection = ({ info, lang }) => {
   return (
     <section className="py-16 md:py-24">
       <div className="container">
@@ -11,12 +12,12 @@ const DescriptionSection = () => {
             <div className="relative aspect-square w-full max-w-xl">
               <img
                 className="absolute right-0 top-0 z-10 h-5/6 w-7/12 rounded-full border-4 border-background object-cover md:border-8"
-                src="/images/service-details/description-1.png"
+                src={`${urls?.service_header}/${info?.header?.image_1}`}
                 alt="description-1"
               />
               <img
                 className="absolute bottom-0 left-0 h-5/6 w-7/12 rounded-full object-cover"
-                src="/images/service-details/description-2.png"
+                src={`${urls?.service_header}/${info?.header?.image_2}`}
                 alt="description-3"
               />
             </div>
@@ -24,40 +25,33 @@ const DescriptionSection = () => {
           <div>
             <div className="space-y-4">
               <span className="block font-semibold text-primary">
-                Description
+                {lang === "en" ? "Description" : "Description"}
               </span>
               <h1 className="text-4xl">
-                Aesthetic Dreams Begin Here <br /> Visit Us Today
+                {lang === "en" ? info?.header?.title : info?.header?.title_bn}
               </h1>
               <p className="font-semibold md:text-lg">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
+                {lang === "en"
+                  ? info?.header?.description
+                  : info?.header?.description_bn}
               </p>
               <ul className="flex items-center justify-between">
-                <li className="flex items-center gap-1">
-                  <BadgeCheckOutline className="size-6 text-primary" />
-                  <span className="inline-block text-lg font-semibold text-title">
-                    Illuminating Beauty
-                  </span>
-                </li>
-                <li className="flex items-center gap-1">
-                  <BadgeCheckOutline className="size-6 text-primary" />
-                  <span className="inline-block text-lg font-semibold text-title">
-                    Timeless Elegance
-                  </span>
-                </li>
-                <li className="flex items-center gap-1">
-                  <BadgeCheckOutline className="size-6 text-primary" />
-                  <span className="inline-block text-lg font-semibold text-title">
-                    Unique Glow
-                  </span>
-                </li>
+                {info?.header?.tags?.map((tag, index) => (
+                  <li key={index} className="flex items-center gap-1">
+                    <BadgeCheckOutline className="size-6 text-primary" />
+                    <span className="inline-block text-lg font-semibold text-title">
+                      {lang === "en" ? tag?.name : tag?.name_bn}
+                    </span>
+                  </li>
+                ))}
               </ul>
               <div className="py-4">
                 <Button>
-                  <span>Book an appointment</span>
+                  <span>
+                    {lang === "en"
+                      ? "Book an appointment"
+                      : "Book an appointment"}
+                  </span>
                   <CalendarCheck strokeWidth={3} className="size-4" />
                 </Button>
               </div>

@@ -13,22 +13,12 @@ import {
 import { StarRating } from "@/components/ui/StarRating";
 import { cn, toFixedAndLocaleStringCurrency } from "@/lib/utils";
 import { ShieldQuestion } from "lucide-react";
+import { bn } from "@/lib/enTobn.js";
+import { urls } from "@/api/urls.js";
 
-const ProductPs = ({ className, product }) => {
-  const {
-    name,
-    description,
-    tags,
-    price,
-    originalPrice,
-    inStock,
-    availableStock,
-    rating,
-    sku,
-    origin,
-    totalReviews,
-    wishListed = false,
-  } = product;
+const ProductPs = ({ className, info, lang }) => {
+  let wishListed = false;
+  console.log(info?.rating);
   return (
     <>
       <div
@@ -39,14 +29,10 @@ const ProductPs = ({ className, product }) => {
       >
         <div className="flex items-center justify-between gap-2">
           <div>
-            {tags?.map((item, index) => (
-              <span
-                key={index}
-                className="inline-block rounded bg-green-500 px-2 py-1 text-sm text-light"
-              >
-                {item}
-              </span>
-            ))}
+            <span className="inline-block rounded bg-green-500 px-2 py-1 text-sm text-light">
+              {info?.discount_amount}
+              {info?.discount_type === "percentage" ? "%" : "৳"} OFF
+            </span>
           </div>
           <Button
             className="ml-auto rounded-full text-lg text-foreground"
@@ -62,49 +48,64 @@ const ProductPs = ({ className, product }) => {
         </div>
         <div className="space-y-2 md:space-y-4">
           <div>
-            <h3 className="font-roboto">{name}</h3>
-            <p>{description}</p>
+            <h3 className="font-roboto">
+              {lang === "en" ? info?.name : info?.name_bn}
+            </h3>
+            <p>
+              {lang === "en"
+                ? info?.short_description
+                : info?.short_description_bn}
+            </p>
           </div>
           <strong className="mt-4 block space-x-2">
-            <span>SKU:</span> <span>{sku}</span>
+            <span>SKU:</span>{" "}
+            <span>{lang === "en" ? info?.sku : bn.engToNumber(info?.sku)}</span>
           </strong>
           <div className="flex divide-x-2">
             <div className="flex items-center gap-2 pr-4">
               <StarRating
-                rating={rating}
+                rating={Math.round(Number(info?.rating)) || 5}
                 className="text-[1.5em] leading-none"
               />
-              <span className="text-lg leading-none text-title">{rating}</span>
-              <span className="text-lg leading-none">({totalReviews})</span>
-              {Object.keys(origin)?.length > 0 && (
-                <img
-                  className="size-6 object-contain object-center"
-                  src={origin?.flag}
-                  alt={origin?.name}
-                />
-              )}
+              <span className="text-lg leading-none text-title">
+                {info?.rating}
+              </span>
+              <span className="text-lg leading-none">
+                (
+                {lang === "en"
+                  ? info?.total_review
+                  : bn.engToNumber(info?.total_review)}
+                )
+              </span>
+              <img
+                className="size-6 object-contain object-center"
+                src={`${urls?.country_origin}/${info?.country_origin}`}
+                alt={info?.name}
+              />
             </div>
             <div className="pl-4">
-              {inStock ? (
-                <span className="font-semibold text-green-500">In Stock</span>
-              ) : (
-                <span className="font-semibold text-red-500">
-                  Not Available
-                </span>
-              )}
+              <span className="font-semibold text-green-500">In Stock</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <strong className="text-xl font-semibold !leading-none text-title">
               {toFixedAndLocaleStringCurrency({
-                value: price,
+                value:
+                  lang === "en"
+                    ? info?.selling_price - (info?.discount_amount || 0)
+                    : bn.engToNumber(
+                        info?.selling_price - (info?.discount_amount || 0),
+                      ),
               })}
               BDT
             </strong>
-            {originalPrice && (
+            {info?.selling_price && (
               <del className="text-xl !leading-none text-muted-foreground line-through">
                 {toFixedAndLocaleStringCurrency({
-                  value: originalPrice,
+                  value:
+                    lang === "en"
+                      ? info?.selling_price
+                      : bn.engToNumber(info?.selling_price),
                 })}
                 BDT
               </del>
@@ -115,11 +116,7 @@ const ProductPs = ({ className, product }) => {
           </div>
         </div>
         <div className={cn("flex gap-4", className)}>
-          <QuantitySelector
-            defaultValue={1}
-            minValue={1}
-            maxValue={Number(availableStock)}
-          >
+          <QuantitySelector defaultValue={1} minValue={1} maxValue={10}>
             <QuantityDecreaseTrigger />
             <QuantityInput />
             <QuantityIncreaseTrigger />
@@ -133,7 +130,7 @@ const ProductPs = ({ className, product }) => {
           <span className="block text-lg font-semibold text-title">
             Shipping to Bangladesh
           </span>
-          <p>Free Shipping over 2000 BDT purchase (4-8 business days)</p>
+          <p>Delivery amount depends on your city. (4-8 business days)</p>
           <a className="inline-block text-primary underline" href="">
             Return, Refund & Exchange policy
           </a>

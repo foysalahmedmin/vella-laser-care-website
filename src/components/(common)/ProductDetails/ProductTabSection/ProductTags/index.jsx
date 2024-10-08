@@ -1,14 +1,11 @@
-const ProductTags = () => {
+const ProductTags = ({ tags, lang }) => {
   return (
     <div>
       <div>
         <ul className="list-inside list-disc">
-          <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</li>
-          <li>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum,
-            eligendi.
-          </li>
-          <li>Lorem ipsum dolor sit, amet consectetur</li>
+          {tags?.map((item, i) => (
+            <li key={i}>{lang === "en" ? item?.name : item?.name_bn}</li>
+          ))}
         </ul>
       </div>
     </div>
