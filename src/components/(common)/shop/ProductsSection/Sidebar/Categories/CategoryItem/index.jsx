@@ -1,26 +1,46 @@
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import { useState } from "react";
+import { bn } from "@/lib/enTobn.js";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  SetShopFilterCategory,
+  SetShopFilterSubCategory,
+} from "@/redux/slices/filter/shopSlice.js";
+import SubItem from "@/components/(common)/shop/ProductsSection/Sidebar/Categories/SubItem/index.jsx";
 
-const CategoryItem = ({ item }) => {
-  const { name, total, categories } = item;
+const CategoryItem = ({ item, lang }) => {
+  const dispatch = useDispatch();
+  const { category } = useSelector((state) => state.shop_filter);
+  const { _id, name, name_bn, total, sub_categories } = item;
   const [isOpen, setIsOpen] = useState(false);
   return (
     <li className="text-sm">
-      {!categories?.length > 0 && (
+      {!sub_categories?.length > 0 && (
         <label className="flex cursor-pointer items-center justify-between px-4 py-1">
           <div className="flex items-center gap-2">
-            <input className="radio peer" type="checkbox" />
+            <input
+              className="radio peer"
+              onChange={(e) => {
+                dispatch(SetShopFilterCategory(e.target.value));
+                dispatch(SetShopFilterSubCategory(""));
+              }}
+              value={_id}
+              checked={category === _id}
+              type="checkbox"
+            />
             <span className="capitalize peer-checked:font-semibold">
-              {name}
+              {lang === "en" ? name : name_bn}
             </span>
           </div>
-          {total && (
-            <span className="text-xs text-muted-foreground">({total})</span>
+          {total > 0 && (
+            <span className="text-xs text-muted-foreground">
+              ({lang === "en" ? total : bn.engToNumber(total)})
+            </span>
           )}
         </label>
       )}
-      {categories?.length > 0 && (
+      {sub_categories?.length > 0 && (
         <div
           className={cn("accordion group relative", {
             open: isOpen,
@@ -32,10 +52,15 @@ const CategoryItem = ({ item }) => {
                 <input
                   className="radio peer"
                   type="checkbox"
-                  checked={isOpen}
+                  onChange={(e) =>
+                    dispatch(SetShopFilterCategory(e.target.value))
+                  }
+                  value={_id}
+                  checked={category === _id}
+                  // checked={isOpen}
                 />
                 <span className="capitalize peer-checked:font-semibold">
-                  {name}
+                  {lang === "en" ? name : name_bn}
                 </span>
               </div>
               <ChevronRight
@@ -50,8 +75,8 @@ const CategoryItem = ({ item }) => {
           </div>
           <div className="accordion-content pl-[1.5em]">
             <ul className="py-1">
-              {categories?.map((item, i) => (
-                <CategoryItem key={i} item={item} />
+              {sub_categories?.map((item, i) => (
+                <SubItem key={i} lang={lang} item={item} c={_id} />
               ))}
             </ul>
           </div>

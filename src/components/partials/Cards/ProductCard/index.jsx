@@ -34,8 +34,8 @@ const ProductCard = ({ lang, item, variant = "default" }) => {
               <div className="absolute left-2 right-2 top-2 flex items-center justify-between gap-2">
                 <div className="mt-0 flex items-center gap-2">
                   <span className="inline-block rounded bg-green-500 px-1 text-xs font-semibold text-light">
-                    {discount > 0 && discount}
-                    {discount > 0 && discount_type === "percent" && "%"}
+                    {discount > 0 && `-${discount}`}
+                    {discount > 0 && discount_type === "percentage" && "%"}
                   </span>
                 </div>
                 <Button
@@ -57,23 +57,37 @@ const ProductCard = ({ lang, item, variant = "default" }) => {
               <div className="mb-1 flex items-center gap-1">
                 <div className="flex items-center gap-1 text-sm">
                   <Star className="text-base text-yellow-500" />
-                  <div>{rating}</div>
-                  <div>({total_review})</div>
-                </div>
-                {Object.keys(origin)?.length > 0 && (
+                  <div>{lang === "en" ? rating : bn.engToNumber(rating)}</div>
                   <div>
-                    <img
-                      className="size-4 object-contain object-center"
-                      src={origin?.flag}
-                      alt={origin?.name}
-                    />
+                    (
+                    {lang === "en"
+                      ? total_review
+                      : bn.engToNumber(total_review)}
+                    )
                   </div>
-                )}
+                </div>
+                <div>
+                  <img
+                    className="size-4 object-contain object-center"
+                    src={`${urls?.thumbnail}/${media}`}
+                    alt={name}
+                  />
+                </div>
               </div>
               <div className="flex items-center gap-1">
-                <strong className="font-semibold">{selling_price} BDT</strong>
+                <strong className="font-semibold">
+                  {lang === "en"
+                    ? selling_price - (discount_amount || 0)
+                    : bn.engToNumber(
+                        selling_price - (discount_amount || 0),
+                      )}{" "}
+                  BDT
+                </strong>
                 <del className="font-semibold opacity-50">
-                  {selling_price} BDT
+                  {lang === "en"
+                    ? selling_price
+                    : bn.engToNumber(selling_price)}{" "}
+                  BDT
                 </del>
               </div>
             </div>

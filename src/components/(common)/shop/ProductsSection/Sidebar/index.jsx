@@ -4,17 +4,17 @@ import PriceRange from "./PriceRange";
 import SkinConcern from "./SkinConcern";
 import SkinType from "./SkinType";
 
-const Sidebar = ({ className }) => {
+const Sidebar = ({ className, lang }) => {
   return (
     <aside className={cn("", className)}>
       <div className="space-y-4">
-        <Categories />
+        <Categories lang={lang} />
         <hr className="mx-4" />
-        <PriceRange />
+        <PriceRange lang={lang} />
         <hr className="mx-4" />
-        <SkinType />
+        <SkinType lang={lang} />
         <hr className="mx-4" />
-        <SkinConcern />
+        <SkinConcern lang={lang} />
       </div>
     </aside>
   );

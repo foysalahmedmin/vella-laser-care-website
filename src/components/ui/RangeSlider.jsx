@@ -8,8 +8,12 @@ import {
   useContext,
   useEffect,
   useRef,
-  useState,
 } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  SetShopFilterMaxPrice,
+  SetShopFilterMinPrice,
+} from "@/redux/slices/filter/shopSlice.js";
 
 // RangeSliderContext
 export const RangeSliderContext = createContext(null);
@@ -42,8 +46,8 @@ const RangeSlider = forwardRef(
     },
     ref,
   ) => {
-    const [minValue, setMinValue] = useState(initialMinValue);
-    const [maxValue, setMaxValue] = useState(initialMaxValue);
+    const dispatch = useDispatch();
+    const { min_price, max_price } = useSelector((state) => state.shop_filter);
 
     const minInputRef = useRef(null);
     const maxInputRef = useRef(null);
@@ -52,49 +56,49 @@ const RangeSlider = forwardRef(
     useEffect(() => {
       const updateProgressBar = () => {
         if (minInputRef.current && maxInputRef.current) {
-          minInputRef.current.value = minValue;
-          maxInputRef.current.value = maxValue;
-          progressRef.current.style.left = `${(minValue / minInputRef.current.max) * 100}%`;
-          progressRef.current.style.right = `${100 - (maxValue / maxInputRef.current.max) * 100}%`;
+          minInputRef.current.value = min_price;
+          maxInputRef.current.value = max_price;
+          progressRef.current.style.left = `${(min_price / minInputRef.current.max) * 100}%`;
+          progressRef.current.style.right = `${100 - (max_price / maxInputRef.current.max) * 100}%`;
         }
       };
 
       updateProgressBar();
-    }, [minValue, maxValue]);
+    }, [min_price, max_price]);
 
     const handleMinInputChange = (e) => {
       const value = parseInt(e.target.value);
-      if (maxValue - value >= minGap) {
-        setMinValue(value);
+      if (max_price - value >= minGap) {
+        dispatch(SetShopFilterMinPrice(value));
       }
     };
 
     const handleMaxInputChange = (e) => {
       const value = parseInt(e.target.value);
-      if (value - minValue >= minGap) {
-        setMaxValue(value);
+      if (value - min_price >= minGap) {
+        dispatch(SetShopFilterMaxPrice(value));
       }
     };
 
     const handleMinRangeChange = (e) => {
       const value = parseInt(e.target.value);
-      if (maxValue - value >= minGap) {
-        setMinValue(value);
+      if (max_price - value >= minGap) {
+        dispatch(SetShopFilterMinPrice(value));
       }
     };
 
     const handleMaxRangeChange = (e) => {
       const value = parseInt(e.target.value);
-      if (value - minValue >= minGap) {
-        setMaxValue(value);
+      if (value - min_price >= minGap) {
+        dispatch(SetShopFilterMaxPrice(value));
       }
     };
 
     return (
       <RangeSliderContext.Provider
         value={{
-          minValue,
-          maxValue,
+          minValue: min_price,
+          maxValue: max_price,
           minGap,
           minLimit,
           maxLimit,
@@ -102,8 +106,8 @@ const RangeSlider = forwardRef(
           minInputRef,
           maxInputRef,
           progressRef,
-          setMinValue,
-          setMaxValue,
+          // setMinValue,
+          // setMaxValue,
           handleMinInputChange,
           handleMaxInputChange,
           handleMinRangeChange,
@@ -169,7 +173,9 @@ const RangeSliderInput = forwardRef(({ className, ...props }, ref) => {
 RangeSliderInput.displayName = "RangeSliderInput";
 
 // MinInput component
-const MinInput = forwardRef(({ className, ...props }, ref) => {
+const MinInput = forwardRef(({ className, lang, ...props }, ref) => {
+  const dispatch = useDispatch();
+  const { min_price } = useSelector((state) => state?.shop_filter);
   const { minValue, handleMinInputChange } = useRangeSliderContext();
 
   return (
@@ -184,8 +190,10 @@ const MinInput = forwardRef(({ className, ...props }, ref) => {
       <input
         type="number"
         className="size-full bg-transparent pl-2 outline-none"
-        value={minValue}
-        onChange={handleMinInputChange}
+        value={min_price}
+        onChange={(e) =>
+          dispatch(SetShopFilterMinPrice(Number(e.target.value)))
+        }
       />
     </label>
   );
@@ -195,6 +203,8 @@ MinInput.displayName = "MinInput";
 
 // MaxInput component
 const MaxInput = forwardRef(({ className, ...props }, ref) => {
+  const dispatch = useDispatch();
+  const { max_price } = useSelector((state) => state?.shop_filter);
   const { maxValue, handleMaxInputChange } = useRangeSliderContext();
 
   return (
@@ -209,8 +219,10 @@ const MaxInput = forwardRef(({ className, ...props }, ref) => {
       <input
         type="number"
         className="size-full bg-transparent pl-2 outline-none"
-        value={maxValue}
-        onChange={handleMaxInputChange}
+        value={max_price}
+        onChange={(e) =>
+          dispatch(SetShopFilterMaxPrice(Number(e.target.value)))
+        }
       />
     </label>
   );

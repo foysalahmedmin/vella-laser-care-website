@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 
-const PriceRange = ({ className }) => {
+const PriceRange = ({ className, lang }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div
@@ -18,7 +18,9 @@ const PriceRange = ({ className }) => {
     >
       <div className="cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
         <div className="flex items-center justify-between px-4">
-          <strong className="font-roboto uppercase">Filter by price</strong>
+          <strong className="font-roboto uppercase">
+            {lang === "en" ? "Filter by price" : "Filter by price"}
+          </strong>
           <ChevronRight
             className={cn(
               "size-4 shrink-0 rotate-90 transition-all duration-300",
@@ -34,9 +36,9 @@ const PriceRange = ({ className }) => {
           <RangeSlider>
             <RangeSliderInput className="text-[0.5rem]" />
             <div className="mt-4 flex items-center gap-2 md:gap-4">
-              <MinInput className="text-xs" />
+              <MinInput lang={lang} className="text-xs" />
               <hr className="w-12 border-2" />
-              <MaxInput className="text-xs" />
+              <MaxInput lang={lang} className="text-xs" />
             </div>
           </RangeSlider>
         </div>
