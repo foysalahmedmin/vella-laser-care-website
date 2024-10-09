@@ -6,7 +6,7 @@ const OrderReviewSection = ({ className }) => {
   return (
     <section className={cn("rounded-md bg-card p-4", className)}>
       <div className="space-y-6">
-        <strong className="block !font-semibold uppercase">
+        <strong className="block font-medium uppercase">
           1. REVIEW YOUR ORDER (2 ITEMS)
         </strong>
         <div className="space-y-4">
@@ -21,25 +21,23 @@ const OrderReviewSection = ({ className }) => {
             ))}
           </div>
           <hr />
-          <div className="flex items-center justify-between gap-2">
-            <span className="font-semibold uppercase text-title">Subtotal</span>
-            <span className="font-semibold uppercase text-title">4600BDT</span>
+          <div className="flex items-center justify-between gap-2 font-semibold">
+            <span className="uppercase text-title">Subtotal</span>
+            <span className="uppercase text-title">4600BDT</span>
           </div>
         </div>
         <div className="space-y-4">
-          <span className="block font-semibold text-title">
-            Select delivery
-          </span>
+          <span className="block font-medium text-title">Select delivery</span>
           <ul className="space-y-2">
             <li className="rounded-xl border bg-muted/50">
-              <label className="flex justify-between gap-2 p-4">
+              <label className="flex cursor-pointer justify-between gap-2 p-4">
                 <div className="min-w-20">
-                  <span className="font-semibold uppercase text-title">
+                  <span className="font-medium uppercase text-title">
                     4600BDT
                   </span>
                 </div>
-                <div className="flex-1 text-title">
-                  <span className="block text-sm font-semibold">Regular</span>
+                <div className="flex-1 space-y-1 text-title">
+                  <span className="block text-base">Regular</span>
                   <span className="block text-sm">(1–6 weeks delivery)</span>
                 </div>
                 <div className="grid place-items-center">

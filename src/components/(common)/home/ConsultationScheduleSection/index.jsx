@@ -1,17 +1,17 @@
 import { Button } from "@/components/ui/Button";
 import { Description, SectionTitle, Title } from "@/components/ui/SectionTitle";
-import { Calendar, Send } from "lucide-react";
-import { useState } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { errorMessage } from "@/helpers/error.js";
 import {
   AddAppointment,
   fetchDoctorSlots,
   fetchFilteredDepartments,
   fetchFilteredDoctors,
 } from "@/pages/(common)/HomePage/homeApis.js";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { Calendar, Send } from "lucide-react";
 import moment from "moment";
+import { useState } from "react";
 import { toast } from "react-toastify";
-import { errorMessage } from "@/helpers/error.js";
 
 const ConsultationScheduleSection = ({ lang }) => {
   const [name, setName] = useState("");
@@ -134,7 +134,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                   <form className="space-y-8">
                     <div className="grid grid-cols-1 gap-x-4 gap-y-6 lg:grid-cols-2">
                       <label>
-                        <span className="mb-2 inline-block font-semibold text-title">
+                        <span className="mb-2 inline-block font-medium text-title">
                           {lang === "en" ? "Name" : "নাম"}
                         </span>
                         <input
@@ -152,7 +152,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                         />
                       </label>
                       <label>
-                        <span className="mb-2 inline-block font-semibold text-title">
+                        <span className="mb-2 inline-block font-medium text-title">
                           Appointment type
                         </span>
                         <div className="flex items-center gap-4 py-2">
@@ -167,7 +167,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                                 setAppointmentType(e.target.value)
                               }
                             />
-                            <span className="inline-block font-semibold text-title">
+                            <span className="inline-block font-medium text-title">
                               Online
                             </span>
                           </label>
@@ -182,14 +182,14 @@ const ConsultationScheduleSection = ({ lang }) => {
                                 setAppointmentType(e.target.value)
                               }
                             />
-                            <span className="inline-block font-semibold text-title">
+                            <span className="inline-block font-medium text-title">
                               Offline
                             </span>
                           </label>
                         </div>
                       </label>
                       <label>
-                        <span className="mb-2 inline-block font-semibold text-title">
+                        <span className="mb-2 inline-block font-medium text-title">
                           Department
                         </span>
                         <div className="input block w-full rounded-full">
@@ -210,7 +210,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                         </div>
                       </label>
                       <label>
-                        <span className="mb-2 inline-block font-semibold text-title">
+                        <span className="mb-2 inline-block font-medium text-title">
                           Doctor
                         </span>
                         <div className="input block w-full rounded-full">
@@ -231,7 +231,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                         </div>
                       </label>
                       <label>
-                        <span className="mb-2 inline-block font-semibold text-title">
+                        <span className="mb-2 inline-block font-medium text-title">
                           Email
                         </span>
                         <input
@@ -245,7 +245,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                         />
                       </label>
                       <label>
-                        <span className="mb-2 inline-block font-semibold text-title">
+                        <span className="mb-2 inline-block font-medium text-title">
                           Phone
                         </span>
                         <input
@@ -259,7 +259,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                         />
                       </label>
                       <label>
-                        <span className="mb-2 inline-block font-semibold text-title">
+                        <span className="mb-2 inline-block font-medium text-title">
                           Date
                         </span>
                         <div className="input w-full flex-1 rounded-full">
@@ -283,7 +283,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                         </div>
                       </label>
                       <label>
-                        <span className="mb-2 inline-block font-semibold text-title">
+                        <span className="mb-2 inline-block font-medium text-title">
                           Slot
                         </span>
                         <div className="input block w-full rounded-full">
@@ -303,7 +303,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                         </div>
                       </label>
                       <label className="col-span-2">
-                        <span className="mb-2 inline-block font-semibold text-title">
+                        <span className="mb-2 inline-block font-medium text-title">
                           Message
                         </span>
                         <textarea
