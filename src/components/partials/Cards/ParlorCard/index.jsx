@@ -25,7 +25,7 @@ const ParlorCard = ({ item, lang }) => {
           ))}
         </ul>
         <div className="space-y-2">
-          <h4 className="text-foreground">{name}</h4>
+          <h4 className="text-title/85">{name}</h4>
           <span className="flex items-center gap-2">
             <span className="inline-flex aspect-square size-4 items-center justify-center rounded-full border border-primary text-primary">
               <MapPin size={10} />
