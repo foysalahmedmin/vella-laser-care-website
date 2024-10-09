@@ -134,7 +134,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                   <form className="space-y-8">
                     <div className="grid grid-cols-1 gap-x-4 gap-y-6 lg:grid-cols-2">
                       <label>
-                        <span className="mb-2 inline-block font-medium text-title">
+                        <span className="mb-2 inline-block font-medium text-title/85">
                           {lang === "en" ? "Name" : "নাম"}
                         </span>
                         <input
@@ -152,7 +152,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                         />
                       </label>
                       <label>
-                        <span className="mb-2 inline-block font-medium text-title">
+                        <span className="mb-2 inline-block font-medium text-title/85">
                           Appointment type
                         </span>
                         <div className="flex items-center gap-4 py-2">
@@ -167,7 +167,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                                 setAppointmentType(e.target.value)
                               }
                             />
-                            <span className="inline-block font-medium text-title">
+                            <span className="inline-block font-medium text-title/85">
                               Online
                             </span>
                           </label>
@@ -182,14 +182,14 @@ const ConsultationScheduleSection = ({ lang }) => {
                                 setAppointmentType(e.target.value)
                               }
                             />
-                            <span className="inline-block font-medium text-title">
+                            <span className="inline-block font-medium text-title/85">
                               Offline
                             </span>
                           </label>
                         </div>
                       </label>
                       <label>
-                        <span className="mb-2 inline-block font-medium text-title">
+                        <span className="mb-2 inline-block font-medium text-title/85">
                           Department
                         </span>
                         <div className="input block w-full rounded-full">
@@ -210,7 +210,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                         </div>
                       </label>
                       <label>
-                        <span className="mb-2 inline-block font-medium text-title">
+                        <span className="mb-2 inline-block font-medium text-title/85">
                           Doctor
                         </span>
                         <div className="input block w-full rounded-full">
@@ -231,7 +231,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                         </div>
                       </label>
                       <label>
-                        <span className="mb-2 inline-block font-medium text-title">
+                        <span className="mb-2 inline-block font-medium text-title/85">
                           Email
                         </span>
                         <input
@@ -245,7 +245,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                         />
                       </label>
                       <label>
-                        <span className="mb-2 inline-block font-medium text-title">
+                        <span className="mb-2 inline-block font-medium text-title/85">
                           Phone
                         </span>
                         <input
@@ -259,7 +259,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                         />
                       </label>
                       <label>
-                        <span className="mb-2 inline-block font-medium text-title">
+                        <span className="mb-2 inline-block font-medium text-title/85">
                           Date
                         </span>
                         <div className="input w-full flex-1 rounded-full">
@@ -283,7 +283,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                         </div>
                       </label>
                       <label>
-                        <span className="mb-2 inline-block font-medium text-title">
+                        <span className="mb-2 inline-block font-medium text-title/85">
                           Slot
                         </span>
                         <div className="input block w-full rounded-full">
@@ -302,14 +302,14 @@ const ConsultationScheduleSection = ({ lang }) => {
                           </select>
                         </div>
                       </label>
-                      <label className="col-span-2">
-                        <span className="mb-2 inline-block font-medium text-title">
+                      <label className="lg:col-span-2">
+                        <span className="mb-2 inline-block font-medium text-title/85">
                           Message
                         </span>
                         <textarea
                           value={message}
                           onChange={(e) => setMessage(e.target.value)}
-                          className="input block w-full rounded-full py-[0.375rem]"
+                          className="input block w-full rounded-3xl py-[0.375rem]"
                           placeholder="Enter Your Message"
                           rows={1}
                           name="message"

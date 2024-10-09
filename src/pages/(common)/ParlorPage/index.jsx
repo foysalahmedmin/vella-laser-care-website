@@ -11,7 +11,7 @@ const ParlorPage = () => {
         title="Parlor"
         breadcrumbItems={[
           { label: "Home", path: "/" },
-          { label: "Parlor", path: "/parlor" },
+          { label: "Parlor", path: "/parlors" },
         ]}
       />
       <ParlorsSection lang={i18n.language} />

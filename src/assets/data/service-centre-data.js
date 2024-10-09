@@ -29,24 +29,4 @@ export const serviceCentreData = [
       "আমাদের পেশাদার ব্রাইডাল মেকআপ পরিষেবার মাধ্যমে আপনার বিশেষ দিনে দৃষ্টিনন্দন দেখান।",
     image: "/images/home/service-centre-3.png",
   },
-  {
-    _id: "4",
-    name: "Manicure & Pedicure",
-    name_bn: "ম্যানিকিউর ও পেডিকিউর",
-    short_description:
-      "Pamper yourself with our luxurious manicure and pedicure treatments.",
-    short_description_bn:
-      "আমাদের বিলাসবহুল ম্যানিকিউর ও পেডিকিউর ট্রিটমেন্টের মাধ্যমে নিজেকে পরিপূর্ণভাবে যত্ন নিন।",
-    image: "/images/home/service-centre-1.png",
-  },
-  {
-    _id: "5",
-    name: "Hair Color & Treatment",
-    name_bn: "হেয়ার কালার ও ট্রিটমেন্ট",
-    short_description:
-      "Transform your look with expert hair coloring and treatment services.",
-    short_description_bn:
-      "বিশেষজ্ঞ হেয়ার কালারিং ও ট্রিটমেন্ট পরিষেবার মাধ্যমে আপনার চেহারা পরিবর্তন করুন।",
-    image: "/images/home/service-centre-1.png",
-  },
 ];

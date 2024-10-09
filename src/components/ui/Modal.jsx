@@ -14,7 +14,7 @@ import {
 import PortalRoot from "../portals/PortalRoot";
 
 const ModalVariants = cva(
-  "modal-content border h-full overflow-y-auto bg-card z-[1000]",
+  "modal-content border h-fit max-h-full my-auto overflow-y-auto bg-card z-[1000]",
   {
     variants: {
       size: {
@@ -33,7 +33,7 @@ const ModalVariants = cva(
     },
     defaultVariants: {
       size: "default",
-      side: "left",
+      side: "center",
     },
   },
 );

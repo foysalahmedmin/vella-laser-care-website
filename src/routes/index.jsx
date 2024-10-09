@@ -4,6 +4,7 @@ import MainLayout from "@/components/layouts/MainLayout";
 import RootLayout from "@/components/layouts/RootLayout";
 import Loader from "@/components/partials/Loader";
 import CheckoutPage from "@/pages/(common)/CheckoutPage";
+import DoctorsPage from "@/pages/(common)/DoctorsPage";
 import ErrorPage from "@/pages/(common)/ErrorPage";
 import HomePage from "@/pages/(common)/HomePage";
 import ParlorDetailsPage from "@/pages/(common)/ParlorDetailsPage";
@@ -54,7 +55,7 @@ export const routes = [
             element: <ProductDetailsPage />,
           },
           {
-            path: "/parlor",
+            path: "/parlors",
             element: <ParlorPage />,
           },
           {
@@ -64,6 +65,10 @@ export const routes = [
           {
             path: "/service/:id",
             element: <ServiceDetailsPage />,
+          },
+          {
+            path: "/doctors",
+            element: <DoctorsPage />,
           },
         ],
       },

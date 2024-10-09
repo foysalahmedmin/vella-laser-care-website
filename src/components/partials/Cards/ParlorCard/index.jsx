@@ -13,7 +13,7 @@ const ParlorCard = ({ item, lang }) => {
           className="size-full object-cover object-center"
         />
       </div>
-      <div className="space-y-4 p-6">
+      <div className="space-y-4 p-6 md:p-8">
         <ul className="flex flex-wrap items-center gap-2">
           {tags?.map((tag, index) => (
             <li
