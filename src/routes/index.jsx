@@ -4,6 +4,7 @@ import MainLayout from "@/components/layouts/MainLayout";
 import RootLayout from "@/components/layouts/RootLayout";
 import Loader from "@/components/partials/Loader";
 import CheckoutPage from "@/pages/(common)/CheckoutPage";
+import DoctorDetailsPage from "@/pages/(common)/DoctorDetailsPage";
 import DoctorsPage from "@/pages/(common)/DoctorsPage";
 import ErrorPage from "@/pages/(common)/ErrorPage";
 import HomePage from "@/pages/(common)/HomePage";
@@ -69,6 +70,10 @@ export const routes = [
           {
             path: "/doctors",
             element: <DoctorsPage />,
+          },
+          {
+            path: "/doctors/:id",
+            element: <DoctorDetailsPage />,
           },
         ],
       },
