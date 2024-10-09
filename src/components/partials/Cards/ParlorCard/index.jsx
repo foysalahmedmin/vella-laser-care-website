@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/Button";
-import { MapPin } from "lucide-react";
 import { urls } from "@/api/urls.js";
+import { Button } from "@/components/ui/Button";
+import { ArrowUpRight, MapPin } from "lucide-react";
 
 const ParlorCard = ({ item, lang }) => {
   const { name, banner, address, tags, description, description_bn } = item;
@@ -50,8 +50,9 @@ const ParlorCard = ({ item, lang }) => {
             </p>
           )}
         </div>
-        <Button className="w-full">
+        <Button className="w-full text-sm">
           {lang === "en" ? "View Details" : "View Details"}
+          <ArrowUpRight className="size-4" />
         </Button>
       </div>
     </div>

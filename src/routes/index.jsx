@@ -6,6 +6,7 @@ import Loader from "@/components/partials/Loader";
 import CheckoutPage from "@/pages/(common)/CheckoutPage";
 import ErrorPage from "@/pages/(common)/ErrorPage";
 import HomePage from "@/pages/(common)/HomePage";
+import ParlorPage from "@/pages/(common)/ParlorPage";
 import Success from "@/pages/(common)/Payment/Success.jsx";
 import ProductDetailsPage from "@/pages/(common)/ProductDetailsPage";
 import ServiceDetailsPage from "@/pages/(common)/ServiceDetailsPage";
@@ -50,6 +51,10 @@ export const routes = [
           {
             path: "/product/:id",
             element: <ProductDetailsPage />,
+          },
+          {
+            path: "/parlor",
+            element: <ParlorPage />,
           },
           {
             path: "/service/:id",
