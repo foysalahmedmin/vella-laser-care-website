@@ -7,6 +7,7 @@ import {
   DrawerCloseTrigger,
   DrawerContent,
 } from "@/components/ui/Drawer";
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import ProductCard from "../Cards/ProductCard";
 
@@ -69,7 +70,8 @@ const CartBar = ({ isOpen, setIsOpen, size = "base", side = "right" }) => {
               <div>
                 <Link to="/checkout">
                   <Button asChild={true} className="w-full text-sm uppercase">
-                    PROCEED TO CHECKOUT
+                    <span>PROCEED TO CHECKOUT</span>
+                    <ArrowUpRight className="size-4" />
                   </Button>
                 </Link>
               </div>

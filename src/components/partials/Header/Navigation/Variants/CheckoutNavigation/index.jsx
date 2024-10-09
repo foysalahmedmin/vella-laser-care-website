@@ -17,24 +17,26 @@ const CheckoutNavigation = ({ user }) => {
           <div className="grid h-full grid-cols-3 items-center justify-between gap-2 lg:gap-4">
             <div className="mr-auto">
               <Link
-                className="flex items-center justify-start gap-1 hover:text-primary"
+                className="flex items-center justify-start gap-1 text-title/85 hover:text-primary"
                 to={"/shop"}
               >
-                <ChevronLeft className="size-4" />
-                <span className="font-semibold">Continue shopping</span>
+                <ChevronLeft className="size-4" strokeWidth={3} />
+                <span className="font-medium leading-none">
+                  Continue shopping
+                </span>
               </Link>
             </div>
             <div className="mx-auto">
               <div className="flex items-center justify-center gap-2 text-title">
-                <Logo /> <span className="font-semibold">Secure Checkout</span>
+                <Logo /> <span className="font-medium">Secure Checkout</span>
               </div>
             </div>
             <div className="ml-auto">
               {Object.keys(user)?.length > 0 ? (
                 <UserAndAuthNav user={user} />
               ) : (
-                <div className="flex items-center justify-end gap-2 text-title">
-                  <span>Already have an account? </span>
+                <div className="flex items-center justify-end gap-2 text-title/85">
+                  <span className="font-medium">Already have an account? </span>
                   <Button asChild={true} size="sm">
                     <span>Login</span> <ArrowUpRight className="size-4" />
                   </Button>

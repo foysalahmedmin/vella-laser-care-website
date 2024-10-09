@@ -15,7 +15,7 @@
   &:checked,
   &[data-state="active"],
   &[data-state="checked"] {
-    animation: checkbox1s;
+    animation: checkbox 0.3s;
     border-color: hsl(var(--accent));
     background-image: linear-gradient(
         -45deg,

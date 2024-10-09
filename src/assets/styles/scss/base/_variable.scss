@@ -17,8 +17,8 @@
   --secondary: 19 100% 64%;
   --secondary-foreground: 0 0% 100%;
 
-  --ternary: 237 100% 75%;
-  --ternary-foreground: 0 0% 100%;
+  --tertiary: 147 46% 49%;
+  --tertiary-foreground: 0 0% 100%;
 
   --muted: 0 0% 90%;
   --muted-foreground: 0 0% 45%;
@@ -62,8 +62,8 @@
   --secondary: 19 100% 64%;
   --secondary-foreground: 0 0% 100%;
 
-  --ternary: 237 100% 75%;
-  --ternary-foreground: 0 0% 100%;
+  --tertiary: 147 46% 49%;
+  --tertiary-foreground: 0 0% 100%;
 
   --muted: 0 0% 90%;
   --muted-foreground: 0 0% 45%;
@@ -102,8 +102,8 @@
   --secondary: 19 100% 64%;
   --secondary-foreground: 0 0% 100%;
 
-  --ternary: 237 100% 75%;
-  --ternary-foreground: 0 0% 100%;
+  --tertiary: 147 46% 49%;
+  --tertiary-foreground: 0 0% 100%;
 
   --muted: 0 0% 30%;
   --muted-foreground: 0 0% 45%;
@@ -124,8 +124,8 @@
   --primary-foreground: var(--accent-foreground);
   --secondary: var(--accent);
   --secondary-foreground: var(--accent-foreground);
-  --ternary: var(--accent);
-  --ternary-foreground: var(--accent-foreground);
+  --tertiary: var(--accent);
+  --tertiary-foreground: var(--accent-foreground);
 }
 .primary {
   --accent: var(--primary);
@@ -135,9 +135,9 @@
   --accent: var(--secondary);
   --accent-foreground: var(--secondary-foreground);
 }
-.ternary {
-  --accent: var(--ternary);
-  --accent-foreground: var(--ternary-foreground);
+.tertiary {
+  --accent: var(--tertiary);
+  --accent-foreground: var(--tertiary-foreground);
 }
 
 @media (min-width: 768px) {

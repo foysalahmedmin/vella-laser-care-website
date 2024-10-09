@@ -1,7 +1,7 @@
+import { urls } from "@/api/urls.js";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
-import { urls } from "@/api/urls.js";
 import { useNavigate } from "react-router-dom";
 
 const ServiceCard = ({ lang, item, className }) => {
