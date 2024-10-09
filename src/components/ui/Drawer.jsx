@@ -26,6 +26,7 @@ const drawerVariants = cva(
         none: "",
       },
       side: {
+        center: "mx-auto origin-center",
         left: "mr-auto origin-left",
         right: "ml-auto origin-right",
       },

@@ -1,0 +1,76 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+
+  & > .modal-backdrop {
+    position: absolute;
+    transform: scale(0);
+    visibility: hidden;
+    opacity: 0;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      visibility 0.2s ease;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  & > .modal-content {
+    position: absolute;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease,
+      visibility 0.3s ease;
+    inset: 0;
+  }
+
+  &:not(.open):not(.active):not([open]):not([data-state="open"]):not(
+      [data-state="active"]
+    ) {
+    transform: scale(0);
+    visibility: hidden;
+    opacity: 0;
+    transition-delay: 300ms;
+
+    & > .modal-backdrop {
+      transform: scale(0);
+      visibility: hidden;
+      opacity: 0;
+      transition-delay: 300ms;
+    }
+    & > .modal-content {
+      transform: scale(0);
+      visibility: hidden;
+      opacity: 0;
+      transition-delay: 0s;
+    }
+  }
+
+  &.open,
+  &.active,
+  &[open],
+  &[data-state="open"],
+  &[data-state="active"] {
+    transform: scale(1);
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+
+    & > .modal-backdrop {
+      transform: scale(1);
+      visibility: visible;
+      opacity: 1;
+      transition-delay: 0s;
+    }
+
+    & > .modal-content {
+      transform: scale(1);
+      visibility: visible;
+      opacity: 1;
+      transition-delay: 200ms;
+    }
+  }
+}
