@@ -1,7 +1,12 @@
 "use client";
 
 import Logo from "@/components/partials/Logo";
-import { Toggler } from "@/components/ui/Toggler";
+import {
+  Toggle,
+  ToggleOffComp,
+  ToggleOnComp,
+  ToggleTrigger,
+} from "@/components/ui/Toggle";
 import { cn } from "@/lib/utils";
 import { AlignRight, X } from "lucide-react";
 import { useState } from "react";
@@ -36,16 +41,16 @@ const HomeNavigation = ({ user }) => {
               )}
             >
               <div className="flex items-center justify-end">
-                <Toggler
-                  onClick={() => setIsOpen((value) => !value)}
-                  isOn={isOpen}
-                  on={{
-                    children: <X />,
-                  }}
-                  off={{
-                    children: <AlignRight />,
-                  }}
-                />
+                <Toggle isOn={isOpen} setIsOn={setIsOpen}>
+                  <ToggleTrigger>
+                    <ToggleOnComp>
+                      <X />
+                    </ToggleOnComp>
+                    <ToggleOffComp>
+                      <AlignRight />
+                    </ToggleOffComp>
+                  </ToggleTrigger>
+                </Toggle>
               </div>
               <ul className="flex size-full flex-col items-center justify-center gap-4">
                 <NavMenu />
@@ -59,16 +64,16 @@ const HomeNavigation = ({ user }) => {
                 <UserAndAuthNav user={user} />
               </div>
               <div className="lg:hidden">
-                <Toggler
-                  onClick={() => setIsOpen((value) => !value)}
-                  isOn={isOpen}
-                  on={{
-                    children: <X />,
-                  }}
-                  off={{
-                    children: <AlignRight />,
-                  }}
-                />
+                <Toggle isOn={isOpen} setIsOn={setIsOpen}>
+                  <ToggleTrigger>
+                    <ToggleOnComp>
+                      <X />
+                    </ToggleOnComp>
+                    <ToggleOffComp>
+                      <AlignRight />
+                    </ToggleOffComp>
+                  </ToggleTrigger>
+                </Toggle>
               </div>
             </div>
           </div>

@@ -11,7 +11,7 @@ const AuthenticationLayout = () => {
         }}
         className="bg-cover bg-fixed bg-center bg-no-repeat"
       >
-        <section className="grid min-h-screen-minus-header w-screen place-items-center bg-background/50 px-container py-12 backdrop-blur">
+        <section className="grid min-h-screen-minus-header place-items-center bg-background/50 px-container py-12 backdrop-blur">
           <div className="h-fit w-fit">
             <Outlet />
           </div>

@@ -1,4 +1,4 @@
-import { Toggler } from "@/components/ui/Toggler";
+import { Toggler } from "@/components/ui/Toggle";
 import { Moon, Sun } from "lucide-react";
 
 const ThemeToggler = () => {
