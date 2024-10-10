@@ -1,3 +1,4 @@
+import DoctorDetailsSection from "@/components/(common)/doctor-details/DoctorDetailsSection";
 import BannerSection from "@/components/partials/Sections/BannerSection";
 
 const DoctorDetailsPage = () => {
@@ -16,6 +17,7 @@ const DoctorDetailsPage = () => {
           },
         ]}
       />
+      <DoctorDetailsSection />
     </main>
   );
 };

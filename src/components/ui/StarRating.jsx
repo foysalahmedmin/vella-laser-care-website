@@ -6,7 +6,7 @@ import {
   StarHalf,
 } from "@/assets/svg/icons/Stars";
 import { cn } from "@/lib/utils";
-import { forwardRef, useMemo, useState } from "react";
+import { forwardRef, useEffect, useMemo, useState } from "react";
 
 // Utility function to process the rating
 export const ratingProcessor = (rating = 0, range = 5, total = 5) => {
@@ -39,7 +39,7 @@ const generateStars = (rating, total) => {
 const StarRating = forwardRef(
   (
     {
-      setRating: setRatingProp = () => {},
+      setRating: setRatingProp,
       rating: ratingProp = 0,
       range: rangeProp = 5,
       total = 5,
@@ -64,8 +64,16 @@ const StarRating = forwardRef(
 
       const newRating = ratingProcessor(index + 1, rangeProp, total);
       setRating(newRating);
-      setRatingProp(newRating);
+      if (setRatingProp) {
+        setRatingProp(newRating);
+      }
     };
+
+    useEffect(() => {
+      if (ratingProp) {
+        setRating(ratingProp);
+      }
+    }, [ratingProp]);
 
     return (
       <ul

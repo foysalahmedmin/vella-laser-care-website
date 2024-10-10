@@ -72,7 +72,7 @@ export const routes = [
             element: <DoctorsPage />,
           },
           {
-            path: "/doctors/:id",
+            path: "/doctor/:id",
             element: <DoctorDetailsPage />,
           },
         ],
