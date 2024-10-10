@@ -1,9 +1,16 @@
 import ProductCard from "@/components/partials/Cards/ProductCard";
 import { cn } from "@/lib/utils";
 import { useSelector } from "react-redux";
+import { useQuery } from "@tanstack/react-query";
+import { fetchFilteredShipping } from "@/pages/(common)/ShopPage/shopApis.js";
 
 const OrderReviewSection = ({ className }) => {
-  const { products } = useSelector((state) => state.cart);
+  const { products, city } = useSelector((state) => state.cart);
+  const { data: shipping } = useQuery({
+    queryKey: ["filtered_shipping", city],
+    queryFn: () => fetchFilteredShipping(city),
+    enabled: !!city,
+  });
   return (
     <section className={cn("space-y-8", className)}>
       <div className="rounded-md bg-card p-4">
@@ -42,15 +49,15 @@ const OrderReviewSection = ({ className }) => {
                 <label className="flex cursor-pointer justify-between gap-2 p-4">
                   <div className="min-w-20">
                     <span className="font-medium uppercase text-title">
-                      {products
-                        ?.map((x) => x?.price * x?.quantity)
-                        ?.reduce((partialSum, a) => partialSum + a, 0)}
+                      {shipping?.charge || 0}
                       BDT
                     </span>
                   </div>
                   <div className="flex-1 space-y-1 text-title">
                     <span className="block text-base">Regular</span>
-                    <span className="block text-sm">(1–6 weeks delivery)</span>
+                    <span className="block text-sm">
+                      ({shipping?.days || 0} days delivery)
+                    </span>
                   </div>
                   <div className="grid place-items-center">
                     <input
@@ -64,9 +71,7 @@ const OrderReviewSection = ({ className }) => {
             </ul>
           </div>
           <div className="space-y-4">
-            <p>
-              You're <strong>300BDT</strong> away from free shipping!
-            </p>
+            <p>You're almost close to placing your order!</p>
             <progress
               // style={{ "--accent": "var(--muted)" }}
               className="primary w-full"

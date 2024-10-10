@@ -1,6 +1,9 @@
+import { useDispatch, useSelector } from "react-redux";
+import { SetParlorFilterCity } from "@/redux/slices/filter/parlorSlice.js";
+
 const CityItem = ({ item, lang }) => {
-  // const dispatch = useDispatch();
-  // const { city } = useSelector((state) => state.parlor_filter);
+  const dispatch = useDispatch();
+  const { city } = useSelector((state) => state.parlor_filter);
   const { _id, name, name_bn, total } = item;
   return (
     <li className="text-sm">
@@ -9,17 +12,21 @@ const CityItem = ({ item, lang }) => {
           <input
             className="radio peer"
             value={_id}
-            // checked={city === _id}
-            // onChange={(e) => dispatch(SetParlorFilterCity(e.target.value))}
+            checked={city === _id}
+            onChange={(e) => {
+              if (city === _id) {
+                dispatch(SetParlorFilterCity(""));
+              } else {
+                dispatch(SetParlorFilterCity(e.target.value));
+              }
+            }}
             type="checkbox"
           />
           <span className="capitalize peer-checked:font-semibold">
             {lang === "en" ? name : name_bn}
           </span>
         </div>
-        {total > 0 && (
-          <span className="text-xs text-muted-foreground">({total})</span>
-        )}
+        <span className="text-xs text-muted-foreground">({total || 10})</span>
       </label>
     </li>
   );

@@ -2,29 +2,16 @@ import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 import CityItem from "./CityItem";
+import { useQuery } from "@tanstack/react-query";
+import { fetchFilteredCities } from "@/network/common/commonApis.js";
 
 const Cities = ({ className, lang }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const data = [
-    {
-      _id: "1",
-      name: "City Parlor 1",
-      name_bn: "শহর পার্লার ১",
-      total: 100,
-    },
-    {
-      _id: "2",
-      name: "City Parlor 2",
-      name_bn: "শহর পার্লার ২",
-      total: 150,
-    },
-    {
-      _id: "3",
-      name: "City Parlor 3",
-      name_bn: "শহর পার্লার ৩",
-      total: 200,
-    },
-  ];
+
+  const { data: cities } = useQuery({
+    queryKey: ["filtered_cities"],
+    queryFn: () => fetchFilteredCities(),
+  });
   return (
     <div
       className={cn("accordion", className, {
@@ -48,7 +35,7 @@ const Cities = ({ className, lang }) => {
       </div>
       <div className="accordion-content">
         <ul className="pt-4">
-          {data?.map((item, i) => (
+          {cities?.map((item, i) => (
             <CityItem lang={lang} key={i} item={item} />
           ))}
         </ul>

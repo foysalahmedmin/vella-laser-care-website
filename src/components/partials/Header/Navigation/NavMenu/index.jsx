@@ -23,11 +23,11 @@ const routes = [
     icon: <ReceiptText size={16} />,
     children: [
       {
-        path: "/affiliate-parlor",
+        path: "/parlors",
         label: "Affiliate Parlor",
       },
       {
-        path: "/affiliate-doctors",
+        path: "/doctors",
         label: "Affiliate Doctors",
       },
     ],

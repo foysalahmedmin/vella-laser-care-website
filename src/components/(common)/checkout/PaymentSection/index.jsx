@@ -1,9 +1,99 @@
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  SetCartPaymentMethod,
+  SetResetCart,
+} from "@/redux/slices/cartSlice.js";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  AddGuestOrder,
+  fetchFilteredShipping,
+} from "@/pages/(common)/ShopPage/shopApis.js";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { errorMessage } from "@/helpers/error.js";
 
 const PaymentSection = ({ className }) => {
+  const navigate = useNavigate();
+  const [isAgree, setIsAgree] = useState(false);
+  const dispatch = useDispatch();
+  const {
+    email,
+    name,
+    address,
+    postal,
+    phone,
+    payment_method,
+    products,
+    city,
+  } = useSelector((state) => state.cart);
+  const { data: shipping } = useQuery({
+    queryKey: ["filtered_shipping", city],
+    queryFn: () => fetchFilteredShipping(city),
+    enabled: !!city,
+  });
+  const { isPending, mutateAsync } = useMutation({
+    mutationFn: AddGuestOrder,
+  });
+  const handleGuestOrder = async () => {
+    try {
+      if (!isAgree) {
+        toast.error("Please agree with our terms and conditions");
+        return;
+      }
+      if (
+        !name ||
+        !email ||
+        !address ||
+        !postal ||
+        !phone ||
+        !payment_method ||
+        products?.length === 0
+      )
+        return toast.warn("Please fill/select all required fields!");
+      const response = await mutateAsync({
+        name,
+        city,
+        postal,
+        phone,
+        address,
+        email,
+        sub_total: products
+          ?.map((x) => x?.price * x?.quantity)
+          ?.reduce((partialSum, a) => partialSum + a, 0),
+        total:
+          products
+            ?.map((x) => x?.price * x?.quantity)
+            ?.reduce((partialSum, a) => partialSum + a, 0) +
+          (shipping?.charge || 0),
+        shipping: shipping?.charge,
+        sold_from: "customer",
+        payment_method,
+        items: products?.map((x) => {
+          return {
+            product: x?._id,
+            quantity: x?.quantity,
+            selling_price: x?.price,
+            discount_amount: x?.discount_amount,
+            type: "product",
+          };
+        }),
+      });
+      if (payment_method === "cash") {
+        toast.success(response?.message);
+        dispatch(SetResetCart());
+        navigate("/shop");
+      } else {
+        dispatch(SetResetCart());
+        window.location.replace(response);
+      }
+    } catch (error) {
+      toast.error(errorMessage(error));
+    }
+  };
   return (
     <section className={cn("space-y-8", className)}>
       <div className="rounded-md bg-card p-4">
@@ -17,7 +107,9 @@ const PaymentSection = ({ className }) => {
                 <input
                   className="radio shrink-0 text-xl leading-none"
                   type="radio"
-                  value="bkash"
+                  value="cash"
+                  checked={payment_method === "cash"}
+                  onChange={() => dispatch(SetCartPaymentMethod("cash"))}
                   name="payment-method"
                 />
                 <span className="font-medium leading-none group-has-[:checked]:text-title">
@@ -38,8 +130,10 @@ const PaymentSection = ({ className }) => {
                 <input
                   className="radio shrink-0 text-xl leading-none"
                   type="radio"
-                  value="ssl-commerce"
+                  value="online"
                   name="payment-method"
+                  checked={payment_method === "online"}
+                  onChange={() => dispatch(SetCartPaymentMethod("online"))}
                 />
                 <span className="font-medium leading-none group-has-[:checked]:text-title">
                   Credit/Debit Cards
@@ -60,26 +154,25 @@ const PaymentSection = ({ className }) => {
             ORDER SUMMARY
           </strong>
           <div className="space-y-4 px-4">
-            <div className="flex items-start">
-              <div className="flex-1">
-                <span className="block text-title/85">
-                  1 × Mountain Goat Milk Night Cream 50ml
-                </span>
-                <div className="flex items-center gap-2 text-sm">
-                  <div>
-                    <span>Size: </span> <span>10ea</span>
-                  </div>
-                  <div>
-                    <span>Pack: </span> <span>1 Pack</span>
+            {products?.map((item, index) => (
+              <div key={index} className="flex items-start">
+                <div className="flex-1">
+                  <span className="block text-title/85">
+                    {item?.quantity} × {item?.name}
+                  </span>
+                  <div className="flex items-center gap-2 text-sm">
+                    <div>
+                      <span className="text-sm">{item?.short_description}</span>
+                    </div>
                   </div>
                 </div>
+                <div className="min-w-20 text-right">
+                  <span className="inline-block font-medium uppercase text-title">
+                    {item?.price}BDT
+                  </span>
+                </div>
               </div>
-              <div className="min-w-20 text-right">
-                <span className="inline-block font-medium uppercase text-title">
-                  2300BDT
-                </span>
-              </div>
-            </div>
+            ))}
             <hr />
             <div className="flex items-center">
               <div className="flex-1">
@@ -89,22 +182,23 @@ const PaymentSection = ({ className }) => {
               </div>
               <div className="min-w-20 text-right">
                 <span className="inline-block font-medium uppercase text-title">
-                  2300BDT
+                  {products
+                    ?.map((x) => x?.price * x?.quantity)
+                    ?.reduce((partialSum, a) => partialSum + a, 0)}
+                  BDT
                 </span>
               </div>
             </div>
             <div className="flex items-center">
               <div className="flex-1">
-                <span className="block text-title/85">
-                  Shipping to Bangladesh
-                </span>
+                <span className="block text-title/85">Shipping</span>
                 <div className="flex items-center gap-2 text-sm">
-                  <span>Regular (1–6 weeks delivery)</span>
+                  <span>Regular ({shipping?.days || 0} days delivery)</span>
                 </div>
               </div>
               <div className="min-w-20 text-right">
                 <span className="inline-block font-medium uppercase text-title">
-                  2300BDT
+                  {shipping?.charge || 0}BDT
                 </span>
               </div>
             </div>
@@ -118,7 +212,11 @@ const PaymentSection = ({ className }) => {
               </div>
               <div className="min-w-20 text-right">
                 <span className="inline-block text-lg font-semibold uppercase text-title">
-                  4700BDT
+                  {products
+                    ?.map((x) => x?.price * x?.quantity)
+                    ?.reduce((partialSum, a) => partialSum + a, 0) +
+                    (shipping?.charge || 0)}
+                  BDT
                 </span>
               </div>
             </div>
@@ -130,6 +228,8 @@ const PaymentSection = ({ className }) => {
           <input
             className="checkbox primary border border-current text-xl"
             type="checkbox"
+            checked={isAgree}
+            onChange={() => setIsAgree(!isAgree)}
           />
           <span className="inline-block text-xs font-medium capitalize leading-none">
             I have read and agree to the website{" "}
@@ -143,7 +243,12 @@ const PaymentSection = ({ className }) => {
         </label>
       </div>
       <div>
-        <Button className="w-full text-sm uppercase">
+        <Button
+          isLoading={isPending}
+          disabled={isPending}
+          onClick={handleGuestOrder}
+          className="w-full text-sm uppercase"
+        >
           <span>COMPLETE ORDER</span>
           <ArrowUpRight className="size-4" />
         </Button>

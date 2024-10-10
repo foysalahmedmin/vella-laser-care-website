@@ -70,7 +70,6 @@ const ConsultationScheduleSection = ({ lang }) => {
         slot,
         message,
       });
-      console.log(status);
       if (appointment_type === "online") {
         setName("");
         setAppointmentType("online");

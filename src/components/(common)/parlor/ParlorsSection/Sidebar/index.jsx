@@ -1,14 +1,13 @@
 import { cn } from "@/lib/utils";
 import Cities from "./Cities";
-import PriceRange from "./PriceRange";
 
 const Sidebar = ({ className, lang }) => {
   return (
     <aside className={cn("", className)}>
       <div className="space-y-4">
         <Cities lang={lang} />
-        <hr className="mx-4" />
-        <PriceRange lang={lang} />
+        {/*<hr className="mx-4" />*/}
+        {/*<PriceRange lang={lang} />*/}
       </div>
     </aside>
   );

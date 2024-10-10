@@ -1,4 +1,3 @@
-import { parlors } from "@/assets/data/parlors";
 import ParlorCard from "@/components/partials/Cards/ParlorCard";
 import { Button } from "@/components/ui/Button";
 import { Dropdown } from "@/components/ui/Dropdown";
@@ -6,14 +5,8 @@ import { ChevronDown, List } from "lucide-react";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 
-const ParlorsSection = ({ lang }) => {
-  const [total, setTotal] = useState(0);
+const ParlorsSection = ({ lang, info, total }) => {
   const [isOpen, setIsOpen] = useState(false);
-  // const { data } = useQuery({
-  //   queryKey: ["parlors"],
-  //   queryFn: () => fetchAffiliatedParlors(),
-  // });
-  const data = parlors;
   return (
     <section className="py-16">
       <div className="container">
@@ -29,7 +22,7 @@ const ParlorsSection = ({ lang }) => {
                   <List className="text-title" />
                   <span className="text-title">
                     {lang === "en"
-                      ? `Showing all of ${total} results`
+                      ? `Showing all of 10 results`
                       : "Showing all of 12 results"}
                   </span>
                 </Button>
@@ -60,7 +53,7 @@ const ParlorsSection = ({ lang }) => {
             </div>
             <div className="rounded-md px-4 py-6">
               <div className="grid grid-cols-2 gap-6 md:grid-cols-2">
-                {data?.map((item, index) => (
+                {info?.map((item, index) => (
                   <ParlorCard lang={lang} key={index} item={item} />
                 ))}
               </div>

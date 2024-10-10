@@ -37,3 +37,44 @@ export async function fetchOneProduct(id) {
   const response = await base.get(`/api/product/get_one_product_details/${id}`);
   return response?.data;
 }
+
+export async function fetchFilteredShipping(city) {
+  const response = await base.get(
+    `/api/configs/shipping/get_filtered_shipping?city=${city}`,
+  );
+  return response?.data;
+}
+
+export async function AddGuestOrder({
+  name,
+  city,
+  postal,
+  phone,
+  address,
+  email,
+  sub_total,
+  total,
+  shipping,
+  sold_from,
+  payment_method,
+  items,
+}) {
+  const payload = {
+    name,
+    city,
+    postal,
+    phone,
+    address,
+    email,
+    sub_total,
+    total,
+    shipping,
+    sold_from,
+    payment_method,
+    items,
+  };
+  const response = await base.post(`/api/order/add_guest_order`, payload, {
+    headers: { "Content-Type": "application/json" },
+  });
+  return response?.data;
+}

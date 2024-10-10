@@ -1,8 +1,10 @@
 import { urls } from "@/api/urls.js";
 import { Button } from "@/components/ui/Button";
 import { ArrowUpRight, MapPin } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const ParlorCard = ({ item, lang }) => {
+  const navigate = useNavigate();
   const { name, banner, address, tags, description, description_bn } = item;
   return (
     <div className="overflow-hidden rounded-xl bg-card shadow-custom-1">
@@ -50,7 +52,10 @@ const ParlorCard = ({ item, lang }) => {
             </p>
           )}
         </div>
-        <Button className="w-full text-sm">
+        <Button
+          onClick={() => navigate(`/parlor/${item?._id}`)}
+          className="w-full text-sm"
+        >
           {lang === "en" ? "View Details" : "View Details"}
           <ArrowUpRight className="size-4" />
         </Button>
