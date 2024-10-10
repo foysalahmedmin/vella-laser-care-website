@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/Button";
-import { MapPin } from "lucide-react";
 import { urls } from "@/api/urls.js";
+import { Button } from "@/components/ui/Button";
+import { ArrowUpRight, MapPin } from "lucide-react";
 
 const ParlorCard = ({ item, lang }) => {
   const { name, banner, address, tags, description, description_bn } = item;
@@ -13,7 +13,7 @@ const ParlorCard = ({ item, lang }) => {
           className="size-full object-cover object-center"
         />
       </div>
-      <div className="space-y-4 p-6">
+      <div className="space-y-4 p-6 md:p-8">
         <ul className="flex flex-wrap items-center gap-2">
           {tags?.map((tag, index) => (
             <li
@@ -25,7 +25,7 @@ const ParlorCard = ({ item, lang }) => {
           ))}
         </ul>
         <div className="space-y-2">
-          <h4 className="text-foreground">{name}</h4>
+          <h4 className="text-title/85">{name}</h4>
           <span className="flex items-center gap-2">
             <span className="inline-flex aspect-square size-4 items-center justify-center rounded-full border border-primary text-primary">
               <MapPin size={10} />
@@ -50,8 +50,9 @@ const ParlorCard = ({ item, lang }) => {
             </p>
           )}
         </div>
-        <Button className="w-full">
+        <Button className="w-full text-sm">
           {lang === "en" ? "View Details" : "View Details"}
+          <ArrowUpRight className="size-4" />
         </Button>
       </div>
     </div>

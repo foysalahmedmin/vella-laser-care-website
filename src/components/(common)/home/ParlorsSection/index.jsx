@@ -1,4 +1,3 @@
-import { parlors } from "@/assets/data/parlors";
 import ParlorCard from "@/components/partials/Cards/ParlorCard";
 import { Button } from "@/components/ui/Button";
 import {
@@ -9,9 +8,9 @@ import {
   CarouselPreviousTrigger,
 } from "@/components/ui/Carousel";
 import { SectionTitle, Subtitle, Title } from "@/components/ui/SectionTitle";
-import { ArrowRight } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
 import { fetchAffiliatedParlors } from "@/pages/(common)/HomePage/homeApis.js";
+import { useQuery } from "@tanstack/react-query";
+import { ArrowRight } from "lucide-react";
 
 const ParlorsSection = ({ lang }) => {
   const { data } = useQuery({

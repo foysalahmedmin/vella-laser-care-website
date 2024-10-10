@@ -4,8 +4,12 @@ import MainLayout from "@/components/layouts/MainLayout";
 import RootLayout from "@/components/layouts/RootLayout";
 import Loader from "@/components/partials/Loader";
 import CheckoutPage from "@/pages/(common)/CheckoutPage";
+import DoctorDetailsPage from "@/pages/(common)/DoctorDetailsPage";
+import DoctorsPage from "@/pages/(common)/DoctorsPage";
 import ErrorPage from "@/pages/(common)/ErrorPage";
 import HomePage from "@/pages/(common)/HomePage";
+import ParlorDetailsPage from "@/pages/(common)/ParlorDetailsPage";
+import ParlorPage from "@/pages/(common)/ParlorPage";
 import Success from "@/pages/(common)/Payment/Success.jsx";
 import ProductDetailsPage from "@/pages/(common)/ProductDetailsPage";
 import ServiceDetailsPage from "@/pages/(common)/ServiceDetailsPage";
@@ -52,8 +56,24 @@ export const routes = [
             element: <ProductDetailsPage />,
           },
           {
+            path: "/parlors",
+            element: <ParlorPage />,
+          },
+          {
+            path: "/parlor/:id",
+            element: <ParlorDetailsPage />,
+          },
+          {
             path: "/service/:id",
             element: <ServiceDetailsPage />,
+          },
+          {
+            path: "/doctors",
+            element: <DoctorsPage />,
+          },
+          {
+            path: "/doctors/:id",
+            element: <DoctorDetailsPage />,
           },
         ],
       },

@@ -7,9 +7,9 @@ import {
   CarouselPreviousTrigger,
 } from "@/components/ui/Carousel";
 import { SectionTitle, Subtitle, Title } from "@/components/ui/SectionTitle";
-import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import { fetchFeaturedServices } from "@/pages/(common)/HomePage/homeApis.js";
+import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 
 const ServiceCentreSection = ({ lang }) => {
   const { data } = useQuery({
@@ -75,7 +75,7 @@ const ServiceCentreSection = ({ lang }) => {
                   key={index}
                   className="px-2 md:basis-1/2 md:odd:pb-14 md:even:pt-14 xl:basis-1/4"
                 >
-                  <ServiceCard lang={lang} item={item} />
+                  <ServiceCard lang={lang} item={item} variant="home" />
                 </CarouselItem>
               ))}
             </CarouselContent>

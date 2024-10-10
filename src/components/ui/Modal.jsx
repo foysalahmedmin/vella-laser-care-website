@@ -1,54 +1,22 @@
 "use client";
 
-import PortalRoot from "@/components/portals/PortalRoot";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import { X } from "lucide-react";
-import { createContext, forwardRef, useContext, useState } from "react";
+import {
+  createContext,
+  forwardRef,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import PortalRoot from "../portals/PortalRoot";
 
-export const ModalContext = createContext(null);
-
-export const useModal = () => {
-  const context = useContext(ModalContext);
-
-  if (!context) {
-    throw new Error("useModal must be used within a <Modal />");
-  }
-
-  return context;
-};
-
-const Modal = forwardRef(
-  ({ className, defaultValue, children, ...props }, ref) => {
-    const [value, setValue] = useState(defaultValue);
-    return (
-      <ModalContext.Provider
-        value={{
-          value,
-          setValue,
-        }}
-      >
-        <div ref={ref} className={cn("relative", className)} {...props}>
-          {children}
-        </div>
-      </ModalContext.Provider>
-    );
-  },
-);
-Modal.displayName = "Modal";
-// ------- //
-
-const modalVariants = cva(
-  "transition-[opacity,transform] absolute m-auto duration-300 bg-card origin-center text-card-foreground border rounded",
+const ModalVariants = cva(
+  "modal-content border h-fit max-h-full my-auto overflow-y-auto bg-card z-[1000]",
   {
     variants: {
-      variant: {
-        default: "border-border",
-        primary: "border-primary",
-        secondary: "border-primary",
-        none: "",
-      },
       size: {
         default: "w-full md:w-[32em] lg:w-[40em] text-base",
         sm: "w-full md:w-[32rem]",
@@ -57,105 +25,228 @@ const modalVariants = cva(
         xl: "w-full xl:w-[48rem] 2xl:w-[52rem]",
         none: "",
       },
+      side: {
+        center: "mx-auto origin-center",
+        left: "mr-auto origin-left",
+        right: "ml-auto origin-right",
+      },
     },
     defaultVariants: {
-      variant: "default",
       size: "default",
+      side: "center",
     },
   },
 );
 
-const Header = forwardRef(
-  ({ isCloseButton, onClose, children, className, ...props }, ref) => {
-    return (
-      <div
-        className={cn(
-          "flex items-center justify-between px-4 py-4 group-[.primary]:bg-primary group-[.secondary]:bg-secondary group-[.primary]:text-primary-foreground group-[.secondary]:text-secondary-foreground md:px-6",
-          className,
-        )}
-        ref={ref}
-        {...props}
-      >
-        <div className="flex-1">{children && children}</div>
-        {isCloseButton && onClose && (
-          <Button
-            className="ml-auto"
-            variant="outline"
-            size="icon-sm"
-            onClick={() => onClose()}
-          >
-            <X size={16} />
-          </Button>
-        )}
-      </div>
-    );
-  },
-);
+// Modal context
+export const ModalContext = createContext(null);
 
-Header.displayName = "Header";
+export const useModal = () => {
+  const context = useContext(ModalContext);
+  if (!context) {
+    throw new Error("useModal must be used within a <Modal />");
+  }
+  return context;
+};
 
 const Modal = forwardRef(
   (
     {
-      children,
-      header,
       className,
-      isCloseButton,
-      isOpen,
-      onClose,
-      variant,
-      size,
+      isOpen: isOpenProp,
+      setIsOpen: setIsOpenProp,
+      children,
       ...props
     },
     ref,
   ) => {
+    const [isOpen, setIsOpen] = useState(isOpenProp || false);
+
+    const onOpen = () => {
+      setIsOpen(true);
+      if (setIsOpenProp) {
+        setIsOpenProp(true);
+      }
+    };
+
+    const onClose = () => {
+      setIsOpen(false);
+      if (setIsOpenProp) {
+        setIsOpenProp(false);
+      }
+    };
+
+    const onToggle = () => {
+      setIsOpen((prev) => !prev);
+      if (setIsOpenProp) {
+        setIsOpenProp((prev) => !prev);
+      }
+    };
+
+    const onOpenChange = (open) => {
+      setIsOpen(open);
+      if (setIsOpenProp) {
+        setIsOpenProp(open);
+      }
+    };
+
+    useEffect(() => {
+      if (typeof isOpenProp === "boolean") {
+        setIsOpen(isOpenProp);
+      }
+    }, [isOpenProp]);
+
     return (
-      <PortalRoot>
-        <div
-          className={cn(
-            "fixed inset-0 z-[100] flex origin-center items-center justify-center overflow-y-auto bg-background/75 px-container py-[1vh] backdrop-blur transition-[opacity,transform,visibility] duration-200",
-            {
-              "invisible scale-0 opacity-0 delay-300": !isOpen,
-              "visible scale-100 opacity-100": isOpen,
-            },
-          )}
-          onClick={(e) => {
-            if (e.target === e.currentTarget && onClose) {
-              onClose();
-            }
-          }}
-        >
+      <ModalContext.Provider
+        value={{
+          isOpen,
+          onOpen,
+          onClose,
+          onToggle,
+          onOpenChange,
+        }}
+      >
+        <PortalRoot>
           <div
-            className={cn(
-              {
-                "scale-0 animate-pop opacity-0": !isOpen,
-                "scale-100 animate-pop opacity-100 delay-200": isOpen,
-              },
-              modalVariants({
-                variant,
-                size,
-                className,
-              }),
-            )}
             ref={ref}
+            className={cn("group/modal modal z-[10000]", className, {
+              open: isOpen,
+            })}
             {...props}
           >
-            <div>
-              {(header || (isCloseButton && onClose)) && (
-                <Header
-                  {...header}
-                  isCloseButton={isCloseButton}
-                  onClose={onClose}
-                />
-              )}
-              <div>{children}</div>
-            </div>
+            {children}
           </div>
-        </div>
-      </PortalRoot>
+        </PortalRoot>
+      </ModalContext.Provider>
     );
   },
 );
 Modal.displayName = "Modal";
 
-export { Modal, modalVariants };
+// ModalBackdrop Component
+const ModalBackdrop = forwardRef(({ className, ...props }, ref) => {
+  const { onClose } = useModal();
+  return (
+    <div
+      onClick={(e) => {
+        if (e.target === e.currentTarget && onClose) {
+          onClose();
+        }
+      }}
+      className={cn(
+        "modal-backdrop z-[100] size-full origin-center bg-dark/50",
+        className,
+      )}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+ModalBackdrop.displayName = "ModalBackdrop";
+
+// ModalContent Component
+const ModalContent = forwardRef(
+  ({ className, variant, size, side, ...props }, ref) => {
+    return (
+      <div
+        className={cn(ModalVariants({ size, side }), className)}
+        ref={ref}
+        {...props}
+      />
+    );
+  },
+);
+ModalContent.displayName = "ModalContent";
+
+// ModalCloseTrigger Component
+const ModalCloseTrigger = forwardRef(
+  (
+    {
+      onClick,
+      variant = "outline",
+      size = "icon",
+      children = <X className="size-[1.5em]" />,
+      ...props
+    },
+    ref,
+  ) => {
+    const { onClose } = useModal();
+    return (
+      <Button
+        onClick={() => {
+          if (onClose) {
+            onClose();
+          }
+          if (onClick) {
+            onClick();
+          }
+        }}
+        variant={variant}
+        size={size}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </Button>
+    );
+  },
+);
+ModalCloseTrigger.displayName = "ModalCloseTrigger";
+
+// ModalOpenTrigger Component
+const ModalOpenTrigger = forwardRef(
+  ({ onClick, children = "Open", ...props }, ref) => {
+    const { onOpen } = useModal();
+    return (
+      <Button
+        onClick={() => {
+          if (onOpen) {
+            onOpen();
+          }
+          if (onClick) {
+            onClick();
+          }
+        }}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </Button>
+    );
+  },
+);
+ModalOpenTrigger.displayName = "ModalOpenTrigger";
+
+// ModalToggler Component
+const ModalToggler = forwardRef(
+  ({ onClick, children = "Toggle", ...props }, ref) => {
+    const { onToggle } = useModal();
+    return (
+      <Button
+        onClick={() => {
+          if (onToggle) {
+            onToggle();
+          }
+          if (onClick) {
+            onClick();
+          }
+        }}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </Button>
+    );
+  },
+);
+ModalToggler.displayName = "ModalToggler";
+
+export {
+  Modal,
+  ModalBackdrop,
+  ModalCloseTrigger,
+  ModalContent,
+  ModalOpenTrigger,
+  ModalToggler,
+  ModalVariants,
+};

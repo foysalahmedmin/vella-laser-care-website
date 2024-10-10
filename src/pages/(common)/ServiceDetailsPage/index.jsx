@@ -1,14 +1,14 @@
-import DescriptionSection from "@/components/(common)/ServiceDetails/DescriptionSection";
-import GallerySection from "@/components/(common)/ServiceDetails/GallerySection";
-import KeyBenefitsSection from "@/components/(common)/ServiceDetails/KeyBenefitsSection";
-import OurBenefitsSection from "@/components/(common)/ServiceDetails/OurBenefitsSection";
-import PricingPlanSection from "@/components/(common)/ServiceDetails/PricingPlanSection";
+import DescriptionSection from "@/components/(common)/service-details/DescriptionSection";
+import GallerySection from "@/components/(common)/service-details/GallerySection";
+import KeyBenefitsSection from "@/components/(common)/service-details/KeyBenefitsSection";
+import OurBenefitsSection from "@/components/(common)/service-details/OurBenefitsSection";
+import PricingPlanSection from "@/components/(common)/service-details/PricingPlanSection";
 import BannerSection from "@/components/partials/Sections/BannerSection";
 import TestimonialsSection from "@/components/partials/Sections/TestimonialsSection";
-import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
 import { fetchOneService } from "@/pages/(common)/ServiceDetailsPage/serviceApis.js";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 
 const ServiceDetailsPage = () => {
   const { id } = useParams();
