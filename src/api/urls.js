@@ -3,7 +3,7 @@ let current = "http://localhost:5041";
 export const urls = {
   mainURL: `${current}`,
   frontend: "http://localhost:5173",
-  userPhoto: `${current}/uploads/user-photos`,
+  user_photos: `${current}/uploads/user_photos`,
   service_header: `${current}/uploads/service/header`,
   service_compare: `${current}/uploads/service/compare`,
   thumbnail: `${current}/uploads/product/thumbnail`,

@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/Button";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { urls } from "@/api/urls.js";
 
 const DoctorCard = ({ item, lang }) => {
-  const { _id, name, image, tags, description, description_bn } = item;
+  const { _id, name, photo, tags, description, description_bn } = item;
   return (
     <div className="overflow-hidden rounded-xl bg-card shadow-custom-1">
       <div className="h-40 w-full bg-primary/5">
@@ -16,7 +17,7 @@ const DoctorCard = ({ item, lang }) => {
       <div className="px-4">
         <img
           className="relative mx-auto -mt-24 aspect-square w-full max-w-48 rounded-full border-8 border-card object-cover object-center"
-          src={image}
+          src={`${urls?.user_photos}/${photo}`}
           alt={name}
         />
       </div>

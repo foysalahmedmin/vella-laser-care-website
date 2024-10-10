@@ -1,7 +1,20 @@
 import DoctorDetailsSection from "@/components/(common)/doctor-details/DoctorDetailsSection";
 import BannerSection from "@/components/partials/Sections/BannerSection";
+import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { fetchOneDoctor } from "@/pages/(common)/DoctorsPage/doctorApis.js";
 
 const DoctorDetailsPage = () => {
+  const { id } = useParams();
+  const { i18n } = useTranslation();
+
+  const { data } = useQuery({
+    queryKey: ["one_doctor", id],
+    queryFn: () => fetchOneDoctor(id),
+    enabled: !!id,
+  });
+  console.log(data);
   return (
     <main>
       <BannerSection
@@ -17,7 +30,7 @@ const DoctorDetailsPage = () => {
           },
         ]}
       />
-      <DoctorDetailsSection />
+      <DoctorDetailsSection info={data} lang={i18n?.language} />
     </main>
   );
 };
