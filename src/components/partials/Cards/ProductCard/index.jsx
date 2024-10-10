@@ -1,6 +1,5 @@
 import { urls } from "@/api/urls.js";
 import { Star } from "@/assets/svg/icons/Stars";
-import Cart from "@/components/partials/Header/Navigation/Cart/index.jsx";
 import { Button } from "@/components/ui/Button.jsx";
 import {
   QuantityDecreaseTrigger,
@@ -10,11 +9,20 @@ import {
 } from "@/components/ui/QuantitySelector";
 import { bn } from "@/lib/enTobn.js";
 import { cn } from "@/lib/utils";
-import { Plus, X } from "lucide-react";
+import { LucideShoppingCart, Plus, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import CartInfo from "../../CartInfo";
+import { useState } from "react";
+import CartBar from "@/components/partials/CartBar/index.jsx";
+import { useDispatch } from "react-redux";
+import {
+  SetCartProduct,
+  SetCartProductRemove,
+} from "@/redux/slices/cartSlice.js";
 
-const ProductCard = ({ lang, item, variant = "default", className }) => {
+const ProductCard = ({ lang, item, variant = "default", className, index }) => {
+  const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const {
     _id,
@@ -32,6 +40,8 @@ const ProductCard = ({ lang, item, variant = "default", className }) => {
     country_origin,
     image,
     price,
+    thumbnail,
+    quantity,
   } = item;
   return (
     <>
@@ -56,7 +66,26 @@ const ProductCard = ({ lang, item, variant = "default", className }) => {
                   title="Wish List"
                   size="icon"
                 >
-                  <Cart className="size-[1.25em]" />
+                  <LucideShoppingCart
+                    onClick={() => {
+                      dispatch(
+                        SetCartProduct({
+                          _id: _id,
+                          name: name,
+                          price: selling_price - (discount_amount || 0),
+                          name_bn: name_bn,
+                          thumbnail: media,
+                          short_description: short_description,
+                          short_description_bn: short_description_bn,
+                          discount_amount,
+                          rating: rating,
+                          quantity: 1,
+                        }),
+                      );
+                      setIsOpen(true);
+                    }}
+                    className="size-[1.5em]"
+                  />
                 </Button>
               </div>
             </div>
@@ -190,7 +219,7 @@ const ProductCard = ({ lang, item, variant = "default", className }) => {
           <div className="size-24 shrink-0">
             <img
               className="size-full object-contain object-center"
-              src={image}
+              src={`${urls?.thumbnail}/${thumbnail}`}
               alt={name}
             />
           </div>
@@ -198,17 +227,21 @@ const ProductCard = ({ lang, item, variant = "default", className }) => {
             <div>
               <div className="font-semibold uppercase text-title">{name}</div>
               <div className="flex items-center gap-2">
-                <div>
-                  <span>Size: </span> <span>10ea</span>
-                </div>
-                <div>
-                  <span>Pack: </span> <span>1 Pack</span>
+                <div className="text-sm">
+                  <span>Rating: </span> <span>{rating}</span>
                 </div>
               </div>
             </div>
             <div className="mt-auto flex items-end justify-between">
               <div className="text-base">
-                <QuantitySelector defaultValue={1} minValue={1} maxValue={10}>
+                <QuantitySelector
+                  defaultValue={quantity}
+                  quantity={quantity}
+                  isDispatch={true}
+                  index={index}
+                  minValue={1}
+                  maxValue={10}
+                >
                   <QuantityDecreaseTrigger className="size-[1.75em] hover:border-accent hover:bg-accent hover:text-accent-foreground" />
                   <QuantityInput className="h-[1.75em] w-[3em]" />
                   <QuantityIncreaseTrigger className="size-[1.75em] hover:border-accent hover:bg-accent hover:text-accent-foreground" />
@@ -222,6 +255,7 @@ const ProductCard = ({ lang, item, variant = "default", className }) => {
               className="rounded-full text-[0.5rem]"
               variant="outline"
               size="icon"
+              onClick={() => dispatch(SetCartProductRemove({ _id: _id }))}
             >
               <X className="size-[1.5em]" />
             </Button>
@@ -233,7 +267,7 @@ const ProductCard = ({ lang, item, variant = "default", className }) => {
           <div className="size-24 shrink-0">
             <img
               className="size-full object-contain object-center"
-              src={image}
+              src={`${urls?.thumbnail}/${media}`}
               alt={name}
             />
           </div>
@@ -251,7 +285,7 @@ const ProductCard = ({ lang, item, variant = "default", className }) => {
             </div>
             <div className="mt-auto flex items-end justify-between">
               <span className="inline-block font-semibold uppercase text-title">
-                {price}BDT
+                {selling_price}BDT
               </span>
             </div>
           </div>
@@ -266,6 +300,7 @@ const ProductCard = ({ lang, item, variant = "default", className }) => {
           </div>
         </div>
       )}
+      <div>{isOpen && <CartBar isOpen={isOpen} setIsOpen={setIsOpen} />}</div>
     </>
   );
 };

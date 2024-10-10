@@ -15,10 +15,14 @@ import { cn, toFixedAndLocaleStringCurrency } from "@/lib/utils";
 import { ShieldQuestion } from "lucide-react";
 import { bn } from "@/lib/enTobn.js";
 import { urls } from "@/api/urls.js";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { SetCartProduct } from "@/redux/slices/cartSlice.js";
 
 const ProductPs = ({ className, info, lang }) => {
+  const dispatch = useDispatch();
+  const [quantity, setQuantity] = useState(1);
   let wishListed = false;
-  console.log(info?.rating);
   return (
     <>
       <div
@@ -116,12 +120,36 @@ const ProductPs = ({ className, info, lang }) => {
           </div>
         </div>
         <div className={cn("flex gap-4", className)}>
-          <QuantitySelector defaultValue={1} minValue={1} maxValue={10}>
+          <QuantitySelector
+            defaultValue={quantity}
+            quantity={quantity}
+            setQuantity={setQuantity}
+            minValue={1}
+            maxValue={10}
+          >
             <QuantityDecreaseTrigger />
             <QuantityInput />
             <QuantityIncreaseTrigger />
           </QuantitySelector>
-          <Button className="px-8 uppercase md:px-12">
+          <Button
+            onClick={() => {
+              dispatch(
+                SetCartProduct({
+                  _id: info?._id,
+                  name: info?.name,
+                  price: info?.selling_price - (info?.discount_amount || 0),
+                  name_bn: info?.name_bn,
+                  thumbnail: info?.media?.thumbnail,
+                  short_description: info?.short_description,
+                  short_description_bn: info?.short_description_bn,
+                  rating: info?.rating,
+                  discount_amount: info?.discount_amount,
+                  quantity: quantity,
+                }),
+              );
+            }}
+            className="px-8 uppercase md:px-12"
+          >
             <span>Add To Cart</span>
           </Button>
         </div>

@@ -36,7 +36,6 @@ const ProductsSection = ({ lang }) => {
       return response;
     },
   });
-  console.log(data);
   return (
     <section className="py-16">
       <div className="container">

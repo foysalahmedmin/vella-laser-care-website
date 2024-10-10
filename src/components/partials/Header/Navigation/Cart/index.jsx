@@ -1,11 +1,11 @@
-"use client";
-
 import { CartOutline } from "@/assets/svg/icons/Cart";
 import CartBar from "@/components/partials/CartBar";
 import { Button } from "@/components/ui/Button";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Cart = ({ user }) => {
+  const { products } = useSelector((state) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
@@ -14,7 +14,7 @@ const Cart = ({ user }) => {
           <CartOutline className="size-6" />
         </Button>
         <span className="absolute right-1 top-1 inline-flex aspect-square min-h-4 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full bg-primary text-[0.5rem] font-bold leading-none text-primary-foreground">
-          0
+          {products?.length || 0}
         </span>
       </div>
       <CartBar isOpen={isOpen} setIsOpen={setIsOpen} />

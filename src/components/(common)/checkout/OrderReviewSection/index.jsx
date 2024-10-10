@@ -1,30 +1,36 @@
-import { products } from "@/assets/data/products";
 import ProductCard from "@/components/partials/Cards/ProductCard";
 import { cn } from "@/lib/utils";
+import { useSelector } from "react-redux";
 
 const OrderReviewSection = ({ className }) => {
+  const { products } = useSelector((state) => state.cart);
   return (
     <section className={cn("space-y-8", className)}>
       <div className="rounded-md bg-card p-4">
         <div className="space-y-6">
           <strong className="block font-medium uppercase">
-            1. REVIEW YOUR ORDER (2 ITEMS)
+            1. REVIEW YOUR ORDER ({products?.length || 0} ITEMS)
           </strong>
           <div className="space-y-4">
             <div>
-              {products.slice(2).map((item, index) => (
+              {products?.map((item, index) => (
                 <div
                   className="border-b-2 py-6 first:pt-0 last:border-0 last:pb-0"
                   key={index}
                 >
-                  <ProductCard item={item} variant="cart" />
+                  <ProductCard item={item} index={index} variant="cart" />
                 </div>
               ))}
             </div>
             <hr />
             <div className="flex items-center justify-between gap-2 font-semibold">
               <span className="uppercase text-title">Subtotal</span>
-              <span className="uppercase text-title">4600BDT</span>
+              <span className="uppercase text-title">
+                {products
+                  ?.map((x) => x?.price * x?.quantity)
+                  ?.reduce((partialSum, a) => partialSum + a, 0)}
+                BDT
+              </span>
             </div>
           </div>
           <div className="space-y-4">
@@ -36,7 +42,10 @@ const OrderReviewSection = ({ className }) => {
                 <label className="flex cursor-pointer justify-between gap-2 p-4">
                   <div className="min-w-20">
                     <span className="font-medium uppercase text-title">
-                      4600BDT
+                      {products
+                        ?.map((x) => x?.price * x?.quantity)
+                        ?.reduce((partialSum, a) => partialSum + a, 0)}
+                      BDT
                     </span>
                   </div>
                   <div className="flex-1 space-y-1 text-title">
@@ -59,8 +68,9 @@ const OrderReviewSection = ({ className }) => {
               You're <strong>300BDT</strong> away from free shipping!
             </p>
             <progress
-              style={{ "--accent": "var(--muted)" }}
-              value={25}
+              // style={{ "--accent": "var(--muted)" }}
+              className="primary w-full"
+              value={75}
               max={100}
             />
           </div>

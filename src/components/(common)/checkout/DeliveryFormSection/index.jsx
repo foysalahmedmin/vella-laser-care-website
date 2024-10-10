@@ -26,7 +26,7 @@ const DeliveryFormSection = ({ className }) => {
             <div>
               <label>
                 <span className="mb-1 inline-block text-sm font-medium capitalize text-title">
-                  First Name*
+                  Name*
                 </span>
                 <input
                   type="text"
@@ -40,30 +40,16 @@ const DeliveryFormSection = ({ className }) => {
             <div>
               <label>
                 <span className="mb-1 inline-block text-sm font-medium capitalize text-title">
-                  Last Name*
-                </span>
-                <input
-                  type="text"
-                  className="input block h-10 w-full text-xs"
-                  placeholder="Enter Your Last Name"
-                  name="last-name"
-                  required
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                <span className="mb-1 inline-block text-sm font-medium capitalize text-title">
-                  Country*
+                  City/Town*
                 </span>
                 <div className="input block h-auto w-full text-xs">
                   <select
                     className="h-10 w-full border-none text-xs outline-none"
-                    name="country"
+                    name="city"
                     required
                   >
-                    <option value="">Select Country</option>
-                    <option>Bangladesh</option>
+                    <option value="">Select City/Town</option>
+                    <option>Dhaka</option>
                   </select>
                 </div>
               </label>
@@ -88,23 +74,7 @@ const DeliveryFormSection = ({ className }) => {
                 />
               </label>
             </div>
-            <div>
-              <label>
-                <span className="mb-1 inline-block text-sm font-medium capitalize text-title">
-                  City/Town*
-                </span>
-                <div className="input block h-auto w-full text-xs">
-                  <select
-                    className="h-10 w-full border-none text-xs outline-none"
-                    name="city"
-                    required
-                  >
-                    <option value="">Select City/Town</option>
-                    <option>Dhaka</option>
-                  </select>
-                </div>
-              </label>
-            </div>
+
             <div>
               <label>
                 <span className="mb-1 inline-block text-sm font-medium capitalize text-title">
@@ -144,7 +114,7 @@ const DeliveryFormSection = ({ className }) => {
               <label className="flex cursor-pointer items-center gap-2">
                 <input className="checkbox primary text-xl" type="checkbox" />
                 <span className="inline-block text-sm font-medium capitalize leading-none text-title">
-                  Use as billing address
+                  Use as profile address
                 </span>
               </label>
             </div>

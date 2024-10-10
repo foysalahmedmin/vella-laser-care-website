@@ -9,9 +9,10 @@ import {
   useEffect,
   useImperativeHandle,
   useRef,
-  useState,
 } from "react";
 import { Button } from "./Button";
+import { useDispatch, useSelector } from "react-redux";
+import { SetCartProductQuantity } from "@/redux/slices/cartSlice.js";
 
 // QuantitySelector context //
 const QuantitySelectorContext = createContext(null);
@@ -33,25 +34,44 @@ export const QuantitySelector = forwardRef(
     {
       className,
       defaultValue = 1,
+      quantity,
+      setQuantity,
       maxValue = 100,
       minValue = 0,
+      isDispatch,
+      index,
       children,
       ...props
     },
     ref,
   ) => {
-    const [value, setValue] = useState(defaultValue);
     const inputRef = useRef(null);
+    const dispatch = useDispatch();
+    const { products } = useSelector((state) => state.cart);
+
+    const handleBenefitInputChange = (name, value) => {
+      const updatedInputs = products?.map((p) => ({ ...p }));
+      updatedInputs[index][name] = value;
+      dispatch(SetCartProductQuantity(updatedInputs));
+    };
 
     const handleIncrement = () => {
-      if (value < maxValue) {
-        setValue((prev) => prev + 1);
+      if (quantity < maxValue) {
+        if (isDispatch) {
+          handleBenefitInputChange("quantity", quantity + 1);
+        } else {
+          setQuantity((prev) => prev + 1);
+        }
       }
     };
 
     const handleDecrement = () => {
-      if (value > minValue) {
-        setValue((prev) => prev - 1);
+      if (quantity > minValue) {
+        if (isDispatch) {
+          handleBenefitInputChange("quantity", quantity - 1);
+        } else {
+          setQuantity((prev) => prev - 1);
+        }
       }
     };
 
@@ -60,7 +80,11 @@ export const QuantitySelector = forwardRef(
 
       if (inputElement) {
         const handleChange = () => {
-          setValue(Number(inputElement.value));
+          if (isDispatch) {
+            handleBenefitInputChange("quantity", Number(inputElement.value));
+          } else {
+            setQuantity(Number(inputElement.value));
+          }
         };
         inputElement.addEventListener("change", handleChange);
 
@@ -74,23 +98,23 @@ export const QuantitySelector = forwardRef(
       const inputElement = inputRef.current;
 
       if (inputElement) {
-        if (value < minValue) {
+        if (quantity < minValue) {
           inputElement.value = minValue;
-          setValue(minValue);
-        } else if (value > maxValue) {
+          setQuantity(minValue);
+        } else if (quantity > maxValue) {
           inputElement.value = maxValue;
-          setValue(maxValue);
+          setQuantity(maxValue);
         } else {
-          inputElement.value = value;
+          inputElement.value = quantity;
         }
       }
-    }, [value, inputRef, minValue, maxValue]);
+    }, [quantity, inputRef, minValue, maxValue]);
 
     return (
       <QuantitySelectorContext.Provider
         value={{
           inputRef,
-          value,
+          quantity,
           handleIncrement,
           handleDecrement,
           minValue,

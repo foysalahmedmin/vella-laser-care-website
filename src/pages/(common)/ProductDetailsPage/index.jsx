@@ -15,7 +15,6 @@ const ProductDetailsPage = () => {
     queryFn: () => fetchOneProduct(id),
     enabled: !!id,
   });
-  console.log(data);
   return (
     <main>
       <ProductSection info={data} lang={i18n?.language} />

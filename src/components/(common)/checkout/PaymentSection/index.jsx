@@ -21,7 +21,7 @@ const PaymentSection = ({ className }) => {
                   name="payment-method"
                 />
                 <span className="font-medium leading-none group-has-[:checked]:text-title">
-                  Bkash
+                  Cash on delivery
                 </span>
               </div>
               <img
