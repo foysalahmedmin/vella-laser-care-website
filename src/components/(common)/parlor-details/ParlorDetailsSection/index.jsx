@@ -1,18 +1,13 @@
 import { serviceCentreData } from "@/assets/data/service-centre-data";
 import ServiceCard from "@/components/partials/Cards/ServiceCard";
-import ServiceReviewModal from "@/components/partials/Modals/ServiceReviewModal";
 import { SectionTitle, Title } from "@/components/ui/SectionTitle";
 import { MapPin } from "lucide-react";
-import { useState } from "react";
 
 const ParlorDetailsSection = ({ lang }) => {
   const data = serviceCentreData;
-  const [isOpen, setIsOpen] = useState(false);
   return (
     <section className="py-16 md:py-24">
       <div className="container space-y-8 md:space-y-12">
-        <div onClick={() => setIsOpen(true)}>Demo</div>
-        <ServiceReviewModal isOpen={isOpen} setIsOpen={setIsOpen} />
         <div className="space-y-6">
           <img
             className="h-[28rem] w-full rounded-t-2xl object-cover object-center"
