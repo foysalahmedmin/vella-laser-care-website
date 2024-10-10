@@ -5,6 +5,7 @@ import MainLayout from "@/components/layouts/MainLayout";
 import RootLayout from "@/components/layouts/RootLayout";
 import Loader from "@/components/partials/Loader";
 import SignInPage from "@/pages/(authentication)/SignInPage";
+import SignUpPage from "@/pages/(authentication)/SignUpPage";
 import CheckoutPage from "@/pages/(common)/CheckoutPage";
 import DoctorDetailsPage from "@/pages/(common)/DoctorDetailsPage";
 import DoctorsPage from "@/pages/(common)/DoctorsPage";
@@ -47,7 +48,7 @@ export const routes = [
           },
           {
             path: "sign-up",
-            element: <CheckoutPage />,
+            element: <SignUpPage />,
           },
         ],
       },

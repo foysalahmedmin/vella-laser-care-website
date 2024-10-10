@@ -4,7 +4,7 @@
   appearance: none;
   transition: all 0.3s;
   cursor: pointer;
-  border: 1px solid hsl(var(--border));
+  border: 1px solid currentColor;
   border-radius: 50%;
   width: 1em;
   height: 1em;

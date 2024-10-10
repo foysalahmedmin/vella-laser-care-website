@@ -22,7 +22,7 @@ const ServiceBookModal = ({ isOpen, lang, setIsOpen, size = "lg" }) => {
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
         <ModalBackdrop />
         <ModalContent className="rounded-2xl" size={size}>
-          <div className="relative px-8 py-8 md:px-16 md:py-12 lg:px-24 lg:py-16">
+          <div className="relative px-8 py-8 md:px-14 md:py-12 lg:px-20 lg:py-16">
             <ModalCloseTrigger className="absolute right-4 top-4 rounded-full border-current text-xs text-accent md:right-4 md:top-4" />
             <div className="space-y-6">
               <div className="rounded-xl bg-primary/5 px-4 py-2 text-center">

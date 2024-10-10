@@ -4,8 +4,8 @@
   appearance: none;
   transition: all 0.3s;
   cursor: pointer;
-  border: 1px solid hsl(var(--border));
-  border-radius: calc(var(--radius) - 0.1em);
+  border: 1px solid currentColor;
+  border-radius: 0.25em;
   width: 1em;
   height: 1em;
   font-size: 1rem;
