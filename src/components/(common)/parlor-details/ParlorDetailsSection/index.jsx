@@ -1,5 +1,12 @@
 import { serviceCentreData } from "@/assets/data/service-centre-data";
 import ServiceCard from "@/components/partials/Cards/ServiceCard";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNextTrigger,
+  CarouselPreviousTrigger,
+} from "@/components/ui/Carousel";
 import { SectionTitle, Title } from "@/components/ui/SectionTitle";
 import { MapPin } from "lucide-react";
 
@@ -60,11 +67,36 @@ const ParlorDetailsSection = ({ lang }) => {
             <Title>Services</Title>
           </SectionTitle>
           <div className="w-full">
-            <div className="grid gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
-              {data?.map((item, index) => (
-                <ServiceCard key={index} lang={lang} item={item} />
-              ))}
-            </div>
+            <Carousel
+              className="group/carousel w-full"
+              opts={{ slidesToScroll: "auto", loop: true }}
+              autoplay
+            >
+              <div className="relative">
+                <div className="absolute -top-6 right-0 inline-flex -translate-y-full items-center gap-2">
+                  <CarouselPreviousTrigger
+                    className="static bottom-0 top-0 inline-flex -translate-y-0 rounded-full transition-all duration-300"
+                    size="icon-sm"
+                  />
+                  <CarouselNextTrigger
+                    className="static bottom-0 top-0 inline-flex -translate-y-0 rounded-full transition-all duration-300"
+                    size="icon-sm"
+                  />
+                </div>
+              </div>
+              <div>
+                <CarouselContent>
+                  {data?.map((item, index) => (
+                    <CarouselItem
+                      key={index}
+                      className="px-2 md:basis-1/2 lg:basis-1/3"
+                    >
+                      <ServiceCard lang={lang} item={item} />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </div>
+            </Carousel>
           </div>
         </div>
       </div>

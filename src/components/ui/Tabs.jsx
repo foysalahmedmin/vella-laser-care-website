@@ -1,7 +1,13 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { createContext, forwardRef, useContext, useState } from "react";
+import {
+  createContext,
+  forwardRef,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 // tabs context //
 export const TabsContext = createContext(null);
@@ -17,13 +23,30 @@ export const useTabs = () => {
 };
 
 const Tabs = forwardRef(
-  ({ className, defaultValue, children, ...props }, ref) => {
-    const [value, setValue] = useState(defaultValue);
+  (
+    { className, value: valueProp, setValue: setValueProp, children, ...props },
+    ref,
+  ) => {
+    const [value, setValue] = useState(valueProp);
+
+    const onTabSelect = (value) => {
+      setValue(value);
+      if (setValueProp) {
+        setValueProp(value);
+      }
+    };
+
+    useEffect(() => {
+      if (valueProp !== undefined) {
+        setValue(valueProp);
+      }
+    }, [valueProp]);
+
     return (
       <TabsContext.Provider
         value={{
           value,
-          setValue,
+          onTabSelect,
         }}
       >
         <div ref={ref} className={cn("relative", className)} {...props}>
@@ -56,7 +79,7 @@ const TabsTrigger = forwardRef(
     { className, activeClassName, value, disabled, isLoading, ...props },
     ref,
   ) => {
-    const { value: contextValue, setValue } = useTabs();
+    const { value: contextValue, onTabSelect } = useTabs();
     return (
       <li
         ref={ref}
@@ -64,7 +87,7 @@ const TabsTrigger = forwardRef(
           !disabled &&
           !isLoading &&
           value !== (undefined || null) &&
-          setValue(value)
+          onTabSelect(value)
         }
         data-state={value === contextValue ? "active" : "inactive"}
         className={cn(

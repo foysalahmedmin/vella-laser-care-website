@@ -1,3 +1,4 @@
+import { urls } from "@/api/urls.js";
 import {
   Tabs,
   TabsContent,
@@ -6,7 +7,6 @@ import {
   TabsTrigger,
 } from "@/components/ui/Tabs";
 import { cn } from "@/lib/utils";
-import { urls } from "@/api/urls.js";
 
 const ProductThumbnail = ({ className, info }) => {
   return (
@@ -18,7 +18,7 @@ const ProductThumbnail = ({ className, info }) => {
         )}
       >
         <Tabs
-          defaultValue={0}
+          value={0}
           className="static flex size-full flex-col-reverse gap-4 md:flex-row"
         >
           {info?.media?.gallery?.length > 0 && (

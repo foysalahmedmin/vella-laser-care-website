@@ -1,8 +1,10 @@
+import AuthenticationLayout from "@/components/layouts/AuthenticationLayout";
 import CheckoutLayout from "@/components/layouts/CheckoutLayout";
 import HomeLayout from "@/components/layouts/HomeLayout";
 import MainLayout from "@/components/layouts/MainLayout";
 import RootLayout from "@/components/layouts/RootLayout";
 import Loader from "@/components/partials/Loader";
+import SignInPage from "@/pages/(authentication)/SignInPage";
 import CheckoutPage from "@/pages/(common)/CheckoutPage";
 import DoctorDetailsPage from "@/pages/(common)/DoctorDetailsPage";
 import DoctorsPage from "@/pages/(common)/DoctorsPage";
@@ -32,6 +34,20 @@ export const routes = [
           {
             path: "/",
             element: <HomePage />,
+          },
+        ],
+      },
+      {
+        path: "/authentication",
+        element: <AuthenticationLayout />,
+        children: [
+          {
+            path: "sign-in",
+            element: <SignInPage />,
+          },
+          {
+            path: "sign-up",
+            element: <CheckoutPage />,
           },
         ],
       },

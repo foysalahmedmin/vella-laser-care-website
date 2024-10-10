@@ -1,5 +1,6 @@
 import { urls } from "@/api/urls.js";
 import { Star } from "@/assets/svg/icons/Stars";
+import CartBar from "@/components/partials/CartBar/index.jsx";
 import { Button } from "@/components/ui/Button.jsx";
 import {
   QuantityDecreaseTrigger,
@@ -9,16 +10,15 @@ import {
 } from "@/components/ui/QuantitySelector";
 import { bn } from "@/lib/enTobn.js";
 import { cn } from "@/lib/utils";
-import { LucideShoppingCart, Plus, X } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import CartInfo from "../../CartInfo";
-import { useState } from "react";
-import CartBar from "@/components/partials/CartBar/index.jsx";
-import { useDispatch } from "react-redux";
 import {
   SetCartProduct,
   SetCartProductRemove,
 } from "@/redux/slices/cartSlice.js";
+import { LucideShoppingCart, Plus, X } from "lucide-react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import CartInfo from "../../CartInfo";
 
 const ProductCard = ({ lang, item, variant = "default", className, index }) => {
   const dispatch = useDispatch();
@@ -235,7 +235,7 @@ const ProductCard = ({ lang, item, variant = "default", className, index }) => {
             <div className="mt-auto flex items-end justify-between">
               <div className="text-base">
                 <QuantitySelector
-                  defaultValue={quantity}
+                  value={quantity}
                   quantity={quantity}
                   isDispatch={true}
                   index={index}

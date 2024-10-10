@@ -15,7 +15,7 @@ const ProductTabSection = ({ info, lang }) => {
     <section className="container">
       <div className="rounded-md">
         <div className="px-6 pb-16 md:px-8 md:pb-24 md:pt-8">
-          <Tabs defaultValue="highlight">
+          <Tabs value="highlight">
             <TabsList className="mb-4 gap-4 border-b md:mb-6 md:justify-start md:gap-6">
               <TabsTrigger value="highlight">
                 <span className="inline-block py-1 font-semibold capitalize">

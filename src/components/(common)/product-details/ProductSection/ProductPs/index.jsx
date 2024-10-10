@@ -1,3 +1,4 @@
+import { urls } from "@/api/urls.js";
 import { Facebook } from "@/assets/svg/icons/Facebook";
 import { Heart, HeartOutline } from "@/assets/svg/icons/Heart";
 import { Instagram } from "@/assets/svg/icons/Instagram";
@@ -11,13 +12,12 @@ import {
   QuantitySelector,
 } from "@/components/ui/QuantitySelector";
 import { StarRating } from "@/components/ui/StarRating";
-import { cn, toFixedAndLocaleStringCurrency } from "@/lib/utils";
-import { ShieldQuestion } from "lucide-react";
 import { bn } from "@/lib/enTobn.js";
-import { urls } from "@/api/urls.js";
+import { cn, toFixedAndLocaleStringCurrency } from "@/lib/utils";
+import { SetCartProduct } from "@/redux/slices/cartSlice.js";
+import { ShieldQuestion } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { SetCartProduct } from "@/redux/slices/cartSlice.js";
 
 const ProductPs = ({ className, info, lang }) => {
   const dispatch = useDispatch();
@@ -121,7 +121,7 @@ const ProductPs = ({ className, info, lang }) => {
         </div>
         <div className={cn("flex gap-4", className)}>
           <QuantitySelector
-            defaultValue={quantity}
+            value={quantity}
             quantity={quantity}
             setQuantity={setQuantity}
             minValue={1}

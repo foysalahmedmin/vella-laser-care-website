@@ -7,7 +7,7 @@ import { ArrowUpRight, ChevronLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import UserAndAuthNav from "../../UserAndAuthNav";
 
-const CheckoutNavigation = ({ user }) => {
+const AuthenticationNavigation = ({ user }) => {
   return (
     <nav
       className={cn("sticky top-0 z-50 h-header w-full border-y bg-background")}
@@ -52,4 +52,4 @@ const CheckoutNavigation = ({ user }) => {
   );
 };
 
-export default CheckoutNavigation;
+export default AuthenticationNavigation;

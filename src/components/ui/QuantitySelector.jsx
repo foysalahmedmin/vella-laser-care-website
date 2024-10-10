@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { SetCartProductQuantity } from "@/redux/slices/cartSlice.js";
 import { Minus, Plus } from "lucide-react";
 import {
   createContext,
@@ -10,9 +11,8 @@ import {
   useImperativeHandle,
   useRef,
 } from "react";
-import { Button } from "./Button";
 import { useDispatch, useSelector } from "react-redux";
-import { SetCartProductQuantity } from "@/redux/slices/cartSlice.js";
+import { Button } from "./Button";
 
 // QuantitySelector context //
 const QuantitySelectorContext = createContext(null);
@@ -33,7 +33,6 @@ export const QuantitySelector = forwardRef(
   (
     {
       className,
-      defaultValue = 1,
       quantity,
       setQuantity,
       maxValue = 100,

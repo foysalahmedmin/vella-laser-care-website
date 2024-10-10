@@ -5,7 +5,7 @@
   transition: all 0.3s;
   outline: none;
   border: 1px solid hsl(var(--border));
-  border-radius: 0.25em;
+  border-radius: calc(var(--radius) - 0.1em);
   background-color: transparent;
   padding-right: 1em;
   padding-left: 1em;

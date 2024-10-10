@@ -59,7 +59,7 @@ const StarRating = forwardRef(
 
     const stars = useMemo(() => generateStars(rating, total), [rating, total]);
 
-    const handleStarClick = (index) => {
+    const onStarSelect = (index) => {
       if (!clickable) return;
 
       const newRating = ratingProcessor(index + 1, rangeProp, total);
@@ -70,7 +70,7 @@ const StarRating = forwardRef(
     };
 
     useEffect(() => {
-      if (ratingProp) {
+      if (ratingProp !== undefined) {
         setRating(ratingProp);
       }
     }, [ratingProp]);
@@ -96,7 +96,7 @@ const StarRating = forwardRef(
                   color,
                 }),
             }}
-            onClick={() => handleStarClick(index)}
+            onClick={() => onStarSelect(index)}
           >
             {state === "full"
               ? fullIcon

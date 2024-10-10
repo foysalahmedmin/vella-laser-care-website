@@ -1,4 +1,3 @@
-import CheckoutTopHeader from "./Variants/CheckoutTopHeader";
 import DefaultTopHeader from "./Variants/DefaultTopHeader";
 
 const TopHeader = ({ variant, user }) => {
@@ -6,7 +5,8 @@ const TopHeader = ({ variant, user }) => {
     <>
       {variant === "default" && <DefaultTopHeader user={user} />}
       {variant === "home" && <DefaultTopHeader user={user} />}
-      {variant === "checkout" && <CheckoutTopHeader user={user} />}
+      {variant === "checkout" && <header />}
+      {variant === "authentication" && <header />}
     </>
   );
 };
