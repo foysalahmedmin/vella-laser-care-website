@@ -8,7 +8,7 @@ import ServiceBookModal from "../../Modals/ServiceBookModal";
 
 const ServiceCard = ({ lang, item, variant = "default", className }) => {
   const navigate = useNavigate();
-  const { name, name_bn, short_description, short_description_bn, image } =
+  const { _id, name, name_bn, short_description, short_description_bn, image } =
     item;
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -48,7 +48,12 @@ const ServiceCard = ({ lang, item, variant = "default", className }) => {
               </div>
             </div>
           </div>
-          <ServiceBookModal isOpen={isOpen} setIsOpen={setIsOpen} lang={lang} />
+          <ServiceBookModal
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            service={_id}
+            lang={lang}
+          />
         </>
       )}
       {variant === "home" && (

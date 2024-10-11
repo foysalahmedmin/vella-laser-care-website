@@ -9,9 +9,11 @@ import { Calendar, Send } from "lucide-react";
 import { useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
-  AddServiceBooking,
-  fetchFilteredSlots,
-} from "@/pages/(common)/ServiceDetailsPage/serviceApis.js";
+  AddAppointment,
+  fetchDoctorSlots,
+  fetchFilteredDoctors,
+} from "@/pages/(common)/HomePage/homeApis.js";
+import moment from "moment/moment.js";
 import { toast } from "react-toastify";
 import { errorMessage } from "@/helpers/error.js";
 
@@ -20,74 +22,78 @@ const ServiceBookModal = ({
   lang,
   setIsOpen,
   size = "lg",
-  service,
-  s_type,
+  doc,
+  department,
 }) => {
-  const [service_type, setServiceType] = useState(s_type || "");
   const [name, setName] = useState("");
+  const [appointment_type, setAppointmentType] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [date, setDate] = useState(new Date());
   const [slot, setSlot] = useState("");
   const [message, setMessage] = useState("");
-  const [payment_method, setPaymentMethod] = useState("");
+  const { data: doctors } = useQuery({
+    queryKey: ["filtered_doctors", department],
+    queryFn: () => fetchFilteredDoctors(department),
+    enabled: !!department,
+  });
   const { data: slots } = useQuery({
-    queryKey: ["filtered_slots"],
-    queryFn: () => fetchFilteredSlots(),
+    queryKey: ["filtered_slots", doc],
+    queryFn: () =>
+      fetchDoctorSlots(
+        doc,
+        moment(new Date(date)).format("dddd")?.toLocaleLowerCase(),
+      ),
+    enabled: !!date && !!doc,
   });
-  console.log(service_type);
-  const { isPending, mutateAsync } = useMutation({
-    mutationFn: AddServiceBooking,
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: AddAppointment,
   });
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (
         !name ||
+        !appointment_type ||
+        !department ||
         !email ||
         !phone ||
         !date ||
-        !slot ||
-        !service ||
-        !service_type ||
-        !payment_method
+        !slot
       ) {
         return toast.error("Please fill all fields");
       }
       const status = await mutateAsync({
         name,
-        service,
-        service_type,
+        appointment_type,
+        department,
+        doctor: doc,
         email,
         phone,
         date,
         slot,
         message,
-        payment_method,
       });
-      if (payment_method === "online") {
-        setServiceType("");
+      if (appointment_type === "online") {
         setName("");
+        setAppointmentType("");
         setEmail("");
         setPhone("");
         setDate(new Date());
         setSlot("");
         setMessage("");
-        setPaymentMethod("");
+        setIsOpen(false);
         window.location.replace(status);
-        setIsOpen(false);
       } else {
-        toast.success(status?.message);
-        setServiceType("");
         setName("");
+        setAppointmentType("");
         setEmail("");
         setPhone("");
         setDate(new Date());
         setSlot("");
         setMessage("");
-        setPaymentMethod("");
         setIsOpen(false);
+        toast.success(status?.message);
       }
     } catch (error) {
       toast.error(errorMessage(error));
@@ -99,18 +105,18 @@ const ServiceBookModal = ({
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
         <ModalBackdrop />
         <ModalContent className="rounded-2xl" size={size}>
-          <div className="relative px-8 py-8 md:px-14 md:py-12 lg:px-20 lg:py-16">
+          <div className="relative px-8 py-8 md:px-16 md:py-12 lg:px-24 lg:py-16">
             <ModalCloseTrigger className="absolute right-4 top-4 rounded-full border-current text-xs text-accent md:right-4 md:top-4" />
             <div className="space-y-6">
               <div className="rounded-xl bg-primary/5 px-4 py-2 text-center">
-                <h1 className="text-title/85">Book A Service</h1>
+                <h1 className="text-title/85">Appoint A Doctor</h1>
               </div>
               <div>
                 <form className="space-y-6">
                   <div>
                     <label className="block text-center">
                       <span className="mb-3 block font-medium text-title/85">
-                        Service type
+                        Appointment type
                       </span>
                       <div className="flex items-center justify-center gap-4">
                         <label className="inline-flex cursor-pointer items-center gap-2">
@@ -118,12 +124,12 @@ const ServiceBookModal = ({
                             className="radio text-lg"
                             type="radio"
                             name="appointment-type"
-                            value="service"
-                            checked={service_type === "service"}
-                            onChange={(e) => setServiceType(e.target.value)}
+                            value="online"
+                            checked={appointment_type === "online"}
+                            onChange={(e) => setAppointmentType(e.target.value)}
                           />
                           <span className="inline-block font-medium text-title/85">
-                            Service
+                            Online
                           </span>
                         </label>
                         <label className="inline-flex cursor-pointer items-center gap-2">
@@ -131,12 +137,12 @@ const ServiceBookModal = ({
                             className="radio text-lg"
                             type="radio"
                             name="appointment-type"
-                            value="consultant"
-                            checked={service_type === "consultant"}
-                            onChange={(e) => setServiceType(e.target.value)}
+                            value="offline"
+                            checked={appointment_type === "offline"}
+                            onChange={(e) => setAppointmentType(e.target.value)}
                           />
                           <span className="inline-block font-medium text-title/85">
-                            Consultant
+                            Chamber Visit
                           </span>
                         </label>
                       </div>
@@ -161,19 +167,22 @@ const ServiceBookModal = ({
                     </label>
                     <label>
                       <span className="mb-2 inline-block font-medium text-title/85">
-                        Mode
+                        Doctor
                       </span>
                       <div className="input block w-full rounded-full">
                         <select
                           className="h-full w-full border-none outline-none"
-                          name="mode"
-                          value={payment_method}
-                          onChange={(e) => setPaymentMethod(e.target.value)}
+                          name="doctor"
+                          value={doc}
+                          disabled={true}
                           required
                         >
-                          <option value="">Select Mode</option>
-                          <option value="online">Online</option>
-                          <option value="cash">Chamber Visit</option>
+                          <option value="">Select Doctor</option>
+                          {doctors?.map((doctor) => (
+                            <option key={doctor._id} value={doctor._id}>
+                              {doctor?.name}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </label>

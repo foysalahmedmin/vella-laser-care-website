@@ -14,7 +14,6 @@ const DoctorDetailsPage = () => {
     queryFn: () => fetchOneDoctor(id),
     enabled: !!id,
   });
-  console.log(data);
   return (
     <main>
       <BannerSection

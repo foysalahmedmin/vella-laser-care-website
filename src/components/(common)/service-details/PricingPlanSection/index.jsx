@@ -2,8 +2,11 @@ import { Button } from "@/components/ui/Button";
 import { SectionTitle, Subtitle, Title } from "@/components/ui/SectionTitle";
 import { ArrowUpRight } from "lucide-react";
 import { bn } from "@/lib/enTobn.js";
+import ServiceBookModal from "@/components/partials/Modals/ServiceBookModal/index.jsx";
+import { useState } from "react";
 
 const PricingPlanSection = ({ info, lang }) => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <section className="pb-16 md:pb-24">
       <div className="container">
@@ -68,7 +71,7 @@ const PricingPlanSection = ({ info, lang }) => {
                 {/*  </ul>*/}
                 {/*</div>*/}
                 <div className="mt-auto pt-8 text-center">
-                  <Button>
+                  <Button onClick={() => setIsOpen(true)}>
                     <span>
                       {lang === "en" ? "Book appointment" : "Book appointment"}
                     </span>{" "}
@@ -125,7 +128,7 @@ const PricingPlanSection = ({ info, lang }) => {
                 {/*  </ul>*/}
                 {/*</div>*/}
                 <div className="mt-auto pt-8 text-center">
-                  <Button>
+                  <Button onClick={() => setIsOpen(true)}>
                     <span>Book appointment</span>{" "}
                     <ArrowUpRight className="size-4" />
                   </Button>
@@ -135,6 +138,12 @@ const PricingPlanSection = ({ info, lang }) => {
           </div>
         </div>
       </div>
+      <ServiceBookModal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        service={info?._id}
+        lang={lang}
+      />
     </section>
   );
 };

@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/Button";
 import { ArrowUpRight } from "lucide-react";
 import { urls } from "@/api/urls.js";
+import DoctorAppointmentModal from "@/components/partials/Modals/DoctorAppointmentModal/index.jsx";
+import { useState } from "react";
 
 const ProfileBar = ({ lang, info }) => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="overflow-hidden rounded-xl bg-card shadow-custom-1">
       <div className="h-40 w-full bg-primary/5">
@@ -54,12 +57,19 @@ const ProfileBar = ({ lang, info }) => {
         </div>
         <hr />
         <div className="flex items-center justify-between gap-2">
-          <Button className="text-sm">
+          <Button onClick={() => setIsOpen(true)} className="text-sm">
             <span>Book Appointment</span>
             <ArrowUpRight className="size-4" />
           </Button>
         </div>
       </div>
+      <DoctorAppointmentModal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        lang={lang}
+        doc={info?.user?._id}
+        department={info?.department}
+      />
     </div>
   );
 };

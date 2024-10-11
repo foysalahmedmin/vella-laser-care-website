@@ -2,9 +2,13 @@ import { Button } from "@/components/ui/Button";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { urls } from "@/api/urls.js";
+import DoctorAppointmentModal from "@/components/partials/Modals/DoctorAppointmentModal/index.jsx";
+import { useState } from "react";
 
 const DoctorCard = ({ item, lang }) => {
-  const { _id, name, photo, tags, description, description_bn } = item;
+  const [isOpen, setIsOpen] = useState(false);
+  const { _id, name, photo, tags, description, description_bn, department } =
+    item;
   return (
     <div className="overflow-hidden rounded-xl bg-card shadow-custom-1">
       <div className="h-40 w-full bg-primary/5">
@@ -53,7 +57,7 @@ const DoctorCard = ({ item, lang }) => {
           ))}
         </ul>
         <div className="flex items-center justify-between gap-2">
-          <Button className="text-sm">
+          <Button onClick={() => setIsOpen(true)} className="text-sm">
             {lang === "en" ? "Book Appointment" : "Book Appointment"}
             <ArrowUpRight className="size-4" />
           </Button>
@@ -65,6 +69,13 @@ const DoctorCard = ({ item, lang }) => {
           </Link>
         </div>
       </div>
+      <DoctorAppointmentModal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        lang={lang}
+        doc={_id}
+        department={department}
+      />
     </div>
   );
 };
