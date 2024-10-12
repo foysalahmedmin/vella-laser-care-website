@@ -1,7 +1,4 @@
-import { Apple } from "@/assets/svg/icons/Apple";
 import { Eye, EyeOff } from "@/assets/svg/icons/Eye";
-import { FacebookColor } from "@/assets/svg/icons/Facebook";
-import { GoogleColor } from "@/assets/svg/icons/Google";
 import { Button } from "@/components/ui/Button";
 import { Tabs, TabsContent, TabsItem } from "@/components/ui/Tabs";
 import {
@@ -12,15 +9,32 @@ import {
 } from "@/components/ui/Toggle";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { mutateSignIn } from "@/network/user/userApis.js";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { errorMessage } from "@/helpers/error.js";
 
 const SignInPage = ({ lang }) => {
+  const navigate = useNavigate();
   const [tab, setTab] = useState("email");
-
   const [email, setEmail] = useState("");
-  const [password, setPassWord] = useState("");
-
+  const [password, setPassword] = useState("");
   const [isPassVisible, setIsPassVisible] = useState(false);
-
+  const { isPending, mutateAsync } = useMutation({
+    mutationFn: mutateSignIn,
+  });
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await mutateAsync({ email, password });
+      toast.success("Login Successful");
+      localStorage.setItem("vella_user", JSON.stringify(response));
+      navigate("/shop");
+    } catch (error) {
+      toast.error(errorMessage(error));
+    }
+  };
   return (
     <>
       <Tabs value={tab} setValue={setTab}>
@@ -31,7 +45,7 @@ const SignInPage = ({ lang }) => {
                 <div className="space-y-6">
                   <div className="rounded-md bg-primary px-4 py-4 text-center text-primary-foreground">
                     <span className="text-sm leading-none">
-                      Sign up and get 10% off for New Users only!
+                      Sign in and access our all premium features!
                     </span>
                   </div>
                   <div className="space-y-4 text-center">
@@ -74,39 +88,39 @@ const SignInPage = ({ lang }) => {
                         </Button>
                       </div>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <hr className="flex-1" />
-                      <span>Or</span>
-                      <hr className="flex-1" />
-                    </div>
-                    <div className="space-y-2 text-center">
-                      <span className="block text-title/85">
-                        Sign up/in using
-                      </span>
-                      <div className="flex items-center justify-center gap-2">
-                        <Button
-                          className="inline-grid size-10 place-items-center rounded-full bg-muted text-2xl"
-                          variant="none"
-                          size="none"
-                        >
-                          <GoogleColor />
-                        </Button>
-                        <Button
-                          className="inline-grid size-10 place-items-center rounded-full bg-muted text-2xl"
-                          variant="none"
-                          size="none"
-                        >
-                          <FacebookColor />
-                        </Button>
-                        <Button
-                          className="inline-grid size-10 place-items-center rounded-full bg-muted text-2xl"
-                          variant="none"
-                          size="none"
-                        >
-                          <Apple />
-                        </Button>
-                      </div>
-                    </div>
+                    {/*<div className="flex items-center gap-1">*/}
+                    {/*  <hr className="flex-1" />*/}
+                    {/*  <span>Or</span>*/}
+                    {/*  <hr className="flex-1" />*/}
+                    {/*</div>*/}
+                    {/*<div className="space-y-2 text-center">*/}
+                    {/*  <span className="block text-title/85">*/}
+                    {/*    Sign up/in using*/}
+                    {/*  </span>*/}
+                    {/*  <div className="flex items-center justify-center gap-2">*/}
+                    {/*    <Button*/}
+                    {/*      className="inline-grid size-10 place-items-center rounded-full bg-muted text-2xl"*/}
+                    {/*      variant="none"*/}
+                    {/*      size="none"*/}
+                    {/*    >*/}
+                    {/*      <GoogleColor />*/}
+                    {/*    </Button>*/}
+                    {/*    <Button*/}
+                    {/*      className="inline-grid size-10 place-items-center rounded-full bg-muted text-2xl"*/}
+                    {/*      variant="none"*/}
+                    {/*      size="none"*/}
+                    {/*    >*/}
+                    {/*      <FacebookColor />*/}
+                    {/*    </Button>*/}
+                    {/*    <Button*/}
+                    {/*      className="inline-grid size-10 place-items-center rounded-full bg-muted text-2xl"*/}
+                    {/*      variant="none"*/}
+                    {/*      size="none"*/}
+                    {/*    >*/}
+                    {/*      <Apple />*/}
+                    {/*    </Button>*/}
+                    {/*  </div>*/}
+                    {/*</div>*/}
                   </div>
                 </div>
               </div>
@@ -140,7 +154,7 @@ const SignInPage = ({ lang }) => {
                             className="input block h-10 w-full pr-12"
                             placeholder="Enter your password"
                             value={password}
-                            onChange={(e) => setPassWord(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)}
                             name="password"
                             required
                           />
@@ -161,7 +175,13 @@ const SignInPage = ({ lang }) => {
                         </div>
                       </label>
                       <div className="text-center">
-                        <Button className="w-full" type="submit">
+                        <Button
+                          isLoading={isPending}
+                          disabled={isPending}
+                          onClick={handleSignIn}
+                          className="w-full"
+                          type="submit"
+                        >
                           <span>Sign In</span>
                           <ArrowRight />
                         </Button>
