@@ -12,8 +12,11 @@ import { Calendar, Send } from "lucide-react";
 import moment from "moment";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import useUser from "@/redux/slices/user-slice/useUser.js";
+import { fetchMe } from "@/network/user/userApis.js";
 
 const ConsultationScheduleSection = ({ lang }) => {
+  const { isAuthenticated } = useUser();
   const [name, setName] = useState("");
   const [appointment_type, setAppointmentType] = useState("online");
   const [department, setDepartment] = useState("");
@@ -23,6 +26,16 @@ const ConsultationScheduleSection = ({ lang }) => {
   const [date, setDate] = useState(new Date());
   const [slot, setSlot] = useState("");
   const [message, setMessage] = useState("");
+  const { data: me, refetch } = useQuery({
+    queryKey: ["me", isAuthenticated],
+    queryFn: async () => {
+      const data = await fetchMe();
+      setName(data?.name);
+      setEmail(data?.email);
+      setPhone(data?.phone);
+      return data;
+    },
+  });
   const { data: departments } = useQuery({
     queryKey: ["departments"],
     queryFn: () => fetchFilteredDepartments(),
@@ -43,6 +56,9 @@ const ConsultationScheduleSection = ({ lang }) => {
   });
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: AddAppointment,
+    onSuccess: async () => {
+      await refetch();
+    },
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,6 +76,7 @@ const ConsultationScheduleSection = ({ lang }) => {
         return toast.error("Please fill all fields");
       }
       const status = await mutateAsync({
+        customer: isAuthenticated ? me?._id : "",
         name,
         appointment_type,
         department,

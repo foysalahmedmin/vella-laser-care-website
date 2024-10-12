@@ -6,8 +6,10 @@ import { cn } from "@/lib/utils";
 import { ArrowUpRight, ChevronLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import UserAndAuthNav from "../../UserAndAuthNav";
+import useUser from "@/redux/slices/user-slice/useUser.js";
 
-const CheckoutNavigation = ({ user }) => {
+const CheckoutNavigation = () => {
+  const { isAuthenticated } = useUser();
   return (
     <nav
       className={cn("sticky top-0 z-50 h-header w-full border-y bg-background")}
@@ -32,8 +34,8 @@ const CheckoutNavigation = ({ user }) => {
               </div>
             </div>
             <div className="ml-auto">
-              {Object.keys(user)?.length > 0 ? (
-                <UserAndAuthNav user={user} />
+              {isAuthenticated ? (
+                <UserAndAuthNav />
               ) : (
                 <div className="flex items-center justify-end gap-2 text-title/85">
                   <span className="font-medium">Already have an account? </span>

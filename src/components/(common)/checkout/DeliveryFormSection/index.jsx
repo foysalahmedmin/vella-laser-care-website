@@ -11,12 +11,26 @@ import {
 } from "@/redux/slices/cartSlice.js";
 import { useQuery } from "@tanstack/react-query";
 import { fetchFilteredCities } from "@/network/common/commonApis.js";
+import { fetchMe } from "@/network/user/userApis.js";
 
 const DeliveryFormSection = ({ className }) => {
   const dispatch = useDispatch();
   const { email, name, city, address, postal, phone, as_profile } = useSelector(
     (state) => state.cart,
   );
+  const { _ } = useQuery({
+    queryKey: ["me", as_profile],
+    queryFn: async () => {
+      const data = await fetchMe();
+      dispatch(SetCartEmail(data?.email));
+      dispatch(SetCartName(data?.name));
+      dispatch(SetCartCity(data?.city));
+      dispatch(SetCartAddress(data?.address));
+      dispatch(SetCartPostal(data?.postal));
+      dispatch(SetCartPhone(data?.phone));
+      return data;
+    },
+  });
   const { data: cities } = useQuery({
     queryKey: ["filtered_cities"],
     queryFn: () => fetchFilteredCities(),
@@ -36,6 +50,7 @@ const DeliveryFormSection = ({ className }) => {
                 </span>
                 <input
                   value={email}
+                  disabled={as_profile}
                   onChange={(e) => dispatch(SetCartEmail(e.target.value))}
                   type="email"
                   className="input block h-10 w-full text-xs"
@@ -53,6 +68,7 @@ const DeliveryFormSection = ({ className }) => {
                 <input
                   type="text"
                   value={name}
+                  disabled={as_profile}
                   onChange={(e) => dispatch(SetCartName(e.target.value))}
                   className="input block h-10 w-full text-xs"
                   placeholder="Enter Your First Name"
@@ -70,6 +86,7 @@ const DeliveryFormSection = ({ className }) => {
                   <select
                     className="h-10 w-full border-none text-xs outline-none"
                     name="city"
+                    disabled={as_profile}
                     value={city}
                     onChange={(e) => dispatch(SetCartCity(e.target.value))}
                     required
@@ -99,6 +116,7 @@ const DeliveryFormSection = ({ className }) => {
                 <input
                   type="text"
                   value={address}
+                  disabled={as_profile}
                   onChange={(e) => dispatch(SetCartAddress(e.target.value))}
                   className="input mt-2 block h-10 w-full text-xs"
                   placeholder="Apartment, suit, unit"
@@ -106,7 +124,6 @@ const DeliveryFormSection = ({ className }) => {
                 />
               </label>
             </div>
-
             <div>
               <label>
                 <span className="mb-1 inline-block text-sm font-medium capitalize text-title">
@@ -115,6 +132,7 @@ const DeliveryFormSection = ({ className }) => {
                 <input
                   type="text"
                   value={postal}
+                  disabled={as_profile}
                   onChange={(e) => dispatch(SetCartPostal(e.target.value))}
                   className="input block h-10 w-full text-xs"
                   placeholder="Enter Your Postcode/ZIP Code"
@@ -137,6 +155,7 @@ const DeliveryFormSection = ({ className }) => {
                   <input
                     type="tel"
                     value={phone}
+                    disabled={as_profile}
                     onChange={(e) => dispatch(SetCartPhone(e.target.value))}
                     className="h-10 w-full flex-1 border-none text-xs outline-none"
                     placeholder="Enter Your Phone Number"

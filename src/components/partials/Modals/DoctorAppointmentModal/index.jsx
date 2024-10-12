@@ -16,6 +16,8 @@ import {
 import moment from "moment/moment.js";
 import { toast } from "react-toastify";
 import { errorMessage } from "@/helpers/error.js";
+import useUser from "@/redux/slices/user-slice/useUser.js";
+import { fetchMe } from "@/network/user/userApis.js";
 
 const ServiceBookModal = ({
   isOpen,
@@ -25,6 +27,7 @@ const ServiceBookModal = ({
   doc,
   department,
 }) => {
+  const { isAuthenticated } = useUser();
   const [name, setName] = useState("");
   const [appointment_type, setAppointmentType] = useState("");
   const [email, setEmail] = useState("");
@@ -32,6 +35,16 @@ const ServiceBookModal = ({
   const [date, setDate] = useState(new Date());
   const [slot, setSlot] = useState("");
   const [message, setMessage] = useState("");
+  const { data: me, refetch } = useQuery({
+    queryKey: ["me", isAuthenticated],
+    queryFn: async () => {
+      const data = await fetchMe();
+      setName(data?.name);
+      setEmail(data?.email);
+      setPhone(data?.phone);
+      return data;
+    },
+  });
   const { data: doctors } = useQuery({
     queryKey: ["filtered_doctors", department],
     queryFn: () => fetchFilteredDoctors(department),
@@ -48,6 +61,9 @@ const ServiceBookModal = ({
   });
   const { mutateAsync, isPending } = useMutation({
     mutationFn: AddAppointment,
+    onSuccess: async () => {
+      await refetch();
+    },
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,6 +80,7 @@ const ServiceBookModal = ({
         return toast.error("Please fill all fields");
       }
       const status = await mutateAsync({
+        customer: isAuthenticated ? me?._id : "",
         name,
         appointment_type,
         department,

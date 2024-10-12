@@ -9,15 +9,18 @@ import {
 } from "@/redux/slices/cartSlice.js";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
+  AddCustomerOrder,
   AddGuestOrder,
   fetchFilteredShipping,
 } from "@/pages/(common)/ShopPage/shopApis.js";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { errorMessage } from "@/helpers/error.js";
+import useUser from "@/redux/slices/user-slice/useUser.js";
 
 const PaymentSection = ({ className }) => {
   const navigate = useNavigate();
+  const { isAuthenticated } = useUser();
   const [isAgree, setIsAgree] = useState(false);
   const dispatch = useDispatch();
   const {
@@ -38,6 +41,9 @@ const PaymentSection = ({ className }) => {
   const { isPending, mutateAsync } = useMutation({
     mutationFn: AddGuestOrder,
   });
+  const { isPending: isPending2, mutateAsync: mutateAsync2 } = useMutation({
+    mutationFn: AddCustomerOrder,
+  });
   const handleGuestOrder = async () => {
     try {
       if (!isAgree) {
@@ -55,6 +61,62 @@ const PaymentSection = ({ className }) => {
       )
         return toast.warn("Please fill/select all required fields!");
       const response = await mutateAsync({
+        name,
+        city,
+        postal,
+        phone,
+        address,
+        email,
+        sub_total: products
+          ?.map((x) => x?.price * x?.quantity)
+          ?.reduce((partialSum, a) => partialSum + a, 0),
+        total:
+          products
+            ?.map((x) => x?.price * x?.quantity)
+            ?.reduce((partialSum, a) => partialSum + a, 0) +
+          (shipping?.charge || 0),
+        shipping: shipping?.charge,
+        sold_from: "customer",
+        payment_method,
+        items: products?.map((x) => {
+          return {
+            product: x?._id,
+            quantity: x?.quantity,
+            selling_price: x?.price,
+            discount_amount: x?.discount_amount,
+            type: "product",
+          };
+        }),
+      });
+      if (payment_method === "cash") {
+        toast.success(response?.message);
+        dispatch(SetResetCart());
+        navigate("/shop");
+      } else {
+        dispatch(SetResetCart());
+        window.location.replace(response);
+      }
+    } catch (error) {
+      toast.error(errorMessage(error));
+    }
+  };
+  const handleCustomerOrder = async () => {
+    try {
+      if (!isAgree) {
+        toast.error("Please agree with our terms and conditions");
+        return;
+      }
+      if (
+        !name ||
+        !email ||
+        !address ||
+        !postal ||
+        !phone ||
+        !payment_method ||
+        products?.length === 0
+      )
+        return toast.warn("Please fill/select all required fields!");
+      const response = await mutateAsync2({
         name,
         city,
         postal,
@@ -244,9 +306,9 @@ const PaymentSection = ({ className }) => {
       </div>
       <div>
         <Button
-          isLoading={isPending}
-          disabled={isPending}
-          onClick={handleGuestOrder}
+          isLoading={isPending || isPending2}
+          disabled={isPending || isPending2}
+          onClick={isAuthenticated ? handleCustomerOrder : handleGuestOrder}
           className="w-full text-sm uppercase"
         >
           <span>COMPLETE ORDER</span>

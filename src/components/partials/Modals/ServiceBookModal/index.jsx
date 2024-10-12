@@ -14,6 +14,8 @@ import {
 } from "@/pages/(common)/ServiceDetailsPage/serviceApis.js";
 import { toast } from "react-toastify";
 import { errorMessage } from "@/helpers/error.js";
+import useUser from "@/redux/slices/user-slice/useUser.js";
+import { fetchMe } from "@/network/user/userApis.js";
 
 const ServiceBookModal = ({
   isOpen,
@@ -23,6 +25,7 @@ const ServiceBookModal = ({
   service,
   s_type,
 }) => {
+  const { isAuthenticated } = useUser();
   const [service_type, setServiceType] = useState(s_type || "");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -31,11 +34,20 @@ const ServiceBookModal = ({
   const [slot, setSlot] = useState("");
   const [message, setMessage] = useState("");
   const [payment_method, setPaymentMethod] = useState("");
+  const { data: me } = useQuery({
+    queryKey: ["me", isAuthenticated],
+    queryFn: async () => {
+      const data = await fetchMe();
+      setName(data?.name);
+      setEmail(data?.email);
+      setPhone(data?.phone);
+      return data;
+    },
+  });
   const { data: slots } = useQuery({
     queryKey: ["filtered_slots"],
     queryFn: () => fetchFilteredSlots(),
   });
-  console.log(service_type);
   const { isPending, mutateAsync } = useMutation({
     mutationFn: AddServiceBooking,
   });
@@ -56,6 +68,7 @@ const ServiceBookModal = ({
         return toast.error("Please fill all fields");
       }
       const status = await mutateAsync({
+        customer: isAuthenticated ? me?._id : "",
         name,
         service,
         service_type,
