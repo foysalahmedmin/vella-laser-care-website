@@ -1,13 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
-import { setUser as setUserSlice } from ".";
-
 const useUser = () => {
-  const dispatch = useDispatch();
+  const { role, accessToken, refreshToken } = localStorage.getItem("vella_user")
+    ? JSON.parse(localStorage.getItem("vella_user"))
+    : {};
 
-  const user = useSelector((state) => state.user.value);
-  const setUser = (user) => dispatch(setUserSlice(user));
-
-  return { user, setUser };
+  return { role, accessToken, refreshToken, isAuthenticated: !!accessToken };
 };
 
 export default useUser;

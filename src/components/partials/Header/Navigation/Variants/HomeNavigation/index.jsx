@@ -16,7 +16,7 @@ import SearchBar from "../../SearchBar";
 import UserAndAuthNav from "../../UserAndAuthNav";
 import Wishlist from "../../Wishlist";
 
-const HomeNavigation = ({ user }) => {
+const HomeNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <nav
@@ -61,7 +61,7 @@ const HomeNavigation = ({ user }) => {
                 <SearchBar className="static w-full lg:relative lg:w-auto" />
                 <Wishlist />
                 <Cart />
-                <UserAndAuthNav user={user} />
+                <UserAndAuthNav />
               </div>
               <div className="lg:hidden">
                 <Toggle isOn={isOpen} setIsOn={setIsOpen}>

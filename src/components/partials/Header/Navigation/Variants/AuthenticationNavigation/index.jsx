@@ -4,10 +4,19 @@ import Logo from "@/components/partials/Logo";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, ChevronLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserAndAuthNav from "../../UserAndAuthNav";
+import useUser from "@/redux/slices/user-slice/useUser.js";
+import { useEffect } from "react";
 
-const AuthenticationNavigation = ({ user }) => {
+const AuthenticationNavigation = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useUser();
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/shop");
+    }
+  }, [isAuthenticated]);
   return (
     <nav
       className={cn("sticky top-0 z-50 h-header w-full border-y bg-background")}
@@ -32,8 +41,8 @@ const AuthenticationNavigation = ({ user }) => {
               </div>
             </div>
             <div className="ml-auto">
-              {Object.keys(user)?.length > 0 ? (
-                <UserAndAuthNav user={user} />
+              {isAuthenticated ? (
+                <UserAndAuthNav />
               ) : (
                 <div className="flex items-center justify-end gap-2 text-title/85">
                   <span className="font-medium">Already have an account? </span>
