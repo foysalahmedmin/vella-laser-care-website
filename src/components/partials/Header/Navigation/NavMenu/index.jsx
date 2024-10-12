@@ -1,6 +1,7 @@
 import { ActiveLink } from "@/components/ui/ActiveLink";
 import { pathProcessor } from "@/lib/utils";
 import { ChevronRight, HomeIcon, Info, ReceiptText, Store } from "lucide-react";
+import useUser from "@/redux/slices/user-slice/useUser.js";
 
 const routes = [
   {
@@ -81,10 +82,11 @@ const userRoutes = [
   },
 ];
 
-const NavMenu = ({ user }) => {
+const NavMenu = () => {
+  const { isAuthenticated } = useUser();
   return (
     <>
-      {user && Object.keys(user).length > 0 ? (
+      {isAuthenticated ? (
         <>
           {userRoutes.map((route, i) => (
             <li key={i}>

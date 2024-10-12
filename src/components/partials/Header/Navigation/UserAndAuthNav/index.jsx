@@ -3,13 +3,22 @@ import { Dropdown } from "@/components/ui/Dropdown";
 import { ChevronDown, LogIn, LogOut, User, User2 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom/dist";
+import useUser from "@/redux/slices/user-slice/useUser.js";
+import { useQuery } from "@tanstack/react-query";
+import { fetchMe } from "@/network/user/userApis.js";
+import { urls } from "@/api/urls.js";
 
 const UserAndAuthNav = ({ user }) => {
+  const { isAuthenticated } = useUser();
   const [isOpen, setIsOpen] = useState();
-
+  const { data: me } = useQuery({
+    queryKey: ["me"],
+    queryFn: () => fetchMe(),
+    enabled: isAuthenticated,
+  });
   return (
     <div>
-      {user && Object.keys(user)?.length > 0 ? (
+      {isAuthenticated ? (
         <div className="relative">
           <div
             onClick={() => setIsOpen((value) => !value)}
@@ -17,17 +26,21 @@ const UserAndAuthNav = ({ user }) => {
           >
             <div className="size-10 overflow-hidden rounded-full border bg-background">
               <img
-                src={user?.image || "/images/partials/user.png"}
-                alt={user?.name}
+                src={
+                  me?.photo
+                    ? `${urls?.user_photos}/${me?.photo}`
+                    : "/images/partials/user.png"
+                }
+                alt={me?.name}
                 className="size-full rounded-full object-cover object-center"
               />
             </div>
             <div className="hidden text-sm md:block">
               <span className="block font-medium text-title/85">
-                {user?.name}
+                {me?.name}
               </span>
               <span className="block text-xs text-muted-foreground">
-                {user?.email}
+                {me?.email}
               </span>
             </div>
             <ChevronDown className="size-6 text-title/85" />
