@@ -1,8 +1,9 @@
 import AuthenticationLayout from "@/components/layouts/AuthenticationLayout";
 import CheckoutLayout from "@/components/layouts/CheckoutLayout";
+import CommonLayout from "@/components/layouts/CommonLayout";
 import HomeLayout from "@/components/layouts/HomeLayout";
-import MainLayout from "@/components/layouts/MainLayout";
 import RootLayout from "@/components/layouts/RootLayout";
+import UserLayout from "@/components/layouts/UserLayout";
 import Loader from "@/components/partials/Loader";
 import SignInPage from "@/pages/(authentication)/SignInPage";
 import SignUpPage from "@/pages/(authentication)/SignUpPage";
@@ -17,6 +18,8 @@ import Success from "@/pages/(common)/Payment/Success.jsx";
 import ProductDetailsPage from "@/pages/(common)/ProductDetailsPage";
 import ServiceDetailsPage from "@/pages/(common)/ServiceDetailsPage";
 import ShopPage from "@/pages/(common)/ShopPage";
+import UserDashboard from "@/pages/(user)/UserDashboard";
+import UserProfilePage from "@/pages/(user)/UserProfilePage";
 import { Suspense } from "react";
 
 export const routes = [
@@ -39,30 +42,7 @@ export const routes = [
         ],
       },
       {
-        path: "/authentication",
-        element: <AuthenticationLayout />,
-        children: [
-          {
-            path: "sign-in",
-            element: <SignInPage />,
-          },
-          {
-            path: "sign-up",
-            element: <SignUpPage />,
-          },
-        ],
-      },
-      {
-        element: <CheckoutLayout />,
-        children: [
-          {
-            path: "/checkout",
-            element: <CheckoutPage />,
-          },
-        ],
-      },
-      {
-        element: <MainLayout />,
+        element: <CommonLayout />,
         children: [
           {
             path: "/shop",
@@ -92,15 +72,46 @@ export const routes = [
             path: "/doctor/:id",
             element: <DoctorDetailsPage />,
           },
-        ],
-      },
-      {
-        path: "",
-        element: <MainLayout />,
-        children: [
           {
             path: "ssl_success",
             element: <Success />,
+          },
+        ],
+      },
+      {
+        element: <CheckoutLayout />,
+        children: [
+          {
+            path: "/checkout",
+            element: <CheckoutPage />,
+          },
+        ],
+      },
+      {
+        path: "/authentication",
+        element: <AuthenticationLayout />,
+        children: [
+          {
+            path: "sign-in",
+            element: <SignInPage />,
+          },
+          {
+            path: "sign-up",
+            element: <SignUpPage />,
+          },
+        ],
+      },
+      {
+        path: "/user",
+        element: <UserLayout />,
+        children: [
+          {
+            path: "dashboard",
+            element: <UserDashboard />,
+          },
+          {
+            path: "profile",
+            element: <UserProfilePage />,
           },
         ],
       },

@@ -1,0 +1,60 @@
+import { Award, Box, CalendarCheck2, Megaphone } from "lucide-react";
+
+const CountSection = () => {
+  return (
+    <section className="py-16 md:py-24">
+      <div className="container">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="group cursor-pointer space-y-2 rounded-xl bg-card p-6 shadow-custom-1 transition-all duration-300 hover:bg-primary">
+            <h4 className="group-hover:text-primary-foreground">
+              Appointments
+            </h4>
+            <div className="flex items-end justify-between gap-2 text-title/85 group-hover:text-primary-foreground">
+              <span className="inline-block font-playfair text-3xl font-black">
+                01
+              </span>
+              <span className="grid size-10 place-items-center rounded-full bg-primary/10 text-primary group-hover:bg-light/15 group-hover:text-primary-foreground">
+                <CalendarCheck2 className="size-6" />
+              </span>
+            </div>
+          </div>
+          <div className="group cursor-pointer space-y-2 rounded-xl bg-card p-6 shadow-custom-1 transition-all duration-300 hover:bg-primary">
+            <h4 className="group-hover:text-primary-foreground">Orders</h4>
+            <div className="flex items-end justify-between gap-2 text-title/85 group-hover:text-primary-foreground">
+              <span className="inline-block font-playfair text-3xl font-black">
+                00
+              </span>
+              <span className="grid size-10 place-items-center rounded-full bg-primary/10 text-primary group-hover:bg-light/15 group-hover:text-primary-foreground">
+                <Box className="size-6" />
+              </span>
+            </div>
+          </div>
+          <div className="group cursor-pointer space-y-2 rounded-xl bg-card p-6 shadow-custom-1 transition-all duration-300 hover:bg-primary">
+            <h4 className="group-hover:text-primary-foreground">Trending</h4>
+            <div className="flex items-end justify-between gap-2 text-title/85 group-hover:text-primary-foreground">
+              <span className="inline-block font-playfair text-3xl font-black">
+                20
+              </span>
+              <span className="grid size-10 place-items-center rounded-full bg-primary/10 text-primary group-hover:bg-light/15 group-hover:text-primary-foreground">
+                <Megaphone className="size-6" />
+              </span>
+            </div>
+          </div>
+          <div className="group cursor-pointer space-y-2 rounded-xl bg-card p-6 shadow-custom-1 transition-all duration-300 hover:bg-primary">
+            <h4 className="group-hover:text-primary-foreground">Best seller</h4>
+            <div className="flex items-end justify-between gap-2 text-title/85 group-hover:text-primary-foreground">
+              <span className="inline-block font-playfair text-3xl font-black">
+                12
+              </span>
+              <span className="grid size-10 place-items-center rounded-full bg-primary/10 text-primary group-hover:bg-light/15 group-hover:text-primary-foreground">
+                <Award className="size-6" />
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default CountSection;
