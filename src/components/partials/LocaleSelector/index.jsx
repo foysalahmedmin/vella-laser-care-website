@@ -45,7 +45,7 @@ const LocaleSelector = () => {
                 className="inline-block size-4 rounded-full object-cover object-center"
                 src={locale.flag}
               />
-              <span>{locale.label}</span>
+              <span className="text-sm leading-none">{locale.label}</span>
             </li>
           ))}
         </ul>

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { Dropdown } from "@/components/ui/Dropdown";
-import { Edit, LogIn, User } from "lucide-react";
+import { ChevronDown, LogIn, LogOut, User, User2 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom/dist";
 
@@ -9,63 +9,62 @@ const UserAndAuthNav = ({ user }) => {
 
   return (
     <div>
-      {Object.keys(user)?.length > 0 ? (
+      {user && Object.keys(user)?.length > 0 ? (
         <div className="relative">
-          <div className="size-8 animate-pop cursor-pointer overflow-hidden rounded-full border border-primary bg-primary/5">
-            <img
-              onClick={() => setIsOpen((value) => !value)}
-              title={user?.name}
-              src={user?.image || "/images/svg/user.svg"}
-              alt={user?.name}
-              className="size-full rounded-full object-cover object-center"
-            />
+          <div
+            onClick={() => setIsOpen((value) => !value)}
+            className="flex cursor-pointer items-center gap-2"
+          >
+            <div className="size-10 overflow-hidden rounded-full border bg-background">
+              <img
+                src={user?.image || "/images/partials/user.png"}
+                alt={user?.name}
+                className="size-full rounded-full object-cover object-center"
+              />
+            </div>
+            <div className="hidden text-sm md:block">
+              <span className="block font-medium text-title/85">
+                {user?.name}
+              </span>
+              <span className="block text-xs text-muted-foreground">
+                {user?.email}
+              </span>
+            </div>
+            <ChevronDown className="size-6 text-title/85" />
           </div>
           <Dropdown
-            className="left-auto right-0 min-w-80 origin-top-right -translate-x-0"
+            className="left-auto right-0 z-[60] min-w-40 origin-top-right -translate-x-0 shadow-custom-1"
             isOpen={isOpen}
             onClose={() => setIsOpen(false)}
           >
-            <div className="px-4 py-2">
-              <div className="mb-4 text-center text-sm">{user?.email}</div>
-              <div className="mb-4 text-center">
-                <div
-                  className="relative mx-auto inline-block size-20 rounded-full"
-                  size="icon"
-                >
-                  <img
-                    src={user?.image || "/images/svg/user.svg"}
-                    className="size-20 rounded-full object-cover object-center text-accent"
-                    alt="profile-image"
-                  />
-                  <Button
-                    className="absolute bottom-0 right-0 cursor-pointer rounded-full border hover:bg-accent"
-                    size="icon-sm"
-                  >
-                    <Edit size={16} />
-                  </Button>
+            <ul className="">
+              <li className="flex cursor-pointer items-center gap-2 px-4 py-2 hover:bg-muted/15">
+                <div className="inline-block size-5 rounded-full object-cover object-center text-title/85">
+                  {user?.image ? (
+                    <img
+                      src={user?.image || "/images/partials/user.png"}
+                      alt={user?.name}
+                      className="size-full rounded-full object-cover object-center"
+                    />
+                  ) : (
+                    <User2 className="size-full" />
+                  )}
                 </div>
-                <h3 className="text-center font-bold text-title">
-                  {user?.name}
-                </h3>
-                <small className="block text-center">{user?.email}</small>
-              </div>
-              <div>
-                <Button
-                  variant="outline"
-                  className="w-full"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Sign out
-                </Button>
-              </div>
-            </div>
+                <span className="text-sm leading-none">View Profile</span>
+              </li>
+              <li className="flex cursor-pointer items-center gap-2 px-4 py-2 hover:bg-muted/15">
+                <div className="inline-block size-5 rounded-full object-cover object-center text-title/85">
+                  <LogOut className="size-full" />
+                </div>
+                <span className="text-sm leading-none">Logout</span>
+              </li>
+            </ul>
           </Dropdown>
         </div>
       ) : (
         <Link title="Login" to={"/user/sign-in"}>
           <Button asChild className="uppercase" size="sm">
             <span className="hidden sm:block">Login / Register</span>
-
             <User className="hidden size-4 sm:block" />
             <LogIn className="size-6 sm:hidden" />
           </Button>
