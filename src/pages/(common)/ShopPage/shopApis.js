@@ -78,3 +78,37 @@ export async function AddGuestOrder({
   });
   return response?.data;
 }
+
+export async function AddCustomerOrder({
+  name,
+  city,
+  postal,
+  phone,
+  address,
+  email,
+  sub_total,
+  total,
+  shipping,
+  sold_from,
+  payment_method,
+  items,
+}) {
+  const payload = {
+    name,
+    city,
+    postal,
+    phone,
+    address,
+    email,
+    sub_total,
+    total,
+    shipping,
+    sold_from,
+    payment_method,
+    items,
+  };
+  const response = await base.post(`/api/order/add_customer_order`, payload, {
+    headers: { "Content-Type": "application/json" },
+  });
+  return response?.data;
+}
