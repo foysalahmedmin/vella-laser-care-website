@@ -42,7 +42,7 @@ const routes = [
 
 const userRoutes = [
   {
-    path: "/dashboard",
+    path: "/user/dashboard",
     label: "Dashboard",
     icon: <HomeIcon size={16} />,
   },

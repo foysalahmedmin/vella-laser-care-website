@@ -25,7 +25,7 @@ const BannerSection = () => {
                   </h1>
                 </div>
                 <div>
-                  <Link>
+                  <Link to="/shop">
                     <Button asChild={true}>
                       <span>Shop All</span> <ArrowRight className="size-4" />
                     </Button>
