@@ -1,3 +1,5 @@
+import BalanceSection from "@/components/(parlor)/earnings/BalanceSection";
+import OrderSection from "@/components/(parlor)/earnings/OrderSection";
 import BannerSection from "@/components/partials/Sections/BannerSection";
 
 const EarningsPage = () => {
@@ -16,6 +18,8 @@ const EarningsPage = () => {
           },
         ]}
       />
+      <BalanceSection />
+      <OrderSection />
     </main>
   );
 };
