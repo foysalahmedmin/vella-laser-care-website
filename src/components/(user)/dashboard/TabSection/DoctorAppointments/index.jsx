@@ -88,6 +88,7 @@ const DoctorAppointments = () => {
                         <div className="inline-flex items-center gap-1">
                           <span className="inline-block size-2 rounded-full bg-yellow-600" />
                           <span>Offline</span>
+                          <p>Visit office</p>
                         </div>
                       )}
                     </div>
