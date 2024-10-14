@@ -11,8 +11,8 @@ const NotificationItem = ({ item }) => {
   return (
     <label className="group flex cursor-pointer gap-4 rounded-md border p-4 hover:bg-primary/5 has-[input:checked]:bg-primary/10">
       <div className="flex-1">
-        <div className="flex items-center gap-4">
-          <div className="size-12 rounded-full bg-primary/25 p-1 text-primary">
+        <div className="flex items-start gap-4">
+          <div className="size-12 shrink-0 rounded-full bg-primary/25 p-1 text-primary">
             <div className="grid size-full place-items-center rounded-full border-4 border-primary/25">
               {status === "delivered" ? (
                 <StatusDelivered />

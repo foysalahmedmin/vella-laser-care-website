@@ -2,6 +2,7 @@ import AuthenticationLayout from "@/components/layouts/AuthenticationLayout";
 import CheckoutLayout from "@/components/layouts/CheckoutLayout";
 import CommonLayout from "@/components/layouts/CommonLayout";
 import HomeLayout from "@/components/layouts/HomeLayout";
+import ParlorLayout from "@/components/layouts/ParlorLayout";
 import RootLayout from "@/components/layouts/RootLayout";
 import UserLayout from "@/components/layouts/UserLayout";
 import Loader from "@/components/partials/Loader";
@@ -19,6 +20,8 @@ import Success from "@/pages/(common)/Payment/Success.jsx";
 import ProductDetailsPage from "@/pages/(common)/ProductDetailsPage";
 import ServiceDetailsPage from "@/pages/(common)/ServiceDetailsPage";
 import ShopPage from "@/pages/(common)/ShopPage";
+import ParlorDashboard from "@/pages/(parlor)/ParlorDashboard";
+import ParlorProfilePage from "@/pages/(parlor)/ParlorProfilePage";
 import UserDashboard from "@/pages/(user)/UserDashboard";
 import UserProfilePage from "@/pages/(user)/UserProfilePage";
 import { Suspense } from "react";
@@ -117,6 +120,20 @@ export const routes = [
           {
             path: "profile",
             element: <UserProfilePage />,
+          },
+        ],
+      },
+      {
+        path: "/parlor",
+        element: <ParlorLayout />,
+        children: [
+          {
+            path: "dashboard",
+            element: <ParlorDashboard />,
+          },
+          {
+            path: "profile",
+            element: <ParlorProfilePage />,
           },
         ],
       },
