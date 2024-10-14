@@ -1,15 +1,15 @@
 import { Button } from "@/components/ui/Button";
-import { Download, Trash } from "lucide-react";
-import { useState } from "react";
+import { errorMessage } from "@/helpers/error.js";
 import {
   fetchCustomerAppointments,
   fetchPrescriptionPdf,
   mutateAppointmentStatus,
 } from "@/pages/(user)/UserDashboard/dashboardApis.js";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { ArrowUpRight, Download, Trash } from "lucide-react";
 import moment from "moment";
+import { useState } from "react";
 import { toast } from "react-toastify";
-import { errorMessage } from "@/helpers/error.js";
 
 const DoctorAppointments = () => {
   const [isDownloading, setIsDownloading] = useState(false);
@@ -79,15 +79,25 @@ const DoctorAppointments = () => {
                   <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:justify-start first:pl-4 last:justify-end last:pr-4">
                     <div>
                       {x?.appointment_type === "online" ? (
-                        <div className="inline-flex items-center gap-1">
-                          <span className="inline-block size-2 rounded-full bg-green-500" />
-                          <span>Online</span>
-                          <p>Join Online</p>
+                        <div>
+                          <div className="flex items-center justify-center gap-1 font-medium">
+                            <span className="inline-block size-2 rounded-full bg-green-500" />
+                            <span>Online</span>
+                          </div>
+                          <a
+                            href="#"
+                            className="inline-flex items-center gap-1 text-primary underline"
+                          >
+                            <span>Join Online</span>
+                            <ArrowUpRight className="size-4" />
+                          </a>
                         </div>
                       ) : (
-                        <div className="inline-flex items-center gap-1">
-                          <span className="inline-block size-2 rounded-full bg-yellow-600" />
-                          <span>Offline</span>
+                        <div>
+                          <div className="flex items-center justify-center gap-1 font-medium">
+                            <span className="inline-block size-2 rounded-full bg-yellow-600" />
+                            <span>Offline</span>
+                          </div>
                           <p>Visit office</p>
                         </div>
                       )}
