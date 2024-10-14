@@ -20,6 +20,8 @@ import Success from "@/pages/(common)/Payment/Success.jsx";
 import ProductDetailsPage from "@/pages/(common)/ProductDetailsPage";
 import ServiceDetailsPage from "@/pages/(common)/ServiceDetailsPage";
 import ShopPage from "@/pages/(common)/ShopPage";
+import CustomerRequestPage from "@/pages/(parlor)/CustomerRequestPage";
+import EarningsPage from "@/pages/(parlor)/EarningsPage";
 import ParlorDashboard from "@/pages/(parlor)/ParlorDashboard";
 import ParlorProfilePage from "@/pages/(parlor)/ParlorProfilePage";
 import UserDashboard from "@/pages/(user)/UserDashboard";
@@ -134,6 +136,18 @@ export const routes = [
           {
             path: "profile",
             element: <ParlorProfilePage />,
+          },
+          {
+            path: "earnings",
+            element: <EarningsPage />,
+          },
+          {
+            path: "customer-request",
+            element: <CustomerRequestPage />,
+          },
+          {
+            path: "shop",
+            element: <ShopPage />,
           },
         ],
       },

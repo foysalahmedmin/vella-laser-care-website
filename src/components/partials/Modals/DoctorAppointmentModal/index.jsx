@@ -5,21 +5,21 @@ import {
   ModalCloseTrigger,
   ModalContent,
 } from "@/components/ui/Modal";
-import { Calendar, Send } from "lucide-react";
-import { useState } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { errorMessage } from "@/helpers/error.js";
+import { fetchMe } from "@/network/user/userApis.js";
 import {
   AddAppointment,
   fetchDoctorSlots,
   fetchFilteredDoctors,
 } from "@/pages/(common)/HomePage/homeApis.js";
-import moment from "moment/moment.js";
-import { toast } from "react-toastify";
-import { errorMessage } from "@/helpers/error.js";
 import useUser from "@/redux/slices/user-slice/useUser.js";
-import { fetchMe } from "@/network/user/userApis.js";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { Calendar, Send } from "lucide-react";
+import moment from "moment/moment.js";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
-const ServiceBookModal = ({
+const DoctorAppointmentModal = ({
   isOpen,
   lang,
   setIsOpen,
@@ -311,4 +311,4 @@ const ServiceBookModal = ({
   );
 };
 
-export default ServiceBookModal;
+export default DoctorAppointmentModal;
