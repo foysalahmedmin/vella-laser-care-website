@@ -12,6 +12,7 @@ import DoctorDetailsPage from "@/pages/(common)/DoctorDetailsPage";
 import DoctorsPage from "@/pages/(common)/DoctorsPage";
 import ErrorPage from "@/pages/(common)/ErrorPage";
 import HomePage from "@/pages/(common)/HomePage";
+import NotificationsPage from "@/pages/(common)/NotificationsPage";
 import ParlorDetailsPage from "@/pages/(common)/ParlorDetailsPage";
 import ParlorPage from "@/pages/(common)/ParlorPage";
 import Success from "@/pages/(common)/Payment/Success.jsx";
@@ -71,6 +72,10 @@ export const routes = [
           {
             path: "/doctor/:id",
             element: <DoctorDetailsPage />,
+          },
+          {
+            path: "/notifications",
+            element: <NotificationsPage />,
           },
           {
             path: "ssl_success",

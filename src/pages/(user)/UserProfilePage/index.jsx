@@ -9,11 +9,11 @@ const UserProfilePage = () => {
         breadcrumbItems={[
           {
             label: "Home",
-            path: "/",
+            link: "/",
           },
           {
             label: "Profile Setting",
-            path: "/user/profile",
+            link: "/user/profile",
           },
         ]}
       />
