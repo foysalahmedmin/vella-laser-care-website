@@ -13,7 +13,6 @@ const ParlorPage = () => {
     queryKey: ["filtered_parlors", city],
     queryFn: () => fetchFilteredParlors(1, 50, "", city),
   });
-  console.log(data);
   return (
     <main>
       <BannerSection

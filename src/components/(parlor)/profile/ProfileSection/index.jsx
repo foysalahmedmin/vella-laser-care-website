@@ -2,19 +2,25 @@ import { Button } from "@/components/ui/Button";
 import { Edit, MapPin } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { fetchMe } from "@/network/user/userApis.js";
+import { urls } from "@/api/urls.js";
+import { fetchFilteredCities } from "@/network/common/commonApis.js";
 
 const ProfileSection = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [bio, setBio] = useState("");
-
-  const [country, setCountry] = useState("");
-  const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
-  const [postCode, setPostCode] = useState("");
-
+  const [address, setAddress] = useState("");
+  const { data: me } = useQuery({
+    queryKey: ["me"],
+    queryFn: () => fetchMe(),
+  });
+  const { data: cities } = useQuery({
+    queryKey: ["filtered_cities"],
+    queryFn: () => fetchFilteredCities(),
+  });
   return (
     <section className="py-16 md:py-24">
       <div className="container">
@@ -24,7 +30,11 @@ const ProfileSection = () => {
               <div className="relative size-24 shrink-0 rounded-full border-4 border-card">
                 <img
                   className="size-full object-cover object-center"
-                  src="/images/partials/user.png"
+                  src={
+                    me?.photo
+                      ? `${urls?.user_photos}/${me?.photo}`
+                      : "/images/partials/user.png"
+                  }
                   alt=""
                 />
                 <label className="absolute bottom-0 right-0 inline-flex size-8 cursor-pointer items-center justify-center rounded-full border-4 border-card bg-primary text-primary-foreground">
@@ -34,12 +44,11 @@ const ProfileSection = () => {
               </div>
               <div className="space-y-1">
                 <span className="block font-medium text-title/85">
-                  Robert Fox
+                  {me?.name}
                 </span>
-                <p>AVA Studio</p>
                 <span className="flex items-center gap-1">
                   <MapPin className="size-5 text-primary" />
-                  <span className="leading-none">Leeds, United Kingdom</span>
+                  <span className="leading-none">{me?.address}</span>
                 </span>
               </div>
             </div>
@@ -49,7 +58,7 @@ const ProfileSection = () => {
               <h3>Personal Information</h3>
               <Button className="px-2" size="sm">
                 <Edit className="size-4" />
-                <span>Edit</span>
+                <span>Update</span>
               </Button>
             </div>
             <div>
@@ -57,29 +66,33 @@ const ProfileSection = () => {
                 <div className="grid grid-cols-1 gap-x-4 gap-y-6 lg:grid-cols-2">
                   <label>
                     <span className="mb-2 inline-block text-sm font-medium text-title/85">
-                      First Name
+                      Name
                     </span>
                     <input
                       type="text"
                       className="input block w-full"
                       placeholder="Enter Your First Name"
-                      value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
+                      value={name || me?.name}
+                      onChange={(e) => setName(e.target.value)}
                       name="first-name"
                     />
                   </label>
                   <label>
                     <span className="mb-2 inline-block text-sm font-medium text-title/85">
-                      Last Name
+                      City
                     </span>
-                    <input
-                      type="text"
+                    <select
                       className="input block w-full"
-                      placeholder="Enter Your Last Name"
-                      value={lastName}
-                      onChange={(e) => setLastName(e.target.value)}
-                      name="last-name"
-                    />
+                      value={city || me?.city}
+                      onChange={(e) => setCity(e.target.value)}
+                    >
+                      <option value="">Select City</option>
+                      {cities?.map((x) => (
+                        <option key={x?._id} value={x?._id}>
+                          {x?.name}
+                        </option>
+                      ))}
+                    </select>
                   </label>
                   <label>
                     <span className="mb-2 inline-block text-sm font-medium text-title/85">
@@ -89,7 +102,7 @@ const ProfileSection = () => {
                       type="email"
                       className="input block w-full"
                       placeholder="Enter Your Email Address"
-                      value={email}
+                      value={email || me?.email}
                       onChange={(e) => setEmail(e.target.value)}
                       name="email"
                     />
@@ -102,89 +115,22 @@ const ProfileSection = () => {
                       type="tel"
                       className="input block w-full"
                       placeholder="Enter Your Phone"
-                      value={phone}
+                      value={phone || me?.phone}
                       onChange={(e) => setPhone(e.target.value)}
                       name="phone"
                     />
                   </label>
                   <label className="lg:col-span-2">
                     <span className="mb-2 inline-block text-sm font-medium text-title/85">
-                      Bio
+                      Address
                     </span>
                     <textarea
                       className="input block h-auto w-full py-2"
                       placeholder="Enter Your Bio"
-                      value={bio}
-                      onChange={(e) => setBio(e.target.value)}
+                      value={address || me?.address}
+                      onChange={(e) => setAddress(e.target.value)}
                       cols={5}
                       name="bio"
-                    />
-                  </label>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div className="space-y-6 rounded-2xl border p-8 md:p-10">
-            <div className="flex items-center justify-between gap-4">
-              <h3>Address</h3>
-              <Button className="px-2" size="sm">
-                <Edit className="size-4" />
-                <span>Edit</span>
-              </Button>
-            </div>
-            <div>
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 gap-x-4 gap-y-6 lg:grid-cols-2">
-                  <label>
-                    <span className="mb-2 inline-block text-sm font-medium text-title/85">
-                      Country
-                    </span>
-                    <input
-                      type="text"
-                      className="input block w-full"
-                      placeholder="Enter Your Country Name"
-                      value={country}
-                      onChange={(e) => setCountry(e.target.value)}
-                      name="country"
-                    />
-                  </label>
-                  <label>
-                    <span className="mb-2 inline-block text-sm font-medium text-title/85">
-                      Last Name
-                    </span>
-                    <input
-                      type="text"
-                      className="input block w-full"
-                      placeholder="Enter Your Street Name"
-                      value={street}
-                      onChange={(e) => setStreet(e.target.value)}
-                      name="street"
-                    />
-                  </label>
-                  <label>
-                    <span className="mb-2 inline-block text-sm font-medium text-title/85">
-                      City
-                    </span>
-                    <input
-                      type="text"
-                      className="input block w-full"
-                      placeholder="Enter Your City Name"
-                      value={city}
-                      onChange={(e) => setCity(e.target.value)}
-                      name="city"
-                    />
-                  </label>
-                  <label>
-                    <span className="mb-2 inline-block text-sm font-medium text-title/85">
-                      Post Code
-                    </span>
-                    <input
-                      type="text"
-                      className="input block w-full"
-                      placeholder="Enter Your City Name"
-                      value={postCode}
-                      onChange={(e) => setPostCode(e.target.value)}
-                      name="post-code"
                     />
                   </label>
                 </div>

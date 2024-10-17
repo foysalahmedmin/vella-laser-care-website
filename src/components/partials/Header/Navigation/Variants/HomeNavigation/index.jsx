@@ -15,6 +15,7 @@ import NavMenu from "../../NavMenu";
 import SearchBar from "../../SearchBar";
 import UserAndAuthNav from "../../UserAndAuthNav";
 import Wishlist from "../../Wishlist";
+import Notification from "@/components/partials/Header/Navigation/Notification/index.jsx";
 
 const HomeNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,6 +67,7 @@ const HomeNavigation = () => {
                 <SearchBar className="static w-full lg:relative lg:w-auto" />
                 <Wishlist />
                 <Cart />
+                <Notification />
                 <UserAndAuthNav />
               </div>
               <div className="lg:hidden">
