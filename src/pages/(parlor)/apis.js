@@ -6,3 +6,8 @@ export async function fetchParlorEarnings(type) {
   );
   return response?.data;
 }
+
+export async function fetchServiceEarnings() {
+  const response = await base.get(`/api/dashboard/get_service_earnings`);
+  return response?.data;
+}

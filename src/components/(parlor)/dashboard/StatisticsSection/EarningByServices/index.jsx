@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import { useQuery } from "@tanstack/react-query";
+import { fetchServiceEarnings } from "@/pages/(parlor)/apis.js";
 
 // Custom Tooltip component
 const CustomTooltip = ({ active, payload }) => {
@@ -24,6 +26,10 @@ const data = [
 const COLORS = ["#FF8247", "#FF9860", "#FFAC7B", "#FFC4A1"];
 
 const EarningByServices = ({ className }) => {
+  const { data: services } = useQuery({
+    queryKey: ["services"],
+    queryFn: () => fetchServiceEarnings(),
+  });
   return (
     <div className={cn("flex h-full flex-col space-y-4", className)}>
       <div className="flex items-center justify-between">
@@ -39,7 +45,7 @@ const EarningByServices = ({ className }) => {
             <ResponsiveContainer>
               <PieChart>
                 <Tooltip content={<CustomTooltip />} />
-                <Pie dataKey="value" data={data} label>
+                <Pie dataKey="value" data={services} label>
                   {data.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
