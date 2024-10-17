@@ -1,7 +1,7 @@
-import { SectionTitle, Subtitle, Title } from "@/components/ui/SectionTitle";
-import { useQuery } from "@tanstack/react-query";
-import { fetchFilteredShopCategories } from "@/pages/(common)/HomePage/homeApis.js";
 import { urls } from "@/api/urls.js";
+import { SectionTitle, Subtitle, Title } from "@/components/ui/SectionTitle";
+import { fetchFilteredShopCategories } from "@/pages/(common)/HomePage/homeApis.js";
+import { useQuery } from "@tanstack/react-query";
 
 const CategoriesSection = ({ lang }) => {
   const { data } = useQuery({
@@ -23,11 +23,15 @@ const CategoriesSection = ({ lang }) => {
         </SectionTitle>
         <div className="grid grid-cols-1 gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-5">
           {data?.map((category, index) => (
-            <div key={index} className="flex flex-col items-center">
+            <div
+              key={index}
+              className="flex flex-col items-center self-stretch"
+            >
               <div className="h-28 w-full rounded-2xl bg-primary/5" />
               <div className="relative -mt-24 w-full px-4">
-                <div className="flex aspect-square w-full items-center justify-center rounded-xl bg-card shadow-custom-1">
+                <div className="flex aspect-square h-60 w-full items-center justify-center overflow-hidden rounded-xl bg-card shadow-custom-1">
                   <img
+                    className="size-full object-contain object-center"
                     src={`${urls?.shop_category_icon}/${category?.icon}`}
                     alt={category.name}
                   />
