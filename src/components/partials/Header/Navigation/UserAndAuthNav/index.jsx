@@ -7,8 +7,10 @@ import useUser from "@/redux/slices/user-slice/useUser.js";
 import { useQuery } from "@tanstack/react-query";
 import { fetchMe } from "@/network/user/userApis.js";
 import { urls } from "@/api/urls.js";
+import { useNavigate } from "react-router-dom";
 
 const UserAndAuthNav = ({ user }) => {
+  const navigate = useNavigate();
   const { isAuthenticated } = useUser();
   const [isOpen, setIsOpen] = useState();
   const { data: me } = useQuery({
@@ -63,7 +65,12 @@ const UserAndAuthNav = ({ user }) => {
                     <User2 className="size-full" />
                   )}
                 </div>
-                <span className="text-sm leading-none">View Profile</span>
+                <span
+                  onClick={() => navigate("/user/profile")}
+                  className="cursor-pointer text-sm leading-none"
+                >
+                  View Profile
+                </span>
               </li>
               <li className="flex cursor-pointer items-center gap-2 px-4 py-2 hover:bg-muted/15">
                 <div className="inline-block size-5 rounded-full object-cover object-center text-title/85">
