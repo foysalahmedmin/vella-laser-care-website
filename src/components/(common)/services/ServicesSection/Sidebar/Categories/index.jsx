@@ -1,17 +1,12 @@
+import { categories } from "@/assets/data/categories";
 import { cn } from "@/lib/utils";
-import { fetchFilteredCities } from "@/network/common/commonApis.js";
-import { useQuery } from "@tanstack/react-query";
 import { ChevronRight } from "lucide-react";
 import { useState } from "react";
-import CityItem from "./CityItem";
+import CategoryItem from "./CategoryItem";
 
-const Cities = ({ className, lang }) => {
+const Categories = ({ className, lang }) => {
   const [isOpen, setIsOpen] = useState(true);
 
-  const { data: cities } = useQuery({
-    queryKey: ["filtered_cities"],
-    queryFn: () => fetchFilteredCities(),
-  });
   return (
     <div
       className={cn("accordion", className, {
@@ -21,7 +16,7 @@ const Cities = ({ className, lang }) => {
       <div className="cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
         <div className="flex items-center justify-between px-4">
           <strong className="font-roboto uppercase">
-            {lang === "en" ? "CITY" : "CITY"}
+            {lang === "en" ? "Categories" : "Categories"}
           </strong>
           <ChevronRight
             className={cn(
@@ -35,8 +30,8 @@ const Cities = ({ className, lang }) => {
       </div>
       <div className="accordion-content">
         <ul className="pt-4">
-          {cities?.map((item, i) => (
-            <CityItem lang={lang} key={i} item={item} />
+          {categories?.map((item, i) => (
+            <CategoryItem lang={lang} key={i} item={item} />
           ))}
         </ul>
       </div>
@@ -44,4 +39,4 @@ const Cities = ({ className, lang }) => {
   );
 };
 
-export default Cities;
+export default Categories;

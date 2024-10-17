@@ -1,27 +1,43 @@
 import { ActiveLink } from "@/components/ui/ActiveLink";
 import { pathProcessor } from "@/lib/utils";
 import useUser from "@/redux/slices/user-slice/useUser.js";
-import { ChevronRight, HomeIcon, Info, ReceiptText, Store } from "lucide-react";
+import {
+  Briefcase,
+  ChartBar,
+  ChevronRight,
+  GraduationCap,
+  HomeIcon,
+  Info,
+  LayoutDashboard,
+  LucideMessageSquarePlus,
+  Network,
+  Store,
+} from "lucide-react";
 
 const commonRoutes = [
   {
     path: "/",
     label: "Home",
-    icon: <HomeIcon size={16} />,
+    icon: <HomeIcon className="size-4" />,
   },
   {
     path: "/shop",
     label: "Shop",
-    icon: <Store size={16} />,
+    icon: <Store className="size-4" />,
+  },
+  {
+    path: "/services",
+    label: "Services",
+    icon: <Briefcase className="size-4" />,
   },
   {
     path: "/blogs",
     label: "Blogs",
-    icon: <Info size={16} />,
+    icon: <Info className="size-4" />,
   },
   {
     label: "Our Affiliates",
-    icon: <ReceiptText size={16} />,
+    icon: <Network className="size-4" />,
     children: [
       {
         path: "/parlors",
@@ -36,28 +52,33 @@ const commonRoutes = [
   {
     path: "/training",
     label: "Training",
-    icon: <ReceiptText size={16} />,
+    icon: <GraduationCap className="size-4" />,
   },
 ];
 const userRoutes = [
   {
     path: "/user/dashboard",
     label: "Dashboard",
-    icon: <HomeIcon size={16} />,
+    icon: <LayoutDashboard className="size-4" />,
   },
   {
     path: "/",
     label: "Home",
-    icon: <HomeIcon size={16} />,
+    icon: <HomeIcon className="size-4" />,
   },
   {
     path: "/shop",
     label: "Shop",
-    icon: <Store size={16} />,
+    icon: <Store className="size-4" />,
+  },
+  {
+    path: "/services",
+    label: "Services",
+    icon: <Briefcase className="size-4" />,
   },
   {
     label: "Our Affiliates",
-    icon: <ReceiptText size={16} />,
+    icon: <Network className="size-4" />,
     children: [
       {
         path: "/parlors",
@@ -74,31 +95,36 @@ const parlorRoutes = [
   {
     path: "/parlor/dashboard",
     label: "Dashboard",
-    icon: <HomeIcon size={16} />,
+    icon: <LayoutDashboard className="size-4" />,
   },
   {
     path: "/",
     label: "Home",
-    icon: <HomeIcon size={16} />,
+    icon: <HomeIcon className="size-4" />,
   },
   {
     path: "/shop",
     label: "Shop",
-    icon: <Store size={16} />,
+    icon: <Store className="size-4" />,
+  },
+  {
+    path: "/services",
+    label: "Services",
+    icon: <Briefcase className="size-4" />,
   },
   {
     path: "/parlor/earnings",
     label: "Earnings",
-    icon: <Info size={16} />,
+    icon: <ChartBar className="size-4" />,
   },
   {
     path: "/parlor/customer-request",
     label: "Customer request",
-    icon: <Info size={16} />,
+    icon: <LucideMessageSquarePlus className="size-4" />,
   },
   {
     label: "Our Affiliates",
-    icon: <ReceiptText size={16} />,
+    icon: <Network className="size-4" />,
     children: [
       {
         path: "/parlors",
@@ -132,7 +158,9 @@ const NavMenu = () => {
               }
               activeClassName="after:border-primary after:w-full"
             >
-              <span className="text-sm">{route?.label}</span>
+              <span className="whitespace-nowrap text-[0.875em]">
+                {route?.label}
+              </span>
             </ActiveLink>
           )}
           {route?.children?.length > 0 && (
@@ -142,7 +170,9 @@ const NavMenu = () => {
                   "underline-animated peer inline-flex cursor-pointer items-center gap-1 whitespace-nowrap font-playfair font-medium capitalize after:mx-auto after:border-title"
                 }
               >
-                <span className="text-sm">{route?.label}</span>
+                <span className="whitespace-nowrap text-[0.875em]">
+                  {route?.label}
+                </span>
                 <ChevronRight
                   className="size-4 lg:rotate-90"
                   strokeWidth={2.5}
@@ -158,7 +188,9 @@ const NavMenu = () => {
                       }
                       activeClassName="after:border-primary after:w-full"
                     >
-                      <span className="text-sm">{child?.label}</span>
+                      <span className="whitespace-nowrap text-[0.75em]">
+                        {child?.label}
+                      </span>
                     </ActiveLink>
                   </li>
                 ))}

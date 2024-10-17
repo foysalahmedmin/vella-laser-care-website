@@ -49,7 +49,7 @@ const UserAndAuthNav = ({ user }) => {
                 {me?.email}
               </span>
             </div>
-            <ChevronDown className="size-6 text-title/85" />
+            <ChevronDown className="hidden size-6 text-title/85 md:block" />
           </div>
           <Dropdown
             className="left-auto right-0 z-[60] min-w-40 origin-top-right -translate-x-0 shadow-custom-1"

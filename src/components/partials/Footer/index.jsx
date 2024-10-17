@@ -18,7 +18,7 @@ const Footer = () => {
         <div className="container py-12 md:py-16">
           <div className="flex items-center justify-between gap-4">
             <div>
-              <Logo />
+              <Logo className="text-3xl" />
             </div>
             <div className="flex items-center gap-2">
               <div className="h-12 overflow-hidden rounded-md">
