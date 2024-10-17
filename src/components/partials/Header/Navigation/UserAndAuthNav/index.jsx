@@ -18,6 +18,10 @@ const UserAndAuthNav = ({ user }) => {
     queryFn: () => fetchMe(),
     enabled: isAuthenticated,
   });
+  const handleLogout = () => {
+    localStorage.removeItem("vella_user");
+    navigate("/");
+  };
   return (
     <div>
       {isAuthenticated ? (
@@ -72,17 +76,22 @@ const UserAndAuthNav = ({ user }) => {
                   View Profile
                 </span>
               </li>
-              <li className="flex cursor-pointer items-center gap-2 px-4 py-2 hover:bg-muted/15">
+              <li
+                onClick={handleLogout}
+                className="flex cursor-pointer items-center gap-2 px-4 py-2 hover:bg-muted/15"
+              >
                 <div className="inline-block size-5 rounded-full object-cover object-center text-title/85">
                   <LogOut className="size-full" />
                 </div>
-                <span className="text-sm leading-none">Logout</span>
+                <span className="cursor-pointer text-sm leading-none">
+                  Logout
+                </span>
               </li>
             </ul>
           </Dropdown>
         </div>
       ) : (
-        <Link title="Login" to={"/user/sign-in"}>
+        <Link title="Login" to={"/authentication/sign-in"}>
           <Button asChild className="uppercase" size="sm">
             <span className="hidden sm:block">Login / Register</span>
             <User className="hidden size-4 sm:block" />

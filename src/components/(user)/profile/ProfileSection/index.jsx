@@ -11,12 +11,7 @@ const ProfileSection = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [bio, setBio] = useState("");
-
-  const [country, setCountry] = useState("");
-  const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
-  const [postCode, setPostCode] = useState("");
   const { isAuthenticated } = useUser();
   const { data: me } = useQuery({
     queryKey: ["me", isAuthenticated],

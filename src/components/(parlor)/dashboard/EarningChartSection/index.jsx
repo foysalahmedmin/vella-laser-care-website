@@ -12,18 +12,18 @@ import SemesterChart from "./SemesterChart";
 const EarningChartSection = () => {
   const tabs = [
     {
-      label: "Quarter",
-      value: "quarter",
+      label: "Daily",
+      value: "daily",
       element: <QuarterChart />,
     },
     {
-      label: "Semester",
-      value: "semester",
+      label: "Monthly",
+      value: "monthly",
       element: <SemesterChart />,
     },
     {
-      label: "Annual",
-      value: "annual",
+      label: "Yearly",
+      value: "yearly",
       element: <AnnualChart />,
     },
   ];

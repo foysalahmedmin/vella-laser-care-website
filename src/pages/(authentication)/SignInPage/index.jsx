@@ -30,7 +30,11 @@ const SignInPage = ({ lang }) => {
       const response = await mutateAsync({ email, password });
       toast.success("Login Successful");
       localStorage.setItem("vella_user", JSON.stringify(response));
-      navigate("/shop");
+      if (response?.role === "parlor") {
+        return navigate("/parlor/dashboard");
+      } else {
+        return navigate("/user/dashboard");
+      }
     } catch (error) {
       toast.error(errorMessage(error));
     }

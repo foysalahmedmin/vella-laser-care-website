@@ -3,6 +3,8 @@ import { pathProcessor } from "@/lib/utils";
 import { ChevronRight, HomeIcon, Info, ReceiptText, Store } from "lucide-react";
 import useUser from "@/redux/slices/user-slice/useUser.js";
 
+const { role } = useUser();
+
 const routes = [
   {
     path: "/",
@@ -42,7 +44,7 @@ const routes = [
 
 const userRoutes = [
   {
-    path: "/user/dashboard",
+    path: role === "parlor" ? "/parlor/dashboard" : "/user/dashboard",
     label: "Dashboard",
     icon: <HomeIcon size={16} />,
   },
@@ -57,7 +59,7 @@ const userRoutes = [
     icon: <Store size={16} />,
   },
   {
-    path: "/blog",
+    path: "/parlor/earnings",
     label: "Blog",
     icon: <Info size={16} />,
   },

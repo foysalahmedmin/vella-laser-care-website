@@ -8,62 +8,21 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-
-const data = [
-  {
-    name: "JAN",
-    Amount: 900,
-  },
-  {
-    name: "FEB",
-    Amount: 1000,
-  },
-  {
-    name: "APR",
-    Amount: 4000,
-  },
-  {
-    name: "MAY",
-    Amount: 1500,
-  },
-  {
-    name: "JUN",
-    Amount: 500,
-  },
-  {
-    name: "JUL",
-    Amount: 1000,
-  },
-  {
-    name: "AUG",
-    Amount: 1300,
-  },
-  {
-    name: "SEP",
-    Amount: 2100,
-  },
-  {
-    name: "OCT",
-    Amount: 3000,
-  },
-  {
-    name: "NOV",
-    Amount: 2300,
-  },
-  {
-    name: "DEC",
-    Amount: 5500,
-  },
-];
+import { useQuery } from "@tanstack/react-query";
+import { fetchParlorEarnings } from "@/pages/(parlor)/apis.js";
 
 const AnnualChart = () => {
+  const { data: yearly } = useQuery({
+    queryKey: ["yearly"],
+    queryFn: () => fetchParlorEarnings("yearly"),
+  });
   return (
     <div className="h-80">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           width={500}
           height={300}
-          data={data}
+          data={yearly}
           margin={{
             top: 5,
             right: 30,
@@ -73,7 +32,7 @@ const AnnualChart = () => {
           barSize={10}
         >
           <XAxis
-            dataKey="name"
+            dataKey="_id"
             scale="point"
             padding={{ left: 10, right: 10 }}
           />
@@ -82,7 +41,7 @@ const AnnualChart = () => {
           <Legend />
           <CartesianGrid strokeDasharray="3 3" />
           <Bar
-            dataKey="Amount"
+            dataKey="total"
             fill="#DF313B"
             background={{ fill: "#FDE5E7" }}
           />

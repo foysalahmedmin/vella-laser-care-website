@@ -31,10 +31,6 @@ const EarningByServices = () => {
             <span className="block text-sm">Statistics</span>
             <h4>Earning by Services</h4>
           </div>
-          <div>
-            <span className="text block">This week</span>
-            <strong className="text-lg">229,293</strong>
-          </div>
         </div>
         <hr />
         <div className="py-4">
