@@ -92,42 +92,40 @@ const YearlyIncome = () => {
   };
 
   return (
-    <div>
-      <div className="space-y-2 rounded-2xl bg-card p-6 shadow-custom-1">
-        <div className="flex items-center justify-between">
-          <div className="flex-1">
-            <span className="block text-sm">Statistics</span>
-            <h4>Yearly income</h4>
-          </div>
+    <div className="space-y-2 rounded-2xl bg-card p-6 shadow-custom-1">
+      <div className="flex items-center justify-between">
+        <div className="flex-1">
+          <span className="block text-sm">Statistics</span>
+          <h4>Yearly income</h4>
         </div>
-        <hr />
-        <div className="py-4">
-          <div className="h-56">
-            <div className="size-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    activeIndex={activeIndex}
-                    activeShape={renderActiveShape}
-                    data={data}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={60}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    dataKey="value"
-                    onMouseEnter={onPieEnter}
-                  >
-                    {data.map((entry, index) => (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={COLORS[index % COLORS.length]}
-                      />
-                    ))}
-                  </Pie>
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
+      </div>
+      <hr />
+      <div className="py-4">
+        <div className="h-56">
+          <div className="size-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  activeIndex={activeIndex}
+                  activeShape={renderActiveShape}
+                  data={data}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={80}
+                  fill="#8884d8"
+                  dataKey="value"
+                  onMouseEnter={onPieEnter}
+                >
+                  {data.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))}
+                </Pie>
+              </PieChart>
+            </ResponsiveContainer>
           </div>
         </div>
       </div>

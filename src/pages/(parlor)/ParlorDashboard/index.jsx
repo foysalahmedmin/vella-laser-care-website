@@ -8,8 +8,16 @@ const ParlorDashboard = () => {
     <main>
       <BannerSection />
       <CountSection />
-      <EarningChartSection />
-      <StatisticsSection />
+      <div className="container pb-16">
+        <div className="grid grid-cols-12 gap-8 md:gap-12">
+          <div className="col-span-12 self-stretch md:col-span-7 lg:col-span-8">
+            <EarningChartSection />
+          </div>
+          <div className="col-span-12 self-stretch md:col-span-5 lg:col-span-4">
+            <StatisticsSection />
+          </div>
+        </div>
+      </div>
     </main>
   );
 };

@@ -52,7 +52,7 @@ const ParlorsSection = ({ lang, info, total }) => {
               </div>
             </div>
             <div className="rounded-md px-4 py-6">
-              <div className="grid grid-cols-2 gap-6 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-y-8 lg:grid-cols-3 xl:grid-cols-4">
                 {info?.map((item, index) => (
                   <ParlorCard lang={lang} key={index} item={item} />
                 ))}

@@ -56,6 +56,10 @@ export const routes = [
             element: <ShopPage />,
           },
           {
+            path: "/blogs",
+            element: <ShopPage />,
+          },
+          {
             path: "/product/:id",
             element: <ProductDetailsPage />,
           },

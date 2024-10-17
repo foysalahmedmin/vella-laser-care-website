@@ -1,15 +1,15 @@
+import { cn } from "@/lib/utils";
 import EarningByServices from "./EarningByServices";
 
-const StatisticsSection = () => {
+const StatisticsSection = ({ className }) => {
   return (
-    <section className="py-16 md:py-24">
-      <div className="container">
-        <div className="">
-          {/*<AccountReached />*/}
-          <EarningByServices />
-          {/*<YearlyIncome />*/}
-        </div>
-      </div>
+    <section
+      className={cn(
+        "h-full rounded-2xl bg-card p-6 shadow-custom-1",
+        className,
+      )}
+    >
+      <EarningByServices />
     </section>
   );
 };

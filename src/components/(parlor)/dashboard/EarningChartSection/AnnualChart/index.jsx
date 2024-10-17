@@ -1,15 +1,14 @@
+import { fetchParlorEarnings } from "@/pages/(parlor)/apis.js";
+import { useQuery } from "@tanstack/react-query";
 import {
   Bar,
   BarChart,
   CartesianGrid,
-  Legend,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
-import { useQuery } from "@tanstack/react-query";
-import { fetchParlorEarnings } from "@/pages/(parlor)/apis.js";
 
 const AnnualChart = () => {
   const { data: yearly } = useQuery({
@@ -17,7 +16,7 @@ const AnnualChart = () => {
     queryFn: () => fetchParlorEarnings("yearly"),
   });
   return (
-    <div className="h-80">
+    <div className="size-full">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           width={500}
@@ -37,8 +36,8 @@ const AnnualChart = () => {
             padding={{ left: 10, right: 10 }}
           />
           <YAxis />
-          <Tooltip />
-          <Legend />
+          <Tooltip itemStyle={{ textTransform: "capitalize" }} />
+          {/* <Legend /> */}
           <CartesianGrid strokeDasharray="3 3" />
           <Bar
             dataKey="total"
