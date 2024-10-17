@@ -79,3 +79,17 @@ export async function AddAppointment({
   );
   return response?.data;
 }
+
+export async function fetchFilteredServiceCategories() {
+  const response = await base.get(
+    `/api/service_category/get_filtered_service_categories`,
+  );
+  return response?.data;
+}
+
+export async function fetchFilteredServices(search, category) {
+  const response = await base.get(
+    `/api/service/get_app_filtered_services?search=${search ? search : ""}&category=${category ? category : ""}`,
+  );
+  return response?.data;
+}

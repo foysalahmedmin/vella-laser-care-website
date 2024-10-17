@@ -1,11 +1,16 @@
-import { categories } from "@/assets/data/categories";
 import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 import CategoryItem from "./CategoryItem";
+import { useQuery } from "@tanstack/react-query";
+import { fetchFilteredServiceCategories } from "@/pages/(common)/HomePage/homeApis.js";
 
 const Categories = ({ className, lang }) => {
   const [isOpen, setIsOpen] = useState(true);
+  const { data } = useQuery({
+    queryKey: ["service_categories"],
+    queryFn: () => fetchFilteredServiceCategories(),
+  });
 
   return (
     <div
@@ -30,7 +35,7 @@ const Categories = ({ className, lang }) => {
       </div>
       <div className="accordion-content">
         <ul className="pt-4">
-          {categories?.map((item, i) => (
+          {data?.map((item, i) => (
             <CategoryItem lang={lang} key={i} item={item} />
           ))}
         </ul>

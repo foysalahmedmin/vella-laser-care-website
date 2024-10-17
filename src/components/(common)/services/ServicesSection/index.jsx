@@ -5,14 +5,16 @@ import { ChevronDown, List } from "lucide-react";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 
-import { fetchFeaturedServices } from "@/pages/(common)/HomePage/homeApis.js";
+import { fetchFilteredServices } from "@/pages/(common)/HomePage/homeApis.js";
 import { useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
 
 const ServicesSection = ({ lang }) => {
+  const { category } = useSelector((state) => state.service_filter);
   const [isOpen, setIsOpen] = useState(false);
   const { data } = useQuery({
-    queryKey: ["featured_services"],
-    queryFn: () => fetchFeaturedServices(),
+    queryKey: ["filtered_services", category],
+    queryFn: () => fetchFilteredServices("", category),
   });
   return (
     <section className="py-16">
