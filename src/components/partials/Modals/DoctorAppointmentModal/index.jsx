@@ -27,9 +27,9 @@ const DoctorAppointmentModal = ({
   doc,
   department,
 }) => {
-  const { isAuthenticated } = useUser();
+  const { role, isAuthenticated } = useUser();
   const [name, setName] = useState("");
-  const [appointment_type, setAppointmentType] = useState("");
+  const [appointment_type, setAppointmentType] = useState("online");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [date, setDate] = useState(new Date());
@@ -80,7 +80,8 @@ const DoctorAppointmentModal = ({
         return toast.error("Please fill all fields");
       }
       const status = await mutateAsync({
-        customer: isAuthenticated ? me?._id : "",
+        ...(role === "customer" && { customer: me?._id }),
+        ...(role === "parlor" && { parlor: me?._id }),
         name,
         appointment_type,
         department,
@@ -141,6 +142,7 @@ const DoctorAppointmentModal = ({
                             className="radio text-lg"
                             type="radio"
                             name="appointment-type"
+                            disabled={role === "parlor"}
                             value="online"
                             checked={appointment_type === "online"}
                             onChange={(e) => setAppointmentType(e.target.value)}
@@ -154,6 +156,7 @@ const DoctorAppointmentModal = ({
                             className="radio text-lg"
                             type="radio"
                             name="appointment-type"
+                            disabled={role === "parlor"}
                             value="offline"
                             checked={appointment_type === "offline"}
                             onChange={(e) => setAppointmentType(e.target.value)}
