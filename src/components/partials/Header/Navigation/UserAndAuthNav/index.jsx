@@ -1,17 +1,17 @@
+import { urls } from "@/api/urls.js";
 import { Button } from "@/components/ui/Button";
 import { Dropdown } from "@/components/ui/Dropdown";
-import { ChevronDown, LogIn, LogOut, User, User2 } from "lucide-react";
-import { useState } from "react";
-import { Link } from "react-router-dom/dist";
+import { fetchMe } from "@/network/user/userApis.js";
 import useUser from "@/redux/slices/user-slice/useUser.js";
 import { useQuery } from "@tanstack/react-query";
-import { fetchMe } from "@/network/user/userApis.js";
-import { urls } from "@/api/urls.js";
+import { ChevronDown, LogIn, LogOut, User, User2 } from "lucide-react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom/dist";
 
 const UserAndAuthNav = ({ user }) => {
   const navigate = useNavigate();
-  const { isAuthenticated } = useUser();
+  const { isAuthenticated, role } = useUser();
   const [isOpen, setIsOpen] = useState();
   const { data: me } = useQuery({
     queryKey: ["me"],
@@ -70,7 +70,13 @@ const UserAndAuthNav = ({ user }) => {
                   )}
                 </div>
                 <span
-                  onClick={() => navigate("/user/profile")}
+                  onClick={() =>
+                    navigate(
+                      role && role === "parlor"
+                        ? "/parlor/profile"
+                        : "/user/profile",
+                    )
+                  }
                   className="cursor-pointer text-sm leading-none"
                 >
                   View Profile

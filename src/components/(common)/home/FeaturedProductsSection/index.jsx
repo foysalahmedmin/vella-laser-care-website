@@ -7,8 +7,8 @@ import {
   CarouselPreviousTrigger,
 } from "@/components/ui/Carousel";
 import { SectionTitle, Subtitle, Title } from "@/components/ui/SectionTitle";
-import { useQuery } from "@tanstack/react-query";
 import { fetchFeaturedProducts } from "@/pages/(common)/HomePage/homeApis.js";
+import { useQuery } from "@tanstack/react-query";
 
 const FeaturedProductsSection = ({ lang }) => {
   const { data } = useQuery({
@@ -65,7 +65,12 @@ const FeaturedProductsSection = ({ lang }) => {
                   key={index}
                   className="px-2 md:basis-1/2 xl:basis-1/4"
                 >
-                  <ProductCard lang={lang} item={item} variant="home" />
+                  <ProductCard
+                    lang={lang}
+                    item={item}
+                    variant="home"
+                    className="h-full"
+                  />
                 </CarouselItem>
               ))}
             </CarouselContent>

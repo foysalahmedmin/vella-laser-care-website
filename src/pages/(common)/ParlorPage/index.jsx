@@ -1,9 +1,9 @@
 import ParlorsSection from "@/components/(common)/parlor/ParlorsSection";
 import BannerSection from "@/components/partials/Sections/BannerSection";
 import SubscriptionSection from "@/components/partials/Sections/SubscriptionSection";
-import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
 import { fetchFilteredParlors } from "@/pages/(common)/ParlorPage/parlorApis.js";
+import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
 const ParlorPage = () => {

@@ -13,6 +13,7 @@ import DoctorDetailsPage from "@/pages/(common)/DoctorDetailsPage";
 import DoctorsPage from "@/pages/(common)/DoctorsPage";
 import ErrorPage from "@/pages/(common)/ErrorPage";
 import HomePage from "@/pages/(common)/HomePage";
+import Meet from "@/pages/(common)/Meet/Meet.jsx";
 import NotificationsPage from "@/pages/(common)/NotificationsPage";
 import ParlorDetailsPage from "@/pages/(common)/ParlorDetailsPage";
 import ParlorPage from "@/pages/(common)/ParlorPage";
@@ -27,7 +28,6 @@ import ParlorProfilePage from "@/pages/(parlor)/ParlorProfilePage";
 import UserDashboard from "@/pages/(user)/UserDashboard";
 import UserProfilePage from "@/pages/(user)/UserProfilePage";
 import { Suspense } from "react";
-import Meet from "@/pages/(common)/Meet/Meet.jsx";
 
 export const routes = [
   {

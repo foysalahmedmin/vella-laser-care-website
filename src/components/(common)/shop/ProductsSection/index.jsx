@@ -1,12 +1,12 @@
 import ProductCard from "@/components/partials/Cards/ProductCard";
 import { Button } from "@/components/ui/Button";
 import { Dropdown } from "@/components/ui/Dropdown";
+import { fetchFilteredProducts } from "@/pages/(common)/ShopPage/shopApis.js";
+import { useQuery } from "@tanstack/react-query";
 import { ChevronDown, List } from "lucide-react";
 import { useState } from "react";
-import Sidebar from "./Sidebar";
-import { useQuery } from "@tanstack/react-query";
-import { fetchFilteredProducts } from "@/pages/(common)/ShopPage/shopApis.js";
 import { useSelector } from "react-redux";
+import Sidebar from "./Sidebar";
 
 const ProductsSection = ({ lang }) => {
   const {
