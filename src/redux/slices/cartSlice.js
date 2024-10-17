@@ -12,7 +12,7 @@ export const cartFilter = createSlice({
     postal: "",
     phone: "",
     as_profile: false,
-    payment_method: "",
+    payment_method: "online",
   },
   reducers: {
     ToggleCartIsOpen: (state, action) => {

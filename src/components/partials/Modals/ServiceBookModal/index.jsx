@@ -14,7 +14,7 @@ import {
 import useUser from "@/redux/slices/user-slice/useUser.js";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Calendar, Send } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const ServiceBookModal = ({
@@ -25,7 +25,7 @@ const ServiceBookModal = ({
   service,
   s_type,
 }) => {
-  const { isAuthenticated } = useUser();
+  const { role, isAuthenticated } = useUser();
   const [service_type, setServiceType] = useState(s_type || "");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -48,6 +48,12 @@ const ServiceBookModal = ({
     queryKey: ["filtered_slots"],
     queryFn: () => fetchFilteredSlots(),
   });
+  useEffect(() => {
+    if (role === "parlor") {
+      setPaymentMethod("online");
+    }
+  }, [role]);
+
   const { isPending, mutateAsync } = useMutation({
     mutationFn: AddServiceBooking,
   });
@@ -68,7 +74,8 @@ const ServiceBookModal = ({
         return toast.error("Please fill all fields");
       }
       const status = await mutateAsync({
-        customer: isAuthenticated ? me?._id : "",
+        ...(role === "customer" && { customer: me?._id }),
+        ...(role === "parlor" && { parlor: me?._id }),
         name,
         service,
         service_type,
@@ -181,12 +188,13 @@ const ServiceBookModal = ({
                           className="h-full w-full border-none outline-none"
                           name="mode"
                           value={payment_method}
+                          disabled={role === "parlor"}
                           onChange={(e) => setPaymentMethod(e.target.value)}
                           required
                         >
                           <option value="">Select Mode</option>
                           <option value="online">Online</option>
-                          <option value="cash">Chamber Visit</option>
+                          <option value="offline">Chamber Visit</option>
                         </select>
                       </div>
                     </label>

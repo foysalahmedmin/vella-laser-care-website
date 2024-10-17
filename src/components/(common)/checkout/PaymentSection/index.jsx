@@ -20,7 +20,7 @@ import useUser from "@/redux/slices/user-slice/useUser.js";
 
 const PaymentSection = ({ className }) => {
   const navigate = useNavigate();
-  const { isAuthenticated } = useUser();
+  const { role, isAuthenticated } = useUser();
   const [isAgree, setIsAgree] = useState(false);
   const dispatch = useDispatch();
   const {
@@ -169,9 +169,10 @@ const PaymentSection = ({ className }) => {
                 <input
                   className="radio shrink-0 text-xl leading-none"
                   type="radio"
-                  value="cash"
-                  checked={payment_method === "cash"}
-                  onChange={() => dispatch(SetCartPaymentMethod("cash"))}
+                  value="offline"
+                  disabled={role === "parlor"}
+                  checked={payment_method === "offline"}
+                  onChange={() => dispatch(SetCartPaymentMethod("offline"))}
                   name="payment-method"
                 />
                 <span className="font-medium leading-none group-has-[:checked]:text-title">
@@ -194,6 +195,7 @@ const PaymentSection = ({ className }) => {
                   type="radio"
                   value="online"
                   name="payment-method"
+                  disabled={role === "parlor"}
                   checked={payment_method === "online"}
                   onChange={() => dispatch(SetCartPaymentMethod("online"))}
                 />

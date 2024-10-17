@@ -16,7 +16,7 @@ import useUser from "@/redux/slices/user-slice/useUser.js";
 import { fetchMe } from "@/network/user/userApis.js";
 
 const ConsultationScheduleSection = ({ lang }) => {
-  const { isAuthenticated } = useUser();
+  const { role, isAuthenticated } = useUser();
   const [name, setName] = useState("");
   const [appointment_type, setAppointmentType] = useState("online");
   const [department, setDepartment] = useState("");
@@ -76,7 +76,8 @@ const ConsultationScheduleSection = ({ lang }) => {
         return toast.error("Please fill all fields");
       }
       const status = await mutateAsync({
-        customer: isAuthenticated ? me?._id : "",
+        ...(role === "customer" && { customer: me?._id }),
+        ...(role === "parlor" && { parlor: me?._id }),
         name,
         appointment_type,
         department,
@@ -177,6 +178,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                               className="radio text-lg"
                               type="radio"
                               name="appointment-type"
+                              disabled={role === "parlor"}
                               value="online"
                               checked={appointment_type === "online"}
                               onChange={(e) =>
@@ -192,6 +194,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                               className="radio text-lg"
                               type="radio"
                               name="appointment-type"
+                              disabled={role === "parlor"}
                               value="offline"
                               checked={appointment_type === "offline"}
                               onChange={(e) =>

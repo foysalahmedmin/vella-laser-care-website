@@ -45,6 +45,7 @@ export async function fetchDoctorSlots(doctor, day) {
 
 export async function AddAppointment({
   customer,
+  parlor,
   name,
   appointment_type,
   department,
@@ -57,6 +58,7 @@ export async function AddAppointment({
 }) {
   const payload = {
     ...(customer && { customer }),
+    ...(parlor && { parlor }),
     name,
     appointment_type,
     department,
