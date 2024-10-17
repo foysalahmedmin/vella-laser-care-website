@@ -27,6 +27,7 @@ import ParlorProfilePage from "@/pages/(parlor)/ParlorProfilePage";
 import UserDashboard from "@/pages/(user)/UserDashboard";
 import UserProfilePage from "@/pages/(user)/UserProfilePage";
 import { Suspense } from "react";
+import Meet from "@/pages/(common)/Meet/Meet.jsx";
 
 export const routes = [
   {
@@ -85,6 +86,10 @@ export const routes = [
           {
             path: "ssl_success",
             element: <Success />,
+          },
+          {
+            path: "/meet/:id",
+            element: <Meet />,
           },
         ],
       },

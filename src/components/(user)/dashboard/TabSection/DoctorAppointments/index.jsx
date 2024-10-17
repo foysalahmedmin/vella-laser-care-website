@@ -10,8 +10,10 @@ import { ArrowUpRight, Download, Trash } from "lucide-react";
 import moment from "moment";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const DoctorAppointments = () => {
+  const navigate = useNavigate();
   const [isDownloading, setIsDownloading] = useState(false);
   const [downloadIndex, setDownloadIndex] = useState(null);
   const [pendingIndex, setPendingIndex] = useState(null);
@@ -84,13 +86,13 @@ const DoctorAppointments = () => {
                             <span className="inline-block size-2 rounded-full bg-green-500" />
                             <span>Online</span>
                           </div>
-                          <a
-                            href="#"
-                            className="inline-flex items-center gap-1 text-primary underline"
+                          <div
+                            onClick={() => navigate(`/meet/${x?._id}`)}
+                            className="inline-flex cursor-pointer items-center gap-1 text-primary underline"
                           >
                             <span>Join Online</span>
                             <ArrowUpRight className="size-4" />
-                          </a>
+                          </div>
                         </div>
                       ) : (
                         <div>

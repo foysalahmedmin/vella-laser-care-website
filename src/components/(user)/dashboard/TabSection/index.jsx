@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/Tabs";
 import DoctorAppointments from "./DoctorAppointments";
 import MyOrders from "./MyOrders";
-import ParlorAppointments from "./ParlorAppointments";
 import Services from "./Services";
 
 const TabSection = () => {
@@ -28,11 +27,11 @@ const TabSection = () => {
       value: "services ",
       element: <Services />,
     },
-    {
-      label: "Parlor Appointments",
-      value: "parlor-appointments ",
-      element: <ParlorAppointments />,
-    },
+    // {
+    //   label: "Parlor Appointments",
+    //   value: "parlor-appointments ",
+    //   element: <ParlorAppointments />,
+    // },
   ];
   return (
     <section className="py-16 md:py-24">

@@ -47,3 +47,8 @@ export async function mutateSignOut({ refreshToken }) {
   });
   return response?.data;
 }
+
+export async function fetchOneUser(id) {
+  const response = await base.get(`/api/auth/get_one_user/${id}`);
+  return response?.data;
+}

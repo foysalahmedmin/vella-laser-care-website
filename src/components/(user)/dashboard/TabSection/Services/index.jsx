@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/Button";
-import { Trash } from "lucide-react";
+import { ArrowUpRight, Trash } from "lucide-react";
 import {
   fetchCustomerBookings,
   mutateBookingStatus,
@@ -9,8 +9,10 @@ import { useState } from "react";
 import moment from "moment/moment.js";
 import { errorMessage } from "@/helpers/error.js";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Services = () => {
+  const navigate = useNavigate();
   const [pendingIndex, setPendingIndex] = useState(null);
   const { data: services, refetch } = useQuery({
     queryKey: ["bookings"],
@@ -79,10 +81,18 @@ const Services = () => {
                   <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
                     <div>
                       {x?.payment_method === "online" ? (
-                        <div className="inline-flex items-center gap-1">
-                          <span className="inline-block size-2 rounded-full bg-green-500" />
-                          <span>Online</span>
-                          <p>Join Online</p>
+                        <div>
+                          <div className="flex items-center justify-center gap-1 font-medium">
+                            <span className="inline-block size-2 rounded-full bg-green-500" />
+                            <span>Online</span>
+                          </div>
+                          <div
+                            onClick={() => navigate(`/meet/${x?._id}`)}
+                            className="inline-flex cursor-pointer items-center gap-1 text-primary underline"
+                          >
+                            <span>Join Online</span>
+                            <ArrowUpRight className="size-4" />
+                          </div>
                         </div>
                       ) : (
                         <div className="inline-flex items-center gap-1">

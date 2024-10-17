@@ -195,7 +195,7 @@ const banglaWordMap = {
 };
 
 const isNumber = (str) => {
-  let strTrim = str.toString().trim();
+  let strTrim = str?.toString()?.trim();
   return strTrim !== "" && !isNaN(strTrim);
 };
 
@@ -205,7 +205,7 @@ function englishToBanglaWord(number) {
     words = arguments[1];
 
   if (number === 0) {
-    return !words ? banglaWordMap[0] : words.join(" ").replace(/,$/, "");
+    return !words ? banglaWordMap[0] : words?.join(" ").replace(/,$/, "");
   }
 
   if (!words) {
@@ -213,8 +213,8 @@ function englishToBanglaWord(number) {
   }
 
   if (number < 0) {
-    words.push(NEGATIVE);
-    number = Math.abs(number);
+    words?.push(NEGATIVE);
+    number = Math?.abs(number);
   }
 
   if (number < HUNDRED) {
