@@ -16,3 +16,15 @@ export async function fetchParlorCounts() {
   const response = await base.get(`/api/dashboard/get_parlor_counts`);
   return response?.data;
 }
+
+export async function fetchEarnings(page, limit) {
+  const response = await base.get(
+    `/api/dashboard/get_earnings?page=${page}&limit=${limit}`,
+  );
+  return response?.data[0];
+}
+
+export async function fetchEarningSummary() {
+  const response = await base.get(`/api/dashboard/get_earnings_summary`);
+  return response?.data;
+}

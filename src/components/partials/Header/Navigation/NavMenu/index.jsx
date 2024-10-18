@@ -118,8 +118,13 @@ const parlorRoutes = [
     icon: <ChartBar className="size-4" />,
   },
   {
-    path: "/parlor/customer-request",
-    label: "Customer request",
+    path: "/parlor/history",
+    label: "Booking History",
+    icon: <LucideMessageSquarePlus className="size-4" />,
+  },
+  {
+    path: "/parlor/withdraw_history",
+    label: "Withdraw History",
     icon: <LucideMessageSquarePlus className="size-4" />,
   },
   {

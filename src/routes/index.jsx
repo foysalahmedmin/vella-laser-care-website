@@ -29,6 +29,7 @@ import ParlorProfilePage from "@/pages/(parlor)/ParlorProfilePage";
 import UserDashboard from "@/pages/(user)/UserDashboard";
 import UserProfilePage from "@/pages/(user)/UserProfilePage";
 import { Suspense } from "react";
+import WithdrawHistory from "@/pages/(parlor)/WithdrawHistory/index.jsx";
 
 export const routes = [
   {
@@ -156,8 +157,12 @@ export const routes = [
             element: <EarningsPage />,
           },
           {
-            path: "customer-request",
+            path: "history",
             element: <CustomerRequestPage />,
+          },
+          {
+            path: "withdraw_history",
+            element: <WithdrawHistory />,
           },
           {
             path: "shop",

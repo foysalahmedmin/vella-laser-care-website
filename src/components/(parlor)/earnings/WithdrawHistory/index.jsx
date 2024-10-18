@@ -1,15 +1,11 @@
-import { Button } from "@/components/ui/Button";
 import { useQuery } from "@tanstack/react-query";
-import { fetchEarnings } from "@/pages/(parlor)/apis.js";
 import moment from "moment";
-import { useState } from "react";
-import WithdrawModal from "@/components/partials/Modals/WithdrawModal/index.jsx";
+import { fetchMyWithdraws } from "@/pages/(parlor)/EarningsPage/api.js";
 
-const OrderSection = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const WithdrawHistories = () => {
   const { data } = useQuery({
-    queryKey: ["earnings"],
-    queryFn: () => fetchEarnings(1, 20),
+    queryKey: ["my_withdrawals"],
+    queryFn: () => fetchMyWithdraws(1, 20),
   });
   return (
     <section className="pb-16 md:pb-24">
@@ -20,34 +16,29 @@ const OrderSection = () => {
               <span className="inline-block font-medium leading-none text-title/85">
                 Showing results 1-50 of 110
               </span>
-              <div>
-                <Button
-                  onClick={() => setIsOpen(true)}
-                  className="text-sm uppercase"
-                >
-                  withdraw balance
-                </Button>
-              </div>
             </div>
             <div>
               <div className="grid grid-cols-1 overflow-x-auto">
                 <table className="w-full">
                   <thead>
-                    <tr className="grid grid-cols-5 bg-primary/5 text-title/85">
+                    <tr className="grid grid-cols-6 bg-primary/5 text-title/85">
                       <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
                         Date
                       </th>
                       <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
-                        Service
+                        Account Name
                       </th>
                       <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
-                        Customer
+                        Account Number
                       </th>
                       <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
-                        Status
+                        Bank Name
                       </th>
                       <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
                         Income
+                      </th>
+                      <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
+                        Status
                       </th>
                     </tr>
                   </thead>
@@ -56,26 +47,31 @@ const OrderSection = () => {
                       data?.data?.map((x, index) => (
                         <tr
                           key={index}
-                          className="mt-3 grid grid-cols-5 bg-muted/15 text-sm text-title/85"
+                          className="mt-3 grid grid-cols-6 bg-muted/15 text-sm text-title/85"
                         >
                           <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
-                            {moment(new Date(x?.date)).format("DD, MMM YYYY")}
+                            {moment(new Date(x?.createdAt)).format(
+                              "DD, MMM YYYY",
+                            )}
                           </td>
                           <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
-                            {x?.service?.name}
+                            {x?.account_name}
                           </td>
                           <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
-                            {x?.name}
+                            {x?.account_number}
+                          </td>
+                          <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
+                            {x?.bank_name}
+                          </td>
+                          <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
+                            <div className="inline-flex items-center justify-end gap-2">
+                              {x?.amount}BDT
+                            </div>
                           </td>
                           <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
                             <span className="text-green-500">
                               {x?.status?.toUpperCase()}
                             </span>
-                          </td>
-                          <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
-                            <div className="inline-flex items-center justify-end gap-2">
-                              {x?.total}BDT
-                            </div>
                           </td>
                         </tr>
                       ))
@@ -85,7 +81,7 @@ const OrderSection = () => {
                           colSpan={7}
                           className="self-stretch px-4 py-4 text-center"
                         >
-                          No Booking Found!
+                          No Data Found!
                         </td>
                       </tr>
                     )}
@@ -96,9 +92,8 @@ const OrderSection = () => {
           </div>
         </div>
       </div>
-      <WithdrawModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </section>
   );
 };
 
-export default OrderSection;
+export default WithdrawHistories;

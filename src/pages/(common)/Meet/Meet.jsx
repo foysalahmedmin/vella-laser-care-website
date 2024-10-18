@@ -4,12 +4,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchMe } from "@/network/user/userApis.js";
 import { urls } from "@/api/urls.js";
+import useUser from "@/redux/slices/user-slice/useUser.js";
 
 const Meet = () => {
+  const { role } = useUser();
   const { id } = useParams();
   const navigate = useNavigate();
   const { data: me } = useQuery({
-    queryKey: "me",
+    queryKey: ["me", role],
     queryFn: () => fetchMe(),
   });
   return (
@@ -68,7 +70,7 @@ const Meet = () => {
           ],
         }}
         interfaceConfigOverwrite={{
-          APP_NAME: "Admission Assist",
+          APP_NAME: "Vella Laser Care",
           DISABLE_JOIN_LEAVE_NOTIFICATIONS: true,
         }}
         userInfo={{
@@ -79,7 +81,11 @@ const Meet = () => {
         }}
         spinner={() => <div>loading .....</div>}
         onReadyToClose={() => {
-          navigate("/user/dashboard");
+          if (role === "parlor") {
+            navigate("/parlor/dashboard");
+          } else {
+            navigate("/user/dashboard");
+          }
         }}
         onApiReady={(externalApi) => {}}
         getIFrameRef={(iframeRef) => {

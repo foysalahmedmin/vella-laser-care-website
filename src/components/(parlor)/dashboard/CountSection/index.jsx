@@ -2,12 +2,15 @@ import { MoneyBag } from "@/assets/svg/icons/DashboardBanner";
 import { Box, CalendarCheck2, CalendarCog } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchParlorCounts } from "@/pages/(parlor)/apis.js";
+import useUser from "@/redux/slices/user-slice/useUser.js";
 
 const CountSection = () => {
+  const { role } = useUser();
   const { data } = useQuery({
-    queryKey: ["dashboard_count"],
+    queryKey: ["dashboard_count", role],
     queryFn: () => fetchParlorCounts(),
   });
+  console.log(data);
   return (
     <section className="py-16 md:pt-0">
       <div className="container">
@@ -16,7 +19,9 @@ const CountSection = () => {
             <h4 className="group-hover:text-primary-foreground">Bookings</h4>
             <div className="flex items-end justify-between gap-2 text-title/85 group-hover:text-primary-foreground">
               <span className="inline-block font-playfair text-3xl font-black">
-                {data?.bookings > 10 ? data?.bookings : `0${data?.bookings}`}
+                {data?.bookings > 10
+                  ? data?.bookings || 0
+                  : `0${data?.bookings}`}
               </span>
               <span className="grid size-10 place-items-center rounded-full bg-primary/10 text-primary group-hover:bg-light/15 group-hover:text-primary-foreground">
                 <CalendarCheck2 className="size-6" />
