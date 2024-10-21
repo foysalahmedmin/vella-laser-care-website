@@ -23,6 +23,7 @@ import ProductDetailsPage from "@/pages/(common)/ProductDetailsPage";
 import ServiceDetailsPage from "@/pages/(common)/ServiceDetailsPage";
 import ServicesPage from "@/pages/(common)/ServicesPage";
 import ShopPage from "@/pages/(common)/ShopPage";
+import TrainingPage from "@/pages/(common)/TrainingPage";
 import CustomerRequestPage from "@/pages/(parlor)/CustomerRequestPage";
 import EarningsPage from "@/pages/(parlor)/EarningsPage";
 import ParlorDashboard from "@/pages/(parlor)/ParlorDashboard";
@@ -97,6 +98,10 @@ export const routes = [
           {
             path: "/doctor/:id",
             element: <DoctorDetailsPage />,
+          },
+          {
+            path: "/training",
+            element: <TrainingPage />,
           },
           {
             path: "/meet/:id",
