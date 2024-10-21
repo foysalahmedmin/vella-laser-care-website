@@ -1,7 +1,7 @@
-import DeliveryFormSection from "@/components/(common)/checkout/DeliveryFormSection";
-import OrderReviewSection from "@/components/(common)/checkout/OrderReviewSection";
-import PageHeaderSection from "@/components/(common)/checkout/PageHeaderSection";
-import PaymentSection from "@/components/(common)/checkout/PaymentSection";
+import DeliveryFormSection from "@/components/(checkout)/checkout/DeliveryFormSection";
+import OrderReviewSection from "@/components/(checkout)/checkout/OrderReviewSection";
+import PageHeaderSection from "@/components/(checkout)/checkout/PageHeaderSection";
+import PaymentSection from "@/components/(checkout)/checkout/PaymentSection";
 
 const CheckoutPage = () => {
   return (

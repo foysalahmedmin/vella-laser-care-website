@@ -1,5 +1,4 @@
 import AuthenticationLayout from "@/components/layouts/AuthenticationLayout";
-import CheckoutLayout from "@/components/layouts/CheckoutLayout";
 import CommonLayout from "@/components/layouts/CommonLayout";
 import HomeLayout from "@/components/layouts/HomeLayout";
 import ParlorLayout from "@/components/layouts/ParlorLayout";
@@ -8,7 +7,10 @@ import UserLayout from "@/components/layouts/UserLayout";
 import Loader from "@/components/partials/Loader";
 import SignInPage from "@/pages/(authentication)/SignInPage";
 import SignUpPage from "@/pages/(authentication)/SignUpPage";
-import CheckoutPage from "@/pages/(common)/CheckoutPage";
+import CheckoutPage from "@/pages/(checkout)/CheckoutPage";
+import PaymentCancelledPage from "@/pages/(checkout)/PaymentCancelledPage";
+import PaymentFailedPage from "@/pages/(checkout)/PaymentFailedPage";
+import PaymentSuccessPage from "@/pages/(checkout)/PaymentSuccessPage";
 import DoctorDetailsPage from "@/pages/(common)/DoctorDetailsPage";
 import DoctorsPage from "@/pages/(common)/DoctorsPage";
 import ErrorPage from "@/pages/(common)/ErrorPage";
@@ -17,7 +19,6 @@ import Meet from "@/pages/(common)/Meet/Meet.jsx";
 import NotificationsPage from "@/pages/(common)/NotificationsPage";
 import ParlorDetailsPage from "@/pages/(common)/ParlorDetailsPage";
 import ParlorPage from "@/pages/(common)/ParlorPage";
-import Success from "@/pages/(common)/Payment/Success.jsx";
 import ProductDetailsPage from "@/pages/(common)/ProductDetailsPage";
 import ServiceDetailsPage from "@/pages/(common)/ServiceDetailsPage";
 import ServicesPage from "@/pages/(common)/ServicesPage";
@@ -26,10 +27,10 @@ import CustomerRequestPage from "@/pages/(parlor)/CustomerRequestPage";
 import EarningsPage from "@/pages/(parlor)/EarningsPage";
 import ParlorDashboard from "@/pages/(parlor)/ParlorDashboard";
 import ParlorProfilePage from "@/pages/(parlor)/ParlorProfilePage";
+import WithdrawHistory from "@/pages/(parlor)/WithdrawHistory/index.jsx";
 import UserDashboard from "@/pages/(user)/UserDashboard";
 import UserProfilePage from "@/pages/(user)/UserProfilePage";
 import { Suspense } from "react";
-import WithdrawHistory from "@/pages/(parlor)/WithdrawHistory/index.jsx";
 
 export const routes = [
   {
@@ -54,16 +55,24 @@ export const routes = [
         element: <CommonLayout />,
         children: [
           {
+            path: "/notifications",
+            element: <NotificationsPage />,
+          },
+          {
             path: "/shop",
             element: <ShopPage />,
+          },
+          {
+            path: "/product/:id",
+            element: <ProductDetailsPage />,
           },
           {
             path: "/blogs",
             element: <ShopPage />,
           },
           {
-            path: "/product/:id",
-            element: <ProductDetailsPage />,
+            path: "/blog/:id",
+            element: <h1>Blog-Details</h1>,
           },
           {
             path: "/parlors",
@@ -90,33 +99,24 @@ export const routes = [
             element: <DoctorDetailsPage />,
           },
           {
-            path: "/notifications",
-            element: <NotificationsPage />,
-          },
-          {
-            path: "ssl_success",
-            element: <Success />,
-          },
-          {
-            path: "ssl_failed",
-            element: <Success />,
-          },
-          {
-            path: "ssl_cancelled",
-            element: <Success />,
-          },
-          {
             path: "/meet/:id",
             element: <Meet />,
           },
-        ],
-      },
-      {
-        element: <CheckoutLayout />,
-        children: [
           {
             path: "/checkout",
             element: <CheckoutPage />,
+          },
+          {
+            path: "/ssl_success",
+            element: <PaymentSuccessPage />,
+          },
+          {
+            path: "/ssl_failed",
+            element: <PaymentFailedPage />,
+          },
+          {
+            path: "/ssl_cancelled",
+            element: <PaymentCancelledPage />,
           },
         ],
       },
