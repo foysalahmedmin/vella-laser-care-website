@@ -1,9 +1,20 @@
 import { Button } from "@/components/ui/Button";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import ParlorRegistrationModal from "@/components/partials/Modals/ParlorRegistrationModal/index.jsx";
 
 const BannerSlide = ({ item, lang }) => {
-  const { title, title_bn, subTitle, subTitleBn, description, image, button } =
-    item;
+  const {
+    title,
+    title_bn,
+    subTitle,
+    subTitleBn,
+    description,
+    image,
+    button,
+    isRegister,
+  } = item;
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="relative z-30 size-full">
       <div className="container">
@@ -22,18 +33,30 @@ const BannerSlide = ({ item, lang }) => {
                   </h1>
                 )}
               </div>
-
-              {/* {description && <p className="mb-6">{description}</p>} */}
               {button?.label && button?.path && (
                 <div className="mt-10">
-                  <Link to={button?.path || "#"}>
-                    <Button>
-                      {lang === "en" ? button?.label : button?.label_bn}
-                      {button?.icon && (
-                        <button.icon strokeWidth={3} className="size-4" />
-                      )}
-                    </Button>
-                  </Link>
+                  {!isRegister && (
+                    <Link to={button?.path || "#"}>
+                      <Button>
+                        {lang === "en" ? button?.label : button?.label_bn}
+                        {button?.icon && (
+                          <button.icon strokeWidth={3} className="size-4" />
+                        )}
+                      </Button>
+                    </Link>
+                  )}
+                  {isRegister && (
+                    <div>
+                      <Button onClick={() => setIsOpen(true)}>
+                        {lang === "en"
+                          ? "Request as a Parlor"
+                          : "Request as a Parlor"}
+                        {button?.icon && (
+                          <button.icon strokeWidth={3} className="size-4" />
+                        )}
+                      </Button>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -43,16 +66,20 @@ const BannerSlide = ({ item, lang }) => {
                   className="mx-auto size-full object-contain object-center"
                   src={image?.src}
                   alt={image?.alt}
+                  loading="lazy"
                 />
               )}
               <img
                 src={"/images/home/home-banner-back-image.png"}
+                alt="image"
+                loading="lazy"
                 className="absolute inset-0 -z-10 mx-auto mt-auto h-[50vw] origin-center delay-1000 md:h-[90%] [&_p]:mt-0"
               />
             </div>
           </div>
         </div>
       </div>
+      <ParlorRegistrationModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };

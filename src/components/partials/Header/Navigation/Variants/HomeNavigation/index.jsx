@@ -12,7 +12,6 @@ import { AlignRight, X } from "lucide-react";
 import { useState } from "react";
 import Cart from "../../Cart";
 import NavMenu from "../../NavMenu";
-import SearchBar from "../../SearchBar";
 import UserAndAuthNav from "../../UserAndAuthNav";
 import Wishlist from "../../Wishlist";
 import Notification from "@/components/partials/Header/Navigation/Notification/index.jsx";
@@ -64,7 +63,7 @@ const HomeNavigation = () => {
             </>
             <div className="flex items-center justify-end gap-4 lg:col-span-3">
               <div className="flex items-center justify-end gap-2 lg:gap-4">
-                <SearchBar className="static w-full lg:relative lg:w-auto" />
+                {/*<SearchBar className="static w-full lg:relative lg:w-auto" />*/}
                 <Wishlist />
                 <Cart />
                 <Notification />

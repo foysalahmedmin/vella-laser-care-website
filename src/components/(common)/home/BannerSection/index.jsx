@@ -36,6 +36,7 @@ const BannerSection = ({ lang }) => {
       of Bangladeshi Skincare`,
       subTitle: "Largest and Latest Collection of Bangladeshi skincare",
       subTitleBn: "Largest and Latest Collection of Bangladeshi skincare",
+      isRegister: true,
       image: {
         src: "/images/home/home-banner-image.png",
         alt: "home-slider-image-1",

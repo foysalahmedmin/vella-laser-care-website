@@ -1,7 +1,27 @@
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { AddSubscription } from "@/network/common/commonApis.js";
+import { toast } from "react-toastify";
+import { errorMessage } from "@/helpers/error.js";
 
 const SubscriptionSection = ({ className }) => {
+  const [email, setEmail] = useState("");
+  const { isPending, mutateAsync } = useMutation({
+    mutationFn: AddSubscription,
+  });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (!email) return toast.error("Please fill all fields");
+      const status = await mutateAsync({ email });
+      toast.success(status?.message);
+      setEmail("");
+    } catch (e) {
+      toast.error(errorMessage(e));
+    }
+  };
   return (
     <section className={cn("", className)}>
       <div className="container">
@@ -21,10 +41,19 @@ const SubscriptionSection = ({ className }) => {
                 <input
                   type="email"
                   name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   className="flex-1 border-none bg-transparent px-4 text-sm outline-none"
                 />
-                <Button type="submit">Subscribe</Button>
+                <Button
+                  onClick={handleSubmit}
+                  isLoading={isPending}
+                  disabled={isPending}
+                  type="submit"
+                >
+                  Subscribe
+                </Button>
               </form>
             </div>
           </div>

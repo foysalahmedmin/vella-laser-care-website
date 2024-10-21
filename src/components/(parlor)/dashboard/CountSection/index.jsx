@@ -10,7 +10,6 @@ const CountSection = () => {
     queryKey: ["dashboard_count", role],
     queryFn: () => fetchParlorCounts(),
   });
-  console.log(data);
   return (
     <section className="py-16 md:pt-0">
       <div className="container">

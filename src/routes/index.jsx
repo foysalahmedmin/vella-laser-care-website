@@ -98,6 +98,14 @@ export const routes = [
             element: <Success />,
           },
           {
+            path: "ssl_failed",
+            element: <Success />,
+          },
+          {
+            path: "ssl_cancelled",
+            element: <Success />,
+          },
+          {
             path: "/meet/:id",
             element: <Meet />,
           },
