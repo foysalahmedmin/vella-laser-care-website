@@ -1,8 +1,6 @@
-import {
-  Discount,
-  FollowUp,
-  MoneyBag,
-} from "@/assets/svg/icons/DashboardBanner";
+import { Discount } from "@/assets/svg/icons/Discount";
+import { MagnifyCart } from "@/assets/svg/icons/Magnify";
+import { MoneyBag } from "@/assets/svg/icons/MoneyBag";
 
 const BannerSection = () => {
   return (
@@ -29,19 +27,19 @@ const BannerSection = () => {
 
                 <div className="mt-6 grid grid-cols-3 gap-4 text-left lg:max-w-lg">
                   <div className="space-y-1">
-                    <Discount className="text-3xl lg:text-5xl" />
+                    <Discount className="text-3xl text-primary lg:text-5xl" />
                     <strong className="block text-sm lg:text-lg">
                       Get Commission
                     </strong>
                   </div>
                   <div className="space-y-1">
-                    <MoneyBag className="text-3xl lg:text-5xl" />
+                    <MoneyBag className="text-3xl text-primary lg:text-5xl" />
                     <strong className="block text-sm lg:text-lg">
                       Track earning
                     </strong>
                   </div>
                   <div className="space-y-1">
-                    <FollowUp className="text-3xl lg:text-5xl" />
+                    <MagnifyCart className="text-3xl text-primary lg:text-5xl" />
                     <strong className="block text-sm lg:text-lg">
                       Order Follow up
                     </strong>

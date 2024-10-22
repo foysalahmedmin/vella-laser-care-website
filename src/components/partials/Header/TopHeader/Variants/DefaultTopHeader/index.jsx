@@ -1,8 +1,8 @@
 import { EmailOutline } from "@/assets/svg/icons/Email";
-import { Facebook } from "@/assets/svg/icons/Facebook";
-import { Instagram } from "@/assets/svg/icons/Instagram";
-import { Twitter } from "@/assets/svg/icons/Twitter";
-import { YouTube } from "@/assets/svg/icons/YouTube";
+import { Facebook } from "@/assets/svg/icons/socials/Facebook";
+import { Instagram } from "@/assets/svg/icons/socials/Instagram";
+import { Twitter } from "@/assets/svg/icons/socials/Twitter";
+import { YouTube } from "@/assets/svg/icons/socials/YouTube";
 import { Link } from "react-router-dom";
 import LocaleSelector from "../../../../LocaleSelector";
 

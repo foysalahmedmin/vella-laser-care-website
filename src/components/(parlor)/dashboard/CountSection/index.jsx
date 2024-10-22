@@ -1,8 +1,12 @@
-import { MoneyBag } from "@/assets/svg/icons/DashboardBanner";
-import { Box, CalendarCheck2, CalendarCog } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
 import { fetchParlorCounts } from "@/pages/(parlor)/apis.js";
 import useUser from "@/redux/slices/user-slice/useUser.js";
+import { useQuery } from "@tanstack/react-query";
+import {
+  CalendarCheck2,
+  CalendarCog,
+  PackageCheck,
+  Wallet,
+} from "lucide-react";
 
 const CountSection = () => {
   const { role } = useUser();
@@ -51,7 +55,7 @@ const CountSection = () => {
                   : `0${data?.completed_bookings}`}
               </span>
               <span className="grid size-10 place-items-center rounded-full bg-primary/10 text-primary group-hover:bg-light/15 group-hover:text-primary-foreground">
-                <Box className="size-6" />
+                <PackageCheck className="size-6" />
               </span>
             </div>
           </div>
@@ -62,7 +66,7 @@ const CountSection = () => {
                 ৳{data?.balance}
               </span>
               <span className="grid size-10 place-items-center rounded-full bg-primary/10 text-primary group-hover:bg-light/15 group-hover:text-primary-foreground">
-                <MoneyBag className="size-6" />
+                <Wallet className="size-6" />
               </span>
             </div>
           </div>

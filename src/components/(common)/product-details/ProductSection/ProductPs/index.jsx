@@ -1,9 +1,9 @@
 import { urls } from "@/api/urls.js";
-import { Facebook } from "@/assets/svg/icons/Facebook";
 import { Heart, HeartOutline } from "@/assets/svg/icons/Heart";
-import { Instagram } from "@/assets/svg/icons/Instagram";
-import { LinkedIn } from "@/assets/svg/icons/LinkedIn";
-import { TikTok } from "@/assets/svg/icons/LinkedIn copy";
+import { Facebook } from "@/assets/svg/icons/socials/Facebook";
+import { Instagram } from "@/assets/svg/icons/socials/Instagram";
+import { LinkedIn } from "@/assets/svg/icons/socials/LinkedIn";
+import { TikTok } from "@/assets/svg/icons/socials/TikTok";
 import { Button } from "@/components/ui/Button";
 import {
   QuantityDecreaseTrigger,

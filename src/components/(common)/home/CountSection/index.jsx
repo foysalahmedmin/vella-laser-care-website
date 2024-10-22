@@ -2,8 +2,8 @@ import { Badge } from "@/assets/svg/icons/Badge";
 import { Customer } from "@/assets/svg/icons/Customer";
 import { Doctor } from "@/assets/svg/icons/Doctor";
 import { Product } from "@/assets/svg/icons/Product";
-import { cn } from "@/lib/utils";
 import { bn } from "@/lib/enTobn.js";
+import { cn } from "@/lib/utils";
 
 const CountSection = ({ lang }) => {
   const data = [
@@ -44,7 +44,7 @@ const CountSection = ({ lang }) => {
                   "flex w-full flex-col items-center justify-start gap-2 px-4 py-4 xl:justify-center",
                 )}
               >
-                <item.icon className="text-primary" />
+                <item.icon className="text-7xl text-primary" />
                 <div className="space-y-2 text-center">
                   <h1 className="font-playfair text-5xl font-black">
                     {lang === "en"
