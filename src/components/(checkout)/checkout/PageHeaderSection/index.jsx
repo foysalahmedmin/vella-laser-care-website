@@ -1,8 +1,8 @@
 import { Apple } from "@/assets/svg/icons/Apple";
 import { Contact } from "@/assets/svg/icons/Contact";
-import { FacebookColor } from "@/assets/svg/icons/Facebook";
 import { Feedback } from "@/assets/svg/icons/Feedback";
 import { GoogleColor } from "@/assets/svg/icons/Google";
+import { FacebookColor } from "@/assets/svg/icons/socials/Facebook";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 

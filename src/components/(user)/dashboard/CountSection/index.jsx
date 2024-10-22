@@ -1,6 +1,6 @@
-import { Box, CalendarCheck2, Megaphone } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
 import { fetchCustomerCounts } from "@/pages/(user)/UserDashboard/dashboardApis.js";
+import { useQuery } from "@tanstack/react-query";
+import { CalendarCheck2, Megaphone, PackagePlus } from "lucide-react";
 
 const CountSection = () => {
   const { data } = useQuery({
@@ -31,7 +31,7 @@ const CountSection = () => {
                 {data?.orders || 0}
               </span>
               <span className="grid size-10 place-items-center rounded-full bg-primary/10 text-primary group-hover:bg-light/15 group-hover:text-primary-foreground">
-                <Box className="size-6" />
+                <PackagePlus className="size-6" />
               </span>
             </div>
           </div>

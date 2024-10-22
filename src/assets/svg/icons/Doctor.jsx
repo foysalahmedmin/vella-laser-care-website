@@ -4,8 +4,8 @@ const Doctor = forwardRef((props, ref) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="5.4375rem"
-      height="5.375rem"
+      width="1em"
+      height="1em"
       viewBox="0 0 87 86"
       fill="none"
       ref={ref}
