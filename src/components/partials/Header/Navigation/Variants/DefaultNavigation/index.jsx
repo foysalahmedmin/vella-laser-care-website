@@ -15,9 +15,11 @@ import NavMenu from "../../NavMenu";
 import UserAndAuthNav from "../../UserAndAuthNav";
 import Wishlist from "../../Wishlist";
 import Notification from "@/components/partials/Header/Navigation/Notification/index.jsx";
+import useUser from "@/redux/slices/user-slice/useUser.js";
 
 const DefaultNavigation = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuthenticated } = useUser();
   return (
     <nav
       className={cn("sticky top-0 z-50 h-header w-full border-y bg-background")}
@@ -29,12 +31,9 @@ const DefaultNavigation = ({ user }) => {
               <Logo />
             </div>
             <>
-              {/* Desktop Navigation Menu */}
               <ul className="mr-auto hidden items-center justify-center gap-4 lg:flex">
                 <NavMenu />
               </ul>
-
-              {/* Mobile Navigation Menu */}
               <div
                 className={cn(
                   "fixed inset-0 z-50 h-screen w-screen origin-top bg-card px-container py-4 transition-all duration-300 lg:hidden",
@@ -63,10 +62,9 @@ const DefaultNavigation = ({ user }) => {
             </>
             <div className="flex items-center justify-end gap-4">
               <div className="flex items-center justify-end gap-2 lg:gap-4">
-                {/*<SearchBar className="static w-full lg:relative lg:w-auto" />*/}
                 <Wishlist />
                 <Cart />
-                <Notification />
+                {isAuthenticated && <Notification />}
                 <UserAndAuthNav user={user} />
               </div>
               <div className="lg:hidden">
