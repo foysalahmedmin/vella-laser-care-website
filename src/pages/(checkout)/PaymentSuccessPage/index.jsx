@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 
 const PaymentSuccessPage = () => {
   const [searchParams] = useSearchParams();
-  const query = searchParams.get("tran_id");
+  const query = searchParams.get("amount");
   return (
     <main className="bg-muted bg-cover bg-fixed bg-center bg-no-repeat">
       <section className="grid min-h-screen-minus-header place-items-center bg-background/50 px-container py-12 backdrop-blur">
@@ -23,7 +23,8 @@ const PaymentSuccessPage = () => {
               <div className="space-y-4 text-center">
                 <h1 className="font-se font-roboto">Payment Successful</h1>
                 <p className="text-xl font-medium text-title/85">
-                  Thank you! Your payment of Rs. 3000 has <br /> been received,
+                  Thank you! Your payment of {query} BDT has <br /> been
+                  received,
                 </p>
               </div>
             </div>

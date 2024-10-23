@@ -45,6 +45,13 @@ export async function fetchPrescriptionPdf(id) {
   return response?.data;
 }
 
+export async function fetchDietPdf(id) {
+  const response = await base.get(`/api/doctor/diet/get_diet_pdf/${id}`, {
+    responseType: "blob",
+  });
+  return response?.data;
+}
+
 export async function mutateAppointmentStatus({ id, status }) {
   const response = await base.get(
     `/api/appointment/update_status?id=${id}&status=${status ? status : ""}`,

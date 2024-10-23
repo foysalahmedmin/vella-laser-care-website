@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { errorMessage } from "@/helpers/error.js";
 import {
+  fetchDietPdf,
   fetchParlorAppointments,
   fetchPrescriptionPdf,
   mutateAppointmentStatus,
@@ -114,23 +115,44 @@ const DoctorAppointments = () => {
                         isLoading={isDownloading && index === downloadIndex}
                         disabled={isDownloading && index === downloadIndex}
                         onClick={async () => {
-                          if (x?.prescription?._id) {
-                            setIsDownloading(true);
-                            setDownloadIndex(index);
-                            const response = await fetchPrescriptionPdf(
-                              x?.prescription?._id,
-                            );
-                            const blob = new Blob([response], {
-                              type: "application/pdf",
-                            });
-                            const link = document.createElement("a");
-                            link.href = window.URL.createObjectURL(blob);
-                            link.download = "prescription.pdf";
-                            link.click();
-                            setIsDownloading(false);
-                            setDownloadIndex(null);
+                          if (x?.doctor?.isDietician) {
+                            if (x?.diet_prescription?._id) {
+                              setIsDownloading(true);
+                              setDownloadIndex(index);
+                              const response = await fetchDietPdf(
+                                x?.diet_prescription?._id,
+                              );
+                              const blob = new Blob([response], {
+                                type: "application/pdf",
+                              });
+                              const link = document.createElement("a");
+                              link.href = window.URL.createObjectURL(blob);
+                              link.download = "diet_prescription.pdf";
+                              link.click();
+                              setIsDownloading(false);
+                              setDownloadIndex(null);
+                            } else {
+                              toast.warn("No prescription found");
+                            }
                           } else {
-                            toast.warn("No prescription found");
+                            if (x?.prescription?._id) {
+                              setIsDownloading(true);
+                              setDownloadIndex(index);
+                              const response = await fetchPrescriptionPdf(
+                                x?.prescription?._id,
+                              );
+                              const blob = new Blob([response], {
+                                type: "application/pdf",
+                              });
+                              const link = document.createElement("a");
+                              link.href = window.URL.createObjectURL(blob);
+                              link.download = "prescription.pdf";
+                              link.click();
+                              setIsDownloading(false);
+                              setDownloadIndex(null);
+                            } else {
+                              toast.warn("No prescription found");
+                            }
                           }
                         }}
                         className="h-6 text-sm"
