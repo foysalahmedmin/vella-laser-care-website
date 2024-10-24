@@ -1,5 +1,3 @@
-"use client";
-
 import useMoveToFolder from "@/hooks/useMoveToFolder";
 import { cn } from "@/lib/utils";
 import pathProcessor from "@/utils/pathProcessor";
