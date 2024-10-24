@@ -1,4 +1,5 @@
 let current = "https://cp.vellalasercare.com";
+// let current = "http://localhost:5041";
 
 export const urls = {
   mainURL: `${current}`,

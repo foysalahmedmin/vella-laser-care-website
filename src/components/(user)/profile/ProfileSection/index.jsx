@@ -1,19 +1,25 @@
 import { Button } from "@/components/ui/Button";
 import { Edit, MapPin } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import useUser from "@/redux/slices/user-slice/useUser.js";
-import { fetchMe } from "@/network/user/userApis.js";
+import { fetchMe, mutateAppProfile } from "@/network/user/userApis.js";
 import { fetchFilteredCities } from "@/network/common/commonApis.js";
+import { toast } from "react-toastify";
+import { errorMessage } from "@/helpers/error.js";
+import { urls } from "@/api/urls.js";
 
 const ProfileSection = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [postal, setPostal] = useState("");
+  const [address, setAddress] = useState("");
+  const [password, setPassword] = useState("");
   const [city, setCity] = useState("");
+  const [photo, setPhoto] = useState(null);
   const { isAuthenticated } = useUser();
-  const { data: me } = useQuery({
+  const { data: me, refetch } = useQuery({
     queryKey: ["me", isAuthenticated],
     queryFn: () => fetchMe(),
   });
@@ -21,6 +27,36 @@ const ProfileSection = () => {
     queryKey: ["filtered_cities"],
     queryFn: () => fetchFilteredCities(),
   });
+
+  const { isPending, mutateAsync } = useMutation({
+    mutationFn: mutateAppProfile,
+  });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await mutateAsync({
+        id: me?._id,
+        name: name || me?.name,
+        phone: phone || me?.phone,
+        address: address || me?.address,
+        postal: postal || me?.postal,
+        city: city || me?.city,
+        photo: photo,
+        password,
+      });
+      setPhoto(null);
+      setName("");
+      setPhone("");
+      setAddress("");
+      setPostal("");
+      setPassword("");
+      setCity("");
+      toast.success(response?.message);
+      await refetch();
+    } catch (error) {
+      toast.error(errorMessage(error));
+    }
+  };
   return (
     <section className="py-16 md:py-24">
       <div className="container">
@@ -28,13 +64,31 @@ const ProfileSection = () => {
           <div className="rounded-2xl border p-8 md:p-10">
             <div className="flex items-center gap-4">
               <div className="relative size-24 shrink-0 rounded-full border-4 border-card">
-                <img
-                  className="size-full object-cover object-center"
-                  src="/images/partials/user.png"
-                  alt=""
-                />
+                {!photo && (
+                  <img
+                    className="size-full rounded-full object-cover object-center"
+                    src={
+                      me?.photo
+                        ? `${urls?.user_photos}/${me?.photo}`
+                        : "/images/partials/user.png"
+                    }
+                    alt=""
+                  />
+                )}
+                {photo && (
+                  <img
+                    className="size-full rounded-full object-cover object-center"
+                    src={URL.createObjectURL(photo)}
+                    alt=""
+                  />
+                )}
                 <label className="absolute bottom-0 right-0 inline-flex size-8 cursor-pointer items-center justify-center rounded-full border-4 border-card bg-primary text-primary-foreground">
-                  <input className="hidden" type="file" accept="image/*" />
+                  <input
+                    onChange={(e) => setPhoto(e.target.files[0])}
+                    className="hidden"
+                    type="file"
+                    accept="image/*"
+                  />
                   <Edit className="size-4" />
                 </label>
               </div>
@@ -52,9 +106,15 @@ const ProfileSection = () => {
           <div className="space-y-6 rounded-2xl border p-8 md:p-10">
             <div className="flex items-center justify-between gap-4">
               <h3>Personal Information</h3>
-              <Button className="px-2" size="sm">
+              <Button
+                isLoading={isPending}
+                disabled={isPending}
+                onClick={handleSubmit}
+                className="px-2"
+                size="sm"
+              >
                 <Edit className="size-4" />
-                <span>Edit</span>
+                <span>Update</span>
               </Button>
             </div>
             <div>
@@ -81,6 +141,7 @@ const ProfileSection = () => {
                       type="email"
                       className="input block w-full"
                       placeholder="Enter Your Email Address"
+                      disabled={true}
                       value={email || me?.email}
                       onChange={(e) => setEmail(e.target.value)}
                       name="email"
@@ -117,15 +178,47 @@ const ProfileSection = () => {
                       ))}
                     </select>
                   </label>
+                  <label>
+                    <span className="mb-2 inline-block text-sm font-medium text-title/85">
+                      Postal
+                    </span>
+                    <input
+                      type="text"
+                      className="input block w-full"
+                      placeholder="Enter Your Postal"
+                      value={postal || me?.postal}
+                      onChange={(e) => setPostal(e.target.value)}
+                      name="phone"
+                    />
+                  </label>
+                  <label>
+                    <span className="mb-2 inline-block text-sm font-medium text-title/85">
+                      Password
+                    </span>
+                    <input
+                      type="password"
+                      className="input block w-full"
+                      placeholder="Enter New Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </label>
+                  <label className="lg:col-span-2">
+                    <span className="mb-2 inline-block text-sm font-medium text-title/85">
+                      Address
+                    </span>
+                    <textarea
+                      className="input block h-auto w-full py-2"
+                      placeholder="Enter Your Bio"
+                      value={address || me?.address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      cols={5}
+                      name="bio"
+                    />
+                  </label>
                 </div>
               </form>
             </div>
-          </div>
-          <div>
-            Forgot password?{" "}
-            <Link className="font-medium text-primary underline">
-              Reset password
-            </Link>
           </div>
         </div>
       </div>

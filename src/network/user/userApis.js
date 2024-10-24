@@ -52,3 +52,31 @@ export async function fetchOneUser(id) {
   const response = await base.get(`/api/auth/get_one_user/${id}`);
   return response?.data;
 }
+
+export async function mutateAppProfile({
+  id,
+  name,
+  phone,
+  address,
+  postal,
+  password,
+  city,
+  photo,
+}) {
+  const payload = new FormData();
+  payload.append("name", name);
+  payload.append("phone", phone);
+  payload.append("address", address);
+  payload.append("postal", postal);
+  payload.append("password", password);
+  payload.append("city", city);
+  payload.append("photo", photo);
+  const response = await base.put(
+    `/api/auth/update_app_profile/${id}`,
+    payload,
+    {
+      headers: { "Content-Type": "multipart/form-data" },
+    },
+  );
+  return response?.data;
+}
