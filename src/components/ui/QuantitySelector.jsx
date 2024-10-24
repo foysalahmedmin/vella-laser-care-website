@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 import { SetCartProductQuantity } from "@/redux/slices/cartSlice.js";
 import { Minus, Plus } from "lucide-react";

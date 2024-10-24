@@ -1,37 +1,75 @@
-import AuthenticationLayout from "@/components/layouts/AuthenticationLayout";
-import CommonLayout from "@/components/layouts/CommonLayout";
-import HomeLayout from "@/components/layouts/HomeLayout";
-import ParlorLayout from "@/components/layouts/ParlorLayout";
-import RootLayout from "@/components/layouts/RootLayout";
-import UserLayout from "@/components/layouts/UserLayout";
-import Loader from "@/components/partials/Loader";
-import SignInPage from "@/pages/(authentication)/SignInPage";
-import SignUpPage from "@/pages/(authentication)/SignUpPage";
-import CheckoutPage from "@/pages/(checkout)/CheckoutPage";
-import PaymentCancelledPage from "@/pages/(checkout)/PaymentCancelledPage";
-import PaymentFailedPage from "@/pages/(checkout)/PaymentFailedPage";
-import PaymentSuccessPage from "@/pages/(checkout)/PaymentSuccessPage";
-import DoctorDetailsPage from "@/pages/(common)/DoctorDetailsPage";
-import DoctorsPage from "@/pages/(common)/DoctorsPage";
-import ErrorPage from "@/pages/(common)/ErrorPage";
-import HomePage from "@/pages/(common)/HomePage";
-import Meet from "@/pages/(common)/Meet/Meet.jsx";
-import NotificationsPage from "@/pages/(common)/NotificationsPage";
-import ParlorDetailsPage from "@/pages/(common)/ParlorDetailsPage";
-import ParlorPage from "@/pages/(common)/ParlorPage";
-import ProductDetailsPage from "@/pages/(common)/ProductDetailsPage";
-import ServiceDetailsPage from "@/pages/(common)/ServiceDetailsPage";
-import ServicesPage from "@/pages/(common)/ServicesPage";
-import ShopPage from "@/pages/(common)/ShopPage";
-import TrainingPage from "@/pages/(common)/TrainingPage";
-import CustomerRequestPage from "@/pages/(parlor)/CustomerRequestPage";
-import EarningsPage from "@/pages/(parlor)/EarningsPage";
-import ParlorDashboard from "@/pages/(parlor)/ParlorDashboard";
-import ParlorProfilePage from "@/pages/(parlor)/ParlorProfilePage";
-import WithdrawHistory from "@/pages/(parlor)/WithdrawHistory/index.jsx";
-import UserDashboard from "@/pages/(user)/UserDashboard";
-import UserProfilePage from "@/pages/(user)/UserProfilePage";
-import { Suspense } from "react";
+import { lazy, Suspense } from "react";
+
+// Layouts
+const AuthenticationLayout = lazy(
+  () => import("@/components/layouts/AuthenticationLayout"),
+);
+const CommonLayout = lazy(() => import("@/components/layouts/CommonLayout"));
+const HomeLayout = lazy(() => import("@/components/layouts/HomeLayout"));
+const ParlorLayout = lazy(() => import("@/components/layouts/ParlorLayout"));
+const RootLayout = lazy(() => import("@/components/layouts/RootLayout"));
+const UserLayout = lazy(() => import("@/components/layouts/UserLayout"));
+
+// Partials
+const Loader = lazy(() => import("@/components/partials/Loader"));
+
+// Authentication Pages
+const SignInPage = lazy(() => import("@/pages/(authentication)/SignInPage"));
+const SignUpPage = lazy(() => import("@/pages/(authentication)/SignUpPage"));
+
+// Checkout Pages
+const CheckoutPage = lazy(() => import("@/pages/(checkout)/CheckoutPage"));
+const PaymentCancelledPage = lazy(
+  () => import("@/pages/(checkout)/PaymentCancelledPage"),
+);
+const PaymentFailedPage = lazy(
+  () => import("@/pages/(checkout)/PaymentFailedPage"),
+);
+const PaymentSuccessPage = lazy(
+  () => import("@/pages/(checkout)/PaymentSuccessPage"),
+);
+
+// Common Pages
+const DoctorDetailsPage = lazy(
+  () => import("@/pages/(common)/DoctorDetailsPage"),
+);
+const DoctorsPage = lazy(() => import("@/pages/(common)/DoctorsPage"));
+const ErrorPage = lazy(() => import("@/pages/(common)/ErrorPage"));
+const HomePage = lazy(() => import("@/pages/(common)/HomePage"));
+const Meet = lazy(() => import("@/pages/(common)/Meet/Meet.jsx"));
+const NotificationsPage = lazy(
+  () => import("@/pages/(common)/NotificationsPage"),
+);
+const ParlorDetailsPage = lazy(
+  () => import("@/pages/(common)/ParlorDetailsPage"),
+);
+const ParlorPage = lazy(() => import("@/pages/(common)/ParlorPage"));
+const ProductDetailsPage = lazy(
+  () => import("@/pages/(common)/ProductDetailsPage"),
+);
+const ServiceDetailsPage = lazy(
+  () => import("@/pages/(common)/ServiceDetailsPage"),
+);
+const ServicesPage = lazy(() => import("@/pages/(common)/ServicesPage"));
+const ShopPage = lazy(() => import("@/pages/(common)/ShopPage"));
+const TrainingPage = lazy(() => import("@/pages/(common)/TrainingPage"));
+
+// Parlor Pages
+const CustomerRequestPage = lazy(
+  () => import("@/pages/(parlor)/CustomerRequestPage"),
+);
+const EarningsPage = lazy(() => import("@/pages/(parlor)/EarningsPage"));
+const ParlorDashboard = lazy(() => import("@/pages/(parlor)/ParlorDashboard"));
+const ParlorProfilePage = lazy(
+  () => import("@/pages/(parlor)/ParlorProfilePage"),
+);
+const WithdrawHistory = lazy(
+  () => import("@/pages/(parlor)/WithdrawHistory/index.jsx"),
+);
+
+// User Pages
+const UserDashboard = lazy(() => import("@/pages/(user)/UserDashboard"));
+const UserProfilePage = lazy(() => import("@/pages/(user)/UserProfilePage"));
 
 export const routes = [
   {
@@ -41,145 +79,281 @@ export const routes = [
         <ErrorPage />
       </Suspense>
     ),
-    element: <RootLayout />,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <RootLayout />
+      </Suspense>
+    ),
     children: [
       {
-        element: <HomeLayout />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <HomeLayout />
+          </Suspense>
+        ),
         children: [
           {
             path: "/",
-            element: <HomePage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <HomePage />
+              </Suspense>
+            ),
           },
         ],
       },
       {
-        element: <CommonLayout />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CommonLayout />
+          </Suspense>
+        ),
         children: [
           {
             path: "/notifications",
-            element: <NotificationsPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <NotificationsPage />
+              </Suspense>
+            ),
           },
           {
             path: "/shop",
-            element: <ShopPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ShopPage />
+              </Suspense>
+            ),
           },
           {
             path: "/product/:id",
-            element: <ProductDetailsPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ProductDetailsPage />
+              </Suspense>
+            ),
           },
           {
             path: "/blogs",
-            element: <ShopPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ShopPage />
+              </Suspense>
+            ),
           },
           {
             path: "/blog/:id",
-            element: <h1>Blog-Details</h1>,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <h1>Blog-Details</h1>
+              </Suspense>
+            ),
           },
           {
             path: "/parlors",
-            element: <ParlorPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ParlorPage />
+              </Suspense>
+            ),
           },
           {
             path: "/parlor/:id",
-            element: <ParlorDetailsPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ParlorDetailsPage />
+              </Suspense>
+            ),
           },
           {
             path: "/services",
-            element: <ServicesPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ServicesPage />
+              </Suspense>
+            ),
           },
           {
             path: "/service/:id",
-            element: <ServiceDetailsPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ServiceDetailsPage />
+              </Suspense>
+            ),
           },
           {
             path: "/doctors",
-            element: <DoctorsPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <DoctorsPage />
+              </Suspense>
+            ),
           },
           {
             path: "/doctor/:id",
-            element: <DoctorDetailsPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <DoctorDetailsPage />
+              </Suspense>
+            ),
           },
           {
             path: "/training",
-            element: <TrainingPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <TrainingPage />
+              </Suspense>
+            ),
           },
           {
             path: "/meet/:id",
-            element: <Meet />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Meet />
+              </Suspense>
+            ),
           },
           {
             path: "/checkout",
-            element: <CheckoutPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <CheckoutPage />
+              </Suspense>
+            ),
           },
           {
             path: "/ssl_success",
-            element: <PaymentSuccessPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <PaymentSuccessPage />
+              </Suspense>
+            ),
           },
           {
             path: "/ssl_failed",
-            element: <PaymentFailedPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <PaymentFailedPage />
+              </Suspense>
+            ),
           },
           {
             path: "/ssl_cancelled",
-            element: <PaymentCancelledPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <PaymentCancelledPage />
+              </Suspense>
+            ),
           },
         ],
       },
       {
         path: "/authentication",
-        element: <AuthenticationLayout />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <AuthenticationLayout />
+          </Suspense>
+        ),
         children: [
           {
             path: "sign-in",
-            element: <SignInPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <SignInPage />
+              </Suspense>
+            ),
           },
           {
             path: "sign-up",
-            element: <SignUpPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <SignUpPage />
+              </Suspense>
+            ),
           },
         ],
       },
       {
         path: "/user",
-        element: <UserLayout />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <UserLayout />
+          </Suspense>
+        ),
         children: [
           {
             path: "dashboard",
-            element: <UserDashboard />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <UserDashboard />
+              </Suspense>
+            ),
           },
           {
             path: "profile",
-            element: <UserProfilePage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <UserProfilePage />
+              </Suspense>
+            ),
           },
         ],
       },
       {
         path: "/parlor",
-        element: <ParlorLayout />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <ParlorLayout />
+          </Suspense>
+        ),
         children: [
           {
             path: "dashboard",
-            element: <ParlorDashboard />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ParlorDashboard />
+              </Suspense>
+            ),
           },
           {
             path: "profile",
-            element: <ParlorProfilePage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ParlorProfilePage />
+              </Suspense>
+            ),
           },
           {
             path: "earnings",
-            element: <EarningsPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <EarningsPage />
+              </Suspense>
+            ),
           },
           {
             path: "history",
-            element: <CustomerRequestPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <CustomerRequestPage />
+              </Suspense>
+            ),
           },
           {
             path: "withdraw_history",
-            element: <WithdrawHistory />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <WithdrawHistory />
+              </Suspense>
+            ),
           },
           {
             path: "shop",
-            element: <ShopPage />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ShopPage />
+              </Suspense>
+            ),
           },
         ],
       },

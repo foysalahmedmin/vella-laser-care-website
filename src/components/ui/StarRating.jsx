@@ -1,8 +1,6 @@
-"use client";
-
 import {
-  StarEmpty,
   Star as StarFull,
+  StarEmpty,
   StarHalf,
 } from "@/assets/svg/icons/Stars";
 import { cn } from "@/lib/utils";

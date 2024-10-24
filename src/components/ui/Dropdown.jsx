@@ -1,5 +1,3 @@
-"use client";
-
 import { useClickOutside } from "@/hooks/ui/useClickOutside";
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";

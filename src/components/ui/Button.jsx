@@ -1,5 +1,3 @@
-"use client";
-
 import useRippleEffect from "@/hooks/ui/useRippleEffect";
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";

@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 import { ArrowBigDownDash, ArrowBigUpDash } from "lucide-react";
 import {
