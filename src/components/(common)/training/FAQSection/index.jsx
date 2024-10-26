@@ -84,16 +84,18 @@ const FAQSection = () => {
             </AccordionContent>
           </Accordion>
         </div>
-        <div className="text-center">
+        <div className="mt-10 space-y-2 text-center">
           <h3>Still have questions?</h3>
           <p>
             Contact us for more <br /> information.
           </p>
-          <Link to="/contact">
-            <Button asChild={true}>
-              <span>Contact Us</span> <ArrowRight />
-            </Button>
-          </Link>
+          <div className="!mt-4">
+            <Link to="/contact">
+              <Button asChild={true}>
+                <span>Contact Us</span> <ArrowRight />
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

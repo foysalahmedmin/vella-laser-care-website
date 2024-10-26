@@ -1,3 +1,4 @@
+import Notification from "@/components/partials/Header/Navigation/Notification/index.jsx";
 import Logo from "@/components/partials/Logo";
 import {
   Toggle,
@@ -6,22 +7,19 @@ import {
   ToggleTrigger,
 } from "@/components/ui/Toggle";
 import { cn } from "@/lib/utils";
+import useUser from "@/redux/slices/user-slice/useUser.js";
 import { AlignRight, X } from "lucide-react";
 import { useState } from "react";
 import Cart from "../../Cart";
 import NavMenu from "../../NavMenu";
 import UserAndAuthNav from "../../UserAndAuthNav";
 import Wishlist from "../../Wishlist";
-import Notification from "@/components/partials/Header/Navigation/Notification/index.jsx";
-import useUser from "@/redux/slices/user-slice/useUser.js";
 
 const DefaultNavigation = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { isAuthenticated } = useUser();
   return (
-    <nav
-      className={cn("sticky top-0 z-50 h-header w-full border-y bg-background")}
-    >
+    <nav className={cn("sticky top-0 z-50 h-header w-full bg-background")}>
       <div className="size-full bg-card">
         <div className="container h-full">
           <div className="flex h-full items-center justify-between gap-2 lg:gap-4">

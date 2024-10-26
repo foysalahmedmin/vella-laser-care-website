@@ -1,17 +1,15 @@
 import Logo from "@/components/partials/Logo";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+import useUser from "@/redux/slices/user-slice/useUser.js";
 import { ArrowUpRight, ChevronLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import UserAndAuthNav from "../../UserAndAuthNav";
-import useUser from "@/redux/slices/user-slice/useUser.js";
 
 const CheckoutNavigation = () => {
   const { isAuthenticated } = useUser();
   return (
-    <nav
-      className={cn("sticky top-0 z-50 h-header w-full border-y bg-background")}
-    >
+    <nav className={cn("sticky top-0 z-50 h-header w-full bg-background")}>
       <div className="size-full bg-card">
         <div className="container h-full">
           <div className="grid h-full grid-cols-3 items-center justify-between gap-2 lg:gap-4">

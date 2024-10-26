@@ -14,10 +14,6 @@
   resize: vertical;
   font-size: 1rem;
 
-  &::placeholder {
-    color: hsl(var(--placeholder));
-  }
-
   &[data-state="active"] {
     border-color: currentColor;
     background-color: hsl(var(--muted / 0.25));

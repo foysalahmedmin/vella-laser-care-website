@@ -40,6 +40,8 @@ const Meet = lazy(() => import("@/pages/(common)/Meet/Meet.jsx"));
 const NotificationsPage = lazy(
   () => import("@/pages/(common)/NotificationsPage"),
 );
+const ContactPage = lazy(() => import("@/pages/(common)/ContactPage"));
+const BlogDetailsPage = lazy(() => import("@/pages/(common)/BlogDetailsPage"));
 const ParlorDetailsPage = lazy(
   () => import("@/pages/(common)/ParlorDetailsPage"),
 );
@@ -118,6 +120,14 @@ export const routes = [
             ),
           },
           {
+            path: "/contact",
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ContactPage />
+              </Suspense>
+            ),
+          },
+          {
             path: "/shop",
             element: (
               <Suspense fallback={<Loader />}>
@@ -145,7 +155,7 @@ export const routes = [
             path: "/blog/:id",
             element: (
               <Suspense fallback={<Loader />}>
-                <h1>Blog-Details</h1>
+                <BlogDetailsPage />
               </Suspense>
             ),
           },
