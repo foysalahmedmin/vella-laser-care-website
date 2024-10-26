@@ -1,3 +1,4 @@
+import { Vector, VectorGroup } from "@/assets/svg/icons/Vector";
 import {
   Carousel,
   CarouselContent,
@@ -50,9 +51,14 @@ const BannerSection = ({ lang }) => {
     },
   ];
   return (
-    <section className="bg-primary/5">
+    <section className="relative bg-primary/5">
+      <div>
+        <VectorGroup className="absolute left-1/2 top-12 text-5xl text-primary/25" />
+        <Vector className="absolute bottom-12 left-1/4 text-3xl text-primary/25" />
+        <Vector className="absolute bottom-12 right-[45%] text-5xl text-primary/25" />
+      </div>
       <Carousel
-        className="group/carousel relative"
+        className="group/carousel relative z-10"
         opts={{ loop: true }}
         autoplay
       >
