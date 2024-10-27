@@ -3,8 +3,8 @@ import { Facebook } from "@/assets/svg/icons/socials/Facebook";
 import { Instagram } from "@/assets/svg/icons/socials/Instagram";
 import { Twitter } from "@/assets/svg/icons/socials/Twitter";
 import { YouTube } from "@/assets/svg/icons/socials/YouTube";
+import LocaleSwitch from "@/components/partials/LocaleSwitch";
 import { Link } from "react-router-dom";
-import LocaleSelector from "../../../../LocaleSelector";
 
 const DefaultTopHeader = () => {
   return (
@@ -38,7 +38,8 @@ const DefaultTopHeader = () => {
                 <Facebook />
               </Link>
             </div>
-            <LocaleSelector />
+            {/* <LocaleSelector /> */}
+            <LocaleSwitch />
           </div>
         </div>
       </div>

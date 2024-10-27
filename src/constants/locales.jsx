@@ -2,7 +2,7 @@ export const locales = [
   {
     label: "English",
     value: "en",
-    flag: "/images/flags/uk.svg",
+    flag: "/images/flags/usa.svg",
   },
   {
     label: "Bangla",

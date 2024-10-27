@@ -8,7 +8,7 @@
     -1em 0 0 0.1em hsl(var(--accent-foreground)) inset,
     0 0 0 0.1em hsl(var(--accent-foreground)) inset;
   border: 1px solid hsl(var(--border));
-  border-radius: 50%;
+  border-radius: var(--radius);
   background-color: hsla(var(--accent), 0.75);
   width: 2em;
   height: 1em;
