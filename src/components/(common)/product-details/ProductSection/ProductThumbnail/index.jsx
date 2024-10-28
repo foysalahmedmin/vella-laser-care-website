@@ -7,6 +7,7 @@ import {
   TabsTrigger,
 } from "@/components/ui/Tabs";
 import { cn } from "@/lib/utils";
+import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 
 const ProductThumbnail = ({ className, info }) => {
   return (
@@ -39,7 +40,7 @@ const ProductThumbnail = ({ className, info }) => {
                   value={i}
                 >
                   <img
-                    className="size-full object-cover object-center"
+                    className="size-full object-contain object-center"
                     height={50}
                     width={50}
                     src={
@@ -69,17 +70,21 @@ const ProductThumbnail = ({ className, info }) => {
                   value={i}
                   className="size-full overflow-hidden rounded-md border bg-card p-[0.25em] shadow-inner"
                 >
-                  <img
-                    className="size-full rounded-md border object-cover object-center"
-                    height={400}
-                    width={400}
-                    src={
-                      image?.type === "gallery"
-                        ? `${urls?.gallery}/${image?.path}`
-                        : `${urls?.thumbnail}/${image?.path}`
-                    }
-                    alt={name}
-                  />
+                  <TransformWrapper>
+                    <TransformComponent>
+                      <div className="size-full bg-card">
+                        <img
+                          className="size-full rounded-md border object-contain object-center"
+                          src={
+                            image?.type === "gallery"
+                              ? `${urls?.gallery}/${image?.path}`
+                              : `${urls?.thumbnail}/${image?.path}`
+                          }
+                          alt={name}
+                        />
+                      </div>
+                    </TransformComponent>
+                  </TransformWrapper>
                 </TabsItem>
               ))}
             </TabsContent>
