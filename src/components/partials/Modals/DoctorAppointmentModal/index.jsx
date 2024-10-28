@@ -15,9 +15,10 @@ import {
 import useUser from "@/redux/slices/user-slice/useUser.js";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Calendar, Send } from "lucide-react";
-import moment from "moment/moment.js";
+import moment from "moment";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { validateBDPhoneNumber, validateEmail } from "@/lib/validation.js";
 
 const DoctorAppointmentModal = ({
   isOpen,
@@ -78,6 +79,12 @@ const DoctorAppointmentModal = ({
         !slot
       ) {
         return toast.error("Please fill all fields");
+      }
+      if (!validateBDPhoneNumber(phone)) {
+        return toast.error("Please enter valid phone number");
+      }
+      if (!validateEmail(email)) {
+        return toast.error("Please enter valid email");
       }
       const status = await mutateAsync({
         ...(role === "customer" && { customer: me?._id }),

@@ -16,6 +16,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { Calendar, Send } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { validateBDPhoneNumber, validateEmail } from "@/lib/validation.js";
 
 const ServiceBookModal = ({
   isOpen,
@@ -72,6 +73,12 @@ const ServiceBookModal = ({
         !payment_method
       ) {
         return toast.error("Please fill all fields");
+      }
+      if (!validateBDPhoneNumber(phone)) {
+        return toast.error("Please enter valid phone number");
+      }
+      if (!validateEmail(email)) {
+        return toast.error("Please enter valid email");
       }
       const status = await mutateAsync({
         ...(role === "customer" && { customer: me?._id }),

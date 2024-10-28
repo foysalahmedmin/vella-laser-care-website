@@ -14,6 +14,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import useUser from "@/redux/slices/user-slice/useUser.js";
 import { fetchMe } from "@/network/user/userApis.js";
+import { validateBDPhoneNumber, validateEmail } from "@/lib/validation.js";
 
 const ConsultationScheduleSection = ({ lang }) => {
   const { role, isAuthenticated } = useUser();
@@ -74,6 +75,12 @@ const ConsultationScheduleSection = ({ lang }) => {
         !slot
       ) {
         return toast.error("Please fill all fields");
+      }
+      if (!validateBDPhoneNumber(phone)) {
+        return toast.error("Please enter valid phone number");
+      }
+      if (!validateEmail(email)) {
+        return toast.error("Please enter valid email");
       }
       const status = await mutateAsync({
         ...(role === "customer" && { customer: me?._id }),
