@@ -11,9 +11,9 @@ const Cart = ({ user }) => {
     <>
       <div className="relative inline-flex items-center">
         <Button onClick={() => setIsOpen(true)} variant="none" size="none">
-          <CartOutline className="size-6" />
+          <CartOutline className="size-[1.5em]" />
         </Button>
-        <span className="absolute right-1 top-1 inline-flex aspect-square min-h-4 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full bg-primary text-[0.5rem] font-bold leading-none text-primary-foreground">
+        <span className="badge primary absolute right-1 top-1 -translate-y-1/2 translate-x-1/2">
           {products?.length || 0}
         </span>
       </div>

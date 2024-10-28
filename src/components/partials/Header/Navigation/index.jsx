@@ -6,10 +6,18 @@ import HomeNavigation from "./Variants/HomeNavigation";
 const Navigation = ({ variant }) => {
   return (
     <>
-      {variant === "default" && <DefaultNavigation />}
-      {variant === "home" && <HomeNavigation />}
-      {variant === "checkout" && <CheckoutNavigation />}
-      {variant === "authentication" && <AuthenticationNavigation />}
+      {variant === "default" && (
+        <DefaultNavigation className="lg:text-xs xl:text-sm 2xl:text-base" />
+      )}
+      {variant === "home" && (
+        <HomeNavigation className="text-xs xl:text-sm 2xl:text-base" />
+      )}
+      {variant === "checkout" && (
+        <CheckoutNavigation className="text-xs xl:text-sm 2xl:text-base" />
+      )}
+      {variant === "authentication" && (
+        <AuthenticationNavigation className="text-xs xl:text-sm 2xl:text-base" />
+      )}
     </>
   );
 };

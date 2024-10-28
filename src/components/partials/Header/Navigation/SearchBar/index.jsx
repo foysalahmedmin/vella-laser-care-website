@@ -14,7 +14,7 @@ const SearchBar = ({ className, ...props }) => {
         size="none"
         onClick={() => setIsOpen(true)}
       >
-        <MagnifyOutline className="size-6" />
+        <MagnifyOutline className="size-[1.5em]" />
       </Button>
       <Dropdown
         className="left-auto right-0 mx-container w-[calc(100%-var(--container-space)*2)] origin-top-right -translate-x-0 bg-background lg:min-w-80"

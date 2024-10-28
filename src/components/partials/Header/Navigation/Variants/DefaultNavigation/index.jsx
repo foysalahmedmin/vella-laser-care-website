@@ -15,19 +15,24 @@ import NavMenu from "../../NavMenu";
 import UserAndAuthNav from "../../UserAndAuthNav";
 import Wishlist from "../../Wishlist";
 
-const DefaultNavigation = ({ user }) => {
+const DefaultNavigation = ({ user, className }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { isAuthenticated } = useUser();
   return (
-    <nav className={cn("sticky top-0 z-50 h-header w-full bg-background")}>
+    <nav
+      className={cn(
+        "sticky top-0 z-50 h-header w-full bg-background",
+        className,
+      )}
+    >
       <div className="size-full bg-card">
         <div className="container h-full">
-          <div className="flex h-full items-center justify-between gap-2 lg:gap-4">
-            <div>
+          <div className="flex h-full items-center justify-between gap-[0.5em] lg:gap-[1em]">
+            <div className="text-base">
               <Logo />
             </div>
             <>
-              <ul className="mr-auto hidden items-center justify-center gap-4 lg:flex">
+              <ul className="mr-auto hidden items-center justify-center gap-[1em] lg:flex">
                 <NavMenu />
               </ul>
               <div
@@ -43,10 +48,10 @@ const DefaultNavigation = ({ user }) => {
                   <Toggle isOn={isOpen} setIsOn={setIsOpen}>
                     <ToggleTrigger>
                       <ToggleOnComp>
-                        <X />
+                        <X className="size-[1.5rem]" />
                       </ToggleOnComp>
                       <ToggleOffComp>
-                        <AlignRight />
+                        <AlignRight className="size-[1.5rem]" />
                       </ToggleOffComp>
                     </ToggleTrigger>
                   </Toggle>
@@ -67,10 +72,10 @@ const DefaultNavigation = ({ user }) => {
                 <Toggle isOn={isOpen} setIsOn={setIsOpen}>
                   <ToggleTrigger>
                     <ToggleOnComp>
-                      <X />
+                      <X className="size-[1.5rem]" />
                     </ToggleOnComp>
                     <ToggleOffComp>
-                      <AlignRight />
+                      <AlignRight className="size-[1.5rem]" />
                     </ToggleOffComp>
                   </ToggleTrigger>
                 </Toggle>

@@ -9,6 +9,7 @@
 }
 
 @layer components {
+  @import "./assets/styles/scss/components/badge";
   @import "./assets/styles/scss/components/input";
   @import "./assets/styles/scss/components/radio";
   @import "./assets/styles/scss/components/checkbox";

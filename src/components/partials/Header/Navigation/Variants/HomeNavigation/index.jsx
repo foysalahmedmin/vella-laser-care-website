@@ -15,20 +15,25 @@ import NavMenu from "../../NavMenu";
 import UserAndAuthNav from "../../UserAndAuthNav";
 import Wishlist from "../../Wishlist";
 
-const HomeNavigation = () => {
+const HomeNavigation = ({ className }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { isAuthenticated } = useUser();
   return (
-    <nav className={cn("sticky top-0 z-50 h-header w-full bg-background")}>
+    <nav
+      className={cn(
+        "sticky top-0 z-50 h-header w-full bg-background",
+        className,
+      )}
+    >
       <div className="size-full bg-primary/5">
         <div className="container h-full">
-          <div className="flex h-full items-center justify-between gap-2 lg:grid lg:grid-cols-12 lg:gap-4">
-            <div className="lg:col-span-3">
+          <div className="flex h-full items-center justify-between gap-[0.5em] lg:grid lg:grid-cols-12 lg:gap-[1em]">
+            <div className="text-base lg:col-span-3">
               <Logo />
             </div>
             <>
               {/* Desktop Navigation Menu */}
-              <ul className="mx-auto hidden items-center justify-center gap-[1em] lg:col-span-6 lg:flex lg:text-xs xl:text-base">
+              <ul className="mx-auto hidden items-center justify-center gap-[1em] lg:col-span-6 lg:flex lg:text-[0.875em] xl:text-[1em]">
                 <NavMenu />
               </ul>
 
@@ -46,10 +51,10 @@ const HomeNavigation = () => {
                   <Toggle isOn={isOpen} setIsOn={setIsOpen}>
                     <ToggleTrigger>
                       <ToggleOnComp>
-                        <X />
+                        <X className="size-[1.5rem]" />
                       </ToggleOnComp>
                       <ToggleOffComp>
-                        <AlignRight />
+                        <AlignRight className="size-[1.5rem]" />
                       </ToggleOffComp>
                     </ToggleTrigger>
                   </Toggle>
@@ -59,8 +64,8 @@ const HomeNavigation = () => {
                 </ul>
               </div>
             </>
-            <div className="flex items-center justify-end gap-4 lg:col-span-3">
-              <div className="flex items-center justify-end gap-2 lg:gap-4">
+            <div className="flex items-center justify-end gap-[1em] lg:col-span-3">
+              <div className="flex items-center justify-end gap-[0.5em] lg:gap-[1em]">
                 {/*<SearchBar className="static w-full lg:relative lg:w-auto" />*/}
                 <Wishlist />
                 <Cart />
@@ -71,10 +76,10 @@ const HomeNavigation = () => {
                 <Toggle isOn={isOpen} setIsOn={setIsOpen}>
                   <ToggleTrigger>
                     <ToggleOnComp>
-                      <X />
+                      <X className="size-[1.5rem]" />
                     </ToggleOnComp>
                     <ToggleOffComp>
-                      <AlignRight />
+                      <AlignRight className="size-[1.5rem]" />
                     </ToggleOffComp>
                   </ToggleTrigger>
                 </Toggle>

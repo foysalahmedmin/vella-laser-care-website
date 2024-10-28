@@ -28,9 +28,9 @@ const UserAndAuthNav = ({ user }) => {
         <div className="relative">
           <div
             onClick={() => setIsOpen((value) => !value)}
-            className="flex cursor-pointer items-center gap-2"
+            className="flex cursor-pointer items-center gap-[0.5em]"
           >
-            <div className="size-10 overflow-hidden rounded-full border bg-background">
+            <div className="size-[2.5em] overflow-hidden rounded-full border bg-background">
               <img
                 src={
                   me?.photo
@@ -41,15 +41,19 @@ const UserAndAuthNav = ({ user }) => {
                 className="size-full rounded-full object-cover object-center"
               />
             </div>
-            <div className="hidden text-sm md:block">
-              <span className="block font-medium text-title/85">
-                {me?.name}
-              </span>
-              <span className="block text-xs text-muted-foreground">
-                {me?.email}
-              </span>
-            </div>
-            <ChevronDown className="hidden size-6 text-title/85 md:block" />
+            {(me?.name || me?.email) && (
+              <>
+                <div className="hidden md:block">
+                  <span className="block text-[0.875em] font-medium text-title/85">
+                    {me?.name}
+                  </span>
+                  <span className="block text-[0.75em] text-muted-foreground">
+                    {me?.email}
+                  </span>
+                </div>
+                <ChevronDown className="hidden size-[1.25em] text-title/85 md:block" />
+              </>
+            )}
           </div>
           <Dropdown
             className="left-auto right-0 z-[60] min-w-40 origin-top-right -translate-x-0 shadow-custom-1"
@@ -100,8 +104,8 @@ const UserAndAuthNav = ({ user }) => {
         <Link title="Login" to={"/authentication/sign-in"}>
           <Button asChild className="uppercase" size="sm">
             <span className="hidden sm:block">Login / Register</span>
-            <User className="hidden size-4 sm:block" />
-            <LogIn className="size-6 sm:hidden" />
+            <User className="hidden size-[1em] sm:block" />
+            <LogIn className="size-[1.5em] sm:hidden" />
           </Button>
         </Link>
       )}

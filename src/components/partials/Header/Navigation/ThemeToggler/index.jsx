@@ -6,10 +6,10 @@ const ThemeToggler = () => {
     <Toggler
       className="hover:text-primary"
       on={{
-        children: <Sun className="size-6" />,
+        children: <Sun className="size-[1.5em]" />,
       }}
       off={{
-        children: <Moon className="size-6" />,
+        children: <Moon className="size-[1.5em]" />,
       }}
     />
   );
