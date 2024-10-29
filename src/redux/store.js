@@ -4,6 +4,7 @@ import shopFilterReducer from "./slices/filter/shopSlice.js";
 import cartReducer from "./slices/cartSlice.js";
 import parlorFilterReducer from "./slices/filter/parlorSlice.js";
 import serviceFilterReducer from "./slices/filter/serviceSlice.js";
+import feedbackReducer from "./slices/feedbackSlice.js";
 
 export default configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export default configureStore({
     parlor_filter: parlorFilterReducer,
     service_filter: serviceFilterReducer,
     cart: cartReducer,
+    feedback: feedbackReducer,
   },
 });

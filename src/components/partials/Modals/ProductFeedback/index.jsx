@@ -5,21 +5,33 @@ import {
   ModalCloseTrigger,
   ModalContent,
 } from "@/components/ui/Modal";
-import { StarRating } from "@/components/ui/StarRating";
 import { Send } from "lucide-react";
 import { useState } from "react";
+import ProductCard from "@/components/partials/Cards/ProductCard/index.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { fetchOrderProducts } from "@/pages/(user)/UserDashboard/dashboardApis.js";
+import {
+  SetFeedbackProducts,
+  SetResetFeedback,
+} from "@/redux/slices/feedbackSlice.js";
 import { addNewFeedback } from "@/network/feedback/feedbackApis.js";
 import { toast } from "react-toastify";
-import { SetResetFeedback } from "@/redux/slices/feedbackSlice.js";
 import { errorMessage } from "@/helpers/error.js";
 
-const ServiceReviewModal = ({ isOpen, lang, setIsOpen, size = "lg", type }) => {
+const ProductFeedback = ({ isOpen, lang, setIsOpen, size = "lg" }) => {
   const dispatch = useDispatch();
-  const { doctor_id, service_id } = useSelector((state) => state.feedback);
-  const [rating, setRating] = useState(0);
+  const { products, order_id } = useSelector((state) => state.feedback);
   const [message, setMessage] = useState("");
+  const { _ } = useQuery({
+    queryKey: ["order_products", order_id],
+    queryFn: async () => {
+      const data = await fetchOrderProducts(order_id);
+      dispatch(SetFeedbackProducts(data?.products));
+      return data;
+    },
+    enabled: !!order_id,
+  });
   const { isPending, mutateAsync } = useMutation({
     mutationFn: addNewFeedback,
   });
@@ -27,17 +39,19 @@ const ServiceReviewModal = ({ isOpen, lang, setIsOpen, size = "lg", type }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (!message) return toast.error("Please fill all fields");
+      if (!message || !products) return toast.error("Please fill all fields");
       const status = await mutateAsync({
-        doctor: type === "doctor" ? doctor_id : "",
-        service: type === "service" ? service_id : "",
-        message,
-        rating,
-        feedback_type: type === "doctor" ? "doctor" : "service",
+        products: products?.map((x) => {
+          return {
+            product: x._id,
+            feedback: message,
+            rating: x?.rating || 0,
+            message: message,
+          };
+        }),
+        feedback_type: "product",
       });
       dispatch(SetResetFeedback());
-      setMessage("");
-      setRating(0);
       setIsOpen(false);
       toast.success(status?.message);
       setIsOpen(false);
@@ -54,29 +68,25 @@ const ServiceReviewModal = ({ isOpen, lang, setIsOpen, size = "lg", type }) => {
             <ModalCloseTrigger className="absolute right-4 top-4 rounded-full border-current text-xs text-accent md:right-4 md:top-4" />
             <div className="space-y-6">
               <div className="rounded-xl bg-primary/5 px-4 py-2 text-center">
-                <h1 className="text-title/85">
-                  {type === "doctor" ? "Rate your doctor" : "Rate our service"}
-                </h1>
+                <h1 className="text-title/85">Product Feedback</h1>
               </div>
               <div>
                 <form className="space-y-6">
-                  <div className="text-center">
-                    <span className="mb-2 inline-block font-medium text-title/85">
-                      How was overall experience with{" "}
-                      {type === "doctor" ? "doctor" : "service"}?
-                    </span>
-                    <div>
-                      <StarRating
-                        className="text-3xl"
-                        clickable={true}
-                        rating={rating}
-                        setRating={setRating}
+                  {products?.map((item, index) => (
+                    <div
+                      className="py-6 first:pt-0 last:border-0 last:pb-0"
+                      key={index}
+                    >
+                      <ProductCard
+                        item={item}
+                        index={index}
+                        variant="feedback"
                       />
                     </div>
-                  </div>
+                  ))}
                   <div>
                     <span className="mb-2 block text-center font-medium text-title/85">
-                      Any additional feedback?
+                      Write your feedback
                     </span>
                     <textarea
                       value={message}
@@ -108,4 +118,4 @@ const ServiceReviewModal = ({ isOpen, lang, setIsOpen, size = "lg", type }) => {
   );
 };
 
-export default ServiceReviewModal;
+export default ProductFeedback;

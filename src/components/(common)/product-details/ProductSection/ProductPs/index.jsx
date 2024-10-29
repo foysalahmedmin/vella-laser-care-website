@@ -33,10 +33,12 @@ const ProductPs = ({ className, info, lang }) => {
       >
         <div className="flex items-center justify-between gap-2">
           <div>
-            <span className="inline-block rounded bg-green-500 px-2 py-1 text-sm text-light">
-              {info?.discount_amount}
-              {info?.discount_type === "percentage" ? "%" : "৳"} OFF
-            </span>
+            {info?.discount_amount > 0 && (
+              <span className="inline-block rounded bg-green-500 px-2 py-1 text-sm text-light">
+                {info?.discount_amount}
+                {info?.discount_type === "percentage" ? "%" : "৳"} OFF
+              </span>
+            )}
           </div>
           <Button
             className="ml-auto rounded-full text-lg text-foreground"
@@ -103,7 +105,7 @@ const ProductPs = ({ className, info, lang }) => {
               })}
               BDT
             </strong>
-            {info?.selling_price && (
+            {info?.discount_amount > 0 && (
               <del className="text-xl !leading-none text-muted-foreground line-through">
                 {toFixedAndLocaleStringCurrency({
                   value:

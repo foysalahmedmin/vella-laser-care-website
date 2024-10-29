@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/Button";
-import { Download } from "lucide-react";
+import { ArrowUpRight, Download } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import {
   fetchCustomerOrders,
@@ -7,8 +7,13 @@ import {
 } from "@/pages/(user)/UserDashboard/dashboardApis.js";
 import moment from "moment";
 import { useState } from "react";
+import ProductFeedback from "@/components/partials/Modals/ProductFeedback/index.jsx";
+import { useDispatch } from "react-redux";
+import { SetFeedbackOrderId } from "@/redux/slices/feedbackSlice.js";
 
 const MyOrders = () => {
+  const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [downloadIndex, setDownloadIndex] = useState(null);
   const { data: orders } = useQuery({
@@ -21,7 +26,7 @@ const MyOrders = () => {
         <div className="grid grid-cols-1 overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="grid bg-primary/5 text-title/85 [grid-template-columns:2.5rem_repeat(5,minmax(0,1fr))]">
+              <tr className="grid bg-primary/5 text-title/85 [grid-template-columns:2.5rem_repeat(6,minmax(0,1fr))]">
                 <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
                   <input type="checkbox" className="checkbox text-lg" />
                 </th>
@@ -38,6 +43,9 @@ const MyOrders = () => {
                   Total
                 </th>
                 <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
+                  Feedback
+                </th>
+                <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
                   Invoice
                 </th>
               </tr>
@@ -46,7 +54,7 @@ const MyOrders = () => {
               {orders?.data?.map((x, i) => (
                 <tr
                   key={i}
-                  className="mt-3 grid bg-muted/15 text-title/85 [grid-template-columns:2.5rem_repeat(5,minmax(0,1fr))]"
+                  className="mt-3 grid bg-muted/15 text-title/85 [grid-template-columns:2.5rem_repeat(6,minmax(0,1fr))]"
                 >
                   <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
                     <input type="checkbox" className="checkbox text-lg" />
@@ -64,6 +72,18 @@ const MyOrders = () => {
                   </td>
                   <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
                     {x?.total} BDT
+                  </td>
+                  <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
+                    <div
+                      onClick={() => {
+                        dispatch(SetFeedbackOrderId(x?._id));
+                        setIsOpen(true);
+                      }}
+                      className="inline-flex cursor-pointer items-center gap-1 text-primary underline"
+                    >
+                      <span>Feedback</span>
+                      <ArrowUpRight className="size-4" />
+                    </div>
                   </td>
                   <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
                     <Button
@@ -94,6 +114,7 @@ const MyOrders = () => {
             </tbody>
           </table>
         </div>
+        <ProductFeedback isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
     </>
   );

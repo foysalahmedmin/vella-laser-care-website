@@ -88,7 +88,7 @@ const PaymentSection = ({ className }) => {
           };
         }),
       });
-      if (payment_method === "cash") {
+      if (payment_method === "offline") {
         toast.success(response?.message);
         dispatch(SetResetCart());
         navigate("/shop");

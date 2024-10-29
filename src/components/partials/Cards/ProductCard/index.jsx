@@ -16,12 +16,15 @@ import {
 } from "@/redux/slices/cartSlice.js";
 import { LucideShoppingCart, Plus, X } from "lucide-react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CartInfo from "../../CartInfo";
+import { StarRatingProvide } from "@/components/ui/StarRatingProvide.jsx";
 
 const ProductCard = ({ lang, item, variant = "default", className, index }) => {
   const dispatch = useDispatch();
+  const [star, setStar] = useState(0);
+  const { products } = useSelector((state) => state.feedback);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const {
@@ -43,6 +46,7 @@ const ProductCard = ({ lang, item, variant = "default", className, index }) => {
     thumbnail,
     quantity,
   } = item;
+
   return (
     <>
       {variant === "default" && (
@@ -311,6 +315,31 @@ const ProductCard = ({ lang, item, variant = "default", className, index }) => {
             >
               <Plus className="size-[1.5em]" />
             </Button>
+          </div>
+        </div>
+      )}
+      {variant === "feedback" && (
+        <div className={cn("relative flex items-center gap-2", className)}>
+          <div className="size-24 shrink-0">
+            <img
+              className="size-full object-contain object-center"
+              src={`${urls?.thumbnail}/${thumbnail}`}
+              alt={name}
+            />
+          </div>
+          <div className="flex flex-1 flex-col self-stretch">
+            <div>
+              <div className="font-medium uppercase text-title">{name}</div>
+            </div>
+            <div className="mt-4 flex items-end justify-between">
+              <StarRatingProvide
+                className="text-2xl"
+                clickable={true}
+                rating={rating}
+                product={_id}
+                index={index}
+              />
+            </div>
           </div>
         </div>
       )}

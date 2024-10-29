@@ -7,6 +7,11 @@ export async function fetchCustomerOrders(page, limit) {
   return response?.data[0];
 }
 
+export async function fetchOrderProducts(id) {
+  const response = await base.get(`/api/order/get_order_products/${id}`);
+  return response?.data[0];
+}
+
 export async function fetchParlorOrders(page, limit) {
   const response = await base.get(
     `/api/order/get_parlor_orders?page=${page}&limit=${limit}`,

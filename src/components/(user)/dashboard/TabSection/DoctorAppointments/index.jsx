@@ -12,8 +12,13 @@ import moment from "moment";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import ServiceReviewModal from "@/components/partials/Modals/ServiceReviewModal/index.jsx";
+import { useDispatch } from "react-redux";
+import { SetFeedbackDoctorId } from "@/redux/slices/feedbackSlice.js";
 
 const DoctorAppointments = () => {
+  const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const [isDownloading, setIsDownloading] = useState(false);
   const [downloadIndex, setDownloadIndex] = useState(null);
@@ -42,7 +47,7 @@ const DoctorAppointments = () => {
         <div className="grid grid-cols-1 overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="grid grid-cols-8 bg-primary/5 text-title/85">
+              <tr className="grid grid-cols-9 bg-primary/5 text-title/85">
                 <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:justify-start first:pl-4 last:justify-end last:pr-4">
                   Appointment Date
                 </th>
@@ -65,6 +70,9 @@ const DoctorAppointments = () => {
                   Payment
                 </th>
                 <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:justify-start first:pl-4 last:justify-end last:pr-4">
+                  Feedback
+                </th>
+                <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:justify-start first:pl-4 last:justify-end last:pr-4">
                   Action
                 </th>
               </tr>
@@ -73,7 +81,7 @@ const DoctorAppointments = () => {
               {appointments?.data?.map((x, index) => (
                 <tr
                   key={index}
-                  className="mt-3 grid grid-cols-8 bg-muted/15 text-sm text-title/85"
+                  className="mt-3 grid grid-cols-9 bg-muted/15 text-sm text-title/85"
                 >
                   <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:justify-start first:pl-4 last:justify-end last:pr-4">
                     {moment(new Date(x?.date)).format("DD, MMM YYYY")} <br />
@@ -172,6 +180,18 @@ const DoctorAppointments = () => {
                     {x?.isPaid ? "Paid" : "Due"}
                   </td>
                   <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:justify-start first:pl-4 last:justify-end last:pr-4">
+                    <div
+                      onClick={() => {
+                        dispatch(SetFeedbackDoctorId(x?.doctor?._id));
+                        setIsOpen(true);
+                      }}
+                      className="inline-flex cursor-pointer items-center gap-1 text-primary underline"
+                    >
+                      <span>Feedback</span>
+                      <ArrowUpRight className="size-4" />
+                    </div>
+                  </td>
+                  <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:justify-start first:pl-4 last:justify-end last:pr-4">
                     <div className="inline-flex items-center justify-end gap-2">
                       {/*<Button*/}
                       {/*  size="icon"*/}
@@ -200,6 +220,7 @@ const DoctorAppointments = () => {
           </table>
         </div>
       </div>
+      <ServiceReviewModal isOpen={isOpen} setIsOpen={setIsOpen} type="doctor" />
     </>
   );
 };

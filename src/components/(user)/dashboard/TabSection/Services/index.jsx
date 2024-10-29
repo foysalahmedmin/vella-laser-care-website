@@ -6,12 +6,17 @@ import {
 } from "@/pages/(user)/UserDashboard/dashboardApis.js";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import moment from "moment/moment.js";
+import moment from "moment";
 import { errorMessage } from "@/helpers/error.js";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { SetFeedbackServiceId } from "@/redux/slices/feedbackSlice.js";
+import { useDispatch } from "react-redux";
+import ServiceReviewModal from "@/components/partials/Modals/ServiceReviewModal/index.jsx";
 
 const Services = () => {
+  const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const [pendingIndex, setPendingIndex] = useState(null);
   const { data: services, refetch } = useQuery({
@@ -32,13 +37,14 @@ const Services = () => {
       toast.error(errorMessage(error));
     }
   };
+  console.log(services);
   return (
     <>
       <div className="pt-10">
         <div className="grid grid-cols-1 overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="grid grid-cols-7 bg-primary/5 text-title/85">
+              <tr className="grid grid-cols-8 bg-primary/5 text-title/85">
                 <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
                   Service Date
                 </th>
@@ -58,6 +64,9 @@ const Services = () => {
                   Status
                 </th>
                 <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
+                  Feedback
+                </th>
+                <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
                   Action
                 </th>
               </tr>
@@ -66,7 +75,7 @@ const Services = () => {
               {services?.data?.map((x, index) => (
                 <tr
                   key={index}
-                  className="mt-3 grid grid-cols-7 bg-muted/15 text-sm text-title/85"
+                  className="mt-3 grid grid-cols-8 bg-muted/15 text-sm text-title/85"
                 >
                   <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
                     {moment(new Date(x?.date)).format("DD, MMM YYYY")} <br />
@@ -113,6 +122,18 @@ const Services = () => {
                     </span>
                   </td>
                   <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
+                    <div
+                      onClick={() => {
+                        dispatch(SetFeedbackServiceId(x?.service?._id));
+                        setIsOpen(true);
+                      }}
+                      className="inline-flex cursor-pointer items-center gap-1 text-primary underline"
+                    >
+                      <span>Feedback</span>
+                      <ArrowUpRight className="size-4" />
+                    </div>
+                  </td>
+                  <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
                     <div className="inline-flex items-center justify-end gap-2">
                       {/*<Button*/}
                       {/*  size="icon"*/}
@@ -141,6 +162,11 @@ const Services = () => {
           </table>
         </div>
       </div>
+      <ServiceReviewModal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        type="service"
+      />
     </>
   );
 };

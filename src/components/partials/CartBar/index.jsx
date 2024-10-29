@@ -76,7 +76,11 @@ const CartBar = ({ isOpen, setIsOpen, size = "base", side = "right" }) => {
               </div>
               <div>
                 <Link to="/checkout">
-                  <Button asChild={true} className="w-full text-sm uppercase">
+                  <Button
+                    onClick={() => setIsOpen(false)}
+                    asChild={true}
+                    className="w-full text-sm uppercase"
+                  >
                     <span>PROCEED TO CHECKOUT</span>
                     <ArrowUpRight className="size-4" />
                   </Button>
