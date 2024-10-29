@@ -17,7 +17,7 @@ const Notification = () => {
         variant="none"
         size="none"
       >
-        <LucideBell className="size-[1.5em]" />
+        <LucideBell className="size-[1.25em]" />
       </Button>
       <span className="badge primary absolute right-1 top-1 -translate-y-1/2 translate-x-1/2">
         {data?.count || 0}

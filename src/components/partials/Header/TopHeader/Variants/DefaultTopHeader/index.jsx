@@ -13,7 +13,7 @@ const DefaultTopHeader = ({ user, className }) => {
       <div className="container size-full">
         <div className="flex size-full items-center justify-between md:grid md:grid-cols-3">
           <div className="flex items-center gap-1">
-            <EmailOutline className="text-[1.25em] leading-none text-primary md:text-2xl" />
+            <EmailOutline className="text-[1.5em] leading-none text-primary" />
             <span className="inline-block text-[1em] font-medium leading-none text-muted-foreground">
               office@vellalasercare.com
             </span>
@@ -28,27 +28,27 @@ const DefaultTopHeader = ({ user, className }) => {
             <div className="inline-flex items-center divide-x divide-primary/25 md:divide-x-2">
               <Link
                 to=""
-                className="px-2 text-[1.25em] leading-none text-primary first:pl-0 last:pr-0 lg:px-4"
+                className="px-[0.5em] leading-none text-primary first:pl-0 last:pr-0 lg:px-[1em]"
               >
-                <YouTube />
+                <YouTube className="text-[1.25em]" />
               </Link>
               <Link
                 to=""
-                className="px-2 text-[1.25em] leading-none text-primary first:pl-0 last:pr-0 lg:px-4"
+                className="px-[0.5em] leading-none text-primary first:pl-0 last:pr-0 lg:px-[1em]"
               >
-                <Instagram />
+                <Instagram className="text-[1.25em]" />
               </Link>
               <Link
                 to=""
-                className="px-2 text-[1.25em] leading-none text-primary first:pl-0 last:pr-0 lg:px-4"
+                className="px-[0.5em] leading-none text-primary first:pl-0 last:pr-0 lg:px-[1em]"
               >
-                <Twitter />
+                <Twitter className="text-[1.25em]" />
               </Link>
               <Link
                 to=""
-                className="px-2 text-[1.25em] leading-none text-primary first:pl-0 last:pr-0 lg:px-4"
+                className="px-[0.5em] leading-none text-primary first:pl-0 last:pr-0 lg:px-[1em]"
               >
-                <Facebook />
+                <Facebook className="text-[1.25em]" />
               </Link>
             </div>
             <LocaleSwitch className="text-[1.5em]" />

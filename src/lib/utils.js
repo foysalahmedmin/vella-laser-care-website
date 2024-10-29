@@ -88,3 +88,17 @@ export const shortFormToNumber = (shortForm) => {
 export const bytesToMegabytes = (bytes) => {
   return (bytes / (1024 * 1024)).toFixed(2);
 };
+
+export const remToPx = (rem) => {
+  const rootFontSize = parseFloat(
+    getComputedStyle(document.documentElement).fontSize,
+  );
+  return rem * rootFontSize;
+};
+
+export const pxToRem = (px) => {
+  const rootFontSize = parseFloat(
+    getComputedStyle(document.documentElement).fontSize,
+  );
+  return px / rootFontSize;
+};

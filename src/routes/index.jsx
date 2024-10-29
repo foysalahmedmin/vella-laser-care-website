@@ -57,16 +57,16 @@ const ShopPage = lazy(() => import("@/pages/(common)/ShopPage"));
 const TrainingPage = lazy(() => import("@/pages/(common)/TrainingPage"));
 
 // Parlor Pages
-const CustomerRequestPage = lazy(
-  () => import("@/pages/(parlor)/CustomerRequestPage"),
+const BookingHistoryPage = lazy(
+  () => import("@/pages/(parlor)/BookingHistoryPage"),
+);
+const WithdrawHistoryPage = lazy(
+  () => import("@/pages/(parlor)/WithdrawHistoryPage"),
 );
 const EarningsPage = lazy(() => import("@/pages/(parlor)/EarningsPage"));
 const ParlorDashboard = lazy(() => import("@/pages/(parlor)/ParlorDashboard"));
 const ParlorProfilePage = lazy(
   () => import("@/pages/(parlor)/ParlorProfilePage"),
-);
-const WithdrawHistory = lazy(
-  () => import("@/pages/(parlor)/WithdrawHistory/index.jsx"),
 );
 
 // User Pages
@@ -342,18 +342,18 @@ export const routes = [
             ),
           },
           {
-            path: "history",
+            path: "booking-history",
             element: (
               <Suspense fallback={<Loader />}>
-                <CustomerRequestPage />
+                <BookingHistoryPage />
               </Suspense>
             ),
           },
           {
-            path: "withdraw_history",
+            path: "withdraw-history",
             element: (
               <Suspense fallback={<Loader />}>
-                <WithdrawHistory />
+                <WithdrawHistoryPage />
               </Suspense>
             ),
           },

@@ -27,7 +27,7 @@ const HomeNavigation = ({ className }) => {
     >
       <div className="size-full bg-primary/5">
         <div className="container h-full">
-          <div className="flex h-full items-center justify-between gap-[0.5em] lg:grid lg:grid-cols-12 lg:gap-[1em]">
+          <div className="flex h-full items-center justify-between gap-[1em] lg:grid lg:grid-cols-12 lg:gap-[1.5em]">
             <div className="text-base lg:col-span-3">
               <Logo />
             </div>
@@ -51,35 +51,37 @@ const HomeNavigation = ({ className }) => {
                   <Toggle isOn={isOpen} setIsOn={setIsOpen}>
                     <ToggleTrigger>
                       <ToggleOnComp>
-                        <X className="size-[1.5rem]" />
+                        <X className="size-[1.25em]" />
                       </ToggleOnComp>
                       <ToggleOffComp>
-                        <AlignRight className="size-[1.5rem]" />
+                        <AlignRight className="size-[1.25em]" />
                       </ToggleOffComp>
                     </ToggleTrigger>
                   </Toggle>
                 </div>
-                <ul className="flex size-full flex-col items-center justify-center gap-4">
+                <ul className="flex size-full flex-col items-center justify-center gap-[1em]">
                   <NavMenu />
                 </ul>
               </div>
             </>
             <div className="flex items-center justify-end gap-[1em] lg:col-span-3">
-              <div className="flex items-center justify-end gap-[0.5em] lg:gap-[1em]">
+              <div className="flex items-center justify-end gap-[0.5em]">
                 {/*<SearchBar className="static w-full lg:relative lg:w-auto" />*/}
                 <Wishlist />
                 <Cart />
                 {isAuthenticated && <Notification />}
+              </div>
+              <div>
                 <UserAndAuthNav />
               </div>
               <div className="lg:hidden">
                 <Toggle isOn={isOpen} setIsOn={setIsOpen}>
                   <ToggleTrigger>
                     <ToggleOnComp>
-                      <X className="size-[1.5rem]" />
+                      <X className="size-[1.25em]" />
                     </ToggleOnComp>
                     <ToggleOffComp>
-                      <AlignRight className="size-[1.5rem]" />
+                      <AlignRight className="size-[1.25em]" />
                     </ToggleOffComp>
                   </ToggleTrigger>
                 </Toggle>

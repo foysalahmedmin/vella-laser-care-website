@@ -28,7 +28,7 @@ const UserAndAuthNav = ({ user }) => {
         <div className="relative">
           <div
             onClick={() => setIsOpen((value) => !value)}
-            className="flex cursor-pointer items-center gap-[0.5em]"
+            className="flex cursor-pointer items-center gap-[0.25em]"
           >
             <div className="size-[2.5em] overflow-hidden rounded-full border bg-background">
               <img
@@ -43,11 +43,11 @@ const UserAndAuthNav = ({ user }) => {
             </div>
             {(me?.name || me?.email) && (
               <>
-                <div className="hidden md:block">
-                  <span className="block text-[0.875em] font-medium text-title/85">
+                <div className="hidden space-y-1 leading-none md:block">
+                  <span className="block text-[0.875em] font-medium leading-none text-title/85">
                     {me?.name}
                   </span>
-                  <span className="block text-[0.75em] text-muted-foreground">
+                  <span className="block text-[0.75em] leading-none text-muted-foreground">
                     {me?.email}
                   </span>
                 </div>
@@ -105,7 +105,7 @@ const UserAndAuthNav = ({ user }) => {
           <Button asChild className="uppercase" size="sm">
             <span className="hidden sm:block">Login / Register</span>
             <User className="hidden size-[1em] sm:block" />
-            <LogIn className="size-[1.5em] sm:hidden" />
+            <LogIn className="size-[1.25em] sm:hidden" />
           </Button>
         </Link>
       )}
