@@ -1,19 +1,11 @@
-import { Button } from "@/components/ui/Button";
-import { Download } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import {
-  fetchParlorOrders,
-  fetchSalesInvoice,
-} from "@/pages/(user)/UserDashboard/dashboardApis.js";
 import moment from "moment";
-import { useState } from "react";
+import { fetchOrderEarnings } from "@/pages/(parlor)/apis.js";
 
 const MyOrders = () => {
-  const [isDownloading, setIsDownloading] = useState(false);
-  const [downloadIndex, setDownloadIndex] = useState(null);
   const { data: orders } = useQuery({
-    queryKey: ["parlor_orders"],
-    queryFn: () => fetchParlorOrders(1, 20),
+    queryKey: ["order_earnings"],
+    queryFn: () => fetchOrderEarnings(1, 20),
   });
   return (
     <>
@@ -21,24 +13,21 @@ const MyOrders = () => {
         <div className="grid grid-cols-1 overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="grid bg-primary/5 text-title/85 [grid-template-columns:2.5rem_repeat(5,minmax(0,1fr))]">
+              <tr className="grid grid-cols-5 bg-primary/5 text-title/85">
                 <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
-                  <input type="checkbox" className="checkbox text-lg" />
-                </th>
-                <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
-                  Order Number
+                  Order ID
                 </th>
                 <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
                   Order Date
                 </th>
                 <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
+                  Products
+                </th>
+                <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
                   Status
                 </th>
                 <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
-                  Total
-                </th>
-                <th className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
-                  Invoice
+                  Income
                 </th>
               </tr>
             </thead>
@@ -47,16 +36,16 @@ const MyOrders = () => {
                 orders?.data?.map((x, i) => (
                   <tr
                     key={i}
-                    className="mt-3 grid bg-muted/15 text-title/85 [grid-template-columns:2.5rem_repeat(5,minmax(0,1fr))]"
+                    className="mt-3 grid grid-cols-5 bg-muted/15 text-sm text-title/85"
                   >
-                    <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
-                      <input type="checkbox" className="checkbox text-lg" />
-                    </td>
                     <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
                       {x?.order_id}
                     </td>
                     <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
-                      {moment(new Date(x?.createdAt)).format("DD, MMM YYYY")}
+                      {moment(new Date(x?.date)).format("DD, MMM YYYY")}
+                    </td>
+                    <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
+                      {x?.products?.map((product) => product?.name).join(", ")}
                     </td>
                     <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
                       <span className="text-green-500">
@@ -64,38 +53,14 @@ const MyOrders = () => {
                       </span>
                     </td>
                     <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
-                      {x?.total} BDT
-                    </td>
-                    <td className="flex items-center justify-center self-stretch px-2 py-2 text-center first:pl-4 last:justify-end last:pr-4 [&:nth-child(2)]:justify-start [&:nth-child(2)]:pl-4">
-                      <Button
-                        isLoading={isDownloading && i === downloadIndex}
-                        disabled={isDownloading && i === downloadIndex}
-                        onClick={async () => {
-                          setDownloadIndex(i);
-                          setIsDownloading(true);
-                          const response = await fetchSalesInvoice(x?._id);
-                          const blob = new Blob([response], {
-                            type: "application/pdf",
-                          });
-                          const link = document.createElement("a");
-                          link.href = window.URL.createObjectURL(blob);
-                          link.download = `${x?.order_id}.pdf`;
-                          link.click();
-                          setDownloadIndex(null);
-                          setIsDownloading(false);
-                        }}
-                        className="h-6 text-sm"
-                      >
-                        <span>Download</span>
-                        <Download className="size-4" />
-                      </Button>
+                      {x?.total_commission_amount}BDT
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr className="mt-3 bg-muted/15 text-title/85">
                   <td
-                    colSpan={7}
+                    colSpan={5}
                     className="self-stretch px-4 py-4 text-center"
                   >
                     No Orders Found!

@@ -1,4 +1,3 @@
-import { fetchParlorEarnings } from "@/pages/(parlor)/apis.js";
 import { useQuery } from "@tanstack/react-query";
 import {
   Bar,
@@ -9,11 +8,12 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { fetchParlorAppointmentGraph } from "../../../../../../pages/(parlor)/apis.js";
 
 const DailyChart = () => {
   const { data: daily } = useQuery({
-    queryKey: ["daily"],
-    queryFn: () => fetchParlorEarnings("daily"),
+    queryKey: ["appointment_daily"],
+    queryFn: () => fetchParlorAppointmentGraph("daily"),
   });
   return (
     <div className="size-full">

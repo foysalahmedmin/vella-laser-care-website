@@ -4,13 +4,6 @@ import { cn } from "@/lib/utils";
 import { fetchServiceEarnings } from "@/pages/(parlor)/apis";
 import { useQuery } from "@tanstack/react-query";
 
-// const data = [
-//   { name: "group a", value: 400 },
-//   { name: "group b", value: 300 },
-//   { name: "group c", value: 300 },
-//   { name: "group d", value: 200 },
-// ];
-
 const Statistics = ({ className }) => {
   const { data: services } = useQuery({
     queryKey: ["services"],
@@ -27,7 +20,7 @@ const Statistics = ({ className }) => {
         <div className="flex items-center justify-between">
           <div className="flex-1">
             <span className="block text-sm">Statistics</span>
-            <h4>Earning by Services</h4>
+            <h4>Earning by Service</h4>
           </div>
         </div>
         <hr />

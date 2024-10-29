@@ -1,4 +1,3 @@
-import { fetchParlorEarnings } from "@/pages/(parlor)/apis.js";
 import { useQuery } from "@tanstack/react-query";
 import {
   Bar,
@@ -9,12 +8,14 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { fetchParlorAppointmentGraph } from "../../../../../../pages/(parlor)/apis.js";
 
 const YearlyChart = () => {
   const { data: yearly } = useQuery({
-    queryKey: ["yearly"],
-    queryFn: () => fetchParlorEarnings("yearly"),
+    queryKey: ["appointment_yearly"],
+    queryFn: () => fetchParlorAppointmentGraph("yearly"),
   });
+  console.log("appointment_yearly", yearly);
   return (
     <div className="size-full">
       <ResponsiveContainer width="100%" height="100%">

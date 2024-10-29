@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
-import Statistics from "./Statistics";
 import TimeFrameChart from "./TimeframeChart";
+import Statistics from "@/components/(parlor)/dashboard/EarningChartSection/Statistics/index.jsx";
 
 const ChartSection1 = ({ className }) => {
   return (

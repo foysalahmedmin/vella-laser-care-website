@@ -37,7 +37,7 @@ const TimeFrameChart = ({ className }) => {
     >
       <Tabs className="flex h-full flex-col space-y-4" value={0}>
         <div className="flex items-center justify-between">
-          <h4>Earning</h4>
+          <h4>Service Earning</h4>
           <TabsList className="justify-end rounded-xl bg-primary/5 p-1">
             {tabs.map((item, index) => (
               <TabsTrigger
