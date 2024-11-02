@@ -41,12 +41,14 @@ const Footer = () => {
           <div className="grid justify-between gap-8 md:grid-cols-12">
             <div className="space-y-4 md:col-span-4 xl:col-span-6">
               <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged.
+                At Vella Laser Care, we believe that everyone deserves to look
+                and feel their best. Our state-of-the-art laser treatments and
+                personalized skincare solutions are designed to rejuvenate,
+                restore, and enhance your natural beauty. With a team of
+                certified professionals and cutting-edge technology, we’re
+                committed to delivering safe, effective results tailored to your
+                unique needs. Your aesthetic dreams begin here. Visit us today
+                and experience the difference.
               </p>
               <div className="flex items-center gap-4">
                 <strong>Follow Us:</strong>

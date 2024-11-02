@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/Button";
 import { ArrowRight } from "lucide-react";
+import ParlorRegistrationModal from "@/components/partials/Modals/ParlorRegistrationModal/index.jsx";
+import { useState } from "react";
 
 const SecondPart = ({ lang }) => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <section className="md:pt-24">
       <section
@@ -35,20 +38,26 @@ const SecondPart = ({ lang }) => {
               )}
               {lang === "en" ? (
                 <p className="font-semibold md:text-lg">
-                  Lorem Ipsum Is Simply Dummy Text Of The Printing And
-                  Typesetting Industry. Lorem Ipsum Has Been The Industry's
-                  Standard Dummy Text Ever Since.
+                  Visit our registered beauty parlor and unlock exclusive
+                  rewards! Enjoy top-notch skincare and beauty treatments while
+                  earning loyalty points on every service. First-time visitors
+                  receive special discounts, and referrals earn unique rewards.
+                  Experience a new level of beauty and benefits—join us today
+                  and transform your routine with exciting perks!
                 </p>
               ) : (
                 <p className="font-semibold md:text-lg">
-                  Lorem Ipsum Is Simply Dummy Text Of The Printing And
-                  Typesetting Industry. Lorem Ipsum Has Been The Industry's
-                  Standard Dummy Text Ever Since.
+                  Visit our registered beauty parlor and unlock exclusive
+                  rewards! Enjoy top-notch skincare and beauty treatments while
+                  earning loyalty points on every service. First-time visitors
+                  receive special discounts, and referrals earn unique rewards.
+                  Experience a new level of beauty and benefits—join us today
+                  and transform your routine with exciting perks!
                 </p>
               )}
 
               <div className="pt-4">
-                <Button>
+                <Button onClick={() => setIsOpen(true)}>
                   <span>{lang === "en" ? "Register" : "Register"}</span>{" "}
                   <ArrowRight className="size-4" />
                 </Button>
@@ -57,6 +66,7 @@ const SecondPart = ({ lang }) => {
           </div>
         </div>
       </section>
+      <ParlorRegistrationModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </section>
   );
 };

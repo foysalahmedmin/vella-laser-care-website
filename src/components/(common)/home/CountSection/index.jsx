@@ -9,25 +9,25 @@ const CountSection = ({ lang }) => {
   const data = [
     {
       label: "Expert Dermatologist",
-      label_bn: "Expert Dermatologist",
+      label_bn: "চর্মরোগ বিশেষজ্ঞ",
       value: "20",
       icon: Doctor,
     },
     {
       label: "Products",
-      label_bn: "Products",
+      label_bn: "পণ্যসমূহ",
       value: "44",
       icon: Product,
     },
     {
       label: "Happy Customers",
-      label_bn: "Happy Customers",
+      label_bn: "সন্তুষ্ট গ্রাহক",
       value: "300",
       icon: Customer,
     },
     {
       label: "Year’s of Experince",
-      label_bn: "Year’s of Experince",
+      label_bn: "অভিজ্ঞত",
       value: "7",
       icon: Badge,
     },

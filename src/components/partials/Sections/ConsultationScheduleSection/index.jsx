@@ -142,13 +142,19 @@ const ConsultationScheduleSection = ({ lang }) => {
               </Title>
               {lang === "en" ? (
                 <Description>
-                  We're thrilled you're interested in joining our campaign!
-                  Please fill out <br /> the form below to get started.
+                  Take the first step toward your beauty transformation by
+                  scheduling a consultation with our experts.
+                  <br /> During your personalized session, we’ll assess your
+                  skincare needs, discuss your goals, <br /> and recommend
+                  tailored treatments just for you.
                 </Description>
               ) : (
                 <Description>
-                  We're thrilled you're interested in joining our campaign!
-                  Please fill out <br /> the form below to get started.
+                  Take the first step toward your beauty transformation by
+                  scheduling a consultation with our experts.
+                  <br /> During your personalized session, we’ll assess your
+                  skincare needs, discuss your goals, <br /> and recommend
+                  tailored treatments just for you.
                 </Description>
               )}
             </SectionTitle>

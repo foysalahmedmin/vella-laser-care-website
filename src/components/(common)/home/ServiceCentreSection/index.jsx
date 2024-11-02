@@ -28,22 +28,20 @@ const ServiceCentreSection = ({ lang }) => {
             </Subtitle>
             <Title>
               {lang === "en"
-                ? " What We Treat In Centre"
-                : " What We Treat In Centre"}
+                ? "Bringing Out Your Natural Glow with Our Specialized Treatments"
+                : "আমাদের বিশেষ ট্রিটমেন্টে উজ্জ্বল করুন আপনার প্রাকৃতিক সৌন্দর্য"}
             </Title>
           </SectionTitle>
           <div className="mr-24 max-w-[26rem] space-y-4 text-sm">
             <p>
               {lang === "en"
-                ? "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ex\n" +
-                  "              cum odio ullam repudiandae eveniet assumenda ea dolore."
-                : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ex\n" +
-                  "              cum odio ullam repudiandae eveniet assumenda ea dolore."}
+                ? "Bring Out Your Natural Glow with Our Expertly Tailored Treatment Discover smoother, brighter, and more youthful skin with our advanced skincare solutions designed to enhance your natural radiance."
+                : "আপনার প্রাকৃতিক উজ্জ্বলতা প্রকাশ করুন আমাদের বিশেষায়িত ট্রিটমেন্টের মাধ্যমে আমাদের উন্নত স্কিনকেয়ার সমাধান দিয়ে খুঁজে নিন মসৃণ, উজ্জ্বল ও আরও তারুণ্যভরা ত্বক।"}
             </p>
             <Link to={""} className="block font-bold text-title underline">
               {lang === "en"
                 ? "Browse All Skincare Treatments"
-                : "Browse All Skincare Treatments"}
+                : "আমাদের সব স্কিনকেয়ার ট্রিটমেন্ট দেখুন"}
             </Link>
           </div>
         </div>

@@ -1,8 +1,17 @@
 import { Discount } from "@/assets/svg/icons/Discount";
 import { MagnifyCart } from "@/assets/svg/icons/Magnify";
 import { MoneyBag } from "@/assets/svg/icons/MoneyBag";
+import { useQuery } from "@tanstack/react-query";
+import { fetchMe } from "@/network/user/userApis.js";
+import useUser from "@/redux/slices/user-slice/useUser.js";
 
 const BannerSection = () => {
+  const { role } = useUser();
+  const { data: me } = useQuery({
+    queryKey: ["me"],
+    queryFn: () => fetchMe(),
+    enabled: !!role,
+  });
   return (
     <section
       style={{
@@ -17,7 +26,7 @@ const BannerSection = () => {
               <div className="max-w-xl text-center md:max-w-2xl md:basis-1/2 md:text-left">
                 <div>
                   <span className="my-0 mb-4 inline-block border-primary text-base font-bold capitalize text-primary md:text-lg">
-                    Welcome Onboard, Aparupa Parlour
+                    Welcome Onboard, {me?.name}
                   </span>
                   <h1 className="font-playfair text-4xl font-black capitalize lg:text-5xl">
                     Manage Parlor <br />

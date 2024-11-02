@@ -8,7 +8,6 @@ const Services = () => {
     queryKey: ["booking_earnings"],
     queryFn: () => fetchBookingEarnings(1, 20),
   });
-  console.log(bookings);
   if (isLoading) return <TableSkeleton />;
   return (
     <>

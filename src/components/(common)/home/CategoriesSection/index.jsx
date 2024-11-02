@@ -15,10 +15,10 @@ const CategoriesSection = ({ lang }) => {
           <Subtitle>
             {lang === "en"
               ? "Healthy Skin & Natural"
-              : "Healthy Skin & Natural"}
+              : "স্বাস্থ্যকর ও প্রাকৃতিক ত্বকের যত্ন"}
           </Subtitle>
           <Title className="text-title">
-            {lang === "en" ? "Shop By Category" : "Shop By Category"}
+            {lang === "en" ? "Shop By Category" : "রেণীভিত্তিক কেনাকাটা করুন"}
           </Title>
         </SectionTitle>
         <div className="grid grid-cols-1 gap-4 gap-y-8 md:grid-cols-2 lg:grid-cols-5">

@@ -33,17 +33,19 @@ const FirstPart = ({ lang }) => {
               </span>
               {lang === "en" ? (
                 <h1 className="text-4xl">
-                  Aesthetic Dreams Begin Here <br /> Visit Us Today
+                  Unlock your true beauty with cutting-edge treatments <br /> at
+                  Vella Laser Care
                 </h1>
               ) : (
                 <h1 className="text-4xl">
-                  Aesthetic Dreams Begin Here <br /> Visit Us Today
+                  আধুনিক ট্রিটমেন্টে উন্মোচন করুন আপনার সত্যিকারের সৌন্দর্য{" "}
+                  <br /> েলা লেজার কেয়ার
                 </h1>
               )}
               <p className="font-semibold md:text-lg">
                 {lang === "en"
-                  ? "Lorem Ipsum Is Simply Dummy Text Of The Printing And Typesetting Industry. Lorem Ipsum Has Been The Industry's Standard Dummy Text Ever Since."
-                  : "Lorem Ipsum Is Simply Dummy Text Of The Printing And Typesetting Industry. Lorem Ipsum Has Been The Industry's Standard Dummy Text Ever Since."}
+                  ? "Our expert team offers personalized skincare solutions to help you achieve radiant, flawless skin. From rejuvenating facials to advanced laser therapy, your aesthetic dreams begin here. Visit us today and step into a world of confidence and beauty!"
+                  : "আমাদের বিশেষজ্ঞ দল আপনাকে উজ্জ্বল, নিখুঁত ত্বক পেতে ব্যক্তিগত যত্নের সমাধান প্রদান করে। পুনরুজ্জীবনকারী ফেসিয়াল থেকে শুরু করে আধুনিক লেজার থেরাপি পর্যন্ত, আপনার সৌন্দর্যের স্বপ্নের যাত্রা শুরু হোক এখান থেকেই। আজই আমাদের কাছে আসুন এবং আত্মবিশ্বাস ও সৌন্দর্যের এক নতুন জগতে প্রবেশ করুন!"}
               </p>
               <ul className="flex items-center justify-between">
                 <li className="flex items-center gap-1">

@@ -20,8 +20,10 @@ const DefaultTopHeader = ({ user, className }) => {
           </div>
           <div className="hidden text-center md:block">
             <span className="inline-block text-[1.125em] leading-none">
-              Shop <span className="font-semibold text-primary">$50</span> for{" "}
-              <span className="font-semibold text-primary">free shipping!</span>
+              <span className="font-semibold text-primary">10%</span> discount{" "}
+              <span className="font-semibold text-primary">
+                on selected products!
+              </span>
             </span>
           </div>
           <div className="flex items-center justify-end gap-[1em] text-right">

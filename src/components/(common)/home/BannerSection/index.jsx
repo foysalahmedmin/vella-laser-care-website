@@ -13,30 +13,26 @@ import BannerSlide from "./BannerSlide";
 const BannerSection = ({ lang }) => {
   const data = [
     {
-      title: `Largest Collection
-      of Bangladeshi Skincare`,
-      title_bn: `Largest Collection
-      of Bangladeshi Skincare`,
-      subTitle: "Largest and Latest Collection of Bangladeshi skincare",
-      subTitleBn: "Largest and Latest Collection of Bangladeshi skincare",
+      title: `Transform Your Skin Today`,
+      title_bn: `আজই বদলে ফেলুন আপনার ত্বক`,
+      subTitle: "Glow Like Never Before",
+      subTitleBn: "চমক দিন নতুন রূপ",
       image: {
         src: "/images/home/home-banner-image.png",
         alt: "home-slider-image-1",
       },
       button: {
-        label: "Book an appointment",
-        label_bn: "Book an appointment",
+        label: "Shop",
+        label_bn: "Shop",
         path: "/shop",
         icon: CalendarCheck,
       },
     },
     {
-      title: `Largest Collection
-      of Bangladeshi Skincare`,
-      title_bn: `Largest Collection
-      of Bangladeshi Skincare`,
-      subTitle: "Largest and Latest Collection of Bangladeshi skincare",
-      subTitleBn: "Largest and Latest Collection of Bangladeshi skincare",
+      title: `Feel the glow, embrace a new level of beauty.`,
+      title_bn: `Feel the glow, embrace a new level of beauty.`,
+      subTitle: "At Our Registered Beauty Parlor, Transformation Awaits!",
+      subTitleBn: "At Our Registered Beauty Parlor, Transformation Awaits!",
       isRegister: true,
       image: {
         src: "/images/home/home-banner-image.png",

@@ -30,12 +30,12 @@ const FeaturedProductsSection = ({ lang }) => {
         <div className="mb-10 flex items-end justify-between gap-4">
           <SectionTitle className="mb-0 md:mb-0">
             <Title className="dark text-title">
-              {lang === "en" ? "Featured Products" : "Featured Products"}
+              {lang === "en" ? "Featured Products" : "আকর্ষণীয় পণ্যসমূহ"}
             </Title>
             <Subtitle className="dark text-title">
               {lang === "en"
                 ? "Shop now: Limited quantities only!"
-                : "Shop now: Limited quantities only!"}
+                : "এখনই অর্ডার করুন, অফারটি সীমিত সময়ে্র জন্য!"}
             </Subtitle>
           </SectionTitle>
         </div>
