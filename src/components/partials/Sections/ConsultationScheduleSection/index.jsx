@@ -136,9 +136,7 @@ const ConsultationScheduleSection = ({ lang }) => {
           <div className="px-16 pt-16 md:px-24 xl:px-32">
             <SectionTitle>
               <Title>
-                {lang === "en"
-                  ? "Schedule a Consultation"
-                  : "Schedule a Consultation"}
+                {lang === "en" ? "Schedule a Consultation" : "পরামর্শ সময়সূচী"}
               </Title>
               {lang === "en" ? (
                 <Description>
@@ -150,11 +148,13 @@ const ConsultationScheduleSection = ({ lang }) => {
                 </Description>
               ) : (
                 <Description>
-                  Take the first step toward your beauty transformation by
-                  scheduling a consultation with our experts.
-                  <br /> During your personalized session, we’ll assess your
-                  skincare needs, discuss your goals, <br /> and recommend
-                  tailored treatments just for you.
+                  আমাদের বিশেষজ্ঞদের সাথে পরামর্শের সময় নির্ধারণ করে, <br />
+                  আপনার সৌন্দর্য পরিবর্তনের দিকে প্রথম পদক্ষেপ নিন। আপনার
+                  ব্যক্তিগতকৃত সেশনের সময়, আমরা আপনার ত্বকের যত্নের চাহিদাগুলি{" "}
+                  <br />
+                  মূল্যায়ন করব, আপনার লক্ষ্য নিয়ে আলোচনা করব এবং যেটা
+                  শুধুমাত্র আপনার জন্য উপযোগী চিকিৎসা সেটা আমরা আপনাকে সুপারিশ
+                  করব।
                 </Description>
               )}
             </SectionTitle>
@@ -183,7 +183,9 @@ const ConsultationScheduleSection = ({ lang }) => {
                       </label>
                       <label>
                         <span className="mb-2 inline-block font-medium text-title/85">
-                          Appointment type
+                          {lang === "en"
+                            ? "Appointment Type"
+                            : "এপয়েন্টমেন্টর ধরণ"}
                         </span>
                         <div className="flex items-center gap-4 py-2">
                           <label className="inline-flex cursor-pointer items-center gap-2">
@@ -199,7 +201,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                               }
                             />
                             <span className="inline-block font-medium text-title/85">
-                              Online
+                              {lang === "en" ? "Online" : "অনলাইন"}
                             </span>
                           </label>
                           <label className="inline-flex cursor-pointer items-center gap-2">
@@ -215,14 +217,14 @@ const ConsultationScheduleSection = ({ lang }) => {
                               }
                             />
                             <span className="inline-block font-medium text-title/85">
-                              Offline
+                              {lang === "en" ? "Offline" : "অফলাইন"}
                             </span>
                           </label>
                         </div>
                       </label>
                       <label>
                         <span className="mb-2 inline-block font-medium text-title/85">
-                          Department
+                          {lang === "en" ? "Department" : "বিভাগ"}
                         </span>
                         <div className="input block w-full rounded-full">
                           <select
@@ -232,10 +234,14 @@ const ConsultationScheduleSection = ({ lang }) => {
                             onChange={(e) => setDepartment(e.target.value)}
                             required
                           >
-                            <option value="">Select Department</option>
+                            <option value="">
+                              {lang === "en"
+                                ? "Select Department"
+                                : "বিভাগ নির্বাচন করুন"}
+                            </option>
                             {departments?.map((x, i) => (
                               <option key={i} value={x?._id}>
-                                {x?.name}
+                                {lang === "en" ? x?.name : x?.name_bn}
                               </option>
                             ))}
                           </select>
@@ -243,7 +249,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                       </label>
                       <label>
                         <span className="mb-2 inline-block font-medium text-title/85">
-                          Doctor
+                          {lang === "en" ? "Doctor" : "ডাক্তার"}
                         </span>
                         <div className="input block w-full rounded-full">
                           <select
@@ -253,10 +259,14 @@ const ConsultationScheduleSection = ({ lang }) => {
                             onChange={(e) => setDoctor(e.target.value)}
                             required
                           >
-                            <option value="">Select Location</option>
+                            <option value="">
+                              {lang === "en"
+                                ? "Select Doctor"
+                                : "নির্বাচন করুন"}
+                            </option>
                             {doctors?.map((x, i) => (
                               <option key={i} value={x?._id}>
-                                {x?.name}
+                                {lang === "en" ? x?.name : x?.name_bn}
                               </option>
                             ))}
                           </select>
@@ -264,12 +274,16 @@ const ConsultationScheduleSection = ({ lang }) => {
                       </label>
                       <label>
                         <span className="mb-2 inline-block font-medium text-title/85">
-                          Email
+                          {lang === "en" ? "Email" : "ইমেইল"}
                         </span>
                         <input
                           type="email"
                           className="input block w-full rounded-full"
-                          placeholder="Enter Your Email"
+                          placeholder={
+                            lang === "en"
+                              ? "Enter Your Email"
+                              : "আপনার ইমেল লিখুন"
+                          }
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           name="email"
@@ -278,12 +292,16 @@ const ConsultationScheduleSection = ({ lang }) => {
                       </label>
                       <label>
                         <span className="mb-2 inline-block font-medium text-title/85">
-                          Phone
+                          {lang === "en" ? "Phone" : "মোবাইল"}
                         </span>
                         <input
                           type="tel"
                           className="input block w-full rounded-full"
-                          placeholder="Enter Your Phone"
+                          placeholder={
+                            lang === "en"
+                              ? "Enter Your Phone"
+                              : "মোবাইল নাম্বার লিখুন"
+                          }
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
                           name="phone"
@@ -292,7 +310,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                       </label>
                       <label>
                         <span className="mb-2 inline-block font-medium text-title/85">
-                          Date
+                          {lang === "en" ? "Date" : "তারিখ"}
                         </span>
                         <div className="input w-full flex-1 rounded-full">
                           <Calendar
@@ -316,7 +334,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                       </label>
                       <label>
                         <span className="mb-2 inline-block font-medium text-title/85">
-                          Slot
+                          {lang === "en" ? "Slot" : "এপয়েন্টমেন্টর সময়"}
                         </span>
                         <div className="input block w-full rounded-full">
                           <select
@@ -325,10 +343,14 @@ const ConsultationScheduleSection = ({ lang }) => {
                             onChange={(e) => setSlot(e.target.value)}
                             required
                           >
-                            <option value="">Select Slot</option>
+                            <option value="">
+                              {lang === "en"
+                                ? "Select Slot"
+                                : "নির্দিষ্ট স্লট নির্বাচন করুন"}
+                            </option>
                             {slots?.map((x, i) => (
                               <option key={i} value={x?._id}>
-                                {x?.name}
+                                {lang === "en" ? x?.name : x?.name_bn}
                               </option>
                             ))}
                           </select>
@@ -336,13 +358,17 @@ const ConsultationScheduleSection = ({ lang }) => {
                       </label>
                       <label className="lg:col-span-2">
                         <span className="mb-2 inline-block font-medium text-title/85">
-                          Message
+                          {lang === "en" ? "Message" : "বার্তা"}
                         </span>
                         <textarea
                           value={message}
                           onChange={(e) => setMessage(e.target.value)}
                           className="input block w-full rounded-3xl py-[0.375rem]"
-                          placeholder="Enter Your Message"
+                          placeholder={
+                            lang === "en"
+                              ? "Enter Your Message"
+                              : "আপনার বার্তাটি লিখুন"
+                          }
                           rows={1}
                           name="message"
                         />
@@ -355,7 +381,7 @@ const ConsultationScheduleSection = ({ lang }) => {
                         onClick={handleSubmit}
                         type="submit"
                       >
-                        <span>Submit</span>
+                        <span>{lang === "en" ? "Submit" : "জমাদিন"}</span>
                         <Send />
                       </Button>
                     </div>

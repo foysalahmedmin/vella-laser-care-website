@@ -30,9 +30,9 @@ const BannerSection = ({ lang }) => {
     },
     {
       title: `Feel the glow, embrace a new level of beauty.`,
-      title_bn: `Feel the glow, embrace a new level of beauty.`,
+      title_bn: `অনুভব করুন আপনার উজ্জ্বলতাকে, যা আপনার সৌন্দর্য যোগ করবে এক অন্যন্য মাত্রা`,
       subTitle: "At Our Registered Beauty Parlor, Transformation Awaits!",
-      subTitleBn: "At Our Registered Beauty Parlor, Transformation Awaits!",
+      subTitleBn: "আমাদের নিবন্ধিত বিউটি পার্লারে, রূপান্তর অপেক্ষা করছে",
       isRegister: true,
       image: {
         src: "/images/home/home-banner-image.png",

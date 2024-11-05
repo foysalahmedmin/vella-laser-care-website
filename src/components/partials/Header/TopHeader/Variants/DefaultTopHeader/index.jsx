@@ -1,7 +1,6 @@
 import { EmailOutline } from "@/assets/svg/icons/Email";
 import { Facebook } from "@/assets/svg/icons/socials/Facebook";
 import { Instagram } from "@/assets/svg/icons/socials/Instagram";
-import { Twitter } from "@/assets/svg/icons/socials/Twitter";
 import { YouTube } from "@/assets/svg/icons/socials/YouTube";
 import LocaleSwitch from "@/components/partials/LocaleSwitch";
 import { cn } from "@/lib/utils";
@@ -29,25 +28,19 @@ const DefaultTopHeader = ({ user, className }) => {
           <div className="flex items-center justify-end gap-[1em] text-right">
             <div className="inline-flex items-center divide-x divide-primary/25 md:divide-x-2">
               <Link
-                to=""
+                to="https://www.instagram.com/vellalasercare/?igsh=MXBrOHF0ZWNoaW1iZg%3D%3D"
                 className="px-[0.5em] leading-none text-primary first:pl-0 last:pr-0 lg:px-[1em]"
               >
                 <YouTube className="text-[1.25em]" />
               </Link>
               <Link
-                to=""
+                to="https://www.instagram.com/vellalasercare/?igsh=MXBrOHF0ZWNoaW1iZg%3D%3D"
                 className="px-[0.5em] leading-none text-primary first:pl-0 last:pr-0 lg:px-[1em]"
               >
                 <Instagram className="text-[1.25em]" />
               </Link>
               <Link
-                to=""
-                className="px-[0.5em] leading-none text-primary first:pl-0 last:pr-0 lg:px-[1em]"
-              >
-                <Twitter className="text-[1.25em]" />
-              </Link>
-              <Link
-                to=""
+                to="https://www.facebook.com/vellalasercare?mibextid=LQQJ4d"
                 className="px-[0.5em] leading-none text-primary first:pl-0 last:pr-0 lg:px-[1em]"
               >
                 <Facebook className="text-[1.25em]" />

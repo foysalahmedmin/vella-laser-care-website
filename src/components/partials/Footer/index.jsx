@@ -3,15 +3,17 @@ import {
   CopyrightIcon,
   Facebook,
   Instagram,
-  Linkedin,
   MapPin,
   PhoneCall,
-  Twitter,
+  Youtube,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Logo";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const { i18n } = useTranslation();
   return (
     <>
       <footer className="dark border-t bg-dark text-dark-foreground">
@@ -40,23 +42,40 @@ const Footer = () => {
           <hr className="my-12" />
           <div className="grid justify-between gap-8 md:grid-cols-12">
             <div className="space-y-4 md:col-span-4 xl:col-span-6">
-              <p>
-                At Vella Laser Care, we believe that everyone deserves to look
-                and feel their best. Our state-of-the-art laser treatments and
-                personalized skincare solutions are designed to rejuvenate,
-                restore, and enhance your natural beauty. With a team of
-                certified professionals and cutting-edge technology, we’re
-                committed to delivering safe, effective results tailored to your
-                unique needs. Your aesthetic dreams begin here. Visit us today
-                and experience the difference.
-              </p>
+              {i18n?.language === "en" ? (
+                <p>
+                  At Vella Laser Care, we believe that everyone deserves to look
+                  and feel their best. Our state-of-the-art laser treatments and
+                  personalized skincare solutions are designed to rejuvenate,
+                  restore, and enhance your natural beauty. With a team of
+                  certified professionals and cutting-edge technology, we’re
+                  committed to delivering safe, effective results tailored to
+                  your unique needs. Your aesthetic dreams begin here. Visit us
+                  today and experience the difference.
+                </p>
+              ) : (
+                <p>
+                  ভেলা লেজার কেয়ারে আমরা বিশ্বাস করি যে প্রত্যেকেই তারা তাদেরকে
+                  সেরাভাবে দেখতে এবং অনুভব করতে চায়। আমাদের অত্যাধুনিক লেজার
+                  চিকিৎসা এবং ব্যক্তিগতকৃত স্কিনকেয়ার সমাধানগুলি আপনার
+                  প্রাকৃতিক সৌন্দর্যকে পুনরুজ্জীবিত, পুনরুদ্ধার এবং উন্নত করার
+                  জন্য ডিজাইন করা হয়েছে। আমাদের সার্টিফাইড পেশাদারদের নিয়ে গড়া
+                  একটি দল আছে, যারা অত্যাধুনিক প্রযুক্তির সাথে এবং আপনার অনন্য
+                  প্রয়োজন অনুসারে নিরাপদ, কার্যকর ফলাফল সরবরাহ করতে
+                  প্রতিশ্রুতিবদ্ধ। যেখানে আপনার নান্দনিক স্বপ্ন শুরু। আজই আমাদের
+                  এখানে পরিদর্শন করুন এবং ভিন্ন একটা অভিজ্ঞতা অর্জন করুন।
+                </p>
+              )}
+
               <div className="flex items-center gap-4">
-                <strong>Follow Us:</strong>
+                <strong>
+                  {i18n?.language === "en" ? "Follow Us:" : "অনুসরণ করুনঃ"}
+                </strong>
                 <ul className="flex items-center gap-2">
                   <li>
                     <Link
                       className="flex size-6 items-center justify-center rounded-full border bg-transparent"
-                      to=""
+                      to="https://www.facebook.com/vellalasercare?mibextid=LQQJ4d"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -66,7 +85,7 @@ const Footer = () => {
                   <li>
                     <Link
                       className="flex size-6 items-center justify-center rounded-full border bg-transparent"
-                      to=""
+                      to="https://www.instagram.com/vellalasercare/?igsh=MXBrOHF0ZWNoaW1iZg%3D%3D"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -76,21 +95,11 @@ const Footer = () => {
                   <li>
                     <Link
                       className="flex size-6 items-center justify-center rounded-full border bg-transparent"
-                      to=""
+                      to="https://www.instagram.com/vellalasercare/?igsh=MXBrOHF0ZWNoaW1iZg%3D%3D"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Twitter className="size-4" />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className="flex size-6 items-center justify-center rounded-full border bg-transparent"
-                      to=""
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Linkedin className="size-4" />
+                      <Youtube className="size-4" />
                     </Link>
                   </li>
                 </ul>
@@ -98,43 +107,75 @@ const Footer = () => {
             </div>
             <div className="px-4 md:col-span-4 xl:col-span-3">
               <div className="mb-4">
-                <strong className="inline-block text-xl">Support</strong>
+                <strong className="inline-block text-xl">
+                  {i18n?.language === "en" ? "Support" : "সমর্থন"}
+                </strong>
               </div>
               <ul className="space-y-2">
                 <li className="flex items-center gap-1">
-                  <ChevronRight size={16} /> <span>Shipping</span>
+                  <ChevronRight size={16} />{" "}
+                  <span>{i18n?.language === "en" ? "Shipping" : "শিপিং"}</span>
                 </li>
-                <li className="flex items-center gap-1">
-                  <ChevronRight size={16} /> <span>Help & Contact Us</span>
+                <li
+                  onClick={() => navigate("/contact")}
+                  className="flex cursor-pointer items-center gap-1"
+                >
+                  <ChevronRight size={16} />
+                  <span>
+                    {i18n?.language === "en"
+                      ? "Help & Contact Us"
+                      : "যোগাযোগ করুন"}
+                  </span>
                 </li>
                 <li className="flex items-center gap-1">
                   <ChevronRight size={16} />{" "}
-                  <span>Return, Refund & Exchange policy</span>
+                  <span>
+                    {i18n?.language === "en"
+                      ? "Return, Refund & Exchange"
+                      : "রিটার্ন, রিফান্ড এবং এক্সচেঞ্জ নীতি"}
+                  </span>
                 </li>
               </ul>
             </div>
             <div className="px-4 md:col-span-4 xl:col-span-3">
               <div className="mb-4">
-                <strong className="inline-block text-xl">Get to Know Us</strong>
+                <strong className="inline-block text-xl">
+                  {i18n?.language === "en"
+                    ? "Get to Know Us"
+                    : "আমাদের সম্পর্কে জানুন"}
+                </strong>
               </div>
               <ul className="space-y-2">
-                <li className="flex items-center gap-1">
+                <li className="flex items-center gap-2">
                   <span className="flex size-6 items-center justify-center rounded-full border bg-transparent">
                     <MapPin className="size-4" />
                   </span>
-                  <span>76 Lotas Kamal Tower Dhaka, Bangladesh</span>
+                  <span>
+                    Saptok Casiopia Flat No: E- 5, Lift: 02 House No: 35 Road:
+                    27 Dhanmondi, Dhaka, Dhaka, Bangladesh, 1209.
+                  </span>
                 </li>
-                <li className="flex items-center gap-1">
+                <li className="flex items-center gap-2">
                   <span className="flex size-6 items-center justify-center rounded-full border bg-transparent">
                     <PhoneCall className="size-4" />
                   </span>
-                  <span>+01687677554</span>
+                  <span>+8801958242004</span>
                 </li>
-                <li className="flex items-center gap-1">
+                <li className="flex items-center gap-2">
+                  <span className="flex size-6 items-center justify-center rounded-full border bg-transparent">
+                    <MapPin className="size-4" />
+                  </span>
+                  <span>
+                    Palazzo Primavera, Flat -6/A, Plot-106, Road- 12, Block -E.
+                    Banani. Dhaka-1213. ( Besides Prescription Point), Dhaka,
+                    Bangladesh, 1213
+                  </span>
+                </li>
+                <li className="flex items-center gap-2">
                   <span className="flex size-6 items-center justify-center rounded-full border bg-transparent">
                     <PhoneCall className="size-4" />
                   </span>
-                  <span>+01687677554</span>
+                  <span>+8801789458924</span>
                 </li>
               </ul>
             </div>

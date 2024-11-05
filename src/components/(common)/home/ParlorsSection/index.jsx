@@ -22,11 +22,13 @@ const ParlorsSection = ({ lang }) => {
       <div className="container">
         <div className="mb-8 flex items-end justify-between gap-4">
           <SectionTitle className="mb-0 md:mb-0">
-            <Title>{lang === "en" ? "Our Parlors" : "Our Parlors"}</Title>
+            <Title>
+              {lang === "en" ? "Our Parlors" : "আমাদের পার্লারসমূহ"}
+            </Title>
             <Subtitle>
               {lang === "en"
                 ? "Affiliated Parlor Partnership"
-                : "Affiliated Parlor Partnership"}
+                : "পার্লারের অংশীদারিতে যারা অন্তর্ভুক্ত"}
             </Subtitle>
           </SectionTitle>
         </div>
@@ -64,7 +66,7 @@ const ParlorsSection = ({ lang }) => {
         </div>
         <div className="mt-6 text-center">
           <Button className="mx-auto">
-            <span>{lang === "en" ? "View More" : "View More"}</span>{" "}
+            <span>{lang === "en" ? "View More" : "বিস্তারিত দেখুন"}</span>{" "}
             <ArrowRight className="size-4" />
           </Button>
         </div>

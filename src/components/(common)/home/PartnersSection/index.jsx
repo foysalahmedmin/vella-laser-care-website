@@ -1,6 +1,6 @@
 import { SectionTitle, Subtitle } from "@/components/ui/SectionTitle";
 
-const PartnersSection = () => {
+const PartnersSection = ({ lang }) => {
   const partners = [
     "/images/partners/1.png",
     "/images/partners/2.png",
@@ -13,7 +13,9 @@ const PartnersSection = () => {
     <section className="py-16 md:py-24">
       <div className="container">
         <SectionTitle variant="center">
-          <Subtitle>Our Partners</Subtitle>
+          <Subtitle>
+            {lang === "en" ? "Our Partners" : "আমাদের অংশীদারগণ"}
+          </Subtitle>
           <hr className="mx-auto max-w-3xl border-primary" />
         </SectionTitle>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-8 lg:grid-cols-6">

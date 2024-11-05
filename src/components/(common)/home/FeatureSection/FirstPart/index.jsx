@@ -29,7 +29,7 @@ const FirstPart = ({ lang }) => {
           <div>
             <div className="space-y-4">
               <span className="block font-semibold text-primary">
-                {lang === "en" ? "Step Inside" : "Step Inside"}
+                {lang === "en" ? "Step Inside" : "ভিতরের পদক্ষেপ"}
               </span>
               {lang === "en" ? (
                 <h1 className="text-4xl">
@@ -38,34 +38,33 @@ const FirstPart = ({ lang }) => {
                 </h1>
               ) : (
                 <h1 className="text-4xl">
-                  আধুনিক ট্রিটমেন্টে উন্মোচন করুন আপনার সত্যিকারের সৌন্দর্য{" "}
-                  <br /> েলা লেজার কেয়ার
+                  কাটিং-এজ চিকিৎসার মাধ্যমে আপনার ত্বকের আসল সৌন্দর্য উন্মোচন
+                  করুন।
+                  <br /> ভেলা লেজার কেয়ারে
                 </h1>
               )}
               <p className="font-semibold md:text-lg">
                 {lang === "en"
                   ? "Our expert team offers personalized skincare solutions to help you achieve radiant, flawless skin. From rejuvenating facials to advanced laser therapy, your aesthetic dreams begin here. Visit us today and step into a world of confidence and beauty!"
-                  : "আমাদের বিশেষজ্ঞ দল আপনাকে উজ্জ্বল, নিখুঁত ত্বক পেতে ব্যক্তিগত যত্নের সমাধান প্রদান করে। পুনরুজ্জীবনকারী ফেসিয়াল থেকে শুরু করে আধুনিক লেজার থেরাপি পর্যন্ত, আপনার সৌন্দর্যের স্বপ্নের যাত্রা শুরু হোক এখান থেকেই। আজই আমাদের কাছে আসুন এবং আত্মবিশ্বাস ও সৌন্দর্যের এক নতুন জগতে প্রবেশ করুন!"}
+                  : "আমাদের বিশেষজ্ঞ দল আপনাকে উজ্জ্বল, অটুট ত্বক অর্জনে সহায়তা করার জন্য ব্যক্তিগতকৃত স্কিনকেয়ার সমাধান অফার করে। এখানে আপনার নান্দনিক স্বপ্নের  শুরুটাই হয় আয়ুর্বর্ধক ফেসিয়াল থেকে উন্নত লেজার থেরাপি মাধ্যমে। আজ আমাদের এখানে পরিদর্শন করুন এবং পদার্পণ করুন আত্মবিশ্বাস এবং সৌন্দর্যের জগতে।"}
               </p>
               <ul className="flex items-center justify-between">
                 <li className="flex items-center gap-1">
                   <BadgeCheckOutline className="size-6 text-primary" />
                   <span className="inline-block text-lg font-semibold text-title">
-                    {lang === "en"
-                      ? "Illuminating Beauty"
-                      : "Illuminating Beauty"}
+                    {lang === "en" ? "Illuminating Beauty" : "অপরূপ সৌন্দর্য"}
                   </span>
                 </li>
                 <li className="flex items-center gap-1">
                   <BadgeCheckOutline className="size-6 text-primary" />
                   <span className="inline-block text-lg font-semibold text-title">
-                    {lang === "en" ? "Timeless Elegance" : "Timeless Elegance"}
+                    {lang === "en" ? "Timeless Elegance" : "অফুরন্ত কমনীয়তা"}
                   </span>
                 </li>
                 <li className="flex items-center gap-1">
                   <BadgeCheckOutline className="size-6 text-primary" />
                   <span className="inline-block text-lg font-semibold text-title">
-                    {lang === "en" ? "Unique Glow" : "Unique Glow"}
+                    {lang === "en" ? "Unique Glow" : "অনন্য উজ্জ্বলতা"}
                   </span>
                 </li>
               </ul>
@@ -74,7 +73,7 @@ const FirstPart = ({ lang }) => {
                   <span>
                     {lang === "en"
                       ? "Book an appointment"
-                      : "Book an appointment"}
+                      : "অ্যাপয়েন্টমেন্ট বুক করুন"}
                   </span>
                   <CalendarCheck strokeWidth={3} className="size-4" />
                 </Button>

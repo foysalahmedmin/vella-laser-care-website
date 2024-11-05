@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 const ParlorCard = ({ item, lang }) => {
   const navigate = useNavigate();
-  const { name, banner, address, tags, description, description_bn } = item;
+  const { name, name_bn, banner, address, tags, description, description_bn } =
+    item;
   return (
     <div className="overflow-hidden rounded-xl bg-card shadow-custom-1">
       <div className="h-60 w-full">
@@ -27,7 +28,7 @@ const ParlorCard = ({ item, lang }) => {
           ))}
         </ul>
         <div className="space-y-2">
-          <h4 className="text-title/85">{name}</h4>
+          <h4 className="text-title/85">{lang === "en" ? name : name_bn}</h4>
           <span className="flex items-center gap-2">
             <span className="inline-flex aspect-square size-4 items-center justify-center rounded-full border border-primary text-primary">
               <MapPin size={10} />

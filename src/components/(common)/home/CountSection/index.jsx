@@ -15,7 +15,7 @@ const CountSection = ({ lang }) => {
     },
     {
       label: "Products",
-      label_bn: "পণ্যসমূহ",
+      label_bn: "পণ্য",
       value: "44",
       icon: Product,
     },
@@ -27,7 +27,7 @@ const CountSection = ({ lang }) => {
     },
     {
       label: "Year’s of Experince",
-      label_bn: "অভিজ্ঞত",
+      label_bn: "অভিজ্ঞতার সময়কাল",
       value: "7",
       icon: Badge,
     },

@@ -10,13 +10,19 @@ import {
 import { SectionTitle, Subtitle, Title } from "@/components/ui/SectionTitle";
 import { cn } from "@/lib/utils";
 
-const TestimonialsSection = ({ className }) => {
+const TestimonialsSection = ({ className, lang }) => {
   return (
     <section className={cn("pb-16 md:pb-24", className)}>
       <div className="container">
         <SectionTitle variant="center" className="md:mb-10">
-          <Subtitle>Our Testimonials</Subtitle>
-          <Title className="text-title">What Our Customer Says?</Title>
+          <Subtitle>
+            {lang === "en" ? "Our Testimonials" : "আমাদের সুখ্যাতি"}
+          </Subtitle>
+          <Title className="text-title">
+            {lang === "en"
+              ? "What Our Customer Says?"
+              : "আমাদের সম্মানীয় গ্রাহকদের মতামত"}
+          </Title>
         </SectionTitle>
       </div>
       <div>

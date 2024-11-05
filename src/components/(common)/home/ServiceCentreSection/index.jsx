@@ -24,24 +24,24 @@ const ServiceCentreSection = ({ lang }) => {
             <Subtitle>
               {lang === "en"
                 ? "Healthy Skin & Natural"
-                : "Healthy Skin & Natural"}
+                : "প্রাকৃতিক ও স্বাস্থ্যকর ত্বক"}
             </Subtitle>
             <Title>
               {lang === "en"
                 ? "Bringing Out Your Natural Glow with Our Specialized Treatments"
-                : "আমাদের বিশেষ ট্রিটমেন্টে উজ্জ্বল করুন আপনার প্রাকৃতিক সৌন্দর্য"}
+                : "আমরা আমাদের বিশেষ দক্ষতার মাধ্যমে আপনার লুকায়িত সৌন্দর্য বের করে আনবো"}
             </Title>
           </SectionTitle>
           <div className="mr-24 max-w-[26rem] space-y-4 text-sm">
             <p>
               {lang === "en"
                 ? "Bring Out Your Natural Glow with Our Expertly Tailored Treatment Discover smoother, brighter, and more youthful skin with our advanced skincare solutions designed to enhance your natural radiance."
-                : "আপনার প্রাকৃতিক উজ্জ্বলতা প্রকাশ করুন আমাদের বিশেষায়িত ট্রিটমেন্টের মাধ্যমে আমাদের উন্নত স্কিনকেয়ার সমাধান দিয়ে খুঁজে নিন মসৃণ, উজ্জ্বল ও আরও তারুণ্যভরা ত্বক।"}
+                : "আমরা আমাদের বিশেষ উপযোগী দক্ষতার মাধ্যমে আপনার লুকায়িত সৌন্দর্য বের করে আনবো। যেখানে আপনার ত্বকের প্রাকৃতিক সৌন্দর্য আরও বাড়ানোর জন্য আমরা উন্নত স্কিনকেয়ার সল্যুশনের মাধ্যমে আপনার ত্বকে যোগ করতে আরও মসৃণতা, উজ্জ্বলতা এবং তারুন্যতা।"}
             </p>
             <Link to={""} className="block font-bold text-title underline">
               {lang === "en"
                 ? "Browse All Skincare Treatments"
-                : "আমাদের সব স্কিনকেয়ার ট্রিটমেন্ট দেখুন"}
+                : "সব ধরণের স্কিনকেয়ার চিকিৎসা পেতে এখানে ক্লিক করুন"}
             </Link>
           </div>
         </div>

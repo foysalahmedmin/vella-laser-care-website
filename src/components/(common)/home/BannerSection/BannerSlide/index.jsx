@@ -50,7 +50,7 @@ const BannerSlide = ({ item, lang }) => {
                       <Button onClick={() => setIsOpen(true)}>
                         {lang === "en"
                           ? "Request as a Parlor"
-                          : "Request as a Parlor"}
+                          : "একটি পার্লার হিসাবে অনুরোধ"}
                         {button?.icon && (
                           <button.icon strokeWidth={3} className="size-4" />
                         )}
