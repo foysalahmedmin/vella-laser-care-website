@@ -29,7 +29,7 @@ const FirstPart = ({ lang }) => {
           <div>
             <div className="space-y-4">
               <span className="block font-semibold text-primary">
-                {lang === "en" ? "Step Inside" : "ভিতরের পদক্ষেপ"}
+                {lang === "en" ? "Step Inside" : "ভিতরের প্রবেশ করুন"}
               </span>
               {lang === "en" ? (
                 <h1 className="text-4xl">
@@ -38,8 +38,8 @@ const FirstPart = ({ lang }) => {
                 </h1>
               ) : (
                 <h1 className="text-4xl">
-                  কাটিং-এজ চিকিৎসার মাধ্যমে আপনার ত্বকের আসল সৌন্দর্য উন্মোচন
-                  করুন।
+                  অত্যাধুনিক চিকিৎসার মাধ্যমে আপনার ত্বকের আসল সৌন্দর্য উন্মোচন
+                  করুন -
                   <br /> ভেলা লেজার কেয়ারে
                 </h1>
               )}

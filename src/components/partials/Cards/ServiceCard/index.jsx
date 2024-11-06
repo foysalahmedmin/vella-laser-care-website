@@ -40,7 +40,7 @@ const ServiceCard = ({ lang, item, variant = "default", className }) => {
                     className="dark w-full text-sm"
                   >
                     <span>
-                      {lang === "en" ? "Book Now" : "বিস্তারিত দেখুন"}
+                      {lang === "en" ? "Book Now" : "সেবাটি নিবন্ধিত করুন"}
                     </span>
                     <ArrowUpRight className="size-4" />
                   </Button>

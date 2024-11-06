@@ -6,7 +6,7 @@ import { AddSubscription } from "@/network/common/commonApis.js";
 import { toast } from "react-toastify";
 import { errorMessage } from "@/helpers/error.js";
 
-const SubscriptionSection = ({ className }) => {
+const SubscriptionSection = ({ className, lang }) => {
   const [email, setEmail] = useState("");
   const { isPending, mutateAsync } = useMutation({
     mutationFn: AddSubscription,
@@ -29,12 +29,22 @@ const SubscriptionSection = ({ className }) => {
           <div className="grid items-center justify-between gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
               <h3 className="dark text-title">
-                Stay up to date with the best of Vella Cosmetic Products
+                {lang === "en"
+                  ? "Stay up to date with the best of Vella Laser Care"
+                  : "ভেলা লেজার কেয়ারের সেরা সম্পর্কে আপ টু ডেট থাকুন"}
               </h3>
-              <p className="dark text-foreground">
-                Subscribe for the latest skincare trends, exciting new products
-                and exclusive <br /> promotions from Vella Cosmetic
-              </p>
+              {lang === "en" ? (
+                <p className="dark text-foreground">
+                  Subscribe for the latest skincare trends, exciting new
+                  products
+                  <br />
+                  and exclusive services
+                </p>
+              ) : (
+                <p className="dark text-foreground">
+                  স্কিন কেয়ার পণ্য এবং পরিষেবার জন্য সদস্যতা নিন
+                </p>
+              )}
             </div>
             <div className="lg:col-span-5">
               <form action="" className="input w-full border-r-0 bg-card px-0">
@@ -43,7 +53,9 @@ const SubscriptionSection = ({ className }) => {
                   name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
+                  placeholder={
+                    lang === "en" ? "Enter your email" : "আপনার ইমেইল লিখুন"
+                  }
                   className="flex-1 border-none bg-transparent px-4 text-sm outline-none"
                 />
                 <Button
@@ -52,7 +64,7 @@ const SubscriptionSection = ({ className }) => {
                   disabled={isPending}
                   type="submit"
                 >
-                  Subscribe
+                  {lang === "en" ? "Subscribe" : "জমা দিন"}
                 </Button>
               </form>
             </div>
