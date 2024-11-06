@@ -30,6 +30,7 @@ const PaymentSuccessPage = lazy(
 );
 
 // Common Pages
+const BlogsPage = lazy(() => import("@/pages/(common)/BlogsPage/index.jsx"));
 const DoctorDetailsPage = lazy(
   () => import("@/pages/(common)/DoctorDetailsPage"),
 );
@@ -147,7 +148,7 @@ export const routes = [
             path: "/blogs",
             element: (
               <Suspense fallback={<Loader />}>
-                <ShopPage />
+                <BlogsPage />
               </Suspense>
             ),
           },

@@ -12,6 +12,7 @@ export const urls = {
   country_origin: `${current}/uploads/country`,
   shop_category_icon: `${current}/uploads/category/shop/icon`,
   parlor_banner: `${current}/uploads/banner`,
+  blog: `${current}/uploads/blog`,
   stripe_key:
     "test_###############################################################",
 };
