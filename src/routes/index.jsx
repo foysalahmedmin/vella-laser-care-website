@@ -1,5 +1,8 @@
 import { lazy, Suspense } from "react";
 
+// Partials
+const Loader = lazy(() => import("@/components/partials/Loader"));
+
 // Layouts
 const AuthenticationLayout = lazy(
   () => import("@/components/layouts/AuthenticationLayout"),
@@ -10,52 +13,40 @@ const ParlorLayout = lazy(() => import("@/components/layouts/ParlorLayout"));
 const RootLayout = lazy(() => import("@/components/layouts/RootLayout"));
 const UserLayout = lazy(() => import("@/components/layouts/UserLayout"));
 
-// Partials
-const Loader = lazy(() => import("@/components/partials/Loader"));
-
 // Authentication Pages
 const SignInPage = lazy(() => import("@/pages/(authentication)/SignInPage"));
 const SignUpPage = lazy(() => import("@/pages/(authentication)/SignUpPage"));
 
-// Checkout Pages
-const CheckoutPage = lazy(() => import("@/pages/(checkout)/CheckoutPage"));
-const PaymentCancelledPage = lazy(
-  () => import("@/pages/(checkout)/PaymentCancelledPage"),
-);
-const PaymentFailedPage = lazy(
-  () => import("@/pages/(checkout)/PaymentFailedPage"),
-);
-const PaymentSuccessPage = lazy(
-  () => import("@/pages/(checkout)/PaymentSuccessPage"),
-);
-
 // Common Pages
-const BlogsPage = lazy(() => import("@/pages/(common)/BlogsPage/index.jsx"));
-const DoctorDetailsPage = lazy(
-  () => import("@/pages/(common)/DoctorDetailsPage"),
-);
-const DoctorsPage = lazy(() => import("@/pages/(common)/DoctorsPage"));
 const ErrorPage = lazy(() => import("@/pages/(common)/ErrorPage"));
 const HomePage = lazy(() => import("@/pages/(common)/HomePage"));
-const Meet = lazy(() => import("@/pages/(common)/Meet/Meet.jsx"));
+const PrivacyPolicyPage = lazy(
+  () => import("@/pages/(common)/PrivacyPolicyPage"),
+);
 const NotificationsPage = lazy(
   () => import("@/pages/(common)/NotificationsPage"),
 );
-const ContactPage = lazy(() => import("@/pages/(common)/ContactPage"));
-const BlogDetailsPage = lazy(() => import("@/pages/(common)/BlogDetailsPage"));
-const ParlorDetailsPage = lazy(
-  () => import("@/pages/(common)/ParlorDetailsPage"),
-);
-const ParlorPage = lazy(() => import("@/pages/(common)/ParlorPage"));
+const ShopPage = lazy(() => import("@/pages/(common)/ShopPage"));
 const ProductDetailsPage = lazy(
   () => import("@/pages/(common)/ProductDetailsPage"),
 );
+const BlogsPage = lazy(() => import("@/pages/(common)/BlogsPage/index.jsx"));
+const BlogDetailsPage = lazy(() => import("@/pages/(common)/BlogDetailsPage"));
+const DoctorsPage = lazy(() => import("@/pages/(common)/DoctorsPage"));
+const DoctorDetailsPage = lazy(
+  () => import("@/pages/(common)/DoctorDetailsPage"),
+);
+const ParlorPage = lazy(() => import("@/pages/(common)/ParlorPage"));
+const ParlorDetailsPage = lazy(
+  () => import("@/pages/(common)/ParlorDetailsPage"),
+);
+const ServicesPage = lazy(() => import("@/pages/(common)/ServicesPage"));
 const ServiceDetailsPage = lazy(
   () => import("@/pages/(common)/ServiceDetailsPage"),
 );
-const ServicesPage = lazy(() => import("@/pages/(common)/ServicesPage"));
-const ShopPage = lazy(() => import("@/pages/(common)/ShopPage"));
 const TrainingPage = lazy(() => import("@/pages/(common)/TrainingPage"));
+const ContactPage = lazy(() => import("@/pages/(common)/ContactPage"));
+const MeetPage = lazy(() => import("@/pages/(common)/MeetPage"));
 
 // Parlor Pages
 const BookingHistoryPage = lazy(
@@ -73,6 +64,18 @@ const ParlorProfilePage = lazy(
 // User Pages
 const UserDashboard = lazy(() => import("@/pages/(user)/UserDashboard"));
 const UserProfilePage = lazy(() => import("@/pages/(user)/UserProfilePage"));
+
+// Checkout Pages
+const CheckoutPage = lazy(() => import("@/pages/(checkout)/CheckoutPage"));
+const PaymentCancelledPage = lazy(
+  () => import("@/pages/(checkout)/PaymentCancelledPage"),
+);
+const PaymentFailedPage = lazy(
+  () => import("@/pages/(checkout)/PaymentFailedPage"),
+);
+const PaymentSuccessPage = lazy(
+  () => import("@/pages/(checkout)/PaymentSuccessPage"),
+);
 
 export const routes = [
   {
@@ -112,6 +115,14 @@ export const routes = [
           </Suspense>
         ),
         children: [
+          {
+            path: "/privacy-policy",
+            element: (
+              <Suspense fallback={<Loader />}>
+                <PrivacyPolicyPage />
+              </Suspense>
+            ),
+          },
           {
             path: "/notifications",
             element: (
@@ -220,7 +231,7 @@ export const routes = [
             path: "/meet/:id",
             element: (
               <Suspense fallback={<Loader />}>
-                <Meet />
+                <MeetPage />
               </Suspense>
             ),
           },

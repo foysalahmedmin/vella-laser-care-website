@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/Button";
-import { cn } from "@/lib/utils";
-import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { AddSubscription } from "@/network/common/commonApis.js";
-import { toast } from "react-toastify";
 import { errorMessage } from "@/helpers/error.js";
+import { cn } from "@/lib/utils";
+import { AddSubscription } from "@/network/common/commonApis.js";
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 const SubscriptionSection = ({ className, lang }) => {
   const [email, setEmail] = useState("");
@@ -27,7 +27,7 @@ const SubscriptionSection = ({ className, lang }) => {
       <div className="container">
         <div className="rounded-xl bg-gradient-to-r from-primary to-primary/50 px-16 py-12">
           <div className="grid items-center justify-between gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-7">
+            <div className="space-y-2 lg:col-span-7">
               <h3 className="dark text-title">
                 {lang === "en"
                   ? "Stay up to date with the best of Vella Laser Care"

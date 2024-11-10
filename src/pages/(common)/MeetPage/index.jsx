@@ -1,12 +1,11 @@
-import React from "react";
-import { JitsiMeeting } from "@jitsi/react-sdk";
-import { useNavigate, useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { fetchMe } from "@/network/user/userApis.js";
 import { urls } from "@/api/urls.js";
+import { fetchMe } from "@/network/user/userApis.js";
 import useUser from "@/redux/slices/user-slice/useUser.js";
+import { JitsiMeeting } from "@jitsi/react-sdk";
+import { useQuery } from "@tanstack/react-query";
+import { useNavigate, useParams } from "react-router-dom";
 
-const Meet = () => {
+const MeetPage = () => {
   const { role } = useUser();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -15,7 +14,7 @@ const Meet = () => {
     queryFn: () => fetchMe(),
   });
   return (
-    <div>
+    <main>
       <JitsiMeeting
         domain={"meet.admissionsassist.com"}
         roomName={id}
@@ -92,8 +91,8 @@ const Meet = () => {
           iframeRef.style.height = "800px";
         }}
       />
-    </div>
+    </main>
   );
 };
 
-export default Meet;
+export default MeetPage;

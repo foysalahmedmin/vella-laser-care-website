@@ -7,9 +7,9 @@ import {
   PhoneCall,
   Youtube,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Logo";
-import { useTranslation } from "react-i18next";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -40,8 +40,8 @@ const Footer = () => {
             </div>
           </div>
           <hr className="my-12" />
-          <div className="grid justify-between gap-8 md:grid-cols-12">
-            <div className="space-y-4 md:col-span-4 xl:col-span-6">
+          <div className="grid justify-between gap-8 gap-x-12 lg:grid-cols-12">
+            <div className="space-y-4 md:col-span-5">
               {i18n?.language === "en" ? (
                 <p>
                   At Vella Laser Care, we believe that everyone deserves to look
@@ -74,7 +74,7 @@ const Footer = () => {
                 <ul className="flex items-center gap-2">
                   <li>
                     <Link
-                      className="flex size-6 items-center justify-center rounded-full border bg-transparent"
+                      className="flex size-8 items-center justify-center rounded-full border bg-transparent"
                       to="https://www.facebook.com/vellalasercare?mibextid=LQQJ4d"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -84,7 +84,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      className="flex size-6 items-center justify-center rounded-full border bg-transparent"
+                      className="flex size-8 items-center justify-center rounded-full border bg-transparent"
                       to="https://www.instagram.com/vellalasercare/?igsh=MXBrOHF0ZWNoaW1iZg%3D%3D"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -94,7 +94,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      className="flex size-6 items-center justify-center rounded-full border bg-transparent"
+                      className="flex size-8 items-center justify-center rounded-full border bg-transparent"
                       to="https://www.instagram.com/vellalasercare/?igsh=MXBrOHF0ZWNoaW1iZg%3D%3D"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -105,7 +105,7 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="px-4 md:col-span-4 xl:col-span-3">
+            <div className="lg:col-span-3">
               <div className="mb-4">
                 <strong className="inline-block text-xl">
                   {i18n?.language === "en" ? "Support" : "সমর্থন"}
@@ -113,31 +113,40 @@ const Footer = () => {
               </div>
               <ul className="space-y-2">
                 <li className="flex items-center gap-1">
-                  <ChevronRight size={16} />{" "}
+                  <ChevronRight className="size-4" />{" "}
                   <span>{i18n?.language === "en" ? "Shipping" : "শিপিং"}</span>
                 </li>
-                <li
-                  onClick={() => navigate("/contact")}
-                  className="flex cursor-pointer items-center gap-1"
-                >
-                  <ChevronRight size={16} />
-                  <span>
-                    {i18n?.language === "en"
-                      ? "Help & Contact Us"
-                      : "যোগাযোগ করুন"}
-                  </span>
-                </li>
                 <li className="flex items-center gap-1">
-                  <ChevronRight size={16} />{" "}
+                  <ChevronRight className="size-4" />{" "}
                   <span>
                     {i18n?.language === "en"
                       ? "Return, Refund & Exchange"
                       : "রিটার্ন, রিফান্ড এবং এক্সচেঞ্জ নীতি"}
                   </span>
                 </li>
+                <li
+                  onClick={() => navigate("/contact")}
+                  className="flex cursor-pointer items-center gap-1 hover:text-primary"
+                >
+                  <ChevronRight className="size-4" />
+                  <span>
+                    {i18n?.language === "en"
+                      ? "Help & Contact Us"
+                      : "যোগাযোগ করুন"}
+                  </span>
+                </li>
+                <li
+                  onClick={() => navigate("/privacy-policy")}
+                  className="flex cursor-pointer items-center gap-1 hover:text-primary"
+                >
+                  <ChevronRight className="size-4" />
+                  <span>
+                    {i18n?.language === "en" ? "Privacy Policy" : "নীতি"}
+                  </span>
+                </li>
               </ul>
             </div>
-            <div className="px-4 md:col-span-4 xl:col-span-3">
+            <div className="lg:col-span-4">
               <div className="mb-4">
                 <strong className="inline-block text-xl">
                   {i18n?.language === "en"
@@ -145,39 +154,44 @@ const Footer = () => {
                     : "আমাদের সম্পর্কে জানুন"}
                 </strong>
               </div>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2">
-                  <span className="flex size-6 items-center justify-center rounded-full border bg-transparent">
-                    <MapPin className="size-4" />
-                  </span>
-                  <span>
-                    Saptok Casiopia Flat No: E- 5, Lift: 02 House No: 35 Road:
-                    27 Dhanmondi, Dhaka, Dhaka, Bangladesh, 1209.
-                  </span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="flex size-6 items-center justify-center rounded-full border bg-transparent">
-                    <PhoneCall className="size-4" />
-                  </span>
-                  <span>+8801958242004</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="flex size-6 items-center justify-center rounded-full border bg-transparent">
-                    <MapPin className="size-4" />
-                  </span>
-                  <span>
-                    Palazzo Primavera, Flat -6/A, Plot-106, Road- 12, Block -E.
-                    Banani. Dhaka-1213. ( Besides Prescription Point), Dhaka,
-                    Bangladesh, 1213
-                  </span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="flex size-6 items-center justify-center rounded-full border bg-transparent">
-                    <PhoneCall className="size-4" />
-                  </span>
-                  <span>+8801789458924</span>
-                </li>
-              </ul>
+              <div className="space-y-4">
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full border bg-transparent">
+                      <MapPin className="size-4" />
+                    </span>
+                    <span className="py-1">
+                      Saptok Casiopia Flat No: E- 5, Lift: 02 House No: 35 Road:
+                      27 Dhanmondi, Dhaka, Dhaka, Bangladesh, 1209.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full border bg-transparent">
+                      <PhoneCall className="size-4" />
+                    </span>
+                    <span className="py-1">+8801958242004</span>
+                  </li>
+                </ul>
+                <hr />
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full border bg-transparent">
+                      <MapPin className="size-4" />
+                    </span>
+                    <span className="py-1">
+                      Palazzo Primavera, Flat -6/A, Plot-106, Road- 12, Block
+                      -E. Banani. Dhaka-1213. ( Besides Prescription Point),
+                      Dhaka, Bangladesh, 1213
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full border bg-transparent">
+                      <PhoneCall className="size-4" />
+                    </span>
+                    <span className="py-1">+8801789458924</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
           <div className="mt-8">
