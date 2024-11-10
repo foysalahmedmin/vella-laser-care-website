@@ -55,7 +55,7 @@ const ConsultationScheduleSection = ({ lang }) => {
       ),
     enabled: !!date && !!doctor,
   });
-  const { mutateAsync, isLoading } = useMutation({
+  const { mutateAsync, isPending } = useMutation({
     mutationFn: AddAppointment,
     onSuccess: async () => {
       await refetch();
@@ -376,8 +376,8 @@ const ConsultationScheduleSection = ({ lang }) => {
                     </div>
                     <div>
                       <Button
-                        isLoading={isLoading}
-                        disabled={isLoading}
+                        isLoading={isPending}
+                        disabled={isPending}
                         onClick={handleSubmit}
                         type="submit"
                       >
