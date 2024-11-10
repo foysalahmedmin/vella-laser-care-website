@@ -104,7 +104,7 @@ const PrivacyPolicySection = ({ lang }) => {
               <li>
                 By email:{" "}
                 <span className="text-primary underline">
-                  info@admissionsassist.com
+                  info@vellalasercare.com
                 </span>
               </li>
             </ul>

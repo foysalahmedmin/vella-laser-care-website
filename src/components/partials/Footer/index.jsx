@@ -136,7 +136,7 @@ const Footer = () => {
                   </span>
                 </li>
                 <li
-                  onClick={() => navigate("/privacy-policy")}
+                  onClick={() => navigate("/privacy_policy")}
                   className="flex cursor-pointer items-center gap-1 hover:text-primary"
                 >
                   <ChevronRight className="size-4" />

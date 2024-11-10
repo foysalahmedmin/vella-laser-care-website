@@ -116,7 +116,7 @@ export const routes = [
         ),
         children: [
           {
-            path: "/privacy-policy",
+            path: "/privacy_policy",
             element: (
               <Suspense fallback={<Loader />}>
                 <PrivacyPolicyPage />

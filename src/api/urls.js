@@ -3,7 +3,7 @@ let current = "https://cp.vellalasercare.com";
 
 export const urls = {
   mainURL: `${current}`,
-  frontend: "http://localhost:5173",
+  frontend: "https://vellalasercare.com",
   user_photos: `${current}/uploads/user_photos`,
   service_header: `${current}/uploads/service/header`,
   service_compare: `${current}/uploads/service/compare`,
