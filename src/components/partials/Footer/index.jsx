@@ -206,7 +206,10 @@ const Footer = () => {
           <div className="container flex items-center justify-between px-4 py-4 text-center text-muted-foreground">
             <span className="flex items-center gap-1">
               <CopyrightIcon size={16} />
-              <span>Copyright Rimel 2022. All right reserved</span>
+              <span>
+                Copyright FIFOTech {new Date().getFullYear()} . All right
+                reserved
+              </span>
             </span>
             <span className="flex items-center gap-1">
               <CopyrightIcon size={16} />
